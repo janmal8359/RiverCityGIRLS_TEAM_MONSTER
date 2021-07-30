@@ -1,5 +1,7 @@
 #pragma once
-class atk
+#include "state.h"
+
+class atk : public state
 {
 private:
 

@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "jump.h"
-
+#include "player.h"
 HRESULT jump::init()
 {
 	

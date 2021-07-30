@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "state.h"
-#include "player.h"
+
 
 HRESULT state::init()
 {
@@ -16,9 +16,5 @@ void state::update()
 }
 
 void state::render()
-{
-}
-
-void state::callBack(void* obj)
 {
 }
