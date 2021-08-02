@@ -13,7 +13,7 @@ enum dir
 	RIGHT
 };
 
-class state
+class state : public gameNode
 {
 protected:
 
@@ -62,9 +62,19 @@ public:
 	virtual float getPlayerY() { return _pY; }
 	virtual void setPlayerY(float py) { _pY = py; }
 
+
 	//플레이어 렉트
 	virtual RECT getPlayerRc() { return _playerRc; }
 	
+	//플레이어 HP Get Set
+	virtual int getPlayerHp() { return _playerHp; }
+	virtual void setPlayerHp(int hp) { _playerHp = hp; }
+
+
+
+
+
+
 
 	//그림자  X,Y 값을 Get Set
 	virtual float getShadowX() { return _sX; }
@@ -84,6 +94,8 @@ public:
 	//방향을 Get Set
 	virtual int getDir() { return _dir; }
 	virtual void setDir(int dir) { _dir = dir; }
+
+	
 
 };
 

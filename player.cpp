@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "player.h"
-
+#include <map>
 
 
 HRESULT player::init()
@@ -28,6 +28,7 @@ HRESULT player::init()
 void player::release()
 {
     gameNode::release();
+    
 }
 
 void player::update()
@@ -43,5 +44,11 @@ void player::render()
 
 void player::setValue(state* state)
 {
-   
+    state->setPlayerX(_state->getPlayerX());
+    state->setPlayerY(_state->getPlayerY());
+    state->setDir(_state->getDir());
+    state->setPlayerHp(_state->getPlayerHp());
+    state->setShadowX(_state->getShadowX());
+    state->setShadowY(_state->getShadowY());
+    _state = state;
 }

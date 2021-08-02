@@ -16,6 +16,11 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
+	_imgStorage = new imageStorage;
+	_imgStorage->init();
+
+	_player = new player;
+	_player->init();
 
 
 	return S_OK;
@@ -34,6 +39,7 @@ void playGround::update()
 {
 	gameNode::update();
 
+	_player->update();
 	SCENEMANAGER->update();
 	
 }
@@ -43,7 +49,8 @@ void playGround::render()
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==============위에는 제발 건드리지 마라 ============
-	
+
+	_player->render();
 	SCENEMANAGER->render();
 
 	//=============== 밑에도 건들지마라 ================

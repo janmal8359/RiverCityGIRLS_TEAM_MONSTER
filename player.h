@@ -5,7 +5,7 @@
 #include "walk.h"
 #include "jump.h"
 
-
+#pragma warning(disable:4996)
 
 class player : public gameNode
 {

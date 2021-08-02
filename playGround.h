@@ -1,11 +1,19 @@
 #pragma once
 #include "gameNode.h"
+#include "player.h"
+#include "imageStorage.h"
+
 
 
 class playGround : public gameNode
 {
 private:
-	
+	//이미지 초기화 클래스
+	imageStorage* _imgStorage;
+
+	player* _player;
+
+
 
 public:
 	playGround();

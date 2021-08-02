@@ -14,6 +14,10 @@ HRESULT imageStorage::init()
 {
 	//이미지 총합
 #pragma region IMAGESOURCES
+
+	IMAGEMANAGER->addImage("SHADOW", "Resource/IMG/character/shadow.bmp", 128, 38, true, RGB(255, 0, 255));
+
+
 	//////////////////////////////////////////////////////////////////////======플레이어======/////////////////////////////////////////////////////////////////////////////////
 #pragma region PLAYERIMAGE
 
