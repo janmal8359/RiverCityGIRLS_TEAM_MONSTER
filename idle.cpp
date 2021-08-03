@@ -6,17 +6,18 @@ HRESULT idle::init()
 {
 	_playerImg = IMAGEMANAGER->findImage("PLAYER_idle");
 	_shadowImg = IMAGEMANAGER->findImage("SHADOW");
+
 	//플레이어의 왼쪽 Idle;
 	_playerAniL = new animation;
-	_playerAniL->init(_playerImg->getWidth(), _playerImg->getHeight(), 12, 2);
-	_playerAniL->setPlayFrame(0, 11, false, false);
-	_playerAniL->setFPS(1);
+	_playerAniL->newInit(_playerImg->getWidth(), _playerImg->getHeight(), 12, 2);
+	_playerAniL->setPlayFrame(0, 11, false, true);
+	_playerAniL->setFPS(30);
 
 	//플레이어의 오른쪽 Idle;
 	_playerAniR = new animation;
-	_playerAniR->init(_playerImg->getWidth(), _playerImg->getHeight(), 12, 2);
-	_playerAniR->setPlayFrame(12, 23, false, false);
-	_playerAniR->setFPS(1);
+	_playerAniR->newInit(_playerImg->getWidth(), _playerImg->getHeight(), 12, 2);
+	_playerAniR->setPlayFrame(12, 23, false, true);
+	_playerAniR->setFPS(30);
 
 
 	_sX = WINSIZEX / 2;
@@ -104,6 +105,6 @@ void idle::move()
 
 void idle::aniChange()
 {
-	_playerAniL->start();
-	_playerAniR->start();
+	_playerAniL->resume();
+	_playerAniR->resume();
 }

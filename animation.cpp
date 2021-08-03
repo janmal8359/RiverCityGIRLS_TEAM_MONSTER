@@ -56,6 +56,43 @@ HRESULT animation::init(int totalW, int totalH, int frameW, int frameH)
 	return S_OK;
 }
 
+HRESULT animation::newInit(int totalW, int totalH, int frameX, int frameY)
+{
+	_frameWidth = totalW / frameX;
+
+	//가로 몇장~ 
+	int _frameNumWidth = frameX;
+
+	_frameHeight = totalH / frameY;
+
+	//세로 몇장
+	int _frameNumHeight = frameY;
+
+	//총 프레임 장수를 계산한다
+	_frameNum = _frameNumWidth * _frameNumHeight;
+
+	//hoxy...모르니까 벡터는 한 번 싹 밀어줍시다
+	_frameList.clear();
+
+	for (int i = 0; i < _frameNumHeight; ++i)
+	{
+		for (int j = 0; j < _frameNumWidth; ++j)
+		{
+			POINT framePos;
+
+			framePos.x = j * _frameWidth;
+			framePos.y = i * _frameHeight;
+
+			_frameList.push_back(framePos);
+		}
+	}
+
+	//우선 디폴트 애니메이션을 우선으로 두자
+	setDefPlayFrame();
+
+	return S_OK;
+}
+
 void animation::release()
 {
 }

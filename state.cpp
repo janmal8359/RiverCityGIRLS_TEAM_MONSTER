@@ -4,20 +4,21 @@
 
 HRESULT state::init()
 {
-	gameNode::init();
+	//gameNode::init();
 	return S_OK;
 }
 
 void state::release()
 {
-	gameNode::release();
+	//gameNode::release();
 }
 
 void state::update()
 {
-	gameNode::update();
+	//gameNode::update();
 }
 
 void state::render()
 {
+	//gameNode::render();
 }

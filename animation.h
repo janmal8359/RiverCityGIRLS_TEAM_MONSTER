@@ -40,6 +40,7 @@ public:
 	~animation();
 
 	HRESULT init(int totalW, int totalH, int frameW, int frameH);
+	HRESULT newInit(int totalW, int totalH, int frameX, int frameY);
 	void release();
 
 	//디폴트 애니메이션 재생

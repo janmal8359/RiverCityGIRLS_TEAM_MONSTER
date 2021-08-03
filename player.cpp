@@ -45,10 +45,15 @@ void player::setValue(state* state)
 {
     state->setPlayerX(_state->getPlayerX());
     state->setPlayerY(_state->getPlayerY());
+
+    state->setShadowX(_state->getShadowX());
+    state->setShadowY(_state->getShadowY());
+
+
     state->setPlayerRc(_state->getPlayerRc());
     state->setDir(_state->getDir());
     state->setPlayerHp(_state->getPlayerHp());
-    state->setShadowX(_state->getShadowX());
-    state->setShadowY(_state->getShadowY());
+
+
     _state = state;
 }

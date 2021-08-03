@@ -71,11 +71,6 @@ public:
 	virtual void setPlayerHp(int hp) { _playerHp = hp; }
 
 
-
-
-
-
-
 	//그림자  X,Y 값을 Get Set
 	virtual float getShadowX() { return _sX; }
 	virtual void setShadowX(float sx) { _sX = sx; }
