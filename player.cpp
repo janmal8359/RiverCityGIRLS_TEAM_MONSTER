@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "player.h"
-#include <map>
 
 
 HRESULT player::init()
@@ -46,6 +45,7 @@ void player::setValue(state* state)
 {
     state->setPlayerX(_state->getPlayerX());
     state->setPlayerY(_state->getPlayerY());
+    state->setPlayerRc(_state->getPlayerRc());
     state->setDir(_state->getDir());
     state->setPlayerHp(_state->getPlayerHp());
     state->setShadowX(_state->getShadowX());

@@ -61,25 +61,49 @@ void idle::move()
 	{
 		_dir = LEFT;
 		_playerAniL->stop();
+		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+		{
+			_isJump = true;
+		}
+		else _player->setWalk();
 	}
 	else if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_dir = RIGHT;
 		_playerAniR->stop();
+
+		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+		{
+			_isJump = true;
+		}
+		else _player->setWalk();
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
 		_playerAniL->stop();
 		_playerAniR->stop();
+
+		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+		{
+			_isJump = true;
+		}
+		else _player->setWalk();
 	}
 	else if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
 		_playerAniL->stop();
 		_playerAniR->stop();
 
+		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+		{
+			_isJump = true;
+		}
+		else _player->setWalk();
 	}
 }
 
 void idle::aniChange()
 {
+	_playerAniL->start();
+	_playerAniR->start();
 }

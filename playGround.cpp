@@ -19,6 +19,7 @@ HRESULT playGround::init()
 	_imgStorage = new imageStorage;
 	_imgStorage->init();
 
+
 	_player = new player;
 	_player->init();
 
@@ -40,7 +41,9 @@ void playGround::update()
 	gameNode::update();
 
 	_player->update();
-	SCENEMANAGER->update();
+
+
+
 	
 }
 
@@ -51,7 +54,7 @@ void playGround::render()
 	//==============위에는 제발 건드리지 마라 ============
 
 	_player->render();
-	SCENEMANAGER->render();
+
 
 	//=============== 밑에도 건들지마라 ================
 	_backBuffer->render(getHDC(), 0, 0);
