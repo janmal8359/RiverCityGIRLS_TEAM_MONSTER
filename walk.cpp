@@ -8,8 +8,8 @@ HRESULT walk::init()
 	_playerImg = IMAGEMANAGER->findImage("PLAYER_walk");
 	_shadowImg = IMAGEMANAGER->findImage("SHADOW");
 
-	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkL", "PLAYER_walk", 0, 11,10, false, true, this);
-	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkR", "PLAYER_walk", 23, 12,10, false, true, this);
+	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkL", "PLAYER_walk", 11, 0, 10, false, true, this);
+	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkR", "PLAYER_walk", 12, 23, 10, false, true, this);
 	
 	_speed = 5.0f;
 
@@ -60,7 +60,7 @@ void walk::move()
 			_player->setJump();
 		}
 	}
-	if (KEYMANAGER->isOnceKeyUp('D'))
+	else if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
 	{
 		_player->setIdle();
 	}
@@ -73,8 +73,10 @@ void walk::move()
 		{
 			_player->setJump();
 		}
-	
-
+	}
+	else if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+	{
+		_player->setIdle();
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
@@ -88,6 +90,11 @@ void walk::move()
 		}
 
 	}
+	else if (KEYMANAGER->isOnceKeyUp(VK_UP))
+	{
+		_player->setIdle();
+	}
+
 	else if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
 		_sY += _speed;
@@ -98,5 +105,9 @@ void walk::move()
 			_player->setJump();
 		}
 
+	}
+	else if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
+	{
+		_player->setIdle();
 	}
 }
