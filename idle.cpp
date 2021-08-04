@@ -6,18 +6,26 @@ HRESULT idle::init()
 {
 	_playerImg = IMAGEMANAGER->findImage("PLAYER_idle");
 	_shadowImg = IMAGEMANAGER->findImage("SHADOW");
+	
 
+
+	
+	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_idleL", "PLAYER_idle", 0, 11, 20, false, true);
+
+	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_idleR", "PLAYER_idle", 23, 12, 20, false, true);
+
+	_playerAni = KEYANIMANAGER->findAnimation("PLAYER_idleR");
 	//플레이어의 왼쪽 Idle;
-	_playerAniL = new animation;
-	_playerAniL->newInit(_playerImg->getWidth(), _playerImg->getHeight(), 12, 2);
-	_playerAniL->setPlayFrame(0, 11, false, true);
-	_playerAniL->setFPS(30);
+	//_playerAniL = new animation;
+	//_playerAniL->newInit(_playerImg->getWidth(), _playerImg->getHeight(), 12, 2);
+	//_playerAniL->setPlayFrame(0, 11, false, true);
+	//_playerAniL->setFPS(30);
 
-	//플레이어의 오른쪽 Idle;
-	_playerAniR = new animation;
-	_playerAniR->newInit(_playerImg->getWidth(), _playerImg->getHeight(), 12, 2);
-	_playerAniR->setPlayFrame(12, 23, false, true);
-	_playerAniR->setFPS(30);
+	////플레이어의 오른쪽 Idle;
+	//_playerAniR = new animation;
+	//_playerAniR->newInit(_playerImg->getWidth(), _playerImg->getHeight(), 12, 2);
+	//_playerAniR->setPlayFrame(12, 23, false, true);
+	//_playerAniR->setFPS(30);
 
 
 	_sX = WINSIZEX / 2;
@@ -29,7 +37,6 @@ HRESULT idle::init()
 
 	_playerRc = RectMakeCenter(_pX, _pY, _playerImg->getFrameWidth(), _playerImg->getFrameHeight());
 	_shadowRc = RectMakeCenter(_sX, _sY, _shadowImg->getWidth(), _shadowImg->getHeight());
-
 
 
 	return S_OK;
@@ -44,16 +51,30 @@ void idle::update()
 	move();
 	aniChange();
 
-	_playerAniL->frameUpdate(TIMEMANAGER->getElapsedTime() * 0.5f);
-	_playerAniR->frameUpdate(TIMEMANAGER->getElapsedTime() * 0.5f);
+	
+	if (_dir == LEFT)
+	{
+		_playerAni = KEYANIMANAGER->findAnimation("PLAYER_idleL");
+
+	}
+	if (_dir == RIGHT)
+	{
+		_playerAni = KEYANIMANAGER->findAnimation("PLAYER_idleR");
+
+	}
 
 	_playerRc = RectMakeCenter(_sX, _sY - _playerImg->getFrameHeight() / 2, _playerImg->getFrameWidth(), _playerImg->getFrameHeight());
+	KEYANIMANAGER->update();
 }
 
 void idle::render()
 {
-	if (_dir == LEFT)   _playerImg->aniRender(getMemDC(), _playerRc.left, _playerRc.top, _playerAniL);
-	if (_dir == RIGHT)  _playerImg->aniRender(getMemDC(), _playerRc.left, _playerRc.top, _playerAniR);
+	_shadowImg->render(getMemDC(), _shadowRc.left, _shadowRc.top);
+
+	_playerImg->aniRender(getMemDC(),_playerRc.left, _playerRc.top, _playerAni);
+	_playerAni->resume();
+
+	
 }
 
 void idle::move()
@@ -61,50 +82,53 @@ void idle::move()
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		_dir = LEFT;
-		_playerAniL->stop();
+		_player->setWalk();
+
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 		{
 			_isJump = true;
+			_player->setJump();
 		}
-		else _player->setWalk();
+	
+		
+
 	}
 	else if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_dir = RIGHT;
-		_playerAniR->stop();
 
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 		{
-			_isJump = true;
+			_player->setJump();
 		}
-		else _player->setWalk();
+	
+	
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
-		_playerAniL->stop();
-		_playerAniR->stop();
+
 
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 		{
 			_isJump = true;
+			_player->setJump();
 		}
-		else _player->setWalk();
+
 	}
 	else if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
-		_playerAniL->stop();
-		_playerAniR->stop();
+	
 
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 		{
 			_isJump = true;
+			_player->setJump();
 		}
-		else _player->setWalk();
+	
 	}
 }
 
 void idle::aniChange()
 {
-	_playerAniL->resume();
-	_playerAniR->resume();
+
 }

@@ -395,7 +395,7 @@ void animation::setPlayFrame(int start, int end, BOOL reverse, BOOL loop)
 					_playList.push_back(i);
 				}
 
-				for (int i = end - 1; i > start; i++)
+				for (int i = end - 1; i > start; i--)
 				{
 					_playList.push_back(i);
 				}
@@ -407,7 +407,7 @@ void animation::setPlayFrame(int start, int end, BOOL reverse, BOOL loop)
 					_playList.push_back(i);
 				}
 
-				for (int i = end - 1; i > start; i++)
+				for (int i = end - 1; i > start; i--)
 				{
 					_playList.push_back(i);
 				}
@@ -512,7 +512,7 @@ void animation::setPlayFrame(int start, int end, BOOL reverse, BOOL loop, CALLBA
 					_playList.push_back(i);
 				}
 
-				for (int i = end - 1; i > start; i++)
+				for (int i = end - 1; i > start; i--)
 				{
 					_playList.push_back(i);
 				}
@@ -524,7 +524,7 @@ void animation::setPlayFrame(int start, int end, BOOL reverse, BOOL loop, CALLBA
 					_playList.push_back(i);
 				}
 
-				for (int i = end - 1; i > start; i++)
+				for (int i = end - 1; i > start; i--)
 				{
 					_playList.push_back(i);
 				}
@@ -629,7 +629,7 @@ void animation::setPlayFrame(int start, int end, BOOL reverse, BOOL loop, CALLBA
 					_playList.push_back(i);
 				}
 
-				for (int i = end - 1; i > start; i++)
+				for (int i = end - 1; i > start; i--)
 				{
 					_playList.push_back(i);
 				}
@@ -641,7 +641,7 @@ void animation::setPlayFrame(int start, int end, BOOL reverse, BOOL loop, CALLBA
 					_playList.push_back(i);
 				}
 
-				for (int i = end - 1; i > start; i++)
+				for (int i = end - 1; i > start; i--)
 				{
 					_playList.push_back(i);
 				}

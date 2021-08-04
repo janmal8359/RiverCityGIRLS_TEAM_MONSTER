@@ -17,8 +17,8 @@ class state : public gameNode
 {
 protected:
 
-	animation* _playerAniL;
-	animation* _playerAniR;
+	animation* _playerAni;
+	//animation* _playerAniR;
 
 	image* _playerImg;
 	image* _shadowImg;

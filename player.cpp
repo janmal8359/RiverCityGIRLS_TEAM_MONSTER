@@ -48,7 +48,7 @@ void player::setValue(state* state)
 
     state->setShadowX(_state->getShadowX());
     state->setShadowY(_state->getShadowY());
-
+    
 
     state->setPlayerRc(_state->getPlayerRc());
     state->setDir(_state->getDir());
