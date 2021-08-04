@@ -15,17 +15,6 @@ HRESULT idle::init()
 	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_idleR", "PLAYER_idle", 23, 12, 20, false, true);
 
 	_playerAni = KEYANIMANAGER->findAnimation("PLAYER_idleR");
-	//플레이어의 왼쪽 Idle;
-	//_playerAniL = new animation;
-	//_playerAniL->newInit(_playerImg->getWidth(), _playerImg->getHeight(), 12, 2);
-	//_playerAniL->setPlayFrame(0, 11, false, true);
-	//_playerAniL->setFPS(30);
-
-	////플레이어의 오른쪽 Idle;
-	//_playerAniR = new animation;
-	//_playerAniR->newInit(_playerImg->getWidth(), _playerImg->getHeight(), 12, 2);
-	//_playerAniR->setPlayFrame(12, 23, false, true);
-	//_playerAniR->setFPS(30);
 
 
 	_sX = WINSIZEX / 2;
@@ -55,7 +44,7 @@ void idle::update()
 	if (_dir == LEFT)
 	{
 		_playerAni = KEYANIMANAGER->findAnimation("PLAYER_idleL");
-
+	
 	}
 	if (_dir == RIGHT)
 	{
@@ -63,7 +52,10 @@ void idle::update()
 
 	}
 
+	
 	_playerRc = RectMakeCenter(_sX, _sY - _playerImg->getFrameHeight() / 2, _playerImg->getFrameWidth(), _playerImg->getFrameHeight());
+	_playerAni->resume();
+
 	KEYANIMANAGER->update();
 }
 
@@ -72,7 +64,7 @@ void idle::render()
 	_shadowImg->render(getMemDC(), _shadowRc.left, _shadowRc.top);
 
 	_playerImg->aniRender(getMemDC(),_playerRc.left, _playerRc.top, _playerAni);
-	_playerAni->resume();
+
 
 	
 }
@@ -96,7 +88,7 @@ void idle::move()
 	else if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_dir = RIGHT;
-
+		_player->setWalk();
 		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 		{
 			_player->setJump();

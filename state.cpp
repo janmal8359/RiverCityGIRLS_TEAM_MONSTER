@@ -5,6 +5,7 @@
 HRESULT state::init()
 {
 	//gameNode::init();
+
 	return S_OK;
 }
 

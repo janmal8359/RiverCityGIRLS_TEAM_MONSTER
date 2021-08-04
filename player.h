@@ -28,8 +28,8 @@ public:
 
 	state* getState() { return _state; }
 
-	void setIdle() { setValue(_idle); }
-	void setWalk() { setValue(_walk); }
+	void setIdle() { setValue(_idle); update(); }
+	void setWalk() { setValue(_walk); update();}
 	void setJump() { setValue(_jump); }
 };
 

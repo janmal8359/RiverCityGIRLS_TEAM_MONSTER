@@ -22,7 +22,8 @@ HRESULT playGround::init()
 
 	_player = new player;
 	_player->init();
-
+	
+	//_player->getState()->setPlayer(_player);
 
 	return S_OK;
 }

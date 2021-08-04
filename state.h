@@ -65,6 +65,8 @@ public:
 
 	//플레이어 렉트
 	virtual RECT getPlayerRc() { return _playerRc; }
+	virtual void setPlayerRc(RECT rc) { _playerRc = rc; }
+	
 	
 	//플레이어 HP Get Set
 	virtual int getPlayerHp() { return _playerHp; }
@@ -80,7 +82,7 @@ public:
 
 	//그림자 렉트
 	virtual RECT getShadowRc() { return _shadowRc; }
-	virtual void setPlayerRc(RECT rc) { _playerRc = rc; }
+	virtual void setShadowRc(RECT rc) { _shadowRc = rc; }
 
 	//속도 Get Set
 	virtual float getSpeed() { return _speed; }

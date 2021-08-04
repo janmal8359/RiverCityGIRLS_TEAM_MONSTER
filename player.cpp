@@ -4,7 +4,7 @@
 
 HRESULT player::init()
 {
-    gameNode::init();
+
 
     _idle = new idle;
     _idle->init();
@@ -16,23 +16,27 @@ HRESULT player::init()
     _jump->init();
 
     _state = _idle;
-    _state->init();
+    //_state->init();
+
+    _idle->setPlayer(this);
+    _walk->setPlayer(this);
+    _jump->setPlayer(this);
 
 
-
+    
 
     return S_OK;
 }
 
 void player::release()
 {
-    gameNode::release();
+
     
 }
 
 void player::update()
 {
-    gameNode::update();
+    //_state->setPlayer(this);
     _state->update();
 }
 
@@ -49,11 +53,13 @@ void player::setValue(state* state)
     state->setShadowX(_state->getShadowX());
     state->setShadowY(_state->getShadowY());
     
-
+   
     state->setPlayerRc(_state->getPlayerRc());
+   
     state->setDir(_state->getDir());
     state->setPlayerHp(_state->getPlayerHp());
 
-
     _state = state;
+
+    
 }
