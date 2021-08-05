@@ -27,5 +27,6 @@ void firstStage::update()
 
 void firstStage::render()
 {
-	
+	IMAGEMANAGER->findImage("STAGE_stagePixel1")->render(getMemDC(), 0, 0);
+	IMAGEMANAGER->findImage("STAGE_stage1")->render(getMemDC(), 0, 0);
 }
