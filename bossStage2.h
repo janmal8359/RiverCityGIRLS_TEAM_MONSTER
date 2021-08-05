@@ -10,6 +10,7 @@ private:
 	float _radius;
 	int _alphaValue;
 
+
 public:
 	bossStage2();
 	~bossStage2();

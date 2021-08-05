@@ -4,7 +4,7 @@
 class secondStage : public gameNode
 {
 private:
-
+	bool _isCheck;
 
 public:
 	secondStage();

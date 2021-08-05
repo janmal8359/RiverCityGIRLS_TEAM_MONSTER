@@ -1,10 +1,10 @@
 #pragma once
 #include "gameNode.h"
-
+#include "testScen.h"
 
 class playGround : public gameNode
 {
-private:
+//private:
 	
 
 public:

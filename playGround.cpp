@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "playGround.h"
 
-
 playGround::playGround()
 {
 }
@@ -16,7 +15,8 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
-
+	SCENEMANAGER->addScene("playStage", new stageManager);
+	SCENEMANAGER->changeScene("playStage");
 
 	return S_OK;
 }

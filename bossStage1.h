@@ -4,8 +4,13 @@
 class bossStage1 : public gameNode
 {
 private:
-	//오브젝트 용
+	//오브젝트
 	float _X, _Y;
+
+	//충돌용
+	RECT _rc;
+	float _x, _y;
+	bool _isCheck;
 
 public:
 	bossStage1();

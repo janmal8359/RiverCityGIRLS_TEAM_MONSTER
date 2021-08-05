@@ -4,6 +4,8 @@
 class thirdStage : public gameNode
 {
 private:
+	bool _isCheck;
+
 
 public:
 	thirdStage();

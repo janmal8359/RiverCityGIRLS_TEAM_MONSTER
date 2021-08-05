@@ -11,9 +11,15 @@ bossStage2::~bossStage2()
 
 HRESULT bossStage2::init()
 {
-
+	IMAGEMANAGER->findImage("OBJECT_backPillar");
+	IMAGEMANAGER->findImage("OBJECT_firstPillar");
+	IMAGEMANAGER->findImage("OBJECT_particle1");
+	IMAGEMANAGER->findImage("OBJECT_particle2");
+	IMAGEMANAGER->findImage("OBJECT_particle3");
 	IMAGEMANAGER->findImage("STAGE_bossStage2");
 	IMAGEMANAGER->findImage("STAGE_bossPixel");
+
+	
 
 	return S_OK;
 }
