@@ -7,6 +7,12 @@ HRESULT walk::init()
   
 
 
+	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkL", "PLAYER_walk", 11, 0, 10, false, true, this);
+	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkR", "PLAYER_walk", 12, 23, 10, false, true, this);
+	
+	_speed = 5.0f;
+
+
     return S_OK;
 }
 
@@ -27,6 +33,7 @@ void walk::render()
 
 void walk::stateChange()
 {
+
     //if (KEYMANAGER->isOnceKeyDown(VK_LEFT) ||
     //    KEYMANAGER->isOnceKeyDown(VK_RIGHT) ||
     //    KEYMANAGER->isOnceKeyDown(VK_UP) ||
@@ -50,5 +57,6 @@ void walk::ani()
         _playerAni = KEYANIMANAGER->findAnimation("PLAYER_walkR");
         _playerAni->resume();
     }*/
+
 }
 
