@@ -848,7 +848,7 @@ DWORD threadFunction(LPVOID lpParameter)
 
 	//	//이렇게 안하면 눈에 보이지도 않아요
 	//	Sleep(1);
-
+	
 	//	loadingHelper->_currentCount++;
 	//}
 	//return 0;
