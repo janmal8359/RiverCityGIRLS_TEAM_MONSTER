@@ -3,7 +3,7 @@
 
 HRESULT atk::init()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 void atk::release()
