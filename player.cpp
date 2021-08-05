@@ -67,6 +67,10 @@ void player::render()
 {
    _shadowImg->render(getMemDC(), _shadowRc.left, _shadowRc.top);
     _state->render();
+
+    char str[128];
+    sprintf_s(str, " _isJump : %d", _isJump);
+    TextOut(getMemDC(), 0, 200, str, strlen(str));
 }
 
 void player::stateRender(animation* motion)
@@ -76,12 +80,51 @@ void player::stateRender(animation* motion)
 
 void player::move()
 {
-    if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _dir = LEFT;
-    if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _dir = RIGHT;
-    if (KEYMANAGER->isStayKeyDown(VK_UP))
-        if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-            if (KEYMANAGER->isStayKeyDown(VK_SPACE)) _isJump = true;
+   
+   
+    if (KEYMANAGER->isStayKeyDown(VK_SPACE)) _isJump = true;
 
+    //점프상태가 아닐때
+    if (!_isJump)
+    {
+
+        if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+        {
+            _dir = LEFT;
+            _sX -= _speed;
+        }
+        
+        if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) 
+        {
+            _dir = RIGHT;
+            _sX += _speed;
+        }
+        if (KEYMANAGER->isStayKeyDown(VK_UP))
+        {
+            _sY -= _speed;
+        }
+        if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+        {
+            _sY += _speed;
+        }
+
+        _pX = _sX;
+        _pY = _sY - _playerImg->getFrameHeight() / 2;
+    }
+    else
+    {
+        if (_playerRc.bottom <= _sY)
+        {
+            _pX = _sX;
+            _pY -= _jumpPower;
+            _jumpPower -= GRAVITY;
+        }
+        else
+        {
+            _pY = _sY - _playerImg->getFrameHeight() / 2;
+            _isJump = false;
+        }
+    }
 
 
 
@@ -97,8 +140,8 @@ void player::playerAni()
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_idleL", "PLAYER_idle", 11, 0, 10, false, true);
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_idleR", "PLAYER_idle", 23, 12, 10, false, true);
 
-    //KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkL", "PLAYER_walk", 11, 0, 10, false, true);
-    //KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkR", "PLAYER_walk", 23, 12, 10, false, true);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkL", "PLAYER_walk", 11, 0, 10, false, true);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkR", "PLAYER_walk", 12, 23, 10, false, true);
 
     //KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_runL", "PLAYER_run", 11, 0, 10, false, true);
     //KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_runR", "PLAYER_run", 23, 12, 10, false, true);

@@ -32,6 +32,9 @@ private:
 
 	float _pX, _pY;			//실제 플레이어의 x,y 값
 
+
+	
+
 	int _dir;				//빙향
 
 	

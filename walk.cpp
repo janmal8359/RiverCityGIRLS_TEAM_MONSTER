@@ -4,15 +4,7 @@
 
 HRESULT walk::init()
 {
-  
-
-
-	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkL", "PLAYER_walk", 11, 0, 10, false, true, this);
-	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkR", "PLAYER_walk", 12, 23, 10, false, true, this);
-	
-	_speed = 5.0f;
-
-
+    _playerImg = IMAGEMANAGER->findImage("PLAYER_walk");
     return S_OK;
 }
 
@@ -22,41 +14,50 @@ void walk::release()
 
 void walk::update()
 {
-    //state::update();
-  //  _playerImg = IMAGEMANAGER->findImage("PLAYER_walk");
+    state::update();
+    _playerImg = IMAGEMANAGER->findImage("PLAYER_walk");
 }
 
 void walk::render()
 {
- //   state::render();
+     state::render();
 }
 
 void walk::stateChange()
 {
+    if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+    {
+        _player->setJumpPower(20.0f);
+       // _player->setState(new jump);
+    }
 
-    //if (KEYMANAGER->isOnceKeyDown(VK_LEFT) ||
-    //    KEYMANAGER->isOnceKeyDown(VK_RIGHT) ||
-    //    KEYMANAGER->isOnceKeyDown(VK_UP) ||
-    //    KEYMANAGER->isOnceKeyDown(VK_DOWN))
-    //{
-
-    //}
+    //모든 버튼은 때면 idle로 돌아가는구문
+    if (!KEYMANAGER->isStayKeyDown(VK_LEFT)  &&
+        !KEYMANAGER->isStayKeyDown(VK_RIGHT) &&
+        !KEYMANAGER->isStayKeyDown(VK_UP)    &&
+        !KEYMANAGER->isStayKeyDown(VK_DOWN))
+    {
+        _player->setState(new idle);
+    }
 }
 
 void walk::ani()
 {
-  /*  _player->setSpeed(5.0f);
+    _player->setSpeed(5.0f);
 
-    if (_dir == LEFT)
+    if (!_player->getIsJump())
     {
-        _playerAni = KEYANIMANAGER->findAnimation("PLAYER_walkL");
-        _playerAni->resume();
+        if (_dir == LEFT)
+        {
+            _playerAni = KEYANIMANAGER->findAnimation("PLAYER_walkL");
+            _playerAni->resume();
+        }
+        else if (_dir == RIGHT)
+        {
+            _playerAni = KEYANIMANAGER->findAnimation("PLAYER_walkR");
+            _playerAni->resume();
+        }
+
     }
-    else if (_dir == RIGHT)
-    {
-        _playerAni = KEYANIMANAGER->findAnimation("PLAYER_walkR");
-        _playerAni->resume();
-    }*/
-
 }
 
