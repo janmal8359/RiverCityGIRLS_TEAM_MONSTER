@@ -708,6 +708,8 @@ HRESULT imageStorage::init()
 	IMAGEMANAGER->addImage("ITEM_meat", "Resource/IMG/item/meat.bmp", 60, 51, true, RGB(255, 0, 255));
 	//새우튀김
 	IMAGEMANAGER->addImage("ITEM_tempura", "Resource/IMG/item/tempura.bmp", 58, 60, true, RGB(255, 0, 255));
+	//사과
+	IMAGEMANAGER->addImage("ITEM_apple", "Resource/IMG/item/apple.bmp", 48, 50, true, RGB(255, 0, 255));
 
 #pragma endregion ITEM
 
@@ -723,11 +725,15 @@ HRESULT imageStorage::init()
 	IMAGEMANAGER->addImage("OBJECT_hen", "Resource/IMG/object/hen.bmp", 100, 100, true, RGB(255, 0, 255));
 	//책상
 	IMAGEMANAGER->addImage("OBJECT_desk", "Resource/IMG/object/desk.bmp", 147, 162, true, RGB(255, 0, 255));
+	//책상배열1
+	IMAGEMANAGER->addImage("OBJECT_desk1", "Resource/IMG/object/desk1.bmp", 939, 162, true, RGB(255, 0, 255));
+	//책상배열2
+	IMAGEMANAGER->addImage("OBJECT_desk2", "Resource/IMG/object/desk2.bmp", 936, 138, true, RGB(255, 0, 255));
 	//교사 책상
 	IMAGEMANAGER->addImage("OBJECT_teachers_desk", "Resource/IMG/object/teachers_desk.bmp", 83, 34, true, RGB(255, 0, 255));
 	//테이블
 	IMAGEMANAGER->addImage("OBJECT_table", "Resource/IMG/object/table.bmp", 339, 162, true, RGB(255, 0, 255));
-	//울타리
+	//수영장팬스
 	IMAGEMANAGER->addImage("OBJECT_fence", "Resource/IMG/object/fence.bmp", 476, 71, true, RGB(255, 0, 255));
 	//기둥 파편1
 	IMAGEMANAGER->addImage("OBJECT_particle1", "Resource/IMG/object/pillar_particle_1.bmp", 64, 64, true, RGB(255, 0, 255));
@@ -759,12 +765,34 @@ HRESULT imageStorage::init()
 	IMAGEMANAGER->addImage("STAGE_boss1", "Resource/IMG/stage/boss1.bmp", 3116, 1215, true, RGB(255, 0, 255));
 	//보스 등장 후 스테이지
 	IMAGEMANAGER->addImage("STAGE_boss2", "Resource/IMG/stage/boss2.bmp", 3116, 1215, true, RGB(255, 0, 255));
+	//보스 등장 전 스테이지(추가)
+	IMAGEMANAGER->addImage("STAGE_bossStage1", "Resource/IMG/stage/boss_stage.bmp", 2769, 1080, true, RGB(255, 0, 255));
+	//보스 등장 전 스테이지(추가)
+	IMAGEMANAGER->addImage("STAGE_bossStage2", "Resource/IMG/stage/boss_stage2.bmp", 2769, 1080, true, RGB(255, 0, 255));
 	//게임 시작 교실
 	IMAGEMANAGER->addImage("STAGE_easy", "Resource/IMG/stage/easy.bmp", 2028, 678, true, RGB(255, 0, 255));
+	//게임 시작 교실(추가)
+	IMAGEMANAGER->addImage("STAGE_stage1", "Resource/IMG/stage/stage01.bmp", 2016, 672, true, RGB(255, 0, 255));
+	//교내복도(위로)
+	IMAGEMANAGER->addImage("STAGE_stage2", "Resource/IMG/stage/stage02.bmp", 2400, 864, true, RGB(255, 0, 255));
+	//교내복도(밑으로)
+	IMAGEMANAGER->addImage("STAGE_stage3", "Resource/IMG/stage/stage03.bmp", 2400, 865, true, RGB(255, 0, 255));
+	//교무실
+	IMAGEMANAGER->addImage("STAGE_stage4", "Resource/IMG/stage/stage04.bmp", 2112, 864, true, RGB(255, 0, 255));
 	//수영장
 	IMAGEMANAGER->addImage("STAGE_hard", "Resource/IMG/stage/hard.bmp", 2328, 1428, true, RGB(255, 0, 255));
 	//편의점
 	IMAGEMANAGER->addImage("STAGE_normal", "Resource/IMG/stage/normal.bmp", 2865, 837, true, RGB(255, 0, 255));
+	//보스방 픽셀(추가본)
+	IMAGEMANAGER->addImage("STAGE_bossPixel", "Resource/IMG/stage/boss_stage_pixel.bmp", 2769, 1080, true, RGB(255, 0, 255));
+	//교실 픽셀(추가본)
+	IMAGEMANAGER->addImage("STAGE_stagePixel1", "Resource/IMG/stage/stage01_pixel.bmp", 2016, 672, true, RGB(255, 0, 255));
+	//복도1 픽셀
+	IMAGEMANAGER->addImage("STAGE_stagePixel2", "Resource/IMG/stage/stage02_pixel.bmp", 2400, 864, true, RGB(255, 0, 255));
+	//복도2 픽셀
+	IMAGEMANAGER->addImage("STAGE_stage1Pixel3", "Resource/IMG/stage/stage03_pixel.bmp", 2400, 865, true, RGB(255, 0, 255));
+	//교무실 픽셀
+	IMAGEMANAGER->addImage("STAGE_stagePixel4", "Resource/IMG/stage/stage04_pixel.bmp", 2112, 864, true, RGB(255, 0, 255));
 
 #pragma endregion STAGE
 
