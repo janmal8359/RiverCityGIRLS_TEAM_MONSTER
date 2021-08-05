@@ -22,9 +22,9 @@ HRESULT playGround::init()
 
 	_player = new player;
 	_player->init();
-	
-	//_player->getState()->setPlayer(_player);
 
+
+	
 	return S_OK;
 }
 
@@ -41,9 +41,11 @@ void playGround::update()
 {
 	gameNode::update();
 
+	
+
 	_player->update();
 
-
+	_player->getState()->setPlayer(_player);
 
 	
 }

@@ -15,8 +15,7 @@ public:
 	virtual void render();
 
 
-	//움직여서 키받는 함수
-	virtual void move();
-	virtual void aniChange();
+	virtual void stateChange();
+	virtual void ani();
 };
 

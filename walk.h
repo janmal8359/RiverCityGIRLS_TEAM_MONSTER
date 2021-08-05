@@ -12,6 +12,7 @@ public:
 	virtual void update();
 	virtual void render();
 
-	virtual void move();
+	virtual void stateChange();
+	virtual void ani();
 };
 

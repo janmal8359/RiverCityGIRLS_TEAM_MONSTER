@@ -1,25 +1,32 @@
 #include "pch.h"
 #include "state.h"
+#include "player.h"
 
 
 HRESULT state::init()
 {
-	//gameNode::init();
+	
 
 	return S_OK;
 }
 
 void state::release()
 {
-	//gameNode::release();
+
 }
 
 void state::update()
 {
-	//gameNode::update();
+	//방향을 플레이어에서 get으로 가져와서 설정해준다;
+	_dir = _player->getDir();
+
+	stateChange();
+	ani();
+
+	KEYANIMANAGER->update();
 }
 
 void state::render()
 {
-	//gameNode::render();
+	_player->stateRender(_playerAni);
 }

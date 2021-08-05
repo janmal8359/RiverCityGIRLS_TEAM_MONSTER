@@ -4,14 +4,8 @@
 
 HRESULT walk::init()
 {
-    
-	_playerImg = IMAGEMANAGER->findImage("PLAYER_walk");
-	_shadowImg = IMAGEMANAGER->findImage("SHADOW");
+  
 
-	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkL", "PLAYER_walk", 0, 11,10, false, true, this);
-	KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkR", "PLAYER_walk", 23, 12,10, false, true, this);
-	
-	_speed = 5.0f;
 
     return S_OK;
 }
@@ -22,81 +16,39 @@ void walk::release()
 
 void walk::update()
 {
-	move();
-
-	if (_dir == LEFT)
-	{
-		_playerAni = KEYANIMANAGER->findAnimation("PLAYER_walkL");
-
-	}
-	if (_dir == RIGHT)
-	{
-		_playerAni = KEYANIMANAGER->findAnimation("PLAYER_walkR");
-	}
-
-
-	
-	_playerAni->resume();
-	KEYANIMANAGER->update();
+    //state::update();
+  //  _playerImg = IMAGEMANAGER->findImage("PLAYER_walk");
 }
 
 void walk::render()
 {
-	
-	_playerImg->aniRender(getMemDC(), _playerRc.left, _playerRc.top, _playerAni);
-	_shadowImg->render(getMemDC(), _shadowRc.left, _shadowRc.top);
+ //   state::render();
 }
 
-void walk::move()
+void walk::stateChange()
 {
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
-	{
-		_dir = LEFT;
-		_sX -= _speed;
+    //if (KEYMANAGER->isOnceKeyDown(VK_LEFT) ||
+    //    KEYMANAGER->isOnceKeyDown(VK_RIGHT) ||
+    //    KEYMANAGER->isOnceKeyDown(VK_UP) ||
+    //    KEYMANAGER->isOnceKeyDown(VK_DOWN))
+    //{
 
-		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
-		{
-			_isJump = true;
-			_player->setJump();
-		}
-	}
-	if (KEYMANAGER->isOnceKeyUp('D'))
-	{
-		_player->setIdle();
-	}
-	else if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
-	{
-		_dir = RIGHT;
-		_sX += _speed;
-		
-		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
-		{
-			_player->setJump();
-		}
-	
-
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_UP))
-	{
-
-		_sY -= _speed;
-
-		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
-		{
-			_isJump = true;
-			_player->setJump();
-		}
-
-	}
-	else if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-	{
-		_sY += _speed;
-
-		if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
-		{
-			_isJump = true;
-			_player->setJump();
-		}
-
-	}
+    //}
 }
+
+void walk::ani()
+{
+  /*  _player->setSpeed(5.0f);
+
+    if (_dir == LEFT)
+    {
+        _playerAni = KEYANIMANAGER->findAnimation("PLAYER_walkL");
+        _playerAni->resume();
+    }
+    else if (_dir == RIGHT)
+    {
+        _playerAni = KEYANIMANAGER->findAnimation("PLAYER_walkR");
+        _playerAni->resume();
+    }*/
+}
+
