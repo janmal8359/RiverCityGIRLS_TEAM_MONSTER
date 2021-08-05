@@ -16,6 +16,8 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
+	SCENEMANAGER->addScene("SG", new schoolGirl);
+	SCENEMANAGER->changeScene("SG");
 
 
 	return S_OK;

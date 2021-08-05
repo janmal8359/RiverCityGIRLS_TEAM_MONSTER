@@ -159,7 +159,6 @@
     <ClInclude Include="die.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
-    <ClInclude Include="enemyManager.h" />
     <ClInclude Include="firstStage.h" />
     <ClInclude Include="gameManager.h" />
     <ClInclude Include="gameNode.h" />
@@ -182,6 +181,10 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="saveFile.h" />
     <ClInclude Include="sceneManager.h" />
+    <ClInclude Include="schoolGirl.h" />
+    <ClInclude Include="schoolGirlChase.h" />
+    <ClInclude Include="schoolGirlIdle.h" />
+    <ClInclude Include="schoolGirlState.h" />
     <ClInclude Include="secondStage.h" />
     <ClInclude Include="sfxStorage.h" />
     <ClInclude Include="singletonBase.h" />
@@ -208,7 +211,6 @@
     <ClCompile Include="die.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
-    <ClCompile Include="enemyManager.cpp" />
     <ClCompile Include="firstStage.cpp" />
     <ClCompile Include="gameManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
@@ -234,6 +236,10 @@
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="saveFile.cpp" />
     <ClCompile Include="sceneManager.cpp" />
+    <ClCompile Include="schoolGirl.cpp" />
+    <ClCompile Include="schoolGirlChase.cpp" />
+    <ClCompile Include="schoolGirlIdle.cpp" />
+    <ClCompile Include="schoolGirlState.cpp" />
     <ClCompile Include="secondStage.cpp" />
     <ClCompile Include="sfxStorage.cpp" />
     <ClCompile Include="soundManager.cpp" />
