@@ -793,6 +793,8 @@ HRESULT imageStorage::init()
 	IMAGEMANAGER->addImage("STAGE_stage1Pixel3", "Resource/IMG/stage/stage03_pixel.bmp", 2400, 865, true, RGB(255, 0, 255));
 	//±³¹«½Ç ÇÈ¼¿
 	IMAGEMANAGER->addImage("STAGE_stagePixel4", "Resource/IMG/stage/stage04_pixel.bmp", 2112, 864, true, RGB(255, 0, 255));
+	//ÆíÀÇÁ¡ ÇÈ¼¿
+	IMAGEMANAGER->addImage("STAGE_normalPixel", "Resource/IMG/stage/normal_pixel.bmp", 2865, 837, true, RGB(255, 0, 255));
 
 #pragma endregion STAGE
 
