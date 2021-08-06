@@ -5,7 +5,7 @@ class bossStage2 : public gameNode
 {
 private:
 	//오브젝트 용
-	image _object;
+	image _object[6];
 	RECT _rc;
 	float _X, _Y;
 	float _radius;

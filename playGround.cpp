@@ -21,14 +21,11 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("SG", new schoolGirl);
 	SCENEMANAGER->changeScene("SG");
 
-	SCENEMANAGER->addScene("playStage", new stageManager);
-	SCENEMANAGER->changeScene("playStage");
-
-
 	_player = new player;
 	_player->init();
 
-
+	_stage = new firstStage;
+	
 	
 	return S_OK;
 }

@@ -12,6 +12,7 @@ private:
 	float _x, _y;
 	bool _isCheck;
 	bool _isNextCount;
+	bool _isStop;
 
 public:
 	bossStage1();

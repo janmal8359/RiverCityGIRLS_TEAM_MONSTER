@@ -3,13 +3,19 @@
 #include "schoolGirl.h"
 #include "player.h"
 #include "imageStorage.h"
+//스테이지 해더파일
+#include "bossStage1.h"
+#include "bossStage2.h"
+#include "firstStage.h"
+#include "secondStage.h"
+#include "thirdStage.h"
 
 class playGround : public gameNode
 {
 private:
 	//이미지 초기화 클래스
 	imageStorage* _imgStorage;
-
+	firstStage* _stage;
 	player* _player;
 
 public:
