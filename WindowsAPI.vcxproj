@@ -150,8 +150,10 @@
     <ClInclude Include="action.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="atk.h" />
+    <ClInclude Include="boss.h" />
     <ClInclude Include="bossStage1.h" />
     <ClInclude Include="bossStage2.h" />
+    <ClInclude Include="bossState.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="characterSelect.h" />
@@ -161,6 +163,7 @@
     <ClInclude Include="effectManager.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="enemyState.h" />
+    <ClInclude Include="enemyManager.h" />
     <ClInclude Include="firstStage.h" />
     <ClInclude Include="gameManager.h" />
     <ClInclude Include="gameNode.h" />
@@ -181,6 +184,7 @@
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="run.h" />
     <ClInclude Include="saveFile.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="schoolGirl.h" />
@@ -202,8 +206,10 @@
     <ClCompile Include="action.cpp" />
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="atk.cpp" />
+    <ClCompile Include="boss.cpp" />
     <ClCompile Include="bossStage1.cpp" />
     <ClCompile Include="bossStage2.cpp" />
+    <ClCompile Include="bossState.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="characterSelect.cpp" />
@@ -212,6 +218,7 @@
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemyState.cpp" />
+    <ClCompile Include="enemyManager.cpp" />
     <ClCompile Include="firstStage.cpp" />
     <ClCompile Include="gameManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
@@ -235,6 +242,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
+    <ClCompile Include="run.cpp" />
     <ClCompile Include="saveFile.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="schoolGirl.cpp" />

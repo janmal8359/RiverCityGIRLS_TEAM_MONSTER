@@ -2,7 +2,6 @@
 #include "gameNode.h"
 #include "animation.h"
 
-#define JUMPPOWER 4.0f;
 #define GRAVITY 0.3f;
 
 class player;					//전방선언
@@ -13,17 +12,19 @@ enum dir
 	RIGHT
 };
 
-class state
+class state : public gameNode
 {
-private:
+protected:
+	
+	image* _playerImg;
+	int _dir;
 
-	image* _img;
-	int    _dir;
 	animation* _playerAni;
 
-
+	float _jump = 10.0f;
 
 	player* _player;
+	RECT _playerRc;
 
 public:
 
@@ -32,8 +33,24 @@ public:
 	virtual void update();
 	virtual void render();
 
-	static void callBack(void* obj);
+	virtual void stateChange() {};
+	virtual void ani() {};
+
 
 	virtual void setPlayer(player* player) { _player = player; }
+
+	//접근자 // 설정자
+	
+	virtual animation* getPlayerAni() { return _playerAni; }
+	virtual image* getPlImg() { return _playerImg; }
+
+	//점프파워 가져오기
+	virtual float getJumpPower() { return _jump; }
+
+
+	
+
+	
+
 };
 

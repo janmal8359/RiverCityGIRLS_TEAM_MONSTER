@@ -2,13 +2,15 @@
 #include "gameNode.h"
 #include "imageStorage.h"
 #include "schoolGirl.h"
-
-
+#include "player.h"
+#include "imageStorage.h"
 
 class playGround : public gameNode
 {
 private:
 	imageStorage* _is;
+
+	player* _player;
 
 public:
 	playGround();

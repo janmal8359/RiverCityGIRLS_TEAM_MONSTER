@@ -1,9 +1,10 @@
 #include "pch.h"
 #include "atk.h"
+#include "player.h"
 
 HRESULT atk::init()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 void atk::release()

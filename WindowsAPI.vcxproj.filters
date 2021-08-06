@@ -249,6 +249,9 @@
     <ClInclude Include="die.h">
       <Filter>playGround\4.STATE_MANAGER</Filter>
     </ClInclude>
+    <ClInclude Include="run.h">
+      <Filter>playGround\4.STATE_MANAGER</Filter>
+    </ClInclude>
     <ClInclude Include="schoolGirl.h">
       <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirl</Filter>
     </ClInclude>
@@ -258,11 +261,17 @@
     <ClInclude Include="enemy.h">
       <Filter>playGround\3.ENEMY_MANAGER\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="boss.h">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="bossState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WindowsAPI.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="gameNode.cpp">
       <Filter>2DGameFramework</Filter>
     </ClCompile>
@@ -380,14 +389,20 @@
     <ClCompile Include="walk.cpp">
       <Filter>playGround\4.STATE_MANAGER</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="camera.cpp">
       <Filter>playGround\CAMERA</Filter>
     </ClCompile>
     <ClCompile Include="die.cpp">
       <Filter>playGround\4.STATE_MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="run.cpp">
+      <Filter>playGround\4.STATE_MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsAPI.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="schoolGirl.cpp">
       <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirl</Filter>
@@ -397,6 +412,15 @@
     </ClCompile>
     <ClCompile Include="enemy.cpp">
       <Filter>playGround\3.ENEMY_MANAGER\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="boss.cpp">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="bossState.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

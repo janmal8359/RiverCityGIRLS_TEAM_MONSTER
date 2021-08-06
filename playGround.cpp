@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "playGround.h"
 
-
 playGround::playGround()
 {
 }
@@ -18,10 +17,21 @@ HRESULT playGround::init()
 	_is = new imageStorage;
 	_is->init();
 
+	_imgStorage = new imageStorage;
+	_imgStorage->init();
+
 	SCENEMANAGER->addScene("SG", new schoolGirl);
 	SCENEMANAGER->changeScene("SG");
 
+	SCENEMANAGER->addScene("playStage", new stageManager);
+	SCENEMANAGER->changeScene("playStage");
 
+
+	_player = new player;
+	_player->init();
+
+
+	
 	return S_OK;
 }
 
@@ -38,7 +48,12 @@ void playGround::update()
 {
 	gameNode::update();
 
-	SCENEMANAGER->update();
+	
+
+	_player->update();
+
+	_player->getState()->setPlayer(_player);
+
 	
 }
 
@@ -47,8 +62,9 @@ void playGround::render()
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==============위에는 제발 건드리지 마라 ============
-	
-	SCENEMANAGER->render();
+
+	_player->render();
+
 
 	//=============== 밑에도 건들지마라 ================
 	_backBuffer->render(getHDC(), 0, 0);

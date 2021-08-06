@@ -12,6 +12,9 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	virtual void stateChange();
+	virtual void ani();
 };
 
 
