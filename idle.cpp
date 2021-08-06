@@ -7,9 +7,6 @@ HRESULT idle::init()
 	state::init();
 
 	_playerImg = IMAGEMANAGER->findImage("PLAYER_idle");
-
-	
-
 	return S_OK;
 }
 
