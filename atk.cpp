@@ -15,24 +15,30 @@ void atk::update()
 {
 	state::update();
 
+	callBk();
 	if (KEYMANAGER->isOnceKeyDown('Q') && _attackIdx < 2)
 	{
-		if (_playerAni->getNowPlayIdx() >= _playerImg->getMaxFrameX())
+		if (_playerAni->getNowPlayIdx() >= _playerImg->getMaxFrameX()-2)
 		{
-
+			_playerAni->stop();
+			_attackIdx++;
+		
 		}
 	}
 
 	switch (_attackIdx)
 	{
-	case 1:
+	case 0:
 		_playerImg = IMAGEMANAGER->findImage("PLAYER_comboAttack1");
+	
+		break;
+	case 1:
+		_playerImg = IMAGEMANAGER->findImage("PLAYER_comboAttack2");
+	
 		break;
 	case 2:
-		_playerImg = IMAGEMANAGER->findImage("PLAYER_comboAttack1");
-		break;
-	case 3:
-		_playerImg = IMAGEMANAGER->findImage("PLAYER_comboAttack1");
+		_playerImg = IMAGEMANAGER->findImage("PLAYER_comboAttack3");
+		
 		break;
 	default:
 		break;
@@ -46,6 +52,10 @@ void atk::update()
 void atk::render()
 {
 	state::render();
+
+	char str[128];
+	sprintf_s(str, "attcount:%d", _attackIdx);
+	TextOut(getMemDC(), 20, 20, str, strlen(str));
 }
 
 void atk::stateChange()
@@ -54,22 +64,26 @@ void atk::stateChange()
 
 void atk::ani()
 {
+
+	_player->setSpeed(0);
+
 	if (_dir == LEFT)
 	{
 		switch (_attackIdx)
 		{
-		case 1:
+		case 0:
 			_playerAni = KEYANIMANAGER->findAnimation("PLAYER_1atkL");
+		
+			break;
+		case 1:
+			_playerAni = KEYANIMANAGER->findAnimation("PLAYER_2atkL");
+
 			break;
 		case 2:
-			_playerAni = KEYANIMANAGER->findAnimation("PLAYER_2atkL");
-			break;
-		case 3:
 			_playerAni = KEYANIMANAGER->findAnimation("PLAYER_3atkL");
+
 			break;
 
-		default:
-			break;
 		}
 
 	}
@@ -77,18 +91,32 @@ void atk::ani()
 	{
 		switch (_attackIdx)
 		{
-		case 1:
+		case 0:
 			_playerAni = KEYANIMANAGER->findAnimation("PLAYER_1atkR");
 			break;
-		case 2:
+		case 1:
 			_playerAni = KEYANIMANAGER->findAnimation("PLAYER_2atkR");
 			break;
-		case 3:
+		case 2:
 			_playerAni = KEYANIMANAGER->findAnimation("PLAYER_3atkR");
 			break;
 
-		default:
-			break;
+
 		}
 	}
+
+	_playerAni->resume();
 }
+
+void atk::callBk()
+{
+	if (!_playerAni->isPlay())
+	{
+		_playerAni->stop();
+		_player->setState(new idle);
+		_player->update();
+		
+	}
+
+}
+

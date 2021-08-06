@@ -44,6 +44,10 @@ void walk::stateChange()
     {
         _player->setState(new idle);
     }
+    if (KEYMANAGER->isOnceKeyDown('Q'))
+    {
+        _player->setState(new atk);
+    }
 }
 
 void walk::ani()

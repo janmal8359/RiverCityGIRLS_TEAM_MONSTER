@@ -2,11 +2,13 @@
 #include "gameNode.h"
 #include "imageStorage.h"
 
+
 #include "idle.h"
 #include "walk.h"
 #include "run.h"
 #include "jump.h"
 #include "atk.h"
+#include "dashAttack.h"
 
 #define GRAVITY 1.0f  // Áß·Â°ª
 
@@ -16,6 +18,7 @@ class player : public gameNode
 {
 private:
 	imageStorage* _imgStorage;
+
 
 	state* _state;
 

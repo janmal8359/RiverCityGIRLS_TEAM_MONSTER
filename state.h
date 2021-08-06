@@ -21,6 +21,8 @@ protected:
 
 	animation* _playerAni;
 
+	
+
 	float _jump = 10.0f;
 
 	player* _player;

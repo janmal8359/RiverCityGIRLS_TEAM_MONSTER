@@ -18,6 +18,8 @@ HRESULT playGround::init()
 	_imgStorage = new imageStorage;
 	_imgStorage->init();
 
+
+
 	_player = new player;
 	_player->init();
 

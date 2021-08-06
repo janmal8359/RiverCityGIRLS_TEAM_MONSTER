@@ -29,7 +29,11 @@ void run::stateChange()
   
     if (KEYMANAGER->isOnceKeyDown('Q'))
     {
-       // _player->setState(new atk);
+       _player->setState(new atk);
+    }
+    if (KEYMANAGER->isOnceKeyDown('W'))
+    {
+        _player->setState(new dashAttack);
     }
 
 
@@ -37,15 +41,16 @@ void run::stateChange()
     {
         _player->setState(new walk);
     }
-    if (!KEYMANAGER->isStayKeyDown(VK_LEFT) &&
-        !KEYMANAGER->isStayKeyDown(VK_RIGHT) &&
-        !KEYMANAGER->isStayKeyDown(VK_UP) &&
+    if (!KEYMANAGER->isStayKeyDown(VK_LEFT)     &&
+        !KEYMANAGER->isStayKeyDown(VK_RIGHT)    &&
+        !KEYMANAGER->isStayKeyDown(VK_UP)       &&
         !KEYMANAGER->isStayKeyDown(VK_DOWN))
     {
         _player->setState(new idle);
     }
     if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
     {
+        _player->setJumpPower(20.0f);
         _player->setState(new jump);
     }
 }

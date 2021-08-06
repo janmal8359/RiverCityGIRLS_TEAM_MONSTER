@@ -43,9 +43,9 @@ void idle::stateChange()
 		_player->setState(new jump);
 		_player->setJumpPower(20.0f);
 	}
-	else if (KEYMANAGER->isOnceKeyDown('W'))
+	else if (KEYMANAGER->isOnceKeyDown('Q'))
 	{
-		//_player->setState(new atk);
+		_player->setState(new atk);
 	}
 
 }

@@ -38,6 +38,11 @@ void jump::stateChange()
 		{
 			_player->setState(new walk);
 		}
+		else if (KEYMANAGER->isStayKeyDown(VK_SHIFT))
+		{
+			_player->setState(new run);
+		}
+
 		else _player->setState(new idle);
 
 	}

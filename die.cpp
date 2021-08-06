@@ -17,3 +17,11 @@ void die::update()
 void die::render()
 {
 }
+
+void die::stateChange()
+{
+}
+
+void die::ani()
+{
+}
