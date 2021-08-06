@@ -4,7 +4,7 @@
 
 HRESULT boss::init()
 {
-	_state = idleState::getInstance();
+	
 
 	return S_OK;
 }
