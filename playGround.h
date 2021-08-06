@@ -4,18 +4,25 @@
 #include "player.h"
 #include "imageStorage.h"
 //스테이지 해더파일
-#include "bossStage1.h"
-#include "bossStage2.h"
-#include "firstStage.h"
-#include "secondStage.h"
-#include "thirdStage.h"
+//#include "bossStage1.h"
+//#include "bossStage2.h"
+//#include "firstStage.h"
+//#include "secondStage.h"
+//#include "thirdStage.h"
+//#include "stageManager.h"
 
 class playGround : public gameNode
 {
 private:
 	//이미지 초기화 클래스
 	imageStorage* _imgStorage;
-	firstStage* _stage;
+
+	//firstStage* _stage1;
+	//secondStage* _stage2;
+	//thirdStage* _stage3;
+	//bossStage1* _stage4;
+	//bossStage2* _stage5;
+
 	player* _player;
 
 public:

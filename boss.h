@@ -17,7 +17,7 @@ class boss
 {
 private:
 	bossState* _state;
-	STATE* _state;
+	//STATE* _state;
 
 public:
 	boss() {}
