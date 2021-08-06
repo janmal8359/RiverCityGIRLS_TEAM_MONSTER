@@ -21,6 +21,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("SG", new schoolGirl);
 	SCENEMANAGER->changeScene("SG");
 
+	//스테이지(다이랙트)
 	//_stage1 = new firstStage;
 	//_stage1->init();
 	//_stage2 = new secondStage;
@@ -31,6 +32,7 @@ HRESULT playGround::init()
 	//_stage4->init();
 	//_stage5 = new bossStage2;
 	//_stage5->init();
+	//스테이지(씬 매니저)
 	//SCENEMANAGER->addScene("stageNum", new stageManager);
 	//SCENEMANAGER->changeScene("stageNum");
 
@@ -53,11 +55,14 @@ void playGround::update()
 {
 	gameNode::update();
 
+	//스테이지(다이랙트)
 	//_stage1->update();
 	//_stage2->update();
 	//_stage3->update();
 	//_stage4->update();
 	//_stage5->update();
+	//스테이지(씬 매니저)
+	//SCENEMANAGER->update();
 
 	_player->update();
 
@@ -71,14 +76,15 @@ void playGround::render()
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==============위에는 제발 건드리지 마라 ============
-	
 
-
+	//스테이지(다이랙트)
 	//_stage1->render();
 	//_stage2->render();
 	//_stage3->render();
 	//_stage4->render();
 	//_stage5->render();
+	//스테이지(씬 매니저)
+	//SCENEMANAGER->render();
 
 	_player->render();
 

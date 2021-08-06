@@ -3,12 +3,13 @@
 #include "schoolGirl.h"
 #include "player.h"
 #include "imageStorage.h"
-//스테이지 해더파일
+//스테이지 해더파일(다이랙트)
 //#include "bossStage1.h"
 //#include "bossStage2.h"
 //#include "firstStage.h"
 //#include "secondStage.h"
 //#include "thirdStage.h"
+//스테이지 해더파일(씬 매니저)
 //#include "stageManager.h"
 
 class playGround : public gameNode
