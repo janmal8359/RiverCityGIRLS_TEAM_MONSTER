@@ -6,7 +6,7 @@
 //스테이지 해더파일(다이랙트)
 //#include "bossStage1.h"
 //#include "bossStage2.h"
-//#include "firstStage.h"
+#include "firstStage.h"
 //#include "secondStage.h"
 //#include "thirdStage.h"
 //스테이지 해더파일(씬 매니저)
@@ -18,7 +18,7 @@ private:
 	//이미지 초기화 클래스
 	imageStorage* _imgStorage;
 
-	//firstStage* _stage1;
+	firstStage* _stage1;
 	//secondStage* _stage2;
 	//thirdStage* _stage3;
 	//bossStage1* _stage4;
@@ -35,6 +35,6 @@ public:
 	virtual void update();			//연산하는 함수
 	virtual void render();			//그리기 함수
 
-	
+	void testCollision();
 };
 

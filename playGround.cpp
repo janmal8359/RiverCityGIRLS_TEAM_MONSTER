@@ -22,8 +22,8 @@ HRESULT playGround::init()
 	SCENEMANAGER->changeScene("SG");
 
 	//스테이지(다이랙트)
-	//_stage1 = new firstStage;
-	//_stage1->init();
+	_stage1 = new firstStage;
+	_stage1->init();
 	//_stage2 = new secondStage;
 	//_stage2->init();
 	//_stage3 = new thirdStage;
@@ -56,7 +56,7 @@ void playGround::update()
 	gameNode::update();
 
 	//스테이지(다이랙트)
-	//_stage1->update();
+	_stage1->update();
 	//_stage2->update();
 	//_stage3->update();
 	//_stage4->update();
@@ -78,7 +78,7 @@ void playGround::render()
 	//==============위에는 제발 건드리지 마라 ============
 
 	//스테이지(다이랙트)
-	//_stage1->render();
+	_stage1->render();
 	//_stage2->render();
 	//_stage3->render();
 	//_stage4->render();
@@ -91,6 +91,11 @@ void playGround::render()
 
 	//=============== 밑에도 건들지마라 ================
 	_backBuffer->render(getHDC(), 0, 0);
+
+}
+
+void playGround::testCollision()
+{
 
 }
 
