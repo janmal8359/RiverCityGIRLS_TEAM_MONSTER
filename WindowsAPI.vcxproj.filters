@@ -246,9 +246,6 @@
     <ClInclude Include="die.h">
       <Filter>playGround\4.STATE_MANAGER</Filter>
     </ClInclude>
-    <ClInclude Include="testScen.h">
-      <Filter>playGround\1.PLAYGROUND</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsAPI.cpp">
@@ -382,9 +379,6 @@
     </ClCompile>
     <ClCompile Include="die.cpp">
       <Filter>playGround\4.STATE_MANAGER</Filter>
-    </ClCompile>
-    <ClCompile Include="testScen.cpp">
-      <Filter>playGround\1.PLAYGROUND</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

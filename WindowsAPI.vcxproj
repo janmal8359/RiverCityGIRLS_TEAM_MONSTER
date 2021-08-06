@@ -189,7 +189,6 @@
     <ClInclude Include="stageManager.h" />
     <ClInclude Include="state.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="testScen.h" />
     <ClInclude Include="thirdStage.h" />
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timer.h" />
@@ -240,7 +239,6 @@
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stageManager.cpp" />
     <ClCompile Include="state.cpp" />
-    <ClCompile Include="testScen.cpp" />
     <ClCompile Include="thirdStage.cpp" />
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timer.cpp" />

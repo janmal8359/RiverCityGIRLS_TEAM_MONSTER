@@ -11,6 +11,10 @@ bossStage2::~bossStage2()
 
 HRESULT bossStage2::init()
 {
+	_isBreak = false;
+
+
+
 	IMAGEMANAGER->findImage("OBJECT_backPillar");
 	IMAGEMANAGER->findImage("OBJECT_firstPillar");
 	IMAGEMANAGER->findImage("OBJECT_particle1");
