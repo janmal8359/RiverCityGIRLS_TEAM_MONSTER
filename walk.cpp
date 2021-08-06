@@ -28,8 +28,9 @@ void walk::stateChange()
     if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
     {
         _player->setJumpPower(20.0f);
-       // _player->setState(new jump);
+        _player->setState(new jump);
     }
+
     if (KEYMANAGER->isOnceKeyDown(VK_LSHIFT))
     {
         _player->setState(new run);
@@ -47,7 +48,7 @@ void walk::stateChange()
 
 void walk::ani()
 {
-    _player->setSpeed(5.0f);
+    _player->setSpeed(3.0f);
 
   
         if (_dir == LEFT)

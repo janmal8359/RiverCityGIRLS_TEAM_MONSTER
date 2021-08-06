@@ -5,6 +5,9 @@ class atk : public state
 {
 private:
 
+	int _attackIdx;     //ÄÞº¸
+	int _timer;
+
 
 
 public:

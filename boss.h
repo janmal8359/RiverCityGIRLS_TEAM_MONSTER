@@ -16,8 +16,8 @@ enum class STATE
 class boss
 {
 private:
-	bossState* _state;
-	STATE* _state;
+	//bossState* _state;
+	//STATE* _state;
 
 public:
 	boss() {}
@@ -28,7 +28,7 @@ public:
 	void update();
 	void render();
 
-	void setState(bossState* state) { _state = state; }
+	// setState(bossState* state) { _state = state; }
 
 };
 

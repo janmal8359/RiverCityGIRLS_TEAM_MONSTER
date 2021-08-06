@@ -26,25 +26,27 @@ void run::render()
 
 void run::stateChange()
 {
-    if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
-    {
-        //_player->setState(new jump);
-    }
+  
     if (KEYMANAGER->isOnceKeyDown('Q'))
     {
        // _player->setState(new atk);
     }
-    if (KEYMANAGER->isOnceKeyUp(VK_LSHIFT))
+
+
+    if (!KEYMANAGER->isStayKeyDown(VK_LSHIFT))
     {
         _player->setState(new walk);
     }
-
     if (!KEYMANAGER->isStayKeyDown(VK_LEFT) &&
         !KEYMANAGER->isStayKeyDown(VK_RIGHT) &&
         !KEYMANAGER->isStayKeyDown(VK_UP) &&
         !KEYMANAGER->isStayKeyDown(VK_DOWN))
     {
         _player->setState(new idle);
+    }
+    if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+    {
+        _player->setState(new jump);
     }
 }
 

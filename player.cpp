@@ -82,11 +82,12 @@ void player::move()
 {
    
    
-    if (KEYMANAGER->isStayKeyDown(VK_SPACE)) _isJump = true;
+  
 
     //점프상태가 아닐때
     if (!_isJump)
     {
+        if (KEYMANAGER->isStayKeyDown(VK_SPACE)) _isJump = true;
 
         if (KEYMANAGER->isStayKeyDown(VK_LEFT))
         {
@@ -111,7 +112,7 @@ void player::move()
         _pX = _sX;
         _pY = _sY - _playerImg->getFrameHeight() / 2;
     }
-    else
+    else if (_isJump)
     {
         if (_playerRc.bottom <= _sY)
         {
@@ -123,6 +124,28 @@ void player::move()
         {
             _pY = _sY - _playerImg->getFrameHeight() / 2;
             _isJump = false;
+        }
+
+        if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+        {
+            _dir = LEFT;
+            _sX -= _speed;
+        }
+
+        if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+        {
+            _dir = RIGHT;
+            _sX += _speed;
+        }
+        if (KEYMANAGER->isStayKeyDown(VK_UP))
+        {
+            _pY -= _speed;
+            _sY -= _speed;
+        }
+        if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+        {
+            _pY += _speed;
+            _sY += _speed;
         }
     }
 
@@ -143,12 +166,23 @@ void player::playerAni()
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkL", "PLAYER_walk", 11, 0, 10, false, true);
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkR", "PLAYER_walk", 12, 23, 10, false, true);
 
-    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_runL", "PLAYER_run", 15,0, 20, false, true);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_runL", "PLAYER_run", 15, 0, 20, false, true);
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_runR", "PLAYER_run", 16, 31, 20, false, true);
 
-    //KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_atkL", "PLAYER_atk", 11, 0, 10, false, true);
-    //KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_atkR", "PLAYER_atk", 23, 12, 10, false, true);
+    int leftJump[] = {0, 1, 2, 1, 0};
+    int rightJump[] = { 5,4,3,4,5 };
 
+    KEYANIMANAGER->addArrayFrameAnimation("PLAYER_jumpL", "PLAYER_jump", leftJump, 5, 10, false);
+    KEYANIMANAGER->addArrayFrameAnimation("PLAYER_jumpR", "PLAYER_jump", rightJump, 5, 10, false);
+
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_1atkL", "PLAYER_comboAttack1", 5, 0, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_1atkR", "PLAYER_comboAttack1", 11, 6, 10, false,false);
+                                                                                                    
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_2atkL", "PLAYER_comboAttack2", 6, 0, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_2atkR", "PLAYER_comboAttack2", 13, 7, 10, false,false);
+                                                                                                    
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_3atkL", "PLAYER_comboAttack3", 8, 0, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_3atkR", "PLAYER_comboAttack3", 17, 9, 10, false,false);
 }
 
 void player::callBack(void* obj)

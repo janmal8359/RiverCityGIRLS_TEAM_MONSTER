@@ -38,9 +38,9 @@ void idle::stateChange()
 	{
 		_player->setState(new walk);
 	}
-	else if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+    if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
-		//_player->setState(new jump);
+		_player->setState(new jump);
 		_player->setJumpPower(20.0f);
 	}
 	else if (KEYMANAGER->isOnceKeyDown('W'))
