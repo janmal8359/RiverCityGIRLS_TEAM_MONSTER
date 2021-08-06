@@ -13,6 +13,8 @@ HRESULT thirdStage::init()
 {
 	IMAGEMANAGER->findImage("STAGE_normal");
 	IMAGEMANAGER->findImage("STAGE_normalPixel");
+	IMAGEMANAGER->findImage("BATTLE_unlockDoor1");
+	IMAGEMANAGER->findImage("BATTLE_unlockDoor2");
 
 	return S_OK;
 }
@@ -30,4 +32,5 @@ void thirdStage::render()
 {
 	IMAGEMANAGER->findImage("STAGE_normalPixel")->render(getMemDC(), 0, 0);
 	IMAGEMANAGER->findImage("STAGE_normal")->render(getMemDC(), 0, 0);
+
 }

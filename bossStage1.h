@@ -11,6 +11,7 @@ private:
 	RECT _rc;
 	float _x, _y;
 	bool _isCheck;
+	bool _isNextCount;
 
 public:
 	bossStage1();

@@ -5,6 +5,7 @@ class firstStage : public gameNode
 {
 private:
 	bool _isCheck;
+	bool _isNextCount;
 
 public:
 	firstStage();

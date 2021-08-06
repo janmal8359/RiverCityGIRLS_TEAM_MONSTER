@@ -13,6 +13,8 @@ HRESULT secondStage::init()
 {
 	IMAGEMANAGER->findImage("STAGE_stage4");
 	IMAGEMANAGER->findImage("STAGE_stagePixel4");
+	IMAGEMANAGER->findImage("BATTLE_unlockDoor1");
+	IMAGEMANAGER->findImage("BATTLE_unlockDoor2");
 
 	return S_OK;
 }
