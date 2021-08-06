@@ -27,7 +27,7 @@ void firstStage::release()
 
 void firstStage::update()
 {
-	pixelCollision();
+	//pixelCollision();
 }
 
 void firstStage::render()
@@ -38,7 +38,6 @@ void firstStage::render()
 
 void firstStage::pixelCollision()
 {
-	
 	//그림자 4개의 꼭지점
 	//(_sX - 64, _sY - (_shadowRc.top + _shadowRc.bottom) / 2 <- {19}),		좌측 상단
 	//(_sX - 64, _sY + (_shadowRc.top + _shadowRc.bottom) / 2 <- {19}),		좌측 하단
