@@ -3,6 +3,7 @@
 #include "imageStorage.h"
 #include "schoolGirl.h"
 #include "player.h"
+#include "enemy.h"
 #include "imageStorage.h"
 
 class playGround : public gameNode
@@ -11,6 +12,7 @@ private:
 	imageStorage* _is;
 
 	player* _player;
+	enemy* _enemy;
 
 public:
 	playGround();

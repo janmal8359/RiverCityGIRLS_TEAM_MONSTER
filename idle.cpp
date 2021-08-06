@@ -45,7 +45,7 @@ void idle::stateChange()
 	}
 	else if (KEYMANAGER->isOnceKeyDown('W'))
 	{
-		//_player->setState(new atk);
+		//->setState(new atk);
 	}
 
 }

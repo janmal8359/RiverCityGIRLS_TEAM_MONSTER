@@ -17,20 +17,22 @@ HRESULT playGround::init()
 	_is = new imageStorage;
 	_is->init();
 
-	_imgStorage = new imageStorage;
-	_imgStorage->init();
+	//_imgStorage = new imageStorage;
+	//_imgStorage->init();
 
-	SCENEMANAGER->addScene("SG", new schoolGirl);
-	SCENEMANAGER->changeScene("SG");
+	//SCENEMANAGER->addScene("SG", new schoolGirl);
+	//SCENEMANAGER->changeScene("SG");
 
-	SCENEMANAGER->addScene("playStage", new stageManager);
-	SCENEMANAGER->changeScene("playStage");
+
 
 
 	_player = new player;
 	_player->init();
 
+	_enemy = new enemy;
+	_enemy->init();
 
+	
 	
 	return S_OK;
 }
@@ -54,6 +56,8 @@ void playGround::update()
 
 	_player->getState()->setPlayer(_player);
 
+	_enemy->update();
+	_enemy->getEnemyState()->setEnemy(_enemy);
 	
 }
 
@@ -64,6 +68,7 @@ void playGround::render()
 	//==============위에는 제발 건드리지 마라 ============
 
 	_player->render();
+	_enemy->render();
 
 
 	//=============== 밑에도 건들지마라 ================
