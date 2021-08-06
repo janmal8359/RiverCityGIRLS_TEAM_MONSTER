@@ -19,8 +19,6 @@ HRESULT bossStage2::init()
 	IMAGEMANAGER->findImage("STAGE_bossStage2");
 	IMAGEMANAGER->findImage("STAGE_bossPixel");
 
-	
-
 	return S_OK;
 }
 

@@ -8,8 +8,10 @@ private:
 	RECT _rc;
 	float _X, _Y;
 	float _radius;
+	float _angle;
 	int _alphaValue;
 
+	bool _isBreak;
 
 public:
 	bossStage2();
