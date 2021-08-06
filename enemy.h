@@ -1,7 +1,7 @@
 #pragma once
 #include "gameNode.h"
 
-class enemyManager : public gameNode
+class enemy : public gameNode
 {
-
 };
+
