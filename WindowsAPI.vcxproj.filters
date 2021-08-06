@@ -100,6 +100,15 @@
     <Filter Include="playGround\CAMERA">
       <UniqueIdentifier>{0bbae0e9-6015-4c81-acc4-98f54f16d1e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\3.ENEMY_MANAGER\enemy">
+      <UniqueIdentifier>{20b81c4d-1b79-4a81-8bf5-2739f5bf9858}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\3.ENEMY_MANAGER\enemy\schoolGirl">
+      <UniqueIdentifier>{974d6b21-4044-4e85-aa0d-f03528c49ee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\3.ENEMY_MANAGER\enemy\schoolGirlState">
+      <UniqueIdentifier>{47477cd8-db8d-4011-af5c-5911b13c1239}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -186,9 +195,6 @@
     <ClInclude Include="player.h">
       <Filter>playGround\2.PLAYER</Filter>
     </ClInclude>
-    <ClInclude Include="enemyManager.h">
-      <Filter>playGround\3.ENEMY_MANAGER</Filter>
-    </ClInclude>
     <ClInclude Include="gameManager.h">
       <Filter>playGround\5.GAME_MANAGER</Filter>
     </ClInclude>
@@ -248,6 +254,18 @@
     </ClInclude>
     <ClInclude Include="run.h">
       <Filter>playGround\4.STATE_MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="schoolGirl.h">
+      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirl</Filter>
+    </ClInclude>
+    <ClInclude Include="schoolGirlState.h">
+      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
+    </ClInclude>
+    <ClInclude Include="schoolGirlIdle.h">
+      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
+    </ClInclude>
+    <ClInclude Include="schoolGirlChase.h">
+      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -317,9 +335,6 @@
     <ClCompile Include="player.cpp">
       <Filter>playGround\2.PLAYER</Filter>
     </ClCompile>
-    <ClCompile Include="enemyManager.cpp">
-      <Filter>playGround\3.ENEMY_MANAGER</Filter>
-    </ClCompile>
     <ClCompile Include="gameManager.cpp">
       <Filter>playGround\5.GAME_MANAGER</Filter>
     </ClCompile>
@@ -377,14 +392,26 @@
     <ClCompile Include="die.cpp">
       <Filter>playGround\4.STATE_MANAGER</Filter>
     </ClCompile>
+    <ClCompile Include="run.cpp">
+      <Filter>playGround\4.STATE_MANAGER</Filter>
+    </ClCompile>
     <ClCompile Include="WindowsAPI.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="run.cpp">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+    <ClCompile Include="schoolGirl.cpp">
+      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirl</Filter>
+    </ClCompile>
+    <ClCompile Include="schoolGirlState.cpp">
+      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
+    </ClCompile>
+    <ClCompile Include="schoolGirlIdle.cpp">
+      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
+    </ClCompile>
+    <ClCompile Include="schoolGirlChase.cpp">
+      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

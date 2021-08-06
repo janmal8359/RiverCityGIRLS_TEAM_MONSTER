@@ -19,6 +19,9 @@ HRESULT playGround::init()
 	_imgStorage = new imageStorage;
 	_imgStorage->init();
 
+	SCENEMANAGER->addScene("SG", new schoolGirl);
+	SCENEMANAGER->changeScene("SG");
+
 
 	_player = new player;
 	_player->init();

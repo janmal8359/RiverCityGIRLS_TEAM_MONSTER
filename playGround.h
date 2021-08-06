@@ -1,5 +1,7 @@
 #pragma once
 #include "gameNode.h"
+#include "schoolGirl.h"
+
 
 #include "player.h"
 #include "imageStorage.h"
