@@ -246,6 +246,9 @@
     <ClInclude Include="die.h">
       <Filter>playGround\4.STATE_MANAGER</Filter>
     </ClInclude>
+    <ClInclude Include="run.h">
+      <Filter>playGround\4.STATE_MANAGER</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -368,9 +371,6 @@
     <ClCompile Include="walk.cpp">
       <Filter>playGround\4.STATE_MANAGER</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="camera.cpp">
       <Filter>playGround\CAMERA</Filter>
     </ClCompile>
@@ -379,6 +379,12 @@
     </ClCompile>
     <ClCompile Include="WindowsAPI.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="run.cpp">
+      <Filter>playGround\4.STATE_MANAGER</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -143,8 +143,8 @@ void player::playerAni()
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkL", "PLAYER_walk", 11, 0, 10, false, true);
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_walkR", "PLAYER_walk", 12, 23, 10, false, true);
 
-    //KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_runL", "PLAYER_run", 11, 0, 10, false, true);
-    //KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_runR", "PLAYER_run", 23, 12, 10, false, true);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_runL", "PLAYER_run", 15,0, 20, false, true);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_runR", "PLAYER_run", 16, 31, 20, false, true);
 
     //KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_atkL", "PLAYER_atk", 11, 0, 10, false, true);
     //KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_atkR", "PLAYER_atk", 23, 12, 10, false, true);

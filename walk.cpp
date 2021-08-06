@@ -30,6 +30,10 @@ void walk::stateChange()
         _player->setJumpPower(20.0f);
        // _player->setState(new jump);
     }
+    if (KEYMANAGER->isOnceKeyDown(VK_LSHIFT))
+    {
+        _player->setState(new run);
+    }
 
     //모든 버튼은 때면 idle로 돌아가는구문
     if (!KEYMANAGER->isStayKeyDown(VK_LEFT)  &&
@@ -45,8 +49,7 @@ void walk::ani()
 {
     _player->setSpeed(5.0f);
 
-    if (!_player->getIsJump())
-    {
+  
         if (_dir == LEFT)
         {
             _playerAni = KEYANIMANAGER->findAnimation("PLAYER_walkL");
@@ -58,6 +61,6 @@ void walk::ani()
             _playerAni->resume();
         }
 
-    }
+    
 }
 

@@ -180,6 +180,7 @@
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="run.h" />
     <ClInclude Include="saveFile.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="secondStage.h" />
@@ -232,6 +233,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
+    <ClCompile Include="run.cpp" />
     <ClCompile Include="saveFile.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="secondStage.cpp" />

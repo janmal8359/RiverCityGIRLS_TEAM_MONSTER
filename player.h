@@ -4,6 +4,7 @@
 
 #include "idle.h"
 #include "walk.h"
+#include "run.h"
 #include "jump.h"
 #include "atk.h"
 
