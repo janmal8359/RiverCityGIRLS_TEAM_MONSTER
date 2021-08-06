@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "imageStorage.h"
 #include "schoolGirl.h"
 
 
@@ -7,7 +8,7 @@
 class playGround : public gameNode
 {
 private:
-	
+	imageStorage* _is;
 
 public:
 	playGround();

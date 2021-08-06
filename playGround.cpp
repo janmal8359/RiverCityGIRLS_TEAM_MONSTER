@@ -15,6 +15,8 @@ playGround::~playGround()
 HRESULT playGround::init()
 {
 	gameNode::init(true);
+	_is = new imageStorage;
+	_is->init();
 
 	SCENEMANAGER->addScene("SG", new schoolGirl);
 	SCENEMANAGER->changeScene("SG");
