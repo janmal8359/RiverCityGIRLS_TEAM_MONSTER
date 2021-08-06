@@ -267,6 +267,15 @@
     <ClInclude Include="schoolGirlChase.h">
       <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
     </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="boss.h">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="bossState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -412,6 +421,15 @@
     </ClCompile>
     <ClCompile Include="schoolGirlChase.cpp">
       <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="boss.cpp">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="bossState.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
