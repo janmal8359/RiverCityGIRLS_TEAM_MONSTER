@@ -1,13 +1,38 @@
 #pragma once
-#include "boss.h"
+#include "gameNode.h"
 
-class bossState
+class boss;
+
+enum class DIRECTION
 {
+	LEFT,
+	RIGHT
+};
+
+class bossState : public gameNode
+{
+protected:
+	image* _bossImg;
+	DIRECTION _direction;
+
+	boss* _boss;
+	RECT _bossRc;
+
+	animation* _bossAnim;
+
 public:
-	virtual HRESULT init() = 0;
-	virtual void release() = 0;
-	virtual void update() = 0;
-	virtual void render() = 0;
+	virtual HRESULT init();
+	virtual void release();
+	virtual void update();
+	virtual void render();
+
+	virtual void stateChange();
+	virtual void anim();
+
+	image* getImg() { return _bossImg; }
+	void setBoss(boss* boss) { _boss = boss; }
+
+	animation* getBossAnim() { return _bossAnim; }
 
 protected:
 	void setBossState(boss* boss, bossState* state) { /*boss->setState(state); // 상태 변경*/ }
@@ -16,15 +41,18 @@ protected:
 class idleState : public bossState
 {
 private:
-	idleState* instance;
+	//idleState* instance;
 
 public:
-	idleState* getInstance() { if (instance == nullptr) instance = new idleState(); return instance; }
+	//idleState* getInstance() { if (instance == nullptr) instance = new idleState(); return instance; }
 
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	virtual void stateChange();
+	virtual void anim();
 };
 
 class walkState : public bossState

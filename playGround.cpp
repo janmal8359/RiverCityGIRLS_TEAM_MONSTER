@@ -18,12 +18,14 @@ HRESULT playGround::init()
 	_imgStorage = new imageStorage;
 	_imgStorage->init();
 
-
+	SCENEMANAGER->addScene("SG", new schoolGirl);
+	SCENEMANAGER->changeScene("SG");
 
 	_player = new player;
 	_player->init();
 
-
+	_boss = new boss;
+	_boss->init();
 	
 	return S_OK;
 }
@@ -47,6 +49,8 @@ void playGround::update()
 
 	_player->getState()->setPlayer(_player);
 
+	_boss->update();
+
 	
 }
 
@@ -55,6 +59,8 @@ void playGround::render()
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==============위에는 제발 건드리지 마라 ============
+
+	_boss->render();
 
 	_player->render();
 

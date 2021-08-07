@@ -3,6 +3,7 @@
 #include "schoolGirl.h"
 
 #include "player.h"
+#include "boss.h"
 #include "imageStorage.h"
 
  
@@ -14,6 +15,8 @@ private:
 
 
 	player* _player;
+
+	boss* _boss;
 
 public:
 	playGround();

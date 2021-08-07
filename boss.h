@@ -1,4 +1,6 @@
 #pragma once
+#include "gameNode.h"
+#include "bossState.h"
 
 class bossState;
 
@@ -13,11 +15,29 @@ enum class STATE
 	LOSE
 };
 
-class boss
+class boss : public gameNode
 {
 private:
-	//bossState* _state;
-	//STATE* _state;
+	bossState* _state;
+	STATE* _bState;
+
+	// shadow
+	image* _bShadowImg;
+	RECT _bShadowRc;
+
+	// boss
+	image* _bossImg;
+	RECT _bossRc;
+
+	// position
+	float _sx, _sy;		// shadowImgPos
+	float _bx, _by;		// bossImgPos
+
+	// velocity
+	float _speed;
+
+	// direction
+	DIRECTION _direction;
 
 public:
 	boss() {}
@@ -28,7 +48,23 @@ public:
 	void update();
 	void render();
 
-	// setState(bossState* state) { _state = state; }
+	void setState(bossState* state) { _state = state; }
+	void stateRender(animation* anim);
+
+	void bossAnim();
+
+
+	// get
+	float getBossShadowX() { return _sx; }
+	float getBossShadowY() { return _sy; }
+	float getBossX() { return _bx; }
+	float getBossY() { return _by; }
+	float getBossRectX() { return _bossRc.left; }
+	float getBossRectY() { return _bossRc.top; }
+	DIRECTION getBossDirection() { return _direction; }
+
+
+	// set
 
 };
 
