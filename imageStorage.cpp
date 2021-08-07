@@ -12,6 +12,9 @@ imageStorage::~imageStorage()
 
 HRESULT imageStorage::init()
 {
+
+	
+
 	CreateThread(
 		NULL,				//스레드 보안속성(자식윈도우 존재할때)
 		NULL,				//스레드의 스택크기(0이면 메인쓰레드 동일)
@@ -813,6 +816,10 @@ HRESULT imageStorage::init()
 #pragma endregion STAGE
 
 #pragma endregion IMAGESOURCES
+	KEYANIMANAGER->addCoordinateFrameAnimation("loading", "SCENE_loadingSprite", 0, 3, 10, false, true);
+	_background = IMAGEMANAGER->findImage("SCENE_loadingScene");
+	_loading = IMAGEMANAGER->findImage("SCENE_loadingSprite");
+	_load = KEYANIMANAGER->findAnimation("loading");
 
 	return S_OK;
 }
@@ -823,14 +830,19 @@ void imageStorage::release()
 
 void imageStorage::update()
 {
+	_load->resume();
 	if (_currentCount >= 300)
 	{
+
 		SCENEMANAGER->changeScene("stage1");
 	}
+	KEYANIMANAGER->update();
 }
-
 void imageStorage::render()
 {
+	_background->render(getMemDC());
+	_loading->aniRender(getMemDC(), WINSIZEX - 300, WINSIZEY - 300, _load);
+	KEYANIMANAGER->render();
 }
 
 void imageStorage::playerImage()
@@ -859,12 +871,12 @@ DWORD imageStorage::threadFunction(LPVOID lpParameter)
 	imageStorage* loadingHelper = (imageStorage*)lpParameter;
 
 	//여러분은 그냥 여기에 사용하실 이미지랑 사운드 추가만 하면됩니다
-	//loadingHelper->init();
+
 
 	while (loadingHelper->_currentCount != 300)
 	{
 		IMAGEMANAGER->addImage("시작", "SCENE_loadingScene.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
-		//IMAGEMANAGER->frameRender("SCENE_loadingSprite", getMemDC(), 0, 0);
+
 
 		//이렇게 안하면 눈에 보이지도 않아요
 		Sleep(1);

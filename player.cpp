@@ -17,6 +17,9 @@ HRESULT player::init()
     _state = new idle;
     _state->init();
 
+    _imageStorage = new imageStorage;
+    _imageStorage->init();
+
     //플레이어 의 이미지와 그림자 이미지
     _playerImg = _state->getPlImg();
     _shadowImg = IMAGEMANAGER->findImage("SHADOW");

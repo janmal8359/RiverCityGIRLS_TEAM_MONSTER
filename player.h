@@ -19,6 +19,8 @@ class player : public gameNode
 private:
 	state* _state;
 
+	imageStorage* _imageStorage;
+
 	image* _shadowImg;		//그림자 이미지
 	RECT   _shadowRc;       //그림자 직사각형
 	

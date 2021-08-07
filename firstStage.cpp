@@ -70,45 +70,45 @@ void firstStage::pixelCollision()
 	//(_sX + 64, _sY + (_shadowRc.top + _shadowRc.bottom) / 2 <- {19})		우측 하단
 	//_pl->getShadowX(), _pl->getShadowY();									확인용
 
-	_probeLX = _player->getShadowX() - _player->getShadowImg()->getWidth() / 2;
-	_probeRX = _player->getShadowX() + _player->getShadowImg()->getWidth() / 2;
-	_probeTY = _player->getShadowY() - _player->getShadowImg()->getHeight() / 2;
-	_probeBY = _player->getShadowY() + _player->getShadowImg()->getHeight() / 2;
+	//_probeLX = _player->getShadowX() - _player->getShadowImg()->getWidth() / 2;
+	//_probeRX = _player->getShadowX() + _player->getShadowImg()->getWidth() / 2;
+	//_probeTY = _player->getShadowY() - _player->getShadowImg()->getHeight() / 2;
+	//_probeBY = _player->getShadowY() + _player->getShadowImg()->getHeight() / 2;
 
-	//벽 충돌
-	for (int i = _probeLX; i < _probeRX; i++)
-	{
-		COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
+	////벽 충돌
+	//for (int i = _probeLX; i < _probeRX; i++)
+	//{
+	//	COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
 
-		int R = GetRValue(color);
-		int G = GetGValue(color);
-		int B = GetBValue(color);
+	//	int R = GetRValue(color);
+	//	int G = GetGValue(color);
+	//	int B = GetBValue(color);
 
-		if (!(R == 255 && G == 0 && B == 255))
-		{
-			_player->setSpeed(0);
-		}
-		else
-		{
-			_player->setSpeed(6);
-		}
-	}
+	//	if (!(R == 255 && G == 0 && B == 255))
+	//	{
+	//		_player->setSpeed(0);
+	//	}
+	//	else
+	//	{
+	//		_player->setSpeed(6);
+	//	}
+	//}
 
-	for (int i = _probeTY; i < _probeBY; i++)
-	{
-		COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
+	//for (int i = _probeTY; i < _probeBY; i++)
+	//{
+	//	COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
 
-		int R = GetRValue(color);
-		int G = GetGValue(color);
-		int B = GetBValue(color);
+	//	int R = GetRValue(color);
+	//	int G = GetGValue(color);
+	//	int B = GetBValue(color);
 
-		if (!(R == 255 && G == 0 && B == 255))
-		{
-			_player->setSpeed(0);
-		}
-		else
-		{
-			_player->setSpeed(6);
-		}
-	}
+	//	if (!(R == 255 && G == 0 && B == 255))
+	//	{
+	//		_player->setSpeed(0);
+	//	}
+	//	else
+	//	{
+	//		_player->setSpeed(6);
+	//	}
+	//}
 }

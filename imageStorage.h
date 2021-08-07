@@ -1,11 +1,15 @@
 #pragma once
 #include "gameNode.h"
-
+#include "animation.h"
 class imageStorage : public gameNode
 {
 private:
 	int _currentCount;
 
+	image* _background;
+	image* _loading;
+	animation* _load;
+	
 
 public:
 	imageStorage();

@@ -267,17 +267,17 @@
     <ClInclude Include="boss.h">
       <Filter>playGround\3.ENEMY_MANAGER</Filter>
     </ClInclude>
-    <ClInclude Include="bossState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="enemyManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="dashAttack.h">
       <Filter>playGround\4.STATE_MANAGER</Filter>
     </ClInclude>
     <ClInclude Include="dashSAttack.h">
       <Filter>playGround\4.STATE_MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="bossState.h">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyManager.h">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -425,12 +425,6 @@
     <ClCompile Include="enemy.cpp">
       <Filter>playGround\3.ENEMY_MANAGER</Filter>
     </ClCompile>
-    <ClCompile Include="bossState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="enemyManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="dashAttack.cpp">
       <Filter>playGround\4.STATE_MANAGER</Filter>
     </ClCompile>
@@ -438,6 +432,12 @@
       <Filter>playGround\4.STATE_MANAGER</Filter>
     </ClCompile>
     <ClCompile Include="boss.cpp">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="bossState.cpp">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyManager.cpp">
       <Filter>playGround\3.ENEMY_MANAGER</Filter>
     </ClCompile>
   </ItemGroup>

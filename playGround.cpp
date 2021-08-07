@@ -17,8 +17,8 @@ HRESULT playGround::init()
 
 	SCENEMANAGER->addScene("imageStorage", new imageStorage);
 
-	//_imageStorage = new imageStorage;
-	//_imageStorage->threadFunction();
+	_imageStorage = new imageStorage;
+	_imageStorage->init();
 
 	//스테이지(씬 매니저)
 	SCENEMANAGER->addScene("stage1", new firstStage);
@@ -26,7 +26,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("stage3", new thirdStage);
 	SCENEMANAGER->addScene("bossStage1", new bossStage1);
 	SCENEMANAGER->addScene("bossStage2", new bossStage2);
-	SCENEMANAGER->changeScene("imageStorage");
+	SCENEMANAGER->changeScene("stage1");
 	//SCENEMANAGER->changeScene("stage1");
 	
 	return S_OK;
