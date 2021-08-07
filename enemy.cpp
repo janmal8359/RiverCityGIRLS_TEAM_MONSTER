@@ -73,7 +73,7 @@ void enemy::render()
 {
 
 	char str1[128];
-	sprintf_s(str1, "추격 : %f", _enemyChase);
+	sprintf_s(str1, "스피드 : %f", _enemySpeed);
 	TextOut(getMemDC(), 100, 500, str1, strlen(str1));
 
 	_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
@@ -94,16 +94,18 @@ void enemy::enemyStateRender(animation* motion)
 
 void enemy::enemyMove()
 {
-	if (getDistance(ex.x, ex.y, _enemyX, _enemyY) > 10)
+	if (getDistance(ex.x, ex.y, _enemyX, _enemyY) > 10)					//쫒아가는거
 	{
 		
 		_enemySX = _enemyX;
 		_enemyX -= cosf(getAngle(ex.x, ex.y, _enemyX, _enemyY)) * 2;
 
-		_enemySY = _enemyY;
+		_enemySY = _enemyY + _enemyImg->getFrameHeight() / 2 + 30;
 		_enemyY -= -sin(getAngle(ex.x, ex.y, _enemyX, _enemyY)) * 2;
 	
 	}
+
+
 
 	//if (_enemySpeed > 0.01) _enemySpeed -= _enemyRes;
 	//else _enemySpeed = 0;

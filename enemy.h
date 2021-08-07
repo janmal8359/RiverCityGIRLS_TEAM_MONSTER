@@ -42,8 +42,6 @@ private:
 	
 	int _enemyDir;					//利 规氢
 
-	float _enemyChase;				//利 芭府
-	
 	
 
 public:
