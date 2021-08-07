@@ -25,6 +25,8 @@ HRESULT firstStage::init()
 	_enemy = new enemy;
 	_enemy->init();
 
+	_isCheck = false;
+
 	return S_OK;
 }
 
@@ -75,10 +77,12 @@ void firstStage::pixelCollision()
 	_probeTY = _player->getShadowY() - _player->getShadowImg()->getHeight() / 2;
 	_probeBY = _player->getShadowY() + _player->getShadowImg()->getHeight() / 2;
 
+
 	////º® Ãæµ¹
 	for (int i = _probeLX - 1; i < _probeLX; i++)
 	{
 		COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
+		RECT _rc = RectMake(_player->getPlayerX(), _player->getPlayerY(), 100, 100);
 
 		int R = GetRValue(color);
 		int G = GetGValue(color);
@@ -86,66 +90,122 @@ void firstStage::pixelCollision()
 
 		if (!(R == 255 && G == 0 && B == 255))
 		{
-			_player->setSpeed(0);
+			if (R == 255 && G == 0 && B == 0)
+			{
+				_player->setSpeed(0);
+			}
+			else if ((R == 0 && G == 255 && B == 0) && _player->getState())
+			{
+				_player->setPlayerX(+8);
+				_player->setSpeed(6);
+			}
+			else if (R == 0 && G == 255 && B == 255)
+			{
+				_player->setSpeed(6);
+
+			}
+			else
+			{
+				_player->setSpeed(6);
+			}
 		}
-		else
+
+
+		for (int i = _probeRX; i < _probeLX + 1; i++)
 		{
-			_player->setSpeed(6);
+			COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
+			RECT _rc = RectMake(_player->getPlayerX(), _player->getPlayerY(), 100, 100);
+
+			int R = GetRValue(color);
+			int G = GetGValue(color);
+			int B = GetBValue(color);
+
+			if (!(R == 255 && G == 0 && B == 255))
+			{
+				if (R == 255 && G == 0 && B == 0)
+				{
+					_player->setSpeed(0);
+				}
+				else if ((R == 0 && G == 255 && B == 0) && _player->getState())
+				{
+					_player->setPlayerX(-8);
+					_player->setSpeed(6);
+				}
+				else if (R == 0 && G == 255 && B == 255)
+				{
+					_player->setSpeed(6);
+
+				}
+				else
+				{
+					_player->setSpeed(6);
+				}
+			}
 		}
-	}
 
-	for (int i = _probeRX; i < _probeLX + 1; i++)
-	{
-		COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
-
-		int R = GetRValue(color);
-		int G = GetGValue(color);
-		int B = GetBValue(color);
-
-		if (!(R == 255 && G == 0 && B == 255))
+		for (int i = _probeTY - 1; i < _probeTY; i++)
 		{
-			_player->setSpeed(0);
+			COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
+			RECT _rc = RectMake(_player->getPlayerX(), _player->getPlayerY(), 100, 100);
+
+			int R = GetRValue(color);
+			int G = GetGValue(color);
+			int B = GetBValue(color);
+
+			if (!(R == 255 && G == 0 && B == 255))
+			{
+				if (R == 255 && G == 0 && B == 0)
+				{
+					_player->setSpeed(0);
+				}
+				else if ((R == 0 && G == 255 && B == 0) && _player->getState())
+				{
+					_player->setPlayerY(-8);
+					_player->setSpeed(6);
+				}
+				else if (R == 0 && G == 255 && B == 255)
+				{
+					_player->setSpeed(6);
+
+				}
+				else
+				{
+					_player->setSpeed(6);
+				}
+			}
 		}
-		else
+
+
+		for (int i = _probeBY; i < _probeBY + 1; i++)
 		{
-			_player->setSpeed(6);
-		}
-	}
+			COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
+			RECT _rc = RectMake(_player->getPlayerX(), _player->getPlayerY(), 100, 100);
 
-	for (int i = _probeTY - 1; i < _probeTY; i++)
-	{
-		COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
+			int R = GetRValue(color);
+			int G = GetGValue(color);
+			int B = GetBValue(color);
 
-		int R = GetRValue(color);
-		int G = GetGValue(color);
-		int B = GetBValue(color);
+			if (!(R == 255 && G == 0 && B == 255))
+			{
+				if (R == 255 && G == 0 && B == 0)
+				{
+					_player->setSpeed(0);
+				}
+				else if ((R == 0 && G == 255 && B == 0) && _player->getState())
+				{
+					_player->setPlayerY(+8);
+					_player->setSpeed(6);
+				}
+				else if (R == 0 && G == 255 && B == 255)
+				{
+					_player->setSpeed(6);
 
-		if (!(R == 255 && G == 0 && B == 255))
-		{
-			_player->setSpeed(0);
-		}
-		else
-		{
-			_player->setSpeed(6);
-		}
-	}
-
-
-	for (int i = _probeBY; i < _probeBY + 1; i++)
-	{
-		COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
-
-		int R = GetRValue(color);
-		int G = GetGValue(color);
-		int B = GetBValue(color);
-
-		if (!(R == 255 && G == 0 && B == 255))
-		{
-			_player->setSpeed(0);
-		}
-		else
-		{
-			_player->setSpeed(6);
+				}
+				else
+				{
+					_player->setSpeed(6);
+				}
+			}
 		}
 	}
 }
