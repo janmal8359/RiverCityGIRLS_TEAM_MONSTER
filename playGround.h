@@ -24,8 +24,6 @@ private:
 
 	boss* _boss;
 
-	float _probeLX, _probeTY, _probeRX, _probeBY;
-
 public:
 	playGround();
 	~playGround();
