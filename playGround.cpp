@@ -33,8 +33,8 @@ HRESULT playGround::init()
 	//_stage5 = new bossStage2;
 	//_stage5->init();
 	//스테이지(씬 매니저)
-	SCENEMANAGER->addScene("stageNum", new firstStage);
-	SCENEMANAGER->changeScene("stageNum");
+	//SCENEMANAGER->addScene("stageNum", new firstStage);
+	//SCENEMANAGER->changeScene("stageNum");
 
 	_player = new player;
 	_player->init();
@@ -68,7 +68,7 @@ void playGround::update()
 
 	_player->getState()->setPlayer(_player);
 
-	testCollision();
+	//testCollision();
 }
 
 //여기다 그려줘라!!!
@@ -93,7 +93,7 @@ void playGround::render()
 	_backBuffer->render(getHDC(), 0, 0);
 
 }
-
+/*
 void playGround::testCollision()
 {
 	_probeLX = _player->getShadowX() - 64;
@@ -134,4 +134,4 @@ void playGround::testCollision()
 		}
 	}
 }
-
+*/
