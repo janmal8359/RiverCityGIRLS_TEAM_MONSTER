@@ -18,14 +18,15 @@ HRESULT playGround::init()
 	_imgStorage = new imageStorage;
 	_imgStorage->init();
 
-	SCENEMANAGER->addScene("SG", new schoolGirl);
-	SCENEMANAGER->changeScene("SG");
-
 	_player = new player;
 	_player->init();
 
 	_boss = new boss;
 	_boss->init();
+
+	_enemy = new enemy;
+	_enemy->init();
+	
 	
 	return S_OK;
 }
@@ -51,6 +52,8 @@ void playGround::update()
 
 	_boss->update();
 
+	_enemy->update();
+	_enemy->getEnemyState()->setEnemy(_enemy);
 	
 }
 
@@ -63,6 +66,7 @@ void playGround::render()
 	_boss->render();
 
 	_player->render();
+	_enemy->render();
 
 
 	//=============== 밑에도 건들지마라 ================

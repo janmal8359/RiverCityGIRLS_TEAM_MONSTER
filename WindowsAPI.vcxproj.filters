@@ -106,9 +106,6 @@
     <Filter Include="playGround\3.ENEMY_MANAGER\enemy\schoolGirl">
       <UniqueIdentifier>{974d6b21-4044-4e85-aa0d-f03528c49ee7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\3.ENEMY_MANAGER\enemy\schoolGirlState">
-      <UniqueIdentifier>{47477cd8-db8d-4011-af5c-5911b13c1239}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -258,14 +255,11 @@
     <ClInclude Include="schoolGirl.h">
       <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirl</Filter>
     </ClInclude>
-    <ClInclude Include="schoolGirlState.h">
-      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
+    <ClInclude Include="enemyState.h">
+      <Filter>playGround\3.ENEMY_MANAGER\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="schoolGirlIdle.h">
-      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
-    </ClInclude>
-    <ClInclude Include="schoolGirlChase.h">
-      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
+    <ClInclude Include="enemy.h">
+      <Filter>playGround\3.ENEMY_MANAGER\enemy</Filter>
     </ClInclude>
     <ClInclude Include="enemy.h">
       <Filter>playGround\3.ENEMY_MANAGER</Filter>
@@ -422,19 +416,13 @@
     <ClCompile Include="schoolGirl.cpp">
       <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirl</Filter>
     </ClCompile>
-    <ClCompile Include="schoolGirlState.cpp">
-      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
-    </ClCompile>
-    <ClCompile Include="schoolGirlIdle.cpp">
-      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
-    </ClCompile>
-    <ClCompile Include="schoolGirlChase.cpp">
-      <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirlState</Filter>
+    <ClCompile Include="enemyState.cpp">
+      <Filter>playGround\3.ENEMY_MANAGER\enemy</Filter>
     </ClCompile>
     <ClCompile Include="enemy.cpp">
-      <Filter>playGround\3.ENEMY_MANAGER</Filter>
+      <Filter>playGround\3.ENEMY_MANAGER\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="boss.cpp">
+    <ClCompile Include="enemy.cpp">
       <Filter>playGround\3.ENEMY_MANAGER</Filter>
     </ClCompile>
     <ClCompile Include="bossState.cpp">
@@ -448,6 +436,9 @@
     </ClCompile>
     <ClCompile Include="dashSAttack.cpp">
       <Filter>playGround\4.STATE_MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="boss.cpp">
+      <Filter>playGround\3.ENEMY_MANAGER</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
