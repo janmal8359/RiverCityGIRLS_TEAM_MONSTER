@@ -4,7 +4,7 @@
 class imageStorage : public gameNode
 {
 private:
-	int _currentCount;
+	
 
 	image* _background;
 	image* _loading;
@@ -12,6 +12,7 @@ private:
 	
 
 public:
+	int _currentCount;
 	imageStorage();
 	~imageStorage();
 
@@ -26,5 +27,6 @@ public:
 	void effectImage();
 	void objectImage();
 
-	static DWORD CALLBACK threadFunction(LPVOID lpParameter);
+	
 };
+static DWORD CALLBACK threadFunction(LPVOID lpParameter);

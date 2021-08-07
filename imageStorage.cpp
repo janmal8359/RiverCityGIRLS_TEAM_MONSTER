@@ -13,17 +13,6 @@ imageStorage::~imageStorage()
 HRESULT imageStorage::init()
 {
 
-	
-
-	CreateThread(
-		NULL,				//스레드 보안속성(자식윈도우 존재할때)
-		NULL,				//스레드의 스택크기(0이면 메인쓰레드 동일)
-		threadFunction,		//사용할 함수
-		this,				//스레드 매개변수(this 로 뒀으니 본 클래스)
-		NULL,				//스레드 특성
-		NULL);				//스레드 ID
-
-
 
 	//이미지 총합
 #pragma region IMAGESOURCES
@@ -821,6 +810,14 @@ HRESULT imageStorage::init()
 	_loading = IMAGEMANAGER->findImage("SCENE_loadingSprite");
 	_load = KEYANIMANAGER->findAnimation("loading");
 
+	CreateThread(
+		NULL,				//스레드 보안속성(자식윈도우 존재할때)
+		NULL,				//스레드의 스택크기(0이면 메인쓰레드 동일)
+		threadFunction,		//사용할 함수
+		this,				//스레드 매개변수(this 로 뒀으니 본 클래스)
+		NULL,				//스레드 특성
+		NULL);				//스레드 ID
+
 	return S_OK;
 }
 
@@ -866,7 +863,7 @@ void imageStorage::objectImage()
 }
 
 //로딩 미리 이미지 다로드 시켜주자
-DWORD imageStorage::threadFunction(LPVOID lpParameter)
+DWORD CALLBACK threadFunction(LPVOID lpParameter)
 {
 	imageStorage* loadingHelper = (imageStorage*)lpParameter;
 
@@ -875,8 +872,6 @@ DWORD imageStorage::threadFunction(LPVOID lpParameter)
 
 	while (loadingHelper->_currentCount != 300)
 	{
-		IMAGEMANAGER->addImage("시작", "SCENE_loadingScene.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
-
 
 		//이렇게 안하면 눈에 보이지도 않아요
 		Sleep(1);
