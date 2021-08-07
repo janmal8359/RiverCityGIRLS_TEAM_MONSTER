@@ -90,20 +90,24 @@ void firstStage::pixelCollision()
 
 		if (!(R == 255 && G == 0 && B == 255))
 		{
+			//벽
 			if (R == 255 && G == 0 && B == 0)
 			{
 				_player->setSpeed(0);
 			}
+			//책상 바닥
 			else if ((R == 0 && G == 255 && B == 0) && _player->getState())
 			{
 				_player->setPlayerX(+8);
 				_player->setSpeed(6);
 			}
+			//아이콘 출현 구간
 			else if (R == 0 && G == 255 && B == 255)
 			{
 				_player->setSpeed(6);
 
 			}
+			//그 이외
 			else
 			{
 				_player->setSpeed(6);
@@ -122,20 +126,24 @@ void firstStage::pixelCollision()
 
 			if (!(R == 255 && G == 0 && B == 255))
 			{
+				//벽
 				if (R == 255 && G == 0 && B == 0)
 				{
 					_player->setSpeed(0);
 				}
+				//책상 바닥
 				else if ((R == 0 && G == 255 && B == 0) && _player->getState())
 				{
 					_player->setPlayerX(-8);
 					_player->setSpeed(6);
 				}
+				//아이콘 출현 구간
 				else if (R == 0 && G == 255 && B == 255)
 				{
 					_player->setSpeed(6);
 
 				}
+				//그 이외
 				else
 				{
 					_player->setSpeed(6);
@@ -154,20 +162,23 @@ void firstStage::pixelCollision()
 
 			if (!(R == 255 && G == 0 && B == 255))
 			{
+				//벽
 				if (R == 255 && G == 0 && B == 0)
 				{
 					_player->setSpeed(0);
 				}
+				//책상 바닥
 				else if ((R == 0 && G == 255 && B == 0) && _player->getState())
 				{
 					_player->setPlayerY(-8);
 					_player->setSpeed(6);
 				}
+				//아이콘 출현 구간
 				else if (R == 0 && G == 255 && B == 255)
 				{
 					_player->setSpeed(6);
-
 				}
+				//그 이외
 				else
 				{
 					_player->setSpeed(6);
@@ -187,20 +198,24 @@ void firstStage::pixelCollision()
 
 			if (!(R == 255 && G == 0 && B == 255))
 			{
+				//벽
 				if (R == 255 && G == 0 && B == 0)
 				{
 					_player->setSpeed(0);
 				}
+				//책상 바닥
 				else if ((R == 0 && G == 255 && B == 0) && _player->getState())
 				{
 					_player->setPlayerY(+8);
 					_player->setSpeed(6);
 				}
+				//아이콘 출현 구간
 				else if (R == 0 && G == 255 && B == 255)
 				{
+					//
 					_player->setSpeed(6);
-
 				}
+				//그 이외
 				else
 				{
 					_player->setSpeed(6);
