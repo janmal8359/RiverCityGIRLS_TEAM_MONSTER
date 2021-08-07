@@ -58,9 +58,6 @@
     <Filter Include="playGround\2.PLAYER">
       <UniqueIdentifier>{6832563d-4532-4658-b56e-8afc5aad4c99}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\4.STATE_MANAGER">
-      <UniqueIdentifier>{c185ca3f-e381-4508-bd1b-99ba39ca888f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\3.ENEMY_MANAGER">
       <UniqueIdentifier>{e01eb3ac-9db0-4dcc-a740-34a8ce9f9abb}</UniqueIdentifier>
     </Filter>
@@ -105,6 +102,9 @@
     </Filter>
     <Filter Include="playGround\3.ENEMY_MANAGER\enemy\schoolGirl">
       <UniqueIdentifier>{974d6b21-4044-4e85-aa0d-f03528c49ee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\4.PLAYER_STATE">
+      <UniqueIdentifier>{c185ca3f-e381-4508-bd1b-99ba39ca888f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -229,28 +229,28 @@
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME</Filter>
     </ClInclude>
     <ClInclude Include="state.h">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
     <ClInclude Include="idle.h">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
     <ClInclude Include="atk.h">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
     <ClInclude Include="jump.h">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
     <ClInclude Include="walk.h">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
     <ClInclude Include="camera.h">
       <Filter>playGround\CAMERA</Filter>
     </ClInclude>
     <ClInclude Include="die.h">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
     <ClInclude Include="run.h">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
     <ClInclude Include="schoolGirl.h">
       <Filter>playGround\3.ENEMY_MANAGER\enemy\schoolGirl</Filter>
@@ -268,16 +268,49 @@
       <Filter>playGround\3.ENEMY_MANAGER</Filter>
     </ClInclude>
     <ClInclude Include="dashAttack.h">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
     <ClInclude Include="dashSAttack.h">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
     <ClInclude Include="bossState.h">
       <Filter>playGround\3.ENEMY_MANAGER</Filter>
     </ClInclude>
     <ClInclude Include="enemyManager.h">
       <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="down.h">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClInclude>
+    <ClInclude Include="hit.h">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClInclude>
+    <ClInclude Include="guard.h">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClInclude>
+    <ClInclude Include="jumpAtk.h">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClInclude>
+    <ClInclude Include="sAtkDown.h">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClInclude>
+    <ClInclude Include="sAtk.h">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClInclude>
+    <ClInclude Include="stand.h">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClInclude>
+    <ClInclude Include="stomp.h">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClInclude>
+    <ClInclude Include="stun.h">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClInclude>
+    <ClInclude Include="wait.h">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClInclude>
+    <ClInclude Include="grab.h">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -384,28 +417,28 @@
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME</Filter>
     </ClCompile>
     <ClCompile Include="state.cpp">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClCompile>
     <ClCompile Include="atk.cpp">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClCompile>
     <ClCompile Include="idle.cpp">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClCompile>
     <ClCompile Include="jump.cpp">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClCompile>
     <ClCompile Include="walk.cpp">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClCompile>
     <ClCompile Include="camera.cpp">
       <Filter>playGround\CAMERA</Filter>
     </ClCompile>
     <ClCompile Include="die.cpp">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClCompile>
     <ClCompile Include="run.cpp">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClCompile>
     <ClCompile Include="WindowsAPI.cpp">
       <Filter>소스 파일</Filter>
@@ -426,10 +459,10 @@
       <Filter>playGround\3.ENEMY_MANAGER</Filter>
     </ClCompile>
     <ClCompile Include="dashAttack.cpp">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClCompile>
     <ClCompile Include="dashSAttack.cpp">
-      <Filter>playGround\4.STATE_MANAGER</Filter>
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClCompile>
     <ClCompile Include="boss.cpp">
       <Filter>playGround\3.ENEMY_MANAGER</Filter>
@@ -439,6 +472,39 @@
     </ClCompile>
     <ClCompile Include="enemyManager.cpp">
       <Filter>playGround\3.ENEMY_MANAGER</Filter>
+    </ClCompile>
+    <ClCompile Include="hit.cpp">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClCompile>
+    <ClCompile Include="down.cpp">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClCompile>
+    <ClCompile Include="guard.cpp">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClCompile>
+    <ClCompile Include="jumpAtk.cpp">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClCompile>
+    <ClCompile Include="sAtk.cpp">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClCompile>
+    <ClCompile Include="sAtkDown.cpp">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClCompile>
+    <ClCompile Include="stand.cpp">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClCompile>
+    <ClCompile Include="wait.cpp">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClCompile>
+    <ClCompile Include="stun.cpp">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClCompile>
+    <ClCompile Include="stomp.cpp">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClCompile>
+    <ClCompile Include="grab.cpp">
+      <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

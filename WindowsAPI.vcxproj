@@ -161,6 +161,7 @@
     <ClInclude Include="dashAttack.h" />
     <ClInclude Include="dashSAttack.h" />
     <ClInclude Include="die.h" />
+    <ClInclude Include="down.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
     <ClInclude Include="enemy.h" />
@@ -169,6 +170,9 @@
     <ClInclude Include="firstStage.h" />
     <ClInclude Include="gameManager.h" />
     <ClInclude Include="gameNode.h" />
+    <ClInclude Include="grab.h" />
+    <ClInclude Include="guard.h" />
+    <ClInclude Include="hit.h" />
     <ClInclude Include="idle.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
@@ -176,6 +180,7 @@
     <ClInclude Include="iniDataManager.h" />
     <ClInclude Include="introVideo.h" />
     <ClInclude Include="jump.h" />
+    <ClInclude Include="jumpAtk.h" />
     <ClInclude Include="keyAniManager.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="mainMenu.h" />
@@ -187,6 +192,8 @@
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="run.h" />
+    <ClInclude Include="sAtk.h" />
+    <ClInclude Include="sAtkDown.h" />
     <ClInclude Include="saveFile.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="schoolGirl.h" />
@@ -195,13 +202,17 @@
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stageManager.h" />
+    <ClInclude Include="stand.h" />
     <ClInclude Include="state.h" />
+    <ClInclude Include="stomp.h" />
+    <ClInclude Include="stun.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="thirdStage.h" />
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="txtData.h" />
     <ClInclude Include="utils.h" />
+    <ClInclude Include="wait.h" />
     <ClInclude Include="walk.h" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +229,7 @@
     <ClCompile Include="dashAttack.cpp" />
     <ClCompile Include="dashSAttack.cpp" />
     <ClCompile Include="die.cpp" />
+    <ClCompile Include="down.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="enemy.cpp" />
@@ -226,6 +238,9 @@
     <ClCompile Include="firstStage.cpp" />
     <ClCompile Include="gameManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
+    <ClCompile Include="grab.cpp" />
+    <ClCompile Include="guard.cpp" />
+    <ClCompile Include="hit.cpp" />
     <ClCompile Include="idle.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
@@ -233,6 +248,7 @@
     <ClCompile Include="iniDataManager.cpp" />
     <ClCompile Include="introVideo.cpp" />
     <ClCompile Include="jump.cpp" />
+    <ClCompile Include="jumpAtk.cpp" />
     <ClCompile Include="keyAniManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="mainMenu.cpp" />
@@ -247,6 +263,8 @@
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="run.cpp" />
+    <ClCompile Include="sAtk.cpp" />
+    <ClCompile Include="sAtkDown.cpp" />
     <ClCompile Include="saveFile.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="schoolGirl.cpp" />
@@ -254,12 +272,16 @@
     <ClCompile Include="sfxStorage.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stageManager.cpp" />
+    <ClCompile Include="stand.cpp" />
     <ClCompile Include="state.cpp" />
+    <ClCompile Include="stomp.cpp" />
+    <ClCompile Include="stun.cpp" />
     <ClCompile Include="thirdStage.cpp" />
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="txtData.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="wait.cpp" />
     <ClCompile Include="walk.cpp" />
     <ClCompile Include="WindowsAPI.cpp" />
   </ItemGroup>

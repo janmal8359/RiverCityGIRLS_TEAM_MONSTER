@@ -1,5 +1,6 @@
 #pragma once
 #include "state.h"
+
 class run : public state
 {
 private:

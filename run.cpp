@@ -35,6 +35,10 @@ void run::stateChange()
     {
         _player->setState(new dashAttack);
     }
+    if (KEYMANAGER->isOnceKeyDown('E'))
+    {
+        _player->setState(new dashSAttack);
+    }
 
 
     if (!KEYMANAGER->isStayKeyDown(VK_LSHIFT))

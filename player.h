@@ -2,13 +2,29 @@
 #include "gameNode.h"
 #include "imageStorage.h"
 
+#include "wait.h"
 
 #include "idle.h"
 #include "walk.h"
 #include "run.h"
 #include "jump.h"
+
+#include "hit.h"
+#include "guard.h"
+#include "down.h"
+#include "stand.h"
+#include "stun.h"
+#include "die.h"
+
 #include "atk.h"
+#include "sAtk.h"
+#include "sAtkDown.h"
+
+#include "grab.h"
+#include "stomp.h"
+#include "jumpAtk.h"
 #include "dashAttack.h"
+#include "dashSAttack.h"
 
 #define GRAVITY 1.0f  // 중력값
 
@@ -29,7 +45,10 @@ private:
 	float _jumpPower;		//점프 파워
 
 	bool  _isJump;          //점프하고 있는지
+	bool  _isAttacking;     //공격하고 있는지
 
+	bool  _isHitToEnemy;   //내 공격이 상대에게 들어갔는지.
+	
 	image* _playerImg;		//플레이어의 이미지
 	RECT  _playerRc;        //플레이어의 직사각형
 
@@ -89,6 +108,9 @@ public:
 	//플레이어의 점프상황을 설정 접근자
 	bool getIsJump() { return _isJump; }
 	void setIsJump(bool isJump) { _isJump = isJump; }
+
+	bool getIsAttacking() { return _isAttacking; }
+	void setIsAttacking(bool isAttack) { _isAttacking = isAttack; }
 
 	//플레이어 직사각형 설정
 	RECT getPlayerRc() { return _playerRc; }

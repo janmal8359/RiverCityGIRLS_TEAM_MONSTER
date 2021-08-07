@@ -14,6 +14,7 @@ playGround::~playGround()
 HRESULT playGround::init()
 {
 	gameNode::init(true);
+
 	_imageStorage = new imageStorage;
 	_imageStorage->init();
 

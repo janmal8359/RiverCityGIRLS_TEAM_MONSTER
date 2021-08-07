@@ -1,13 +1,13 @@
 #pragma once
 #include "state.h"
 
-class dashSAttack : public state
+class sAtk : public state
 {
 private:
 
 public:
 
-	
+
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
@@ -18,4 +18,5 @@ public:
 
 	void callBk();
 };
+
 
