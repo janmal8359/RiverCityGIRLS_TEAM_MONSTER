@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "enemy.h"
+#include "player.h"
 
 enemy::enemy()
 {
@@ -36,6 +37,12 @@ HRESULT enemy::init()
 	_enemyJP = 0;
 
 	_isEJump = false;
+	_isEAttack = false;
+	_isEChase = false;
+	
+	
+	ex.x = 500;
+	ex.y = 500;
 
 	
 
@@ -48,9 +55,15 @@ void enemy::release()
 
 void enemy::update()
 {
+
+	exRc = RectMakeCenter(ex.x, ex.y, 100, 100);	//연습용
+	
+
+
 	_ES->setEnemy(this);
 
 	enemyMove();
+	enemyChase();
 
 	_ES->update();
 	_enemyImg = _ES->getEnemyImg();
@@ -58,10 +71,17 @@ void enemy::update()
 
 void enemy::render()
 {
+
+	char str1[128];
+	sprintf_s(str1, "추격 : %f", _enemyChase);
+	TextOut(getMemDC(), 100, 500, str1, strlen(str1));
+
 	_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
 	_ES->render();
 
+	Rectangle(getMemDC(), exRc);
 
+	
 
 }
 
@@ -74,24 +94,41 @@ void enemy::enemyStateRender(animation* motion)
 
 void enemy::enemyMove()
 {
-	if (_enemySpeed > 0.01) _enemySpeed -= _enemyRes;
-	else _enemySpeed = 0;
-	
-	if (_enemySpeed >= 6.0f) _enemySpeed = 6.0;
+	if (getDistance(ex.x, ex.y, _enemyX, _enemyY) > 10)
+	{
+		
+		_enemySX = _enemyX;
+		_enemyX -= cosf(getAngle(ex.x, ex.y, _enemyX, _enemyY)) * 2;
 
-	if (_enemyDir == 0)
-	{
-		_enemySX -= _enemySpeed;
-		_enemyX -= _enemySpeed;
+		_enemySY = _enemyY;
+		_enemyY -= -sin(getAngle(ex.x, ex.y, _enemyX, _enemyY)) * 2;
+	
 	}
-	else
-	{
-		_enemySX += _enemySpeed;
-		_enemyX += _enemySpeed;
-	}
+
+	//if (_enemySpeed > 0.01) _enemySpeed -= _enemyRes;
+	//else _enemySpeed = 0;
+	//
+	//if (_enemySpeed >= 6.0f) _enemySpeed = 6.0;
+	//
+	//if (_enemyDir == 0)
+	//{
+	//	_enemySX -= _enemySpeed;
+	//	_enemyX -= _enemySpeed;
+	//}
+	//else
+	//{
+	//	_enemySX += _enemySpeed;
+	//	_enemyX += _enemySpeed;
+	//}
 
 	_enemyRc = RectMakeCenter(_enemyX, _enemyY, _enemyImg->getFrameWidth(), _enemyImg->getFrameWidth());
 	_enemyShadowRc = RectMakeCenter(_enemySX, _enemySY, _enemyShadowImg->getWidth(), _enemyShadowImg->getHeight());
+}
+
+void enemy::enemyChase()
+{
+
+
 }
 
 void enemy::enemyAni()

@@ -24,7 +24,7 @@ void enemyState::release()
 
 void enemyState::update()
 {
-	_enemyDir = _enemy->getDir();
+	_enemyDir = _enemy->getDir(); 
 
 	enemyStateChange();
 	enemyAni();
@@ -40,8 +40,7 @@ void enemyState::render()
 }
 
 #pragma endregion
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////  기   본  ///////////////////////////////////////////////////////////
 #pragma region 기본 상태
 
 enemyIdle::enemyIdle()
@@ -96,7 +95,7 @@ void enemyIdle::enemyAni()
 }
 
 #pragma endregion
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////  추   격  ///////////////////////////////////////////////////////////
 #pragma region 추격 상태
 
 enemyChase::enemyChase()
@@ -121,12 +120,9 @@ void enemyChase::release()
 void enemyChase::update()
 {
 	enemyState::update();
+
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_walk");
 
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
-	{
-		_enemy->setESpeed(0);
-	}
 }
 
 void enemyChase::render()

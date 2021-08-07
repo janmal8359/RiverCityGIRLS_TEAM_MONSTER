@@ -5,11 +5,19 @@
 #include "enemyState.h"
 
 
+
 class enemy : public gameNode
 {
 
 private:
 	
+	//지울거
+
+	RECT exRc;
+	POINT ex;
+
+	
+
 	imageStorage* _IS;				//이미지 스토리지
 
 	enemyState* _ES;				//에너미 스테이트
@@ -23,6 +31,8 @@ private:
 	float _enemyJP;					//점프파워
 
 	bool _isEJump;					//점프 불값
+	bool _isEChase;					//추격 불값
+	bool _isEAttack;				//공격 불값
 
 
 	image* _enemyImg;				//적 이미지
@@ -31,6 +41,10 @@ private:
 	float _enemyX, _enemyY;			//적 x,y값
 	
 	int _enemyDir;					//적 방향
+
+	float _enemyChase;				//적 거리
+	
+	
 
 public:
 	enemy();
@@ -42,7 +56,8 @@ public:
 	void render();					//그리기 함수
 
 	void enemyStateRender(animation* motion);				//스테이트 렌더?
-	void enemyMove();											//움직임
+	void enemyMove();										//움직임
+	void enemyChase();										//추격
 
 	void enemyAni();										//적 애니메이션
 
@@ -75,8 +90,15 @@ public:
 	void sestEJP(float ejp) { _enemyJP = ejp; }
 
 	//적 점프상황
-	float getIsEJP() { return _isEJump; }
-	void setIsEJP(float isejp) { _isEJump = isejp; }
+	float getIsEenmyJump() { return _isEJump; }
+	void setIsEnemyJump(float isejp) { _isEJump = isejp; }
+	//적 공격상황
+	float getIsEenmyAttack() { return _isEAttack; }
+	void setIsEnemyAttack(float iseat) { _isEAttack = iseat; }
+	//적 추격상황
+	float getIsEenmyChase() { return _isEChase; }
+	void setIsEnemyChase(float isec) { _isEChase = isec; }
+
 
 	//적 렉트
 	RECT getEnemyRc() { return _enemyRc; }
