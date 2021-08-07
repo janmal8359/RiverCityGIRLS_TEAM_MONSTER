@@ -12,6 +12,16 @@ imageStorage::~imageStorage()
 
 HRESULT imageStorage::init()
 {
+	CreateThread(
+		NULL,				//스레드 보안속성(자식윈도우 존재할때)
+		NULL,				//스레드의 스택크기(0이면 메인쓰레드 동일)
+		threadFunction,		//사용할 함수
+		this,				//스레드 매개변수(this 로 뒀으니 본 클래스)
+		NULL,				//스레드 특성
+		NULL);				//스레드 ID
+
+
+
 	//이미지 총합
 #pragma region IMAGESOURCES
 
@@ -813,47 +823,53 @@ void imageStorage::release()
 
 void imageStorage::update()
 {
+	if (_currentCount >= 300)
+	{
+		SCENEMANAGER->changeScene("stage1");
+	}
 }
 
 void imageStorage::render()
 {
 }
 
-void playerImage()
+void imageStorage::playerImage()
 {
 }
 
-void npcImage()
+void imageStorage::npcImage()
 {
 }
 
-void enemyImage()
+void imageStorage::enemyImage()
 {
 }
 
-void effectImage()
+void imageStorage::effectImage()
 {
 }
 
-void objectImage()
+void imageStorage::objectImage()
 {
 }
 
 //로딩 미리 이미지 다로드 시켜주자
-DWORD threadFunction(LPVOID lpParameter)
+DWORD imageStorage::threadFunction(LPVOID lpParameter)
 {
-	//loadingScene* loadingHelper = (loadingScene*)lpParameter;
+	imageStorage* loadingHelper = (imageStorage*)lpParameter;
 
-	////여러분은 그냥 여기에 사용하실 이미지랑 사운드 추가만 하면됩니다
+	//여러분은 그냥 여기에 사용하실 이미지랑 사운드 추가만 하면됩니다
+	//loadingHelper->init();
 
-	//while (loadingHelper->_currentCount != LOADINGMAX)
-	//{
-	//	IMAGEMANAGER->addImage("시작", "타르코프게임.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	while (loadingHelper->_currentCount != 300)
+	{
+		IMAGEMANAGER->addImage("시작", "SCENE_loadingScene.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+		//IMAGEMANAGER->frameRender("SCENE_loadingSprite", getMemDC(), 0, 0);
 
-	//	//이렇게 안하면 눈에 보이지도 않아요
-	//	Sleep(1);
+		//이렇게 안하면 눈에 보이지도 않아요
+		Sleep(1);
 	
-	//	loadingHelper->_currentCount++;
-	//}
-	//return 0;
+		loadingHelper->_currentCount++;
+	}
+	return 0;
 }

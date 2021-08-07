@@ -1,8 +1,11 @@
 #pragma once
 #include "gameNode.h"
+
 class imageStorage : public gameNode
 {
 private:
+	int _currentCount;
+
 
 public:
 	imageStorage();
@@ -12,7 +15,6 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
-};
 
 	void playerImage();
 	void npcImage();
@@ -20,5 +22,5 @@ public:
 	void effectImage();
 	void objectImage();
 
-
-static DWORD CALLBACK threadFunction(LPVOID lpParameter);
+	static DWORD CALLBACK threadFunction(LPVOID lpParameter);
+};
