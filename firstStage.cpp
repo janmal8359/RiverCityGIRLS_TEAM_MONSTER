@@ -32,10 +32,16 @@ void firstStage::update()
 
 void firstStage::render()
 {
-	IMAGEMANAGER->findImage("STAGE_stagePixel1")->render(getMemDC(), 0, 0);
-	IMAGEMANAGER->findImage("STAGE_stage1")->render(getMemDC(), 0, 0);
-}
+	//IMAGEMANAGER->findImage("STAGE_stagePixel1")->render(getMemDC(), 0, 0);
+	IMAGEMANAGER->findImage("STAGE_stage1")->render(getMemDC(), -200, -200);
 
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		_first->render(getMemDC(), -200, -200);
+	}
+
+}
+/*
 void firstStage::pixelCollision()
 {
 	//그림자 4개의 꼭지점
@@ -53,7 +59,7 @@ void firstStage::pixelCollision()
 	//벽 충돌
 	for (int i = _probeLX; i < _probeRX; i++)
 	{
-		COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
+		COLORREF color = GetPixel(_first->getMemDC(), -200, -200);
 
 		int R = GetRValue(color);
 		int G = GetGValue(color);
@@ -69,7 +75,7 @@ void firstStage::pixelCollision()
 
 	for (int i = _probeTY; i < _probeBY; i++)
 	{
-		COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
+		COLORREF color = GetPixel(_first->getMemDC(), -200, -200);
 
 		int R = GetRValue(color);
 		int G = GetGValue(color);
@@ -83,5 +89,6 @@ void firstStage::pixelCollision()
 		}
 	}
 	//==============================!터!짐!==============================
-
+	
 }
+*/

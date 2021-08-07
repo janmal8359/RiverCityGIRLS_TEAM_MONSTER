@@ -22,8 +22,8 @@ HRESULT playGround::init()
 	SCENEMANAGER->changeScene("SG");
 
 	//스테이지(다이랙트)
-	_stage1 = new firstStage;
-	_stage1->init();
+	//_stage1 = new firstStage;
+	//_stage1->init();
 	//_stage2 = new secondStage;
 	//_stage2->init();
 	//_stage3 = new thirdStage;
@@ -33,8 +33,8 @@ HRESULT playGround::init()
 	//_stage5 = new bossStage2;
 	//_stage5->init();
 	//스테이지(씬 매니저)
-	//SCENEMANAGER->addScene("stageNum", new stageManager);
-	//SCENEMANAGER->changeScene("stageNum");
+	SCENEMANAGER->addScene("stageNum", new firstStage);
+	SCENEMANAGER->changeScene("stageNum");
 
 	_player = new player;
 	_player->init();
@@ -56,7 +56,7 @@ void playGround::update()
 	gameNode::update();
 
 	//스테이지(다이랙트)
-	_stage1->update();
+	//_stage1->update();
 	//_stage2->update();
 	//_stage3->update();
 	//_stage4->update();
@@ -68,7 +68,7 @@ void playGround::update()
 
 	_player->getState()->setPlayer(_player);
 
-	
+	testCollision();
 }
 
 //여기다 그려줘라!!!
@@ -78,13 +78,13 @@ void playGround::render()
 	//==============위에는 제발 건드리지 마라 ============
 
 	//스테이지(다이랙트)
-	_stage1->render();
+	//_stage1->render();
 	//_stage2->render();
 	//_stage3->render();
 	//_stage4->render();
 	//_stage5->render();
 	//스테이지(씬 매니저)
-	//SCENEMANAGER->render();
+	SCENEMANAGER->render();
 
 	_player->render();
 
@@ -96,6 +96,42 @@ void playGround::render()
 
 void playGround::testCollision()
 {
+	_probeLX = _player->getShadowX() - 64;
+	_probeRX = _player->getShadowX() + 64;
+	_probeTY = _player->getShadowY() - 19;
+	_probeBY = _player->getShadowY() + 19;
 
+	//벽 충돌
+	for (int i = _probeLX; i < _probeRX; i++)
+	{
+		COLORREF color = GetPixel(_stage1->getMemDC(), -200, -200);
+
+		int R = GetRValue(color);
+		int G = GetGValue(color);
+		int B = GetBValue(color);
+
+		float _speed = _player->getSpeed();
+
+		if ((R == 255 && G == 0 && B == 255))
+		{
+			_speed = 0;
+		}
+	}
+
+	for (int i = _probeTY; i < _probeBY; i++)
+	{
+		COLORREF color = GetPixel(_stage1->getMemDC(), -200, -200);
+
+		int R = GetRValue(color);
+		int G = GetGValue(color);
+		int B = GetBValue(color);
+
+		float _speed = _player->getSpeed();
+
+		if ((R == 255 && G == 0 && B == 255))
+		{
+			_speed = 0;
+		}
+	}
 }
 

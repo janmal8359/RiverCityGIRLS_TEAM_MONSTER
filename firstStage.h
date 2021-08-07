@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include "player.h"
 
+
 //±³½Ç
 class firstStage : public gameNode
 {
@@ -14,7 +15,7 @@ private:
 	player* _pl;
 	
 	//ÇÈ¼¿ Å½»ö±â
-	float _probeLX, _probeTY, _probeRX, _probeBY;
+	//float _probeLX, _probeTY, _probeRX, _probeBY;
 
 public:
 	firstStage();
@@ -25,6 +26,6 @@ public:
 	virtual void update();
 	virtual void render();
 
-	void pixelCollision();
+	//void pixelCollision();
 };
 
