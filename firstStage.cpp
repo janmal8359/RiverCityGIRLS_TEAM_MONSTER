@@ -91,18 +91,18 @@ void firstStage::pixelCollision()
 		if (!(R == 255 && G == 0 && B == 255))
 		{
 			//벽
-			if (R == 255 && G == 0 && B == 0)
+			if (R == 255 && G == 0 && B == 0)//레드
 			{
 				_player->setSpeed(0);
 			}
-			//책상 바닥
-			else if ((R == 0 && G == 255 && B == 0) && _player->getState())
+			//책상 바닥(좌측)
+			else if ((R == 0 && G == 255 && B == 0) && _player->getState())//그린
 			{
 				_player->setPlayerX(+8);
 				_player->setSpeed(6);
 			}
 			//아이콘 출현 구간
-			else if (R == 0 && G == 255 && B == 255)
+			else if (R == 0 && G == 255 && B == 255)//민트
 			{
 				_player->setSpeed(6);
 
@@ -127,18 +127,18 @@ void firstStage::pixelCollision()
 			if (!(R == 255 && G == 0 && B == 255))
 			{
 				//벽
-				if (R == 255 && G == 0 && B == 0)
+				if (R == 255 && G == 0 && B == 0)//레드
 				{
 					_player->setSpeed(0);
 				}
-				//책상 바닥
-				else if ((R == 0 && G == 255 && B == 0) && _player->getState())
+				//책상 바닥(우측)
+				else if ((R == 0 && G == 255 && B == 0) && _player->getState())//그린
 				{
 					_player->setPlayerX(-8);
 					_player->setSpeed(6);
 				}
 				//아이콘 출현 구간
-				else if (R == 0 && G == 255 && B == 255)
+				else if (R == 0 && G == 255 && B == 255)//민트
 				{
 					_player->setSpeed(6);
 
@@ -163,20 +163,27 @@ void firstStage::pixelCollision()
 			if (!(R == 255 && G == 0 && B == 255))
 			{
 				//벽
-				if (R == 255 && G == 0 && B == 0)
+				if (R == 255 && G == 0 && B == 0)//레드
 				{
 					_player->setSpeed(0);
 				}
-				//책상 바닥
-				else if ((R == 0 && G == 255 && B == 0) && _player->getState())
+				//책상 바닥(좌측)
+				else if ((R == 0 && G == 255 && B == 0) && _player->getState())//그린
+				{
+					_player->setPlayerY(-8);
+					_player->setSpeed(6);
+				}
+				//책상 바닥(우측)
+				else if ((R == 0 && G == 255 && B == 0) && _player->getState())//그린
 				{
 					_player->setPlayerY(-8);
 					_player->setSpeed(6);
 				}
 				//아이콘 출현 구간
-				else if (R == 0 && G == 255 && B == 255)
+				else if (R == 0 && G == 255 && B == 255)//민트
 				{
 					_player->setSpeed(6);
+
 				}
 				//그 이외
 				else
@@ -199,21 +206,27 @@ void firstStage::pixelCollision()
 			if (!(R == 255 && G == 0 && B == 255))
 			{
 				//벽
-				if (R == 255 && G == 0 && B == 0)
+				if (R == 255 && G == 0 && B == 0)//레드
 				{
 					_player->setSpeed(0);
 				}
-				//책상 바닥
-				else if ((R == 0 && G == 255 && B == 0) && _player->getState())
+				//책상 바닥(좌측)
+				else if ((R == 0 && G == 255 && B == 0) && _player->getState())//그린
+				{
+					_player->setPlayerY(+8);
+					_player->setSpeed(6);
+				}
+				//책상 바닥(우측)
+				else if ((R == 0 && G == 255 && B == 0) && _player->getState())//그린
 				{
 					_player->setPlayerY(+8);
 					_player->setSpeed(6);
 				}
 				//아이콘 출현 구간
-				else if (R == 0 && G == 255 && B == 255)
+				else if (R == 0 && G == 255 && B == 255)//민트
 				{
-					//
 					_player->setSpeed(6);
+
 				}
 				//그 이외
 				else
