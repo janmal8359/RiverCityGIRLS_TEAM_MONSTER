@@ -29,8 +29,6 @@ void enemyState::update()
 	enemyStateChange();
 	enemyAni();
 
-	KEYANIMANAGER->update();
-
 
 }
 
@@ -77,7 +75,7 @@ void enemyIdle::render()
 
 void enemyIdle::enemyStateChange()
 {
-	if (_enemy->getESpeed() > 0) _enemy->setEnemyState(new enemyChase);
+	if (_enemy->getEnemySpeed() > 0) _enemy->setEnemyState(new enemyChase);
 }
 
 void enemyIdle::enemyAni()
@@ -132,7 +130,7 @@ void enemyChase::render()
 
 void enemyChase::enemyStateChange()
 {
-	if (_enemy->getESpeed() == 0) _enemy->setEnemyState(new enemyIdle);
+	if (_enemy->getEnemySpeed() == 0) _enemy->setEnemyState(new enemyIdle);
 }
 
 void enemyChase::enemyAni()

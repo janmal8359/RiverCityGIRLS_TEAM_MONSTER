@@ -12,16 +12,12 @@ enemy::~enemy()
 
 HRESULT enemy::init()
 {
-	_IS = new imageStorage;
-	_IS->init();
-
-
 	enemyAni();
 
-	_ES = new enemyIdle;
-	_ES->init();
+	_enemyState = new enemyIdle;
+	_enemyState->init();
 
-	_enemyImg = _ES->getEnemyImg();
+	_enemyImg = _enemyState->getEnemyImg();
 	_enemyShadowImg = IMAGEMANAGER->findImage("SHADOW");
 	
 	_enemySX = WINSIZEX / 2 + 200;
@@ -60,13 +56,13 @@ void enemy::update()
 	
 
 
-	_ES->setEnemy(this);
+	_enemyState->setEnemy(this);
 
 	enemyMove();
 	enemyChase();
 
-	_ES->update();
-	_enemyImg = _ES->getEnemyImg();
+	_enemyState->update();
+	_enemyImg = _enemyState->getEnemyImg();
 }
 
 void enemy::render()
@@ -77,7 +73,7 @@ void enemy::render()
 	TextOut(getMemDC(), 100, 500, str1, strlen(str1));
 
 	_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
-	_ES->render();
+	_enemyState->render();
 
 	Rectangle(getMemDC(), exRc);
 

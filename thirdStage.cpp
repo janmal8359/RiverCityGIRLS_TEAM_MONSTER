@@ -30,7 +30,7 @@ void thirdStage::update()
 
 void thirdStage::render()
 {
-	IMAGEMANAGER->findImage("STAGE_normalPixel")->render(getMemDC(), 0, 0);
 	IMAGEMANAGER->findImage("STAGE_normal")->render(getMemDC(), 0, 0);
+	IMAGEMANAGER->findImage("STAGE_normalPixel")->render(getMemDC(), 0, 0);
 
 }

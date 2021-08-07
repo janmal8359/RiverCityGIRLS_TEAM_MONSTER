@@ -12,12 +12,6 @@ player::~player()
 
 HRESULT player::init()
 {
-
-    _imgStorage = new imageStorage;
-    _imgStorage->init();
-
- 
-
     playerAni();
 
     _state = new idle;
@@ -67,12 +61,15 @@ void player::update()
 
 void player::render()
 {
-   _shadowImg->render(getMemDC(), _shadowRc.left, _shadowRc.top);
+    _shadowImg->render(getMemDC(), _shadowRc.left, _shadowRc.top);
     _state->render();
 
     char str[128];
     sprintf_s(str, " _isJump : %d", _isJump);
     TextOut(getMemDC(), 0, 200, str, strlen(str));
+
+    sprintf_s(str, "shadowX : %.2f", _sX);
+    TextOut(getMemDC(), 0, 10, str, strlen(str));
 }
 
 void player::stateRender(animation* motion)
@@ -82,8 +79,6 @@ void player::stateRender(animation* motion)
 
 void player::move()
 {
-   
-  
     //점프상태가 아닐때
     if (!_isJump)
     {
@@ -151,7 +146,7 @@ void player::move()
 
 
 
-   _playerRc = RectMakeCenter(_pX, _pY, _playerImg->getFrameWidth(), _playerImg->getFrameHeight());
+    _playerRc = RectMakeCenter(_pX, _pY, _playerImg->getFrameWidth(), _playerImg->getFrameHeight());
     _shadowRc = RectMakeCenter(_sX, _sY, _shadowImg->getWidth(), _shadowImg->getHeight());
 
 }
@@ -169,15 +164,15 @@ void player::playerAni()
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_runL", "PLAYER_run", 15, 0, 20, false, true);
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_runR", "PLAYER_run", 16, 31, 20, false, true);
 
-    int leftJump[] = {0, 1, 2, 1, 0};
-    int rightJump[] = { 5,4,3,4,5 };
+    int leftJump[] = { 0, 1, 2, 1, 0 };
+    int rightJump[] = { 5, 4, 3, 4, 5 };
 
     KEYANIMANAGER->addArrayFrameAnimation("PLAYER_jumpL", "PLAYER_jump", leftJump, 5, 10, false);
     KEYANIMANAGER->addArrayFrameAnimation("PLAYER_jumpR", "PLAYER_jump", rightJump, 5, 10, false);
 
     //콤보공격애니메이션
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_1atkL", "PLAYER_comboAttack1", 5, 0, 10, false, false);
-    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_1atkR", "PLAYER_comboAttack1",6,11, 10, false,false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_1atkR", "PLAYER_comboAttack1", 6, 11, 10, false,false);
                                                                                                     
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_2atkL", "PLAYER_comboAttack2", 6, 0, 10, false, false);
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_2atkR", "PLAYER_comboAttack2", 7, 13, 10, false,false);
@@ -188,7 +183,7 @@ void player::playerAni()
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_dashAttackL", "PLAYER_dashAttack", 7, 0, 10, false, false);
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_dashAttackR", "PLAYER_dashAttack", 8, 15, 10, false, false);
 
-   // KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_3atkL", "PLAYER_comboAttack3", 8, 0, 10, false, false);
+    //KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_3atkL", "PLAYER_comboAttack3", 8, 0, 10, false, false);
     //KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_3atkR", "PLAYER_comboAttack3", 9, 17, 10, false, false);
 }
 

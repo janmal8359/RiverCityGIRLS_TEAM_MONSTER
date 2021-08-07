@@ -16,7 +16,14 @@ HRESULT firstStage::init()
 	IMAGEMANAGER->findImage("BATTLE_unlockDoor1");
 	IMAGEMANAGER->findImage("BATTLE_unlockDoor2");
 
+	_player = new player;
+	_player->init();
 
+	_boss = new boss;
+	_boss->init();
+
+	_enemy = new enemy;
+	_enemy->init();
 
 	return S_OK;
 }
@@ -27,21 +34,33 @@ void firstStage::release()
 
 void firstStage::update()
 {
-	//pixelCollision();
+	_player->update();
+
+	_player->getState()->setPlayer(_player);
+
+	_boss->update();
+
+	_enemy->update();
+	_enemy->getEnemyState()->setEnemy(_enemy);
+
+	pixelCollision();
 }
 
 void firstStage::render()
 {
-	//IMAGEMANAGER->findImage("STAGE_stagePixel1")->render(getMemDC(), 0, 0);
-	IMAGEMANAGER->findImage("STAGE_stage1")->render(getMemDC(), -200, -200);
+	IMAGEMANAGER->findImage("STAGE_stage1")->render(getMemDC(), 0, 0);
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		_first->render(getMemDC(), -200, -200);
+		_first->render(getMemDC(), 0, 0);
+
 	}
 
+	_player->render();
+	_enemy->render();
+	_boss->render();
 }
-/*
+
 void firstStage::pixelCollision()
 {
 	//그림자 4개의 꼭지점
@@ -51,44 +70,45 @@ void firstStage::pixelCollision()
 	//(_sX + 64, _sY + (_shadowRc.top + _shadowRc.bottom) / 2 <- {19})		우측 하단
 	//_pl->getShadowX(), _pl->getShadowY();									확인용
 
-	_probeLX = _pl->getShadowX() - 64;
-	_probeRX = _pl->getShadowX() + 64;		
-	_probeTY = _pl->getShadowY() - 19;
-	_probeBY = _pl->getShadowY() + 19;
+	_probeLX = _player->getShadowX() - _player->getShadowImg()->getWidth() / 2;
+	_probeRX = _player->getShadowX() + _player->getShadowImg()->getWidth() / 2;
+	_probeTY = _player->getShadowY() - _player->getShadowImg()->getHeight() / 2;
+	_probeBY = _player->getShadowY() + _player->getShadowImg()->getHeight() / 2;
 
 	//벽 충돌
 	for (int i = _probeLX; i < _probeRX; i++)
 	{
-		COLORREF color = GetPixel(_first->getMemDC(), -200, -200);
+		COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
 
 		int R = GetRValue(color);
 		int G = GetGValue(color);
 		int B = GetBValue(color);
-		
-		float _speed = _pl->getSpeed();
 
-		if ((R == 255 && G == 0 && B == 255))
+		if (!(R == 255 && G == 0 && B == 255))
 		{
-			_speed = 0;
+			_player->setSpeed(0);
+		}
+		else
+		{
+			_player->setSpeed(6);
 		}
 	}
 
 	for (int i = _probeTY; i < _probeBY; i++)
 	{
-		COLORREF color = GetPixel(_first->getMemDC(), -200, -200);
+		COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
 
 		int R = GetRValue(color);
 		int G = GetGValue(color);
 		int B = GetBValue(color);
 
-		float _speed = _pl->getSpeed();
-
-		if ((R == 255 && G == 0 && B == 255))
+		if (!(R == 255 && G == 0 && B == 255))
 		{
-			_speed = 0;
+			_player->setSpeed(0);
+		}
+		else
+		{
+			_player->setSpeed(6);
 		}
 	}
-	//==============================!터!짐!==============================
-	
 }
-*/

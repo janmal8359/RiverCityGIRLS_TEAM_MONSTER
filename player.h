@@ -17,9 +17,6 @@
 class player : public gameNode
 {
 private:
-	imageStorage* _imgStorage;
-
-
 	state* _state;
 
 	image* _shadowImg;		//그림자 이미지
@@ -93,12 +90,15 @@ public:
 
 	//플레이어 직사각형 설정
 	RECT getPlayerRc() { return _playerRc; }
+	RECT getShadowRc() { return _shadowRc; }
 
 	//플레이어의 방향을 가져온다 
 	int getDir() { return _dir; }
 
 	//플레이어의 이미지를 가져온다
 	image* getPlayerImg() { return _playerImg; }
+	image* getShadowImg() { return _shadowImg; }
+
 
 	//중간에 모션이 바뀌면 렌더로 바뀌지 않은 이미지가 로드됨으로 update부터 다시 시작
 	void setState(state* state) { _state = state; update(); update(); }

@@ -1,6 +1,8 @@
 #pragma once
 #include "gameNode.h"
 #include "player.h"
+#include "enemy.h"
+#include "boss.h"
 
 
 //±³½Ç
@@ -12,10 +14,12 @@ private:
 
 	image* _first;
 
-	player* _pl;
+	player* _player;
+	enemy* _enemy;
+	boss* _boss;
 	
 	//ÇÈ¼¿ Å½»ö±â
-	//float _probeLX, _probeTY, _probeRX, _probeBY;
+	float _probeLX, _probeTY, _probeRX, _probeBY;
 
 public:
 	firstStage();
@@ -26,6 +30,6 @@ public:
 	virtual void update();
 	virtual void render();
 
-	//void pixelCollision();
+	void pixelCollision();
 };
 

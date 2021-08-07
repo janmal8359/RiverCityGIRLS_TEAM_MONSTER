@@ -4,7 +4,6 @@
 
 HRESULT dashAttack::init()
 {
-    
     _playerImg = IMAGEMANAGER->findImage("PLAYER_dashAttack");
     return S_OK;
 }

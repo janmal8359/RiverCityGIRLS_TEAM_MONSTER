@@ -16,9 +16,6 @@ void bossState::update()
 {
 	stateChange();
 	anim();
-
-
-	KEYANIMANAGER->update();
 }
 
 void bossState::render()
@@ -50,7 +47,6 @@ void idleState::release()
 void idleState::update()
 {
 	bossState::update();
-
 
 	_bossImg = IMAGEMANAGER->findImage("BOSS_idle");
 }

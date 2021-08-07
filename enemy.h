@@ -1,7 +1,5 @@
 #pragma once
 #include "gameNode.h"
-#include "imageStorage.h"
-
 #include "enemyState.h"
 
 
@@ -16,11 +14,7 @@ private:
 	RECT exRc;
 	POINT ex;
 
-	
-
-	imageStorage* _IS;				//이미지 스토리지
-
-	enemyState* _ES;				//에너미 스테이트
+	enemyState* _enemyState;				//에너미 스테이트
 
 	image*	_enemyShadowImg;		//적 그림자 이미지
 	RECT	_enemyShadowRc;			//그림자 렉트
@@ -80,12 +74,12 @@ public:
 	void setEnemySY(float esy) { _enemySY = esy; }
 
 	//적 스피드값
-	float getESpeed() { return _enemySpeed; }
-	void setESpeed(float ess) { _enemySpeed = ess; }
+	float getEnemySpeed() { return _enemySpeed; }
+	void setEnemySpeed(float ess) { _enemySpeed = ess; }
 
 	//적 점프값
-	float getEJP() { return _enemyJP; }
-	void sestEJP(float ejp) { _enemyJP = ejp; }
+	float getEnemyJP() { return _enemyJP; }
+	void setEnemyJP(float ejp) { _enemyJP = ejp; }
 
 	//적 점프상황
 	float getIsEenmyJump() { return _isEJump; }
@@ -108,9 +102,9 @@ public:
 	image* getEnmeyImg() { return _enemyImg; }
 
 	//중간에 모션이 바뀌면 렌더로 바뀌지 않으 이미지가 로드됨 update부터 다시 시작이랍니다.
-	void setEnemyState(enemyState* es) { _ES = es; update(); update(); }
+	void setEnemyState(enemyState* es) { _enemyState = es; update(); update(); }
 
-	enemyState* getEnemyState() { return _ES; }
+	enemyState* getEnemyState() { return _enemyState; }
 
 };
 
