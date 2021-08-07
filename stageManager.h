@@ -9,7 +9,6 @@
 class stageManager : public gameNode
 {
 private:
-	int _count;
 	int _alphaValue;
 
 	bool _isNext;

@@ -12,6 +12,8 @@ bossStage1::~bossStage1()
 HRESULT bossStage1::init()
 {
 	_isCheck = false;
+	_isNextCount = false;
+	_isStop = false;
 
 	IMAGEMANAGER->findImage("STAGE_bossStage1");
 	IMAGEMANAGER->findImage("STAGE_bossPixel");
@@ -31,7 +33,14 @@ void bossStage1::release()
 
 void bossStage1::update()
 {
-
+	/*
+	if(player.rc.right >= 790)
+	{
+		_isCheck = true;
+		_isNextCount = true;
+		_isStop = true;
+	}
+	*/
 
 }
 
@@ -39,4 +48,11 @@ void bossStage1::render()
 {
 	IMAGEMANAGER->findImage("STAGE_bossPixel")->render(getMemDC(), 0, 0);
 	IMAGEMANAGER->findImage("STAGE_bossStage1")->render(getMemDC(), 0, 0);
+
+	/*
+	if(_isCheck)
+	{
+	videoPlay
+	}
+	*/
 }

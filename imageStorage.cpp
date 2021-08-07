@@ -776,7 +776,7 @@ HRESULT imageStorage::init()
 	//게임 시작 교실
 	IMAGEMANAGER->addImage("STAGE_easy", "Resource/IMG/stage/easy.bmp", 2028, 678, true, RGB(255, 0, 255));
 	//게임 시작 교실(추가)
-	IMAGEMANAGER->addImage("STAGE_stage1", "Resource/IMG/stage/stage01.bmp", 2016, 672, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("STAGE_stage1", "Resource/IMG/stage/stage01.bmp", 2520, 840, true, RGB(255, 0, 255));
 	//교내복도(위로)
 	IMAGEMANAGER->addImage("STAGE_stage2", "Resource/IMG/stage/stage02.bmp", 2400, 864, true, RGB(255, 0, 255));
 	//교내복도(밑으로)
@@ -790,7 +790,7 @@ HRESULT imageStorage::init()
 	//보스방 픽셀(추가본)
 	IMAGEMANAGER->addImage("STAGE_bossPixel", "Resource/IMG/stage/boss_stage_pixel.bmp", 2769, 1080, true, RGB(255, 0, 255));
 	//교실 픽셀(추가본)
-	IMAGEMANAGER->addImage("STAGE_stagePixel1", "Resource/IMG/stage/stage01_pixel.bmp", 2016, 672, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("STAGE_stagePixel1", "Resource/IMG/stage/stage01_pixel.bmp", 2520, 840, true, RGB(255, 0, 255));
 	//복도1 픽셀
 	IMAGEMANAGER->addImage("STAGE_stagePixel2", "Resource/IMG/stage/stage02_pixel.bmp", 2400, 864, true, RGB(255, 0, 255));
 	//복도2 픽셀
