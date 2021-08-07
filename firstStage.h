@@ -3,6 +3,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "boss.h"
+#include "state.h"
 
 
 //±³½Ç

@@ -70,7 +70,7 @@ void firstStage::pixelCollision()
 	//(_sX - 64, _sY + (_shadowRc.top + _shadowRc.bottom) / 2 <- {19}),		좌측 하단
 	//(_sX + 64, _sY - (_shadowRc.top + _shadowRc.bottom) / 2 <- {19}),		우측 상단
 	//(_sX + 64, _sY + (_shadowRc.top + _shadowRc.bottom) / 2 <- {19})		우측 하단
-	//_pl->getShadowX(), _pl->getShadowY();									확인용
+	//_player->getShadowX(), _player->getShadowY();									확인용
 
 	_probeLX = _player->getShadowX() - _player->getShadowImg()->getWidth() / 2;
 	_probeRX = _player->getShadowX() + _player->getShadowImg()->getWidth() / 2;
@@ -96,7 +96,7 @@ void firstStage::pixelCollision()
 				_player->setSpeed(0);
 			}
 			//책상 바닥(좌측)
-			else if ((R == 0 && G == 255 && B == 0) && _player->getState())//그린
+			else if ((R == 0 && G == 255 && B == 0) && _player->setState(LEFT))//그린
 			{
 				_player->setPlayerX(+8);
 				_player->setSpeed(6);
@@ -132,7 +132,7 @@ void firstStage::pixelCollision()
 					_player->setSpeed(0);
 				}
 				//책상 바닥(우측)
-				else if ((R == 0 && G == 255 && B == 0) && _player->getState())//그린
+				else if ((R == 0 && G == 255 && B == 0) && _player->setState(RIGHT))//그린
 				{
 					_player->setPlayerX(-8);
 					_player->setSpeed(6);
@@ -168,13 +168,13 @@ void firstStage::pixelCollision()
 					_player->setSpeed(0);
 				}
 				//책상 바닥(좌측)
-				else if ((R == 0 && G == 255 && B == 0) && _player->getState())//그린
+				else if ((R == 0 && G == 255 && B == 0) && _player->setState(LEFT))//그린
 				{
 					_player->setPlayerY(-8);
 					_player->setSpeed(6);
 				}
 				//책상 바닥(우측)
-				else if ((R == 0 && G == 255 && B == 0) && _player->getState())//그린
+				else if ((R == 0 && G == 255 && B == 0) && _player->setState(RIGHT))//그린
 				{
 					_player->setPlayerY(-8);
 					_player->setSpeed(6);
@@ -211,13 +211,13 @@ void firstStage::pixelCollision()
 					_player->setSpeed(0);
 				}
 				//책상 바닥(좌측)
-				else if ((R == 0 && G == 255 && B == 0) && _player->getState())//그린
+				else if ((R == 0 && G == 255 && B == 0) && _player->setState(LEFT))//그린
 				{
 					_player->setPlayerY(+8);
 					_player->setSpeed(6);
 				}
 				//책상 바닥(우측)
-				else if ((R == 0 && G == 255 && B == 0) && _player->getState())//그린
+				else if ((R == 0 && G == 255 && B == 0) && _player->setState(RIGHT))//그린
 				{
 					_player->setPlayerY(+8);
 					_player->setSpeed(6);
