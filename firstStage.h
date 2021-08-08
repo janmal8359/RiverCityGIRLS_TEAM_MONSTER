@@ -3,6 +3,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "boss.h"
+#include "state.h"
 
 
 //±³½Ç
@@ -13,11 +14,11 @@ private:
 	bool _isNextCount;
 
 	image* _first;
-
+	
 	player* _player;
 	enemy* _enemy;
 	boss* _boss;
-	
+
 	//ÇÈ¼¿ Å½»ö±â
 	float _probeLX, _probeTY, _probeRX, _probeBY;
 

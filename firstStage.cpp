@@ -26,6 +26,8 @@ HRESULT firstStage::init()
 	_enemy->init();
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 
+	_isCheck = false;
+
 	return S_OK;
 }
 
@@ -51,11 +53,10 @@ void firstStage::update()
 void firstStage::render()
 {
 	IMAGEMANAGER->findImage("STAGE_stage1")->render(getMemDC(), 0, 0);
-
+	
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		_first->render(getMemDC(), 0, 0);
-
 	}
 
 	_player->render();
@@ -70,47 +71,175 @@ void firstStage::pixelCollision()
 	//(_sX - 64, _sY + (_shadowRc.top + _shadowRc.bottom) / 2 <- {19}),		좌측 하단
 	//(_sX + 64, _sY - (_shadowRc.top + _shadowRc.bottom) / 2 <- {19}),		우측 상단
 	//(_sX + 64, _sY + (_shadowRc.top + _shadowRc.bottom) / 2 <- {19})		우측 하단
-	//_pl->getShadowX(), _pl->getShadowY();									확인용
+	//_player->getShadowX(), _player->getShadowY();									확인용
 
-	//_probeLX = _player->getShadowX() - _player->getShadowImg()->getWidth() / 2;
-	//_probeRX = _player->getShadowX() + _player->getShadowImg()->getWidth() / 2;
-	//_probeTY = _player->getShadowY() - _player->getShadowImg()->getHeight() / 2;
-	//_probeBY = _player->getShadowY() + _player->getShadowImg()->getHeight() / 2;
+	_probeLX = _player->getShadowX() - _player->getShadowImg()->getWidth() / 2;
+	_probeRX = _player->getShadowX() + _player->getShadowImg()->getWidth() / 2;
+	_probeTY = _player->getShadowY() - _player->getShadowImg()->getHeight() / 2;
+	_probeBY = _player->getShadowY() + _player->getShadowImg()->getHeight() / 2;
+
 
 	////벽 충돌
-	//for (int i = _probeLX; i < _probeRX; i++)
-	//{
-	//	COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
+	for (int i = _probeLX - 5; i < _probeLX; i++)
+	{
+		COLORREF color = GetPixel(_first->getMemDC(), i, _player->getShadowY());
 
-	//	int R = GetRValue(color);
-	//	int G = GetGValue(color);
-	//	int B = GetBValue(color);
+		int R = GetRValue(color);
+		int G = GetGValue(color);
+		int B = GetBValue(color);
 
-	//	if (!(R == 255 && G == 0 && B == 255))
-	//	{
-	//		_player->setSpeed(0);
-	//	}
-	//	else
-	//	{
-	//		_player->setSpeed(6);
-	//	}
-	//}
+		if (!(R == 255 && G == 0 && B == 255))
+		{
+			//벽
+			if (R == 255 && G == 0 && B == 0)//레드
+			{
+				_player->setSpeed(0);
+			}
+			//책상 바닥
+			else if ((R == 0 && G == 255 && B == 0))//그린
+			{
+				//_player->setShadowX(+8);
+				//_player->setSpeed(6);
+				_player->setSpeed(0);
+			}
+			//아이콘 출현 구간
+			else if (R == 0 && G == 255 && B == 255)//민트
+			{
+				_player->setSpeed(6);
 
-	//for (int i = _probeTY; i < _probeBY; i++)
-	//{
-	//	COLORREF color = GetPixel(_first->getMemDC(), 0, 0);
+			}
+			//그 이외
+			else
+			{
+				_player->setSpeed(1);
+			}
+		}
+		else
+		{
+			_player->setSpeed(6);
+		}
+	}
 
-	//	int R = GetRValue(color);
-	//	int G = GetGValue(color);
-	//	int B = GetBValue(color);
+	for (int i = _probeRX; i < _probeLX + 5; i++)
+	{
+		COLORREF color = GetPixel(_first->getMemDC(), i, _player->getShadowY());
 
-	//	if (!(R == 255 && G == 0 && B == 255))
-	//	{
-	//		_player->setSpeed(0);
-	//	}
-	//	else
-	//	{
-	//		_player->setSpeed(6);
-	//	}
-	//}
+		int R = GetRValue(color);
+		int G = GetGValue(color);
+		int B = GetBValue(color);
+
+		if (!(R == 255 && G == 0 && B == 255))
+		{
+			//벽
+			if (R == 255 && G == 0 && B == 0)//레드
+			{
+				_player->setSpeed(0);
+			}
+			//책상 바닥
+			else if ((R == 0 && G == 255 && B == 0))//그린
+			{
+				//_player->setShadowX(-8);
+				//_player->setSpeed(6);
+				_player->setSpeed(0);
+			}
+			//아이콘 출현 구간
+			else if (R == 0 && G == 255 && B == 255)//민트
+			{
+				_player->setSpeed(1);
+
+			}
+			//그 이외
+			else
+			{
+				_player->setSpeed(6);
+			}
+		}
+		else
+		{
+			_player->setSpeed(6);
+		}
+	}
+
+	for (int i = _probeTY - 5; i < _probeTY; i++)
+	{
+		COLORREF color = GetPixel(_first->getMemDC(), _player->getShadowX(), i);
+
+		int R = GetRValue(color);
+		int G = GetGValue(color);
+		int B = GetBValue(color);
+
+		if (!(R == 255 && G == 0 && B == 255))
+		{
+			//벽
+			if (R == 255 && G == 0 && B == 0)//레드
+			{
+				_player->setSpeed(0);
+			}
+			//책상 바닥
+			else if ((R == 0 && G == 255 && B == 0))//그린
+			{
+				//_player->setShadowY(-8);
+				//_player->setSpeed(6);
+				_player->setSpeed(0);
+			}
+			//아이콘 출현 구간
+			else if (R == 0 && G == 255 && B == 255)//민트
+			{
+				_player->setSpeed(1);
+
+			}
+			//그 이외
+			else
+			{
+				_player->setSpeed(6);
+			}
+		}
+		else
+		{
+			_player->setSpeed(6);
+		}
+	}
+
+
+	for (int i = _probeBY; i < _probeBY + 2; i++)
+	{
+		COLORREF color = GetPixel(_first->getMemDC(), _player->getShadowX(), i);
+
+		int R = GetRValue(color);
+		int G = GetGValue(color);
+		int B = GetBValue(color);
+
+		if (!(R == 255 && G == 0 && B == 255))
+		{
+			//벽
+			if (R == 255 && G == 0 && B == 0)//레드
+			{
+				_player->setSpeed(0);
+			}
+			//책상 바닥
+			else if ((R == 0 && G == 255 && B == 0))//그린
+			{
+				//_player->setShadowY(+8);
+				//_player->setSpeed(6);
+				_player->setSpeed(0);
+			}
+
+			//아이콘 출현 구간
+			else if (R == 0 && G == 255 && B == 255)//민트
+			{
+				_player->setSpeed(1);
+
+			}
+			//그 이외
+			else
+			{
+				_player->setSpeed(6);
+			}
+		}
+		else
+		{
+			_player->setSpeed(6);
+		}
+	}
+	
 }
