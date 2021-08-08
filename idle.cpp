@@ -30,6 +30,11 @@ void idle::render()
 
 void idle::stateChange()
 {
+	if (_player->getIsGetHit())
+	{
+		_player->setState(new hit);
+	}
+
 	// 이동키를 눌렀을 땐 플레이어 상태를 걷는 상태로 정의한다
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT)  ||
 		KEYMANAGER->isOnceKeyDown(VK_RIGHT) ||
@@ -47,6 +52,22 @@ void idle::stateChange()
 	{
 		_player->setState(new atk);
 	}
+	else if (KEYMANAGER->isStayKeyDown('F'))
+	{
+		_player->setState(new guard);
+		_player->setIsGuarding(true);
+		
+	}
+	else if (KEYMANAGER->isOnceKeyDown('E'))
+	{
+		_player->setState(new sAtk);
+	}
+	else if (KEYMANAGER->isOnceKeyDown('R'))
+	{
+		_player->setState(new sAtkDown);
+	}
+
+
 
 }
 

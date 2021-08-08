@@ -30,4 +30,14 @@ void die::stateChange()
 
 void die::ani()
 {
+	if (_dir == LEFT)
+	{
+		_playerAni = KEYANIMANAGER->findAnimation("PLAYER_dieL");
+		_playerAni->resume();
+	}
+	else if (_dir == RIGHT)
+	{
+		_playerAni = KEYANIMANAGER->findAnimation("PLAYER_dieR");
+		_playerAni->resume();
+	}
 }

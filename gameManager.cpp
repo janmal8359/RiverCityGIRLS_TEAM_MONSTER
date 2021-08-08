@@ -29,6 +29,7 @@ HRESULT gameManager::init()
 		_playerHPPoint[i]._rc = RectMakeCenter(270+i*16, 53, _playerHPPoint[i]._image->getWidth(), _playerHPPoint[i]._image->getHeight());
 	}
 	
+	
 
 	return S_OK;
 }
@@ -39,18 +40,22 @@ void gameManager::release()
 
 void gameManager::update()
 {
-	if (KEYMANAGER->isOnceKeyDown('S') && _playerHP > 0)
+	//플레이어 HP
+
+	if (KEYMANAGER->isOnceKeyDown(VK_F1) && _playerHP > 0)
 	{
-		_playerHP -= 1;
+		_playerHP -=1;
 	}
-	if (KEYMANAGER->isOnceKeyDown('W') && _playerHP < 24)
+	if (KEYMANAGER->isOnceKeyDown(VK_F2) && _playerHP < 24)
 	{
-		_playerHP += 1;
+		_playerHP +=1;
 	}
 
 	for (int i = 0; i < _playerHP; i++) {
 		_playerHPPoint[i]._rc = RectMakeCenter(270 + i * 16, 53, _playerHPPoint[i]._image->getWidth(), _playerHPPoint[i]._image->getHeight());
 	}
+
+
 }
 
 void gameManager::render()

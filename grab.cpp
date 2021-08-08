@@ -29,8 +29,19 @@ void grab::stateChange()
 
 void grab::ani()
 {
+	if (_dir == LEFT)
+	{
+		_playerAni = KEYANIMANAGER->findAnimation("PLAYER_grabL");
+		_playerAni->resume();
+	}
+	else if (_dir == RIGHT)
+	{
+		_playerAni = KEYANIMANAGER->findAnimation("PLAYER_grabR");
+		_playerAni->resume();
+	}
 }
 
 void grab::callBk()
 {
+
 }

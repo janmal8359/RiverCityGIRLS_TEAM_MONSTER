@@ -46,6 +46,11 @@ void jump::stateChange()
 		else _player->setState(new idle);
 
 	}
+
+	if (KEYMANAGER->isOnceKeyDown('R'))
+	{
+		_player->setState(new jumpAtk);
+	}
 }
 
 void jump::ani()

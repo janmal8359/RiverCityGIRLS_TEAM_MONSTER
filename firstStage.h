@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+
 #include "player.h"
 #include "enemy.h"
 #include "boss.h"
@@ -15,6 +16,7 @@ private:
 
 	image* _first;
 	
+
 	player* _player;
 	enemy* _enemy;
 	boss* _boss;

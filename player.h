@@ -47,18 +47,24 @@ private:
 	float _speed;			//이동 속도
 	float _jumpPower;		//점프 파워
 
+	//불값들
 	bool  _isJump;          //점프하고 있는지
+	
 	bool  _isAttacking;     //공격하고 있는지
 
-	bool  _isHitToEnemy;   //내 공격이 상대에게 들어갔는지.
+	bool  _isHitToEnemy;	//내 공격이 상대에게 들어갔는지.
+
+	bool _isGetHit;			//적에게 맞았을때
+	bool _isGuarding;		//내가 방어하고있을때
 	
+	//플레이어 관련
 	image* _playerImg;		//플레이어의 이미지
 	RECT  _playerRc;        //플레이어의 직사각형
 
 	float _pX, _pY;			//실제 플레이어의 x,y 값
 
 
-	
+	int _hp;				//플레이어 체력
 
 	int _dir;				//빙향
 
@@ -108,12 +114,25 @@ public:
 	float getJumpPower() { return _jumpPower; }
 	void setJumpPower(float jumppower) { _jumpPower = jumppower; }
 
-	//플레이어의 점프상황을 설정 접근자
+	//플레이어의 상황을 설정 접근자
 	bool getIsJump() { return _isJump; }
 	void setIsJump(bool isJump) { _isJump = isJump; }
 
 	bool getIsAttacking() { return _isAttacking; }
 	void setIsAttacking(bool isAttack) { _isAttacking = isAttack; }
+
+	bool getIsHitToEnemy() { return _isHitToEnemy; }
+	void setIsHitToEnemy(bool isHitToEnemy) { _isHitToEnemy = isHitToEnemy; }
+
+	bool getIsGuarding() { return _isGuarding; }
+	void setIsGuarding(bool isGuard) { _isGuarding = isGuard; }
+
+	bool getIsGetHit() { return _isGetHit; }
+	void setIsGetHit(bool isGetHit) { _isGetHit = isGetHit; }
+
+	//플레이어 체력 
+	int getPlayerHp() { return _hp; }
+	void setPlayerHp(int playerHp) { _hp = playerHp; }
 
 	//플레이어 직사각형 설정
 	RECT getPlayerRc() { return _playerRc; }

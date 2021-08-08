@@ -29,7 +29,7 @@ HRESULT player::init()
 
     //그림자의 초기 좌표값 및 중점
     _sX = WINSIZEX / 2;
-    _sY = WINSIZEY / 2;
+    _sY = WINSIZEY / 2+200;
 
     _pX = _sX; // 플레이어의 x는 그림자X값과 같다.
     _pY = _sY - _playerImg->getFrameHeight() / 2;
@@ -41,7 +41,9 @@ HRESULT player::init()
     _jumpPower = 0;
 
     _isJump = false;
-
+    _isAttacking = false;
+    _isGuarding = false;
+    _isGetHit = false;
 
 
     return S_OK;
@@ -62,6 +64,13 @@ void player::update()
 
     _state->update();
     _playerImg = _state->getPlImg();
+
+    if (_isGetHit)
+    {
+        //_hp-=   
+    }
+
+
 }
 
 void player::render()
@@ -74,7 +83,10 @@ void player::render()
     TextOut(getMemDC(), 0, 200, str, strlen(str));
 
     sprintf_s(str, "shadowX : %.2f", _sX);
-    TextOut(getMemDC(), 0, 10, str, strlen(str));
+    TextOut(getMemDC(), 0, 30, str, strlen(str));
+
+    sprintf_s(str, "isguard : %d", _isGuarding);
+    TextOut(getMemDC(), 0, 60, str, strlen(str));
 }
 
 void player::stateRender(animation* motion)
@@ -190,6 +202,36 @@ void player::playerAni()
 
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_dashSAttackL", "PLAYER_dashSAttack", 0, 20, 10, false, false);
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_dashSAttackR", "PLAYER_dashSAttack", 41, 21, 10, false, false);
+
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_dieL", "PLAYER_dead", 25, 0, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_dieR", "PLAYER_dead", 49, 26, 10, false, false);
+
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_downL", "PLAYER_down", 0, 22, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_downR", "PLAYER_down", 23, 44, 10, false, false);
+
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_guardL", "PLAYER_guard", 2, 0, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_guardR", "PLAYER_guard", 3, 5, 10, false, false);
+
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_hitL", "PLAYER_hit", 0, 1, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_hitR", "PLAYER_hit", 3, 2, 10, false, false);
+
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_jumpAttackL", "PLAYER_jumpAttack", 0, 9, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_jumpAttackR", "PLAYER_jumpAttack", 18, 10, 10, false, false);
+
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_sAttackL", "PLAYER_sAttack", 0, 9, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_sAttackR", "PLAYER_sAttack", 18, 10, 10, false, false);
+
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_sAttackDownL", "PLAYER_sAttackDown", 0, 23, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_sAttackDownR", "PLAYER_sAttackDown", 45, 24, 10, false, false);
+
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_standL", "PLAYER_stand", 0, 8, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_standR", "PLAYER_stand", 16, 9, 10, false, false);
+
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_stompL", "PLAYER_stomp", 9, 0, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_stompR", "PLAYER_stomp", 10, 19, 10, false, false);
+
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_stunL", "PLAYER_stun", 9, 0, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_stunR", "PLAYER_stun", 10, 19, 10, false, false);
 }                                                                
 
 void player::callBack(void* obj)

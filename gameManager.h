@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 
+
 struct UIBar
 {
 	image* _image;
@@ -11,6 +12,7 @@ struct UIBar
 class gameManager : public gameNode
 {
 private:
+	
 	UIBar _playerProfile;
 	UIBar _playerHPBar;
 	UIBar _playerHPPoint[24];
@@ -26,5 +28,7 @@ public:
 	void release();
 	void update();
 	void render();
+
+
 };
 

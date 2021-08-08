@@ -29,8 +29,23 @@ void down::stateChange()
 
 void down::ani()
 {
+	if (_dir == LEFT)
+	{
+		_playerAni = KEYANIMANAGER->findAnimation("PLAYER_downL");
+		_playerAni->resume();
+	}
+	else if (_dir == RIGHT)
+	{
+		_playerAni = KEYANIMANAGER->findAnimation("PLAYER_downR");
+		_playerAni->resume();
+	}
 }
 
 void down::callBk()
 {
+	if (!_playerAni->isPlay())
+	{
+		_playerAni->stop();
+		_player->setState(new stand);
+	}
 }
