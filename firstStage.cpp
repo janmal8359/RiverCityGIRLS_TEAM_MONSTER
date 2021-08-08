@@ -97,7 +97,7 @@ void firstStage::pixelCollision()
 			//책상 바닥
 			else if ((R == 0 && G == 255 && B == 0))//그린
 			{
-				_player->setPlayerX(+8);
+				_player->setShadowX(+8);
 				_player->setSpeed(6);
 			}
 			//아이콘 출현 구간
