@@ -211,3 +211,39 @@ void enemyAttack::enemyAni()
 }
 
 #pragma endregion
+//////////////////////////////////////////////	피   격  ////////////////////////////////////////////////////////////
+#pragma region 피격 상태
+
+enemyHurt::enemyHurt()
+{
+}
+
+enemyHurt::~enemyHurt()
+{
+}
+
+HRESULT enemyHurt::init()
+{
+	return S_OK;
+}
+
+void enemyHurt::release()
+{
+}
+
+void enemyHurt::update()
+{
+}
+
+void enemyHurt::render()
+{
+}
+
+void enemyHurt::enemyStateChange()
+{
+}
+
+void enemyHurt::enemyAni()
+{
+}
+#pragma endregion

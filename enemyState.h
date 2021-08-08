@@ -97,5 +97,14 @@ class enemyAttack : public enemyState	//공격
 
 class enemyHurt : public enemyState		//피격
 {
+	enemyHurt();
+	~enemyHurt();
 
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render() override;
+
+	virtual void enemyStateChange();
+	virtual void enemyAni();
 };

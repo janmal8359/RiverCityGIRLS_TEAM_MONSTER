@@ -72,7 +72,7 @@ void enemy::render()
 
 	char str1[128];
 	sprintf_s(str1, "적과 플레이어거리 : %.2f", _enemyDistance);
-	TextOut(getMemDC(), 100, 500, str1, strlen(str1));
+	TextOut(getMemDC(), _enemySX, _enemySY + 50, str1, strlen(str1));
 
 	_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
 	_enemyState->render();
