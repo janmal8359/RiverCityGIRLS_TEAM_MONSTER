@@ -17,14 +17,34 @@ void atk::update()
 	state::update();
 
 	callBk();
-	if (KEYMANAGER->isOnceKeyDown('Q') && _attackIdx < 2)
+	if (KEYMANAGER->isOnceKeyDown('Q') && _attackIdx < 3)
 	{
-
+		
 		if (_playerAni->getNowPlayIdx() >= _playerImg->getMaxFrameX()-2)
 		{
 			_playerAni->stop();
 			_attackIdx++;
 		
+		}
+		
+
+		switch (_attackIdx)
+		{
+		case 0:
+	
+			break;
+		case 1:
+			SOUNDMANAGER->stop("PLAYER_combo1");
+			SOUNDMANAGER->play("PLAYER_combo2", 1.0f);
+			break;
+		case 2:
+			SOUNDMANAGER->stop("PLAYER_combo2");
+			SOUNDMANAGER->play("PLAYER_combo3", 1.0f);
+			break;
+
+		default:
+			
+			break;
 		}
 
 	}

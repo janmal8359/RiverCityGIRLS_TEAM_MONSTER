@@ -88,6 +88,8 @@ public:
 	
 	void playerAni();		//플레이어 애니메이션 모음
 	
+	void playerSound();
+
 	static void callBack(void* obj);
 
 	// 접근자 및 설정자 

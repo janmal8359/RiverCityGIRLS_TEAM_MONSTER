@@ -12,6 +12,7 @@ player::~player()
 
 HRESULT player::init()
 {
+    playerSound();
     playerAni();
 
     _state = new idle;
@@ -235,7 +236,16 @@ void player::playerAni()
 
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_stunL", "PLAYER_stun", 9, 0, 10, false, false);
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_stunR", "PLAYER_stun", 10, 19, 10, false, false);
-}                                                                
+}
+
+void player::playerSound()
+{
+
+    //¸ñ¼Ò¸®///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    SOUNDMANAGER->addSound("PLAYER_combo1", "Resource/SFX/Player/Kyoko/vo_kyoko_effort_16.wav", false, false);
+    SOUNDMANAGER->addSound("PLAYER_combo2", "Resource/SFX/Player/Kyoko/vo_kyoko_effort_18.wav", false, false);
+    SOUNDMANAGER->addSound("PLAYER_combo3", "Resource/SFX/Player/Kyoko/vo_kyoko_effort_22.wav", false, false);
+}
 
 void player::callBack(void* obj)
 {
