@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
-#include "imageStorage.h"
+//#include "imageStorage.h"
+
 
 #include "wait.h"
 
@@ -38,7 +39,8 @@ private:
 	state* _state;
 	bossState* _bState;
 
-	imageStorage* _imageStorage;
+	//imageStorage* _imageStorage;
+
 
 	image* _shadowImg;		//그림자 이미지
 	RECT   _shadowRc;       //그림자 직사각형

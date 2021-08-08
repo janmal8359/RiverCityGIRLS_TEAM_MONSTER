@@ -20,8 +20,11 @@ HRESULT player::init()
     _bState = new bossState;
     _bState->init();
 
+    //_sfxStorage = new sfxStorage;
+    //_sfxStorage->init();
+    // 
     //_imageStorage = new imageStorage;
-   // _imageStorage->init();
+    //_imageStorage->init();
 
     //플레이어 의 이미지와 그림자 이미지
     _playerImg = _state->getPlImg();

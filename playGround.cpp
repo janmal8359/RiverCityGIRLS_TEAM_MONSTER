@@ -18,6 +18,9 @@ HRESULT playGround::init()
 	_imageStorage = new imageStorage;
 	_imageStorage->init();
 
+	//_sfxStorage = new sfxStorage;
+	//_sfxStorage->init();
+
 	_gameManager = new gameManager;
 	_gameManager->init();
 

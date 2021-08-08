@@ -4,6 +4,7 @@
 
 HRESULT atk::init()
 {
+
 	return S_OK;
 }
 
@@ -18,12 +19,14 @@ void atk::update()
 	callBk();
 	if (KEYMANAGER->isOnceKeyDown('Q') && _attackIdx < 2)
 	{
+
 		if (_playerAni->getNowPlayIdx() >= _playerImg->getMaxFrameX()-2)
 		{
 			_playerAni->stop();
 			_attackIdx++;
 		
 		}
+
 	}
 
 	switch (_attackIdx)
@@ -34,11 +37,11 @@ void atk::update()
 		break;
 	case 1:
 		_playerImg = IMAGEMANAGER->findImage("PLAYER_comboAttack2");
-	
+
 		break;
 	case 2:
 		_playerImg = IMAGEMANAGER->findImage("PLAYER_comboAttack3");
-		
+	
 		break;
 	default:
 		break;

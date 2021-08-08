@@ -9,6 +9,7 @@ private:
 
 
 
+
 public:
 	virtual HRESULT init();
 	virtual void release();

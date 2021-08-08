@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "imageStorage.h"
+//#include "sfxStorage.h"
 #include "schoolGirl.h"
 #include "player.h"
 #include "boss.h"
@@ -19,6 +20,8 @@ class playGround : public gameNode
 {
 private:
 	imageStorage* _imageStorage;
+	//sfxStorage* _sfxStorage;
+
 	gameManager* _gameManager;
 
 	player* _player;
