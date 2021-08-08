@@ -67,9 +67,6 @@
     <Filter Include="playGround\5.GAME_MANAGER">
       <UniqueIdentifier>{8bf944d4-3ba6-43ca-b508-7e889fb5513c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="리소스 파일\IMAGESTORAGE">
-      <UniqueIdentifier>{ab165de8-e08f-446f-af80-90dc4bb6e80a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="리소스 파일\SFXSTORAGE">
       <UniqueIdentifier>{b46e5cf6-1061-4e3a-86c6-364c262af58b}</UniqueIdentifier>
     </Filter>
@@ -105,6 +102,9 @@
     </Filter>
     <Filter Include="playGround\4.PLAYER_STATE">
       <UniqueIdentifier>{c185ca3f-e381-4508-bd1b-99ba39ca888f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스 파일\IMAGESTORAGE">
+      <UniqueIdentifier>{ab165de8-e08f-446f-af80-90dc4bb6e80a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

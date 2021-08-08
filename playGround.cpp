@@ -18,6 +18,8 @@ HRESULT playGround::init()
 	_imageStorage = new imageStorage;
 	_imageStorage->init();
 
+	_gameManager = new gameManager;
+	_gameManager->init();
 
 	SCENEMANAGER->addScene("imageStorage", _imageStorage);
 
@@ -39,12 +41,16 @@ HRESULT playGround::init()
 void playGround::release()
 {
 	gameNode::release();
+
+	_gameManager->release();
 }
 
 //연산처리는 여기다가!
 void playGround::update()
 {
 	gameNode::update();
+
+	_gameManager->update();
 
 	if (KEYMANAGER->isOnceKeyDown('4'))
 	{
@@ -76,9 +82,11 @@ void playGround::render()
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==============위에는 제발 건드리지 마라 ============
-	
+
 	//스테이지(씬 매니저)
 	SCENEMANAGER->render();
+
+	_gameManager->render();
 
 	//=============== 밑에도 건들지마라 ================
 	_backBuffer->render(getHDC(), 0, 0);

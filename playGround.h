@@ -5,6 +5,7 @@
 #include "player.h"
 #include "boss.h"
 #include "enemy.h"
+#include "gameManager.h"
 
 #include "bossStage1.h"
 #include "bossStage2.h"
@@ -18,6 +19,7 @@ class playGround : public gameNode
 {
 private:
 	imageStorage* _imageStorage;
+	gameManager* _gameManager;
 
 	player* _player;
 	enemy* _enemy;
