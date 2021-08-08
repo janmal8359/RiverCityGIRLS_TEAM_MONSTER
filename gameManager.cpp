@@ -39,11 +39,11 @@ void gameManager::release()
 
 void gameManager::update()
 {
-	if (KEYMANAGER->isOnceKeyDown('S') && _playerHP > 0)
+	if (KEYMANAGER->isOnceKeyDown(VK_F1) && _playerHP > 0)
 	{
 		_playerHP -= 1;
 	}
-	if (KEYMANAGER->isOnceKeyDown('W') && _playerHP < 24)
+	if (KEYMANAGER->isOnceKeyDown(VK_F2) && _playerHP < 24)
 	{
 		_playerHP += 1;
 	}

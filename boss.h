@@ -3,6 +3,7 @@
 #include "bossState.h"
 
 class bossState;
+class player;
 
 enum class STATE
 {
@@ -20,6 +21,8 @@ class boss : public gameNode
 private:
 	bossState* _state;
 	STATE* _bState;
+
+	player* _player;
 
 	// shadow
 	image* _bShadowImg;
@@ -39,6 +42,9 @@ private:
 	// direction
 	DIRECTION _direction;
 
+	// bool
+	bool _isMove;
+
 public:
 	boss() {}
 	~boss() {}
@@ -53,6 +59,8 @@ public:
 
 	void bossAnim();
 
+	void move();
+
 
 	// get
 	float getBossShadowX() { return _sx; }
@@ -62,6 +70,8 @@ public:
 	float getBossRectX() { return _bossRc.left; }
 	float getBossRectY() { return _bossRc.top; }
 	DIRECTION getBossDirection() { return _direction; }
+	player* getPlayer() { return _player; }
+	bool getMove() { return _isMove; }
 
 
 	// set
@@ -70,6 +80,10 @@ public:
 	void setBossX(float x) { _bx = x; }
 	void setBossY(float y) { _by = y; }
 	void setBossDirection(DIRECTION dir) { _direction = dir; }
+	void setMove(bool move) { _isMove = move; }
+
+	// Memory
+	void setPlayerMemoryAddressLink(player* player) { _player = player; }
 
 };
 

@@ -2,7 +2,6 @@
 #include "gameNode.h"
 
 class boss;
-class player;
 
 enum class DIRECTION
 {
@@ -19,8 +18,6 @@ protected:
 	boss* _boss;
 	RECT _bossRc;
 
-	player* _player;
-
 	animation* _bossAnim;
 
 public:
@@ -34,7 +31,6 @@ public:
 
 	image* getImg() { return _bossImg; }
 	void setBoss(boss* boss) { _boss = boss; }
-	void setPlayer(player* player) { _player = player; }
 
 	animation* getBossAnim() { return _bossAnim; }
 
@@ -49,6 +45,8 @@ private:
 
 public:
 	//idleState* getInstance() { if (instance == nullptr) instance = new idleState(); return instance; }
+	idleState();
+	~idleState();
 
 	virtual HRESULT init();
 	virtual void release();
@@ -62,10 +60,12 @@ public:
 class walkState : public bossState
 {
 private:
-	walkState* instance;
+	//walkState* instance;
 
 public:
-	walkState* getInstance() { if (instance == nullptr) instance = new walkState(); return instance; }
+	//walkState* getInstance() { if (instance == nullptr) instance = new walkState(); return instance; }
+	walkState();
+	~walkState();
 
 	virtual HRESULT init();
 	virtual void release();

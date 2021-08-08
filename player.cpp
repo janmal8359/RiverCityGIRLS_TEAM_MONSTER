@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "player.h"
-#include "bossState.h"
+#include "boss.h"
 
 player::player()
 {
@@ -16,9 +16,6 @@ HRESULT player::init()
 
     _state = new idle;
     _state->init();
-
-    _bState = new bossState;
-    _bState->init();
 
     //_imageStorage = new imageStorage;
    // _imageStorage->init();
@@ -56,7 +53,7 @@ void player::release()
 void player::update()
 {
     _state->setPlayer(this);
-    _bState->setPlayer(this);       // 보스가 플레이어 위치 값 받아오는 용
+    //_bState->setPlayer(this);       // 보스가 플레이어 위치 값 받아오는 용
 
     move();
 

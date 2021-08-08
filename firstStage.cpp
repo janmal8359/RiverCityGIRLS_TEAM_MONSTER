@@ -21,6 +21,7 @@ HRESULT firstStage::init()
 
 	_boss = new boss;
 	_boss->init();
+	_boss->setPlayerMemoryAddressLink(_player);
 
 	_enemy = new enemy;
 	_enemy->init();
