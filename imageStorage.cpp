@@ -802,6 +802,10 @@ HRESULT imageStorage::init()
 	//편의점 픽셀
 	IMAGEMANAGER->addImage("STAGE_normalPixel", "Resource/IMG/stage/normal_pixel.bmp", 2865, 837, true, RGB(255, 0, 255));
 
+	//테스트
+	//IMAGEMANAGER->addImage("STAGE_stage1", "Resource/IMG/stage/stage01.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	//IMAGEMANAGER->addImage("STAGE_stagePixel1", "Resource/IMG/stage/stage01_pixel.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+
 #pragma endregion STAGE
 
 #pragma endregion IMAGESOURCES

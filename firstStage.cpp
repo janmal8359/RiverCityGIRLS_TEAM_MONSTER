@@ -51,11 +51,10 @@ void firstStage::update()
 void firstStage::render()
 {
 	IMAGEMANAGER->findImage("STAGE_stage1")->render(getMemDC(), 0, 0);
-
+	
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		_first->render(getMemDC(), 0, 0);
-
 	}
 
 	_player->render();
@@ -79,7 +78,7 @@ void firstStage::pixelCollision()
 
 
 	////벽 충돌
-	for (int i = _probeLX - 1; i < _probeLX + 1; i++)
+	for (int i = _probeLX - 5; i < _probeLX; i++)
 	{
 		COLORREF color = GetPixel(_first->getMemDC(), i, _player->getShadowY());
 
@@ -97,8 +96,9 @@ void firstStage::pixelCollision()
 			//책상 바닥
 			else if ((R == 0 && G == 255 && B == 0))//그린
 			{
-				_player->setShadowX(+8);
-				_player->setSpeed(6);
+				//_player->setShadowX(+8);
+				//_player->setSpeed(6);
+				_player->setSpeed(0);
 			}
 			//아이콘 출현 구간
 			else if (R == 0 && G == 255 && B == 255)//민트
@@ -109,7 +109,7 @@ void firstStage::pixelCollision()
 			//그 이외
 			else
 			{
-				_player->setSpeed(6);
+				_player->setSpeed(1);
 			}
 		}
 		else
@@ -118,7 +118,7 @@ void firstStage::pixelCollision()
 		}
 	}
 
-	for (int i = _probeRX - 1; i < _probeLX + 1; i++)
+	for (int i = _probeRX; i < _probeLX + 5; i++)
 	{
 		COLORREF color = GetPixel(_first->getMemDC(), i, _player->getShadowY());
 
@@ -136,13 +136,14 @@ void firstStage::pixelCollision()
 			//책상 바닥
 			else if ((R == 0 && G == 255 && B == 0))//그린
 			{
-				_player->setShadowX(-8);
-				_player->setSpeed(6);
+				//_player->setShadowX(-8);
+				//_player->setSpeed(6);
+				_player->setSpeed(0);
 			}
 			//아이콘 출현 구간
 			else if (R == 0 && G == 255 && B == 255)//민트
 			{
-				_player->setSpeed(6);
+				_player->setSpeed(1);
 
 			}
 			//그 이외
@@ -157,7 +158,7 @@ void firstStage::pixelCollision()
 		}
 	}
 
-	for (int i = _probeTY - 1; i < _probeTY + 1; i++)
+	for (int i = _probeTY - 5; i < _probeTY; i++)
 	{
 		COLORREF color = GetPixel(_first->getMemDC(), _player->getShadowX(), i);
 
@@ -175,13 +176,14 @@ void firstStage::pixelCollision()
 			//책상 바닥
 			else if ((R == 0 && G == 255 && B == 0))//그린
 			{
-				_player->setShadowY(-8);
-				_player->setSpeed(6);
+				//_player->setShadowY(-8);
+				//_player->setSpeed(6);
+				_player->setSpeed(0);
 			}
 			//아이콘 출현 구간
 			else if (R == 0 && G == 255 && B == 255)//민트
 			{
-				_player->setSpeed(6);
+				_player->setSpeed(1);
 
 			}
 			//그 이외
@@ -197,7 +199,7 @@ void firstStage::pixelCollision()
 	}
 
 
-	for (int i = _probeBY - 1; i < _probeBY + 1; i++)
+	for (int i = _probeBY; i < _probeBY + 2; i++)
 	{
 		COLORREF color = GetPixel(_first->getMemDC(), _player->getShadowX(), i);
 
@@ -215,14 +217,15 @@ void firstStage::pixelCollision()
 			//책상 바닥
 			else if ((R == 0 && G == 255 && B == 0))//그린
 			{
-				_player->setShadowY(+8);
-				_player->setSpeed(6);
+				//_player->setShadowY(+8);
+				//_player->setSpeed(6);
+				_player->setSpeed(0);
 			}
 
 			//아이콘 출현 구간
 			else if (R == 0 && G == 255 && B == 255)//민트
 			{
-				_player->setSpeed(6);
+				_player->setSpeed(1);
 
 			}
 			//그 이외
