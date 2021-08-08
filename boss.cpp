@@ -56,9 +56,6 @@ void boss::render()
 {
 	_bShadowImg->render(getMemDC(), _bShadowRc.left, _bShadowRc.top);
 	_state->render();
-
-	//Rectangle(getMemDC(), _bossRc);
-	//Rectangle(getMemDC(), _bShadowRc);
 }
 
 void boss::stateRender(animation* anim)

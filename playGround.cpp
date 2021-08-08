@@ -23,8 +23,6 @@ HRESULT playGround::init()
 
 	SCENEMANAGER->addScene("imageStorage", _imageStorage);
 
-
-
 	//스테이지(씬 매니저)
 	SCENEMANAGER->addScene("stage1", new firstStage);
 	SCENEMANAGER->addScene("stage2", new secondStage);

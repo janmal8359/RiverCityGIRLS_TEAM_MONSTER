@@ -56,7 +56,7 @@ void player::release()
 void player::update()
 {
     _state->setPlayer(this);
-    _bState->setPlayer(this);
+    _bState->setPlayer(this);       // 보스가 플레이어 위치 값 받아오는 용
 
     move();
 
