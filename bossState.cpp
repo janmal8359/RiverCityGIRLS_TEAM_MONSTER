@@ -35,8 +35,18 @@ void bossState::anim()
 
 idleState::idleState()
 {
-	_bossImg = IMAGEMANAGER->findImage("BOSS_idle");
+	_bossImg = IMAGEMANAGER->findImage("BOSS_idle"); 
 	_bossAnim = KEYANIMANAGER->findAnimation("BOSS_idleL");
+
+	/*if (_boss->getBossDirection() == DIRECTION::LEFT)
+	{
+		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_idleL");
+	}
+
+	if (_boss->getBossDirection() == DIRECTION::RIGHT)
+	{
+		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_idleR");
+	}*/
 }
 
 idleState::~idleState()
@@ -103,6 +113,16 @@ walkState::walkState()
 {
 	_bossImg = IMAGEMANAGER->findImage("BOSS_walk");
 	_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkL");
+	//_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkR");
+	/*if (_boss->getBossDirection() == DIRECTION::LEFT)
+	{
+		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkL");
+	}
+
+	if (_boss->getBossDirection() == DIRECTION::RIGHT)
+	{
+		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkR");
+	}*/
 }
 
 walkState::~walkState()

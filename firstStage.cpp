@@ -20,8 +20,8 @@ HRESULT firstStage::init()
 	_player->init();
 
 	_boss = new boss;
-	_boss->init();
 	_boss->setPlayerMemoryAddressLink(_player);
+	_boss->init();
 
 	_enemy = new enemy;
 	_enemy->init();
