@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "player.h"
- 
+#include "bossState.h"
 
 player::player()
 {
@@ -16,6 +16,9 @@ HRESULT player::init()
 
     _state = new idle;
     _state->init();
+
+    _bState = new bossState;
+    _bState->init();
 
     //_imageStorage = new imageStorage;
    // _imageStorage->init();
@@ -53,13 +56,12 @@ void player::release()
 void player::update()
 {
     _state->setPlayer(this);
+    _bState->setPlayer(this);
 
     move();
 
     _state->update();
     _playerImg = _state->getPlImg();
-
-
 }
 
 void player::render()

@@ -70,4 +70,6 @@ void boss::bossAnim()
 {
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_idleL", "BOSS_idle", 11, 0, 7, false, true);
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_idleR", "BOSS_idle", 12, 23, 7, false, true);
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_walkL", "BOSS_walk", 9, 0, 7, false, true);
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_walkR", "BOSS_walk", 10, 19, 7, false, true);
 }

@@ -65,6 +65,11 @@ public:
 
 
 	// set
+	void setBossShadowX(float x) { _sx = x; }
+	void setBossShadowY(float y) { _sy = y; }
+	void setBossX(float x) { _bx = x; }
+	void setBossY(float y) { _by = y; }
+	void setBossDirection(DIRECTION dir) { _direction = dir; }
 
 };
 
