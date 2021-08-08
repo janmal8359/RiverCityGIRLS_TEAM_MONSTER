@@ -30,10 +30,13 @@
 
 #pragma warning(disable:4996)
 
+class bossState;
+
 class player : public gameNode
 {
 private:
 	state* _state;
+	bossState* _bState;
 
 	imageStorage* _imageStorage;
 

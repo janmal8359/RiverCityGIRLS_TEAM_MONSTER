@@ -2,6 +2,7 @@
 #include "gameNode.h"
 
 class boss;
+class player;
 
 enum class DIRECTION
 {
@@ -18,6 +19,8 @@ protected:
 	boss* _boss;
 	RECT _bossRc;
 
+	player* _player;
+
 	animation* _bossAnim;
 
 public:
@@ -31,6 +34,7 @@ public:
 
 	image* getImg() { return _bossImg; }
 	void setBoss(boss* boss) { _boss = boss; }
+	void setPlayer(player* player) { _player = player; }
 
 	animation* getBossAnim() { return _bossAnim; }
 
@@ -67,6 +71,9 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	virtual void stateChange();
+	virtual void anim();
 };
 
 class attackState : public bossState

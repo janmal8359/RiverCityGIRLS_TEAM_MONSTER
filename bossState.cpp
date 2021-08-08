@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "bossState.h"
 #include "boss.h"
+#include "player.h"
 
 
 HRESULT bossState::init()
@@ -49,6 +50,7 @@ void idleState::update()
 	bossState::update();
 
 	_bossImg = IMAGEMANAGER->findImage("BOSS_idle");
+
 }
 
 void idleState::render()
@@ -61,6 +63,13 @@ void idleState::render()
 void idleState::stateChange()
 {
 	// 임시 키 조작으로 이동
+	if (_player != nullptr)
+	{
+		if (getDistance(_player->getShadowX(), _player->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) > 10)
+		{
+			_boss->setState(new walkState);
+		}
+	}
 }
 
 void idleState::anim()
@@ -91,10 +100,37 @@ void walkState::release()
 
 void walkState::update()
 {
+	float sx = _boss->getBossShadowX();
+	float sy = _boss->getBossShadowY();
+
+	sx -= cosf(getAngle(_player->getShadowX(), _player->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) * 2);
+	sy -= -sinf(getAngle(_player->getShadowX(), _player->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) * 2);
+
+	_boss->setBossShadowX(sx);
+	_boss->setBossShadowY(sy);
 }
 
 void walkState::render()
 {
+}
+
+void walkState::stateChange()
+{
+}
+
+void walkState::anim()
+{
+	if (_boss->getBossDirection() == DIRECTION::LEFT)
+	{
+		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkL");
+		_bossAnim->resume();
+	}
+
+	if (_boss->getBossDirection() == DIRECTION::RIGHT)
+	{
+		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkR");
+		_bossAnim->resume();
+	}
 }
 
 
