@@ -75,7 +75,10 @@ void enemyIdle::render()
 
 void enemyIdle::enemyStateChange()
 {
-	if (_enemy->getEnemySpeed() > 0) _enemy->setEnemyState(new enemyChase);
+	if (_enemy->getEnemyDistance() < 500)
+	{
+		_enemy->setEnemyState(new enemyChase);
+	}
 }
 
 void enemyIdle::enemyAni()
@@ -106,8 +109,9 @@ enemyChase::~enemyChase()
 
 HRESULT enemyChase::init()
 {
+	
+	//_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_run");
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_walk");
-
 	return S_OK;
 }
 
@@ -118,7 +122,8 @@ void enemyChase::release()
 void enemyChase::update()
 {
 	enemyState::update();
-
+	
+	//_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_run");
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_walk");
 
 }
@@ -130,21 +135,115 @@ void enemyChase::render()
 
 void enemyChase::enemyStateChange()
 {
-	if (_enemy->getEnemySpeed() == 0) _enemy->setEnemyState(new enemyIdle);
+	if (_enemy->getEnemyDistance() >= 500)
+	{
+		_enemy->setEnemyState(new enemyIdle);
+	}
+	
 }
 
 void enemyChase::enemyAni()
 {
-	if (_enemyDir == ENEMY_LEFT)
+	if (_enemy->getEnemyDistance() < 500)
 	{
-		_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_walkL");
-		_enemyAni->resume();
+		if (_enemyDir == ENEMY_LEFT)
+		{
+			_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_walkL");
+			_enemyAni->resume();
+		}
+		if (_enemyDir == ENEMY_RIGHT)
+		{
+			_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_walkR");
+			_enemyAni->resume();
+		}
 	}
-	if (_enemyDir == ENEMY_RIGHT)
-	{
-		_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_walkR");
-		_enemyAni->resume();
-	}
+	//else if (_enemy->getEnemyDistance() <= 200)
+	//{
+	//	if (_enemyDir == ENEMY_LEFT)
+	//	{
+	//		_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_runL");
+	//		_enemyAni->resume();
+	//	}
+	//	if (_enemyDir == ENEMY_RIGHT)
+	//	{
+	//		_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_runR");
+	//		_enemyAni->resume();
+	//	}
+	//}
 }
 
+#pragma endregion
+//////////////////////////////////////////////	공   격  ////////////////////////////////////////////////////////////
+#pragma region 공격 상태
+
+
+enemyAttack::enemyAttack()
+{
+}
+
+enemyAttack::~enemyAttack()
+{
+}
+
+HRESULT enemyAttack::init()
+{
+	return S_OK;
+}
+
+void enemyAttack::release()
+{
+}
+
+void enemyAttack::update()
+{
+}
+
+void enemyAttack::render()
+{
+}
+
+void enemyAttack::enemyStateChange()
+{
+}
+
+void enemyAttack::enemyAni()
+{
+}
+
+#pragma endregion
+//////////////////////////////////////////////	피   격  ////////////////////////////////////////////////////////////
+#pragma region 피격 상태
+
+enemyHurt::enemyHurt()
+{
+}
+
+enemyHurt::~enemyHurt()
+{
+}
+
+HRESULT enemyHurt::init()
+{
+	return S_OK;
+}
+
+void enemyHurt::release()
+{
+}
+
+void enemyHurt::update()
+{
+}
+
+void enemyHurt::render()
+{
+}
+
+void enemyHurt::enemyStateChange()
+{
+}
+
+void enemyHurt::enemyAni()
+{
+}
 #pragma endregion

@@ -24,6 +24,7 @@ HRESULT firstStage::init()
 
 	_enemy = new enemy;
 	_enemy->init();
+	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 
 	return S_OK;
 }
@@ -42,6 +43,7 @@ void firstStage::update()
 
 	_enemy->update();
 	_enemy->getEnemyState()->setEnemy(_enemy);
+	
 
 	pixelCollision();
 }
