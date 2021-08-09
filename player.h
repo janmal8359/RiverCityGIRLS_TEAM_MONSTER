@@ -1,7 +1,8 @@
 #pragma once
 #include "gameNode.h"
-//#include "imageStorage.h"
 
+#include "imageStorage.h"
+#include "camera.h"
 
 #include "wait.h"
 
@@ -33,13 +34,21 @@
 
 class bossState;
 
+
+
 class player : public gameNode
 {
 private:
+
+	camera* _camera;
 	state* _state;
 	bossState* _bState;
 
+
 	//imageStorage* _imageStorage;
+
+
+	imageStorage* _imageStorage;
 
 
 	image* _shadowImg;		//그림자 이미지
@@ -70,6 +79,9 @@ private:
 
 	int _dir;				//빙향
 
+	//개떡같은 카메라 제작중
+
+	
 	
 
 

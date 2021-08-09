@@ -34,7 +34,11 @@ void idle::stateChange()
 	{
 		_player->setState(new hit);
 	}
-
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+	{
+		_player->setState(new jump);
+		_player->setJumpPower(20.0f);
+	}
 	// 이동키를 눌렀을 땐 플레이어 상태를 걷는 상태로 정의한다
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT)  ||
 		KEYMANAGER->isOnceKeyDown(VK_RIGHT) ||
@@ -43,11 +47,7 @@ void idle::stateChange()
 	{
 		_player->setState(new walk);
 	}
-    if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
-	{
-		_player->setState(new jump);
-		_player->setJumpPower(20.0f);
-	}
+ 
 	else if (KEYMANAGER->isOnceKeyDown('Q'))
 	{
 		SOUNDMANAGER->play("PLAYER_combo1", 1.0f);

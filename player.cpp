@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "player.h"
 #include "bossState.h"
+#include "camera.h"
 
 player::player()
 {
@@ -17,6 +18,7 @@ HRESULT player::init()
 
     _state = new idle;
     _state->init();
+
 
     _bState = new bossState;
     _bState->init();
@@ -44,6 +46,8 @@ HRESULT player::init()
     _speed = 0;
     _jumpPower = 0;
 
+
+
     _isJump = false;
     _isAttacking = false;
     _isGuarding = false;
@@ -60,7 +64,7 @@ void player::release()
 }
 
 void player::update()
-{
+{    
     _state->setPlayer(this);
     _bState->setPlayer(this);       // 보스가 플레이어 위치 값 받아오는 용
 
@@ -69,10 +73,13 @@ void player::update()
     _state->update();
     _playerImg = _state->getPlImg();
 
+    //플레이어가 맞았을떄
     if (_isGetHit)
     {
         //_hp-=   
     }
+   
+   
 
 
 }
@@ -82,6 +89,9 @@ void player::render()
     _shadowImg->render(getMemDC(), _shadowRc.left, _shadowRc.top);
     _state->render();
 
+
+ 
+ 
     char str[128];
     sprintf_s(str, " _isJump : %d", _isJump);
     TextOut(getMemDC(), 0, 200, str, strlen(str));
@@ -105,6 +115,12 @@ void player::move()
     {
         if (KEYMANAGER->isStayKeyDown(VK_SPACE)) _isJump = true;
 
+        if (_camera->getCameraRc().left <= 0)
+        {
+         //  _camera->getCamX() -= _speed;
+            _sX -= _speed;
+
+        }
         if (KEYMANAGER->isStayKeyDown(VK_LEFT))
         {
             _dir = LEFT;
@@ -166,7 +182,7 @@ void player::move()
     }
 
 
-
+ 
     _playerRc = RectMakeCenter(_pX, _pY, _playerImg->getFrameWidth(), _playerImg->getFrameHeight());
     _shadowRc = RectMakeCenter(_sX, _sY, _shadowImg->getWidth(), _shadowImg->getHeight());
 
