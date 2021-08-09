@@ -1,6 +1,6 @@
 #pragma once
 #include "gameNode.h"
-#include "pixelCollision.h"
+#include "pixelCollisionClass.h"
 
 //보스방(등장 전)
 class bossStage1 : public gameNode

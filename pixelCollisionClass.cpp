@@ -1,20 +1,21 @@
 #include "pch.h"
-#include "pixelCollision.h"
+#include "pixelCollisionClass.h"
 
-pixelCollision::pixelCollision()
+pixelCollisionClass::pixelCollisionClass()
 {
 }
 
-pixelCollision::~pixelCollision()
+pixelCollisionClass::~pixelCollisionClass()
 {
 }
 
-HRESULT pixelCollision::init()
+HRESULT pixelCollisionClass::init()
 {
+
 	return S_OK;
 }
 
-HRESULT pixelCollision::init(float x, float y, int stageType)
+HRESULT pixelCollisionClass::init(float x, float y, int stageType)
 {
 	_probeLX = _player->getShadowX() - _player->getShadowImg()->getWidth() / 2;
 	_probeRX = _player->getShadowX() + _player->getShadowImg()->getWidth() / 2;
@@ -28,10 +29,10 @@ HRESULT pixelCollision::init(float x, float y, int stageType)
 
 	_stageType = (STAGETYPE)stageType;
 	
-	if (_stageType == 0)_stage = IMAGEMANAGER->findImage("STAGE_stagePixel1");
-	if (_stageType == 1)_stage = IMAGEMANAGER->findImage("STAGE_stagePixel4");
-	if (_stageType == 2)_stage = IMAGEMANAGER->findImage("STAGE_normalPixel");
-	if (_stageType == 3)_stage = IMAGEMANAGER->findImage("STAGE_bossPixel");
+	if (_stageType == 0) _stage = IMAGEMANAGER->findImage("STAGE_stagePixel1");
+	if (_stageType == 1) _stage = IMAGEMANAGER->findImage("STAGE_stagePixel4");
+	if (_stageType == 2) _stage = IMAGEMANAGER->findImage("STAGE_normalPixel");
+	if (_stageType == 3) _stage = IMAGEMANAGER->findImage("STAGE_bossPixel");
 
 	_x = x;
 	_y = y;
@@ -40,30 +41,31 @@ HRESULT pixelCollision::init(float x, float y, int stageType)
 	return S_OK;
 }
 
-void pixelCollision::release()
+void pixelCollisionClass::release()
 {
 }
 
-void pixelCollision::update()
+void pixelCollisionClass::update()
 {
 	Colloision();
 }
 
-void pixelCollision::render()
+void pixelCollisionClass::render()
 {
-	_stage->render(getMemDC(), _rc.left, _rc.top);
+
+	if(_stage != NULL) _stage->render(getMemDC(), _rc.left, _rc.top);
+	//_stage->render(getMemDC(), _rc.left, _rc.top);
 }
 
-void pixelCollision::Colloision()
+void pixelCollisionClass::Colloision()
 {
-	int i = _stageType;
-
-	for (int i = 0; i < 4; i++)
+	
+	for (int _stageType = 0; _stageType < 4; _stageType++)
 	{
 
-		for (int j = _probeLX - 5; j < _probeRX + 5; j++)
+		for (int i = _probeLX - 5; i < _probeRX + 5; i++)
 		{
-			COLORREF color = GetPixel(_stage->getMemDC(), j, _player->getShadowY());
+			COLORREF color = GetPixel(_stage->getMemDC(), i, _player->getShadowY());
 
 			int R = GetRValue(color);
 			int G = GetGValue(color);
@@ -101,9 +103,9 @@ void pixelCollision::Colloision()
 			}
 		}
 
-		for (int j = _probeTY - 5; j < _probeBY + 5; j++)
+		for (int i = _probeTY - 5; i < _probeBY + 5; i++)
 		{
-			COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX(), j);
+			COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX(), i);
 
 			int R = GetRValue(color);
 			int G = GetGValue(color);

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "firstStage.h"
+//#include "pixelCollisionClass.h"
 
 firstStage::firstStage()
 {
@@ -12,7 +13,7 @@ firstStage::~firstStage()
 HRESULT firstStage::init()
 {
 	IMAGEMANAGER->findImage("STAGE_stage1");
-	_first = IMAGEMANAGER->findImage("STAGE_stagePixel1");
+	//_first = IMAGEMANAGER->findImage("STAGE_stagePixel1");
 	IMAGEMANAGER->findImage("BATTLE_unlockDoor1");
 	IMAGEMANAGER->findImage("BATTLE_unlockDoor2");
 
@@ -27,6 +28,9 @@ HRESULT firstStage::init()
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 
 	_isCheck = false;
+
+	_pixel = new pixelCollisionClass;
+	_pixel->init(0, 0, 0);
 
 	return S_OK;
 }
@@ -43,11 +47,13 @@ void firstStage::update()
 
 	_boss->update();
 
+	_pixel->setPixelPlayer(_player);
+	_pixel->update();
+
 	_enemy->update();
 	_enemy->getEnemyState()->setEnemy(_enemy);
-	
 
-	pixelCollision();
+	//pixelCollision();
 }
 
 void firstStage::render()
@@ -56,7 +62,8 @@ void firstStage::render()
 	
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		_first->render(getMemDC(), 0, 0);
+		//_first->render(getMemDC(), 0, 0);
+		_pixel->render();
 	}
 
 	_player->render();

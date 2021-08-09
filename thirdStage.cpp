@@ -12,7 +12,7 @@ thirdStage::~thirdStage()
 HRESULT thirdStage::init()
 {
 	IMAGEMANAGER->findImage("STAGE_normal");
-	IMAGEMANAGER->findImage("STAGE_normalPixel");
+	//IMAGEMANAGER->findImage("STAGE_normalPixel");
 	IMAGEMANAGER->findImage("BATTLE_unlockDoor1");
 	IMAGEMANAGER->findImage("BATTLE_unlockDoor2");
 

@@ -9,14 +9,13 @@
 
 enum STAGETYPE
 {
-	FISTST,
-	SECOND,
-	THIRD,
-	BOSS
+	FIRSTSTAGE,
+	SECONDSTAGE,
+	THIRDSTAGE,
+	BOSSSTAGE
 };
 
-
-class pixelCollision : public gameNode
+class pixelCollisionClass : public gameNode
 {
 private:
 	//image* _firstStage;
@@ -37,8 +36,8 @@ private:
 	float _probeLX, _probeTY, _probeRX, _probeBY;
 
 public:
-	pixelCollision();
-	~pixelCollision();
+	pixelCollisionClass();
+	~pixelCollisionClass();
 
 	virtual HRESULT init();
 	virtual HRESULT init(float x, float y, int type);
@@ -48,6 +47,8 @@ public:
 
 	void Colloision();
 
+	void setPixelPlayer(player* player) { _player = player; }
+
 	inline RECT getRect() { return _rc; }
-	int getEnemyType() { return _stageType; }
+	int getPixelType() { return _stageType; }
 };

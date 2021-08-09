@@ -47,7 +47,7 @@ void bossStage1::update()
 void bossStage1::render()
 {
 	IMAGEMANAGER->findImage("STAGE_bossStage1")->render(getMemDC(), 0, 0);
-	IMAGEMANAGER->findImage("STAGE_bossPixel")->render(getMemDC(), 0, 0);
+	//IMAGEMANAGER->findImage("STAGE_bossPixel")->render(getMemDC(), 0, 0);
 
 	/*
 	if(_isCheck)
