@@ -20,6 +20,8 @@ protected:
 
 	animation* _bossAnim;
 
+	float _distance;
+
 public:
 	virtual HRESULT init();
 	virtual void release();

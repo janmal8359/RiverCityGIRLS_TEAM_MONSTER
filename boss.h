@@ -72,6 +72,7 @@ public:
 	DIRECTION getBossDirection() { return _direction; }
 	player* getPlayer() { return _player; }
 	bool getMove() { return _isMove; }
+	bossState* getState() { return _state; }
 
 
 	// set

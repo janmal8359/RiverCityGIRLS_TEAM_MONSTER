@@ -38,9 +38,10 @@ void boss::release()
 
 void boss::update()
 {
-	_bossImg = _state->getImg();
 
 	_state->update();
+
+	_bossImg = _state->getImg();
 
 	_bx = _sx;
 	_by = _sy - _bossImg->getFrameHeight() / 2;
