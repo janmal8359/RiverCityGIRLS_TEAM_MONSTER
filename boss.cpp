@@ -25,7 +25,7 @@ HRESULT boss::init()
 
 	_speed = 0;
 
-	_direction = DIRECTION::LEFT;
+	//_direction = DIRECTION::LEFT;
 
 	//_isMove = true;
 
@@ -38,7 +38,6 @@ void boss::release()
 
 void boss::update()
 {
-
 	_state->update();
 
 	_bossImg = _state->getImg();
@@ -62,6 +61,7 @@ void boss::update()
 
 	_state->setBoss(this);
 
+
 }
 
 void boss::render()
@@ -72,6 +72,9 @@ void boss::render()
 	char str[128];
 	sprintf_s(str, "_sx : %.2f  _sy : %.2f", _sx, _sy);
 	TextOut(getMemDC(), 10, 150, str, strlen(str));
+
+	sprintf_s(str, "direction : %d", (int)_direction);
+	TextOut(getMemDC(), 10, 300, str, strlen(str));
 }
 
 void boss::stateRender(animation* anim)
@@ -85,6 +88,8 @@ void boss::bossAnim()
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_idleR", "BOSS_idle", 12, 23, 10, false, true);
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_walkL", "BOSS_walk", 19, 10, 10, false, true);
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_walkR", "BOSS_walk", 0, 9, 10, false, true);
+	//KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_slapL", "BOSS_slap", 27, 14, 10, false, true);
+	//KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_slapR", "BOSS_slap", 0, 13, 10, false, true);
 }
 
 void boss::move()

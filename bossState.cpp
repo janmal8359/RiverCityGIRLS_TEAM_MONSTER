@@ -6,6 +6,8 @@
 
 HRESULT bossState::init()
 {
+	//_direction = (int)_boss->getBossDirection();
+
 	return S_OK;
 }
 
@@ -15,6 +17,8 @@ void bossState::release()
 
 void bossState::update()
 {
+	_direction = (int)_boss->getBossDirection();
+
 	anim();
 	stateChange();
 }
@@ -22,6 +26,11 @@ void bossState::update()
 void bossState::render()
 {
 	_boss->stateRender(_bossAnim);
+
+	char str[128];
+
+	sprintf_s(str, "direction : %d", (int)_direction);
+	TextOut(getMemDC(), 10, 320, str, strlen(str));
 }
 
 void bossState::stateChange()
@@ -35,18 +44,30 @@ void bossState::anim()
 
 idleState::idleState()
 {
-	_bossImg = IMAGEMANAGER->findImage("BOSS_idle");
-	_bossAnim = KEYANIMANAGER->findAnimation("BOSS_idleL");
+	//_bossImg = IMAGEMANAGER->findImage("BOSS_idle");
+	//_bossAnim = KEYANIMANAGER->findAnimation("BOSS_idleL");
 
-	/*if (_boss->getBossDirection() == DIRECTION::LEFT)
+	if (_direction == (int)DIRECTION::LEFT)
 	{
+		_bossImg = IMAGEMANAGER->findImage("BOSS_idle");
 		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_idleL");
 	}
 
-	if (_boss->getBossDirection() == DIRECTION::RIGHT)
+	else if (_direction == (int)DIRECTION::RIGHT)
 	{
+		_bossImg = IMAGEMANAGER->findImage("BOSS_idle");
 		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_idleR");
-	}*/
+	}
+
+	//if (_direction == DIRECTION::LEFT)
+	//{
+	//	_bossAnim = KEYANIMANAGER->findAnimation("BOSS_idleL");
+	//}
+
+	//else if (_direction == DIRECTION::RIGHT)
+	//{
+	//	_bossAnim = KEYANIMANAGER->findAnimation("BOSS_idleR");
+	//}
 }
 
 idleState::~idleState()
@@ -80,7 +101,7 @@ void idleState::render()
 	//if (_bossImg == nullptr) _bossImg = IMAGEMANAGER->findImage("BOSS_idle");
 	//if (_bossAnim == nullptr) _bossAnim = KEYANIMANAGER->findAnimation("BOSS_idleL");
 
-	if (_bossImg == IMAGEMANAGER->findImage("BOSS_idle")) bossState::render();
+	bossState::render();
 }
 
 void idleState::stateChange()
@@ -95,13 +116,13 @@ void idleState::stateChange()
 
 void idleState::anim()
 {
-	if (_boss->getBossDirection() == DIRECTION::LEFT)
+	if (_direction == (int)DIRECTION::LEFT)
 	{
 		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_idleL");
 		_bossAnim->resume();
 	}
 
-	if (_boss->getBossDirection() == DIRECTION::RIGHT)
+	else if (_direction == (int)DIRECTION::RIGHT)
 	{
 		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_idleR");
 		_bossAnim->resume();
@@ -111,18 +132,20 @@ void idleState::anim()
 
 walkState::walkState()
 {
-	_bossImg = IMAGEMANAGER->findImage("BOSS_walk");
-	_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkL");
+	//_bossImg = IMAGEMANAGER->findImage("BOSS_walk");
+	//_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkL");
 	//_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkR");
-	/*if (_boss->getBossDirection() == DIRECTION::LEFT)
+	if (_direction == (int)DIRECTION::LEFT)
 	{
+		_bossImg = IMAGEMANAGER->findImage("BOSS_walk");
 		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkL");
 	}
 
-	if (_boss->getBossDirection() == DIRECTION::RIGHT)
+	else if (_direction == (int)DIRECTION::RIGHT)
 	{
+		_bossImg = IMAGEMANAGER->findImage("BOSS_walk");
 		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkR");
-	}*/
+	}
 }
 
 walkState::~walkState()
@@ -133,6 +156,7 @@ walkState::~walkState()
 HRESULT walkState::init()
 {
 	//bossState::init();
+	//_direction = (int)_boss->getBossDirection();
 
 	_bossImg = IMAGEMANAGER->findImage("BOSS_walk");
 
@@ -156,7 +180,7 @@ void walkState::render()
 	//if (_bossImg == nullptr) _bossImg = IMAGEMANAGER->findImage("BOSS_walk");
 	//if (_bossAnim == nullptr) _bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkL");
 
-	if (_bossImg == IMAGEMANAGER->findImage("BOSS_walk")) bossState::render();
+	bossState::render();
 }
 
 void walkState::stateChange()
@@ -166,17 +190,23 @@ void walkState::stateChange()
 		_boss->setMove(false);
 		_boss->setState(new idleState);
 	}
+
+	//if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) <= 80)
+	//{
+	//	_boss->setMove(false);
+	//	_boss->setState(new attackState);
+	//}
 }
 
 void walkState::anim()
 {
-	if (_boss->getBossDirection() == DIRECTION::LEFT)
+	if (_direction == (int)DIRECTION::LEFT)
 	{
 		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkL");
 		_bossAnim->resume();
 	}
 
-	if (_boss->getBossDirection() == DIRECTION::RIGHT)
+	if (_direction == (int)DIRECTION::RIGHT)
 	{
 		_bossAnim = KEYANIMANAGER->findAnimation("BOSS_walkR");
 		_bossAnim->resume();
@@ -185,23 +215,72 @@ void walkState::anim()
 
 
 // Attack
+
+attackState::attackState()
+{
+	//if (_direction == (int)DIRECTION::LEFT)
+	//{
+	//	_bossImg = IMAGEMANAGER->findImage("BOSS_slap");
+	//	_bossAnim = KEYANIMANAGER->findAnimation("BOSS_slapL");
+	//}
+	//
+	//else if (_direction == (int)DIRECTION::RIGHT)
+	//{
+	//	_bossImg = IMAGEMANAGER->findImage("BOSS_slap");
+	//	_bossAnim = KEYANIMANAGER->findAnimation("BOSS_slapR");
+	//}
+}
+
+attackState::~attackState()
+{
+}
+
 HRESULT attackState::init()
 {
+	//_direction = (int)_boss->getBossDirection();
+
+	//_bossImg = IMAGEMANAGER->findImage("BOSS_slap");
+
 	return S_OK;
 }
 
 void attackState::release()
 {
 }
-
 void attackState::update()
 {
 	bossState::update();
+
+	//_bossImg = IMAGEMANAGER->findImage("BOSS_slap");
 }
 
 void attackState::render()
 {
 	bossState::render();
+}
+
+void attackState::stateChange()
+{
+	//if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) > 80)
+	//{
+	//	_boss->setMove(false);
+	//	_boss->setState(new idleState);
+	//}
+}
+
+void attackState::anim()
+{
+	//if (_direction == (int)DIRECTION::LEFT)
+	//{
+	//	_bossAnim = KEYANIMANAGER->findAnimation("BOSS_slapL");
+	//	_bossAnim->resume();
+	//}
+	//
+	//if (_direction == (int)DIRECTION::RIGHT)
+	//{
+	//	_bossAnim = KEYANIMANAGER->findAnimation("BOSS_slapR");
+	//	_bossAnim->resume();
+	//}
 }
 
 

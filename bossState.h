@@ -3,22 +3,17 @@
 
 class boss;
 
-enum class DIRECTION
-{
-	LEFT,
-	RIGHT
-};
-
 class bossState : public gameNode
 {
 protected:
 	image* _bossImg;
-	DIRECTION _direction;
+	int _direction;
 
 	boss* _boss;
 	RECT _bossRc;
 
 	animation* _bossAnim;
+	bool _isAnim;
 
 	float _distance;
 
@@ -35,6 +30,8 @@ public:
 	void setBoss(boss* boss) { _boss = boss; }
 
 	animation* getBossAnim() { return _bossAnim; }
+
+	void setDirection(int direction) { _direction = direction; }
 
 protected:
 	void setBossState(boss* boss, bossState* state) { /*boss->setState(state); // 상태 변경*/ }
@@ -81,15 +78,21 @@ public:
 class attackState : public bossState
 {
 private:
-	attackState* instance;
+	//attackState* instance;
 
 public:
-	attackState* getInstance() { if (instance == nullptr) instance = new attackState(); return instance; }
+	//attackState* getInstance() { if (instance == nullptr) instance = new attackState(); return instance; }
+
+	attackState();
+	~attackState();
 
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	virtual void stateChange();
+	virtual void anim();
 };
 
 class jumpState : public bossState

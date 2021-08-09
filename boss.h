@@ -16,6 +16,12 @@ enum class STATE
 	LOSE
 };
 
+enum class DIRECTION
+{
+	LEFT,
+	RIGHT
+};
+
 class boss : public gameNode
 {
 private:
