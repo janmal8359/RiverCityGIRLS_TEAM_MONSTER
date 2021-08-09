@@ -16,15 +16,10 @@ enum class STATE
 	LOSE
 };
 
-enum class DIRECTION
-{
-	LEFT,
-	RIGHT
-};
-
 class boss : public gameNode
 {
 private:
+	// class
 	bossState* _state;
 	STATE* _bState;
 
@@ -44,12 +39,21 @@ private:
 
 	// velocity
 	float _speed;
+	float _jumpPower;
+	float _gravity;
 
 	// direction
-	DIRECTION _direction;
+	int _direction;
+
+	// time
+	float _time;
 
 	// bool
 	bool _isMove;
+	bool _isAttack;
+	bool _isJump;
+	bool _isDrop;
+	bool _isFloat;
 
 public:
 	boss() {}
@@ -66,6 +70,7 @@ public:
 	void bossAnim();
 
 	void move();
+	void jump();
 
 
 	// get
@@ -75,10 +80,20 @@ public:
 	float getBossY() { return _by; }
 	float getBossRectX() { return _bossRc.left; }
 	float getBossRectY() { return _bossRc.top; }
-	DIRECTION getBossDirection() { return _direction; }
+
+	int getBossDirection() { return _direction; }
+
 	player* getPlayer() { return _player; }
-	bool getMove() { return _isMove; }
 	bossState* getState() { return _state; }
+
+	bool getMove() { return _isMove; }
+	bool getIsAttack() { return _isAttack; }
+	bool getIsJump() { return _isJump; }
+	bool getIsDrop() { return _isDrop; }
+	bool getFloat() { return _isFloat; }
+
+	float getTime() { return _time; }
+	float getJumpPower() { return _jumpPower; }
 
 
 	// set
@@ -86,8 +101,18 @@ public:
 	void setBossShadowY(float y) { _sy = y; }
 	void setBossX(float x) { _bx = x; }
 	void setBossY(float y) { _by = y; }
-	void setBossDirection(DIRECTION dir) { _direction = dir; }
+
+	void setBossDirection(int dir) { _direction = dir; }
+
 	void setMove(bool move) { _isMove = move; }
+	void setIsAttack(bool attack) { _isAttack = attack; }
+	void setIsJump(bool jump) { _isJump = jump; }
+	void setIsDrop(bool drop) { _isDrop = drop; }
+	void setFloat(bool isFloat) { _isFloat = isFloat; }
+
+	void setTime(float time) { _time = time; }
+	void setJumpPower(float jumpPower) { _jumpPower = jumpPower; }
+
 
 	// Memory
 	void setPlayerMemoryAddressLink(player* player) { _player = player; }
