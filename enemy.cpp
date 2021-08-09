@@ -29,6 +29,8 @@ HRESULT enemy::init()
 	_enemyRc = RectMakeCenter(_enemyX, _enemyY, _enemyImg->getFrameWidth(), _enemyImg->getFrameWidth());
 	_enemyShadowRc = RectMakeCenter(_enemySX, _enemySY, _enemyShadowImg->getWidth(), _enemyShadowImg->getHeight());
 
+
+
 	_enemySpeed = 2;
 	_enemyJP = 0;
 	
@@ -86,12 +88,6 @@ void enemy::enemyStateRender(animation* motion)
 
 void enemy::enemyMove()
 {
-
-	//if (_player->getIsJump())
-	//{
-	//	_isEJump = true;
-	//}
-
 	if (!_isEJump)
 	{
 		if (_enemyDistance < 400)	//쫒아가는거
@@ -146,7 +142,7 @@ void enemy::enemyAttack()
 {
 	if (_isEAttack)
 	{
-
+		
 	}
 }
 

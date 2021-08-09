@@ -208,14 +208,7 @@ void enemyAttack::update()
 	enemyState::update();
 
 	callBk();
-	if (KEYMANAGER->isOnceKeyDown('Y') && _EattackIdx < 2)
-	{
-		if (_enemyAni->getNowPlayIdx() >= _enemyImg->getMaxFrameX() - 2)
-		{
-			_enemyAni->stop();
-			_EattackIdx++;
-		}
-	}
+	
 
 	switch (_EattackIdx)
 	{
