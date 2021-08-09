@@ -30,10 +30,11 @@ private:
 
 	player* _player;
 
+	RECT _rc;
+	float _x, _y;
+
 	//ÇÈ¼¿ Å½»ö±â
 	float _probeLX, _probeTY, _probeRX, _probeBY;
-
-	float _x, _y;
 
 public:
 	pixelCollision();
@@ -46,4 +47,7 @@ public:
 	virtual void render();
 
 	void Colloision();
+
+	inline RECT getRect() { return _rc; }
+	int getEnemyType() { return _stageType; }
 };

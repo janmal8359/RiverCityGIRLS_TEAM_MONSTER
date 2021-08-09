@@ -33,6 +33,9 @@ HRESULT pixelCollision::init(float x, float y, int stageType)
 	if (_stageType == 2)_stage = IMAGEMANAGER->findImage("STAGE_normalPixel");
 	if (_stageType == 3)_stage = IMAGEMANAGER->findImage("STAGE_bossPixel");
 
+	_x = x;
+	_y = y;
+	_rc = RectMakeCenter(_x, _y, _stage->getWidth(), _stage->getHeight());
 
 	return S_OK;
 }
@@ -48,6 +51,7 @@ void pixelCollision::update()
 
 void pixelCollision::render()
 {
+	_stage->render(getMemDC(), _rc.left, _rc.top);
 }
 
 void pixelCollision::Colloision()

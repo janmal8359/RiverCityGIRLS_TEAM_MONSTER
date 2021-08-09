@@ -4,7 +4,7 @@
 #include "enemy.h"
 #include "boss.h"
 #include "state.h"
-
+#include "pixelCollision.h"
 
 //±³½Ç
 class firstStage : public gameNode

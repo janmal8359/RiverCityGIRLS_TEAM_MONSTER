@@ -1,5 +1,7 @@
 #pragma once
 #include "gameNode.h"
+#include "pixelCollision.h"
+
 //∆Ì¿«¡°
 class thirdStage : public gameNode
 {
