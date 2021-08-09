@@ -35,7 +35,7 @@ HRESULT player::init()
 
     //그림자의 초기 좌표값 및 중점
     _sX = WINSIZEX / 2;
-    _sY = WINSIZEY / 2+200;
+    _sY = WINSIZEY / 2;
 
     _pX = _sX; // 플레이어의 x는 그림자X값과 같다.
     _pY = _sY - _playerImg->getFrameHeight() / 2;
@@ -101,6 +101,18 @@ void player::render()
 
     sprintf_s(str, "isguard : %d", _isGuarding);
     TextOut(getMemDC(), 0, 60, str, strlen(str));
+
+
+
+    sprintf_s(str, "_camX  : %f", _camera->getCamX());
+    TextOut(getMemDC(), 0, 100, str, strlen(str));
+    sprintf_s(str, "_camY  : %f", _camera->getCamY());
+    TextOut(getMemDC(), 0, 120, str, strlen(str));
+
+    sprintf_s(str, "_SX  : %f", _sX);
+    TextOut(getMemDC(), 0, 140, str, strlen(str));
+    sprintf_s(str, "_SY  : %f", _sY);
+    TextOut(getMemDC(), 0, 160, str, strlen(str));
 }
 
 void player::stateRender(animation* motion)
@@ -115,30 +127,57 @@ void player::move()
     {
         if (KEYMANAGER->isStayKeyDown(VK_SPACE)) _isJump = true;
 
-        if (_camera->getCameraRc().left <= 0)
-        {
-         //  _camera->getCamX() -= _speed;
-            _sX -= _speed;
-
-        }
+ 
         if (KEYMANAGER->isStayKeyDown(VK_LEFT))
         {
             _dir = LEFT;
-            _sX -= _speed;
+            if (_shadowRc.left < _camera->getCameraRc().left && _camera->getCamX() > 0 +_speed)
+            {
+                _camera->setCamX(_camera->getCamX() - _speed);
+            }
+            else
+            {
+                _sX -= _speed;
+            }
+
         }
         
         if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) 
         {
             _dir = RIGHT;
-            _sX += _speed;
+            if (_shadowRc.right > _camera->getCameraRc().right && _camera->getCamX()< _camera->getBgImage()->getWidth()-WINSIZEX-_speed)
+            {
+                _camera->setCamX(_camera->getCamX() + _speed);
+            }
+            else
+            {
+                _sX += _speed;
+            }
+
         }
         if (KEYMANAGER->isStayKeyDown(VK_UP))
         {
-            _sY -= _speed;
+            if (_shadowRc.top < _camera->getCameraRc().top && _camera->getCamY() > 0 + _speed)
+            {
+                _camera->setCamY(_camera->getCamY() - _speed);
+            }
+            else
+            {
+                _sY -= _speed;
+            }
+            
         }
         if (KEYMANAGER->isStayKeyDown(VK_DOWN))
         {
-            _sY += _speed;
+            if (_shadowRc.bottom > _camera->getCameraRc().bottom && _camera->getCamY() < _camera->getBgImage()->getHeight() - WINSIZEY - _speed)
+            {
+                _camera->setCamY(_camera->getCamY() + _speed);
+            }
+            else
+            {
+                _sY += _speed;
+            }
+     
         }
 
         _pX = _sX;

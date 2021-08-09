@@ -1,8 +1,8 @@
 #pragma once
 #include "gameNode.h"
-
-#include "imageStorage.h"
 #include "camera.h"
+#include "imageStorage.h"
+
 
 #include "wait.h"
 
@@ -39,13 +39,12 @@ class bossState;
 class player : public gameNode
 {
 private:
-
 	camera* _camera;
+
 	state* _state;
 	bossState* _bState;
 
 
-	//imageStorage* _imageStorage;
 
 
 	imageStorage* _imageStorage;
@@ -164,6 +163,8 @@ public:
 
 	//중간에 모션이 바뀌면 렌더로 바뀌지 않은 이미지가 로드됨으로 update부터 다시 시작
 	void setState(state* state) { _state = state; update(); update(); }
+
+	void setCamera(camera* camera) { _camera = camera; }
 
 	state* getState() { return _state; }
 

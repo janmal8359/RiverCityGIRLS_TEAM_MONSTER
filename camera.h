@@ -29,7 +29,7 @@ private:
 	image* _backGroundImg;
 	image* _pixelImg;
 
-
+	float _camX, _camY;
 	float _camXrc, _camYrc;
 
 
@@ -43,10 +43,22 @@ public:
 	 void render();
 
 
-	 float getCamX() { return _camXrc; }
-	 float getCamY() { return _camYrc; }
+
+	 float getCamX() { return _camX; }
+	 float getCamY() { return _camY; }
+
+	 void setCamX(float camX) { _camX = camX; }
+	 void setCamY(float camY) { _camY = camY; }
+
+
+	 void setStage(int nowStageNum) { _stage = nowStageNum; }
+
+	 image* getBgImage() { return _backGroundImg; }
+
 
 	 RECT getCameraRc() { return _cameraRc; }
+
+
 
 
 	 

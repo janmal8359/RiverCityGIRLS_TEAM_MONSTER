@@ -1,6 +1,6 @@
 #pragma once
 #include "gameNode.h"
-
+#include "camera.h"
 #include "player.h"
 #include "enemy.h"
 #include "boss.h"
@@ -16,10 +16,12 @@ private:
 
 	image* _first;
 	
-
+	camera* _camera;
 	player* _player;
 	enemy* _enemy;
 	boss* _boss;
+
+
 
 	//ÇÈ¼¿ Å½»ö±â
 	float _probeLX, _probeTY, _probeRX, _probeBY;
