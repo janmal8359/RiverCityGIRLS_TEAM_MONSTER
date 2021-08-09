@@ -98,6 +98,7 @@ void idleState::stateChange()
 			if (_bAttackPattern == 0)
 			{
 				_boss->setMove(true);
+				_boss->setTime(TIMEMANAGER->getWorldTime());
 				_bossAnimL->stop();
 				_bossAnimR->stop();
 				_boss->setState(new walkState);
@@ -196,6 +197,14 @@ void walkState::stateChange()
 		_bossAnimL->stop();
 		_bossAnimR->stop();
 		_boss->setState(new attackState);
+	}
+	else if (TIMEMANAGER->getWorldTime() >= _boss->getTime() + 4)
+	{
+		_boss->setMove(false);
+		_boss->setTime(TIMEMANAGER->getWorldTime());
+		_bossAnimL->stop();
+		_bossAnimR->stop();
+		_boss->setState(new idleState);
 	}
 }
 
