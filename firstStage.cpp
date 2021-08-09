@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "firstStage.h"
-//#include "pixelCollisionClass.h"
+#include "pixelCollisionClass.h"
 
 firstStage::firstStage()
 {
@@ -30,9 +30,11 @@ HRESULT firstStage::init()
 	_isCheck = false;
 
 	_pixel = new pixelCollisionClass;
-	_pixel->init(0, 0, 0);
 
-	return S_OK;
+	_pixel->init(0, 0, 0);
+	_pixel->setPixelPlayer(_player);
+
+	return S_OK; 
 }
 
 void firstStage::release()

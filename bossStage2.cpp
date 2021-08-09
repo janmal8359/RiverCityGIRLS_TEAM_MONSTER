@@ -35,5 +35,5 @@ void bossStage2::update()
 void bossStage2::render()
 {
 	IMAGEMANAGER->findImage("STAGE_bossStage2")->render(getMemDC(), 0, 0);
-	IMAGEMANAGER->findImage("STAGE_bossPixel")->render(getMemDC(), 0, 0);
+	//IMAGEMANAGER->findImage("STAGE_bossPixel")->render(getMemDC(), 0, 0);
 }

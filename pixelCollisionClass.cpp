@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "pixelCollisionClass.h"
+#include "player.h"
 
 pixelCollisionClass::pixelCollisionClass()
 {
@@ -17,18 +18,17 @@ HRESULT pixelCollisionClass::init()
 
 HRESULT pixelCollisionClass::init(float x, float y, int stageType)
 {
-	_probeLX = _player->getShadowX() - _player->getShadowImg()->getWidth() / 2;
-	_probeRX = _player->getShadowX() + _player->getShadowImg()->getWidth() / 2;
-	_probeTY = _player->getShadowY() - _player->getShadowImg()->getHeight() / 2;
-	_probeBY = _player->getShadowY() + _player->getShadowImg()->getHeight() / 2;
+	
 
 	//_firstStage = IMAGEMANAGER->findImage("STAGE_stagePixel1");
 	//_secondStage = IMAGEMANAGER->findImage("STAGE_stagePixel4");
 	//_thirdStage = IMAGEMANAGER->findImage("STAGE_normalPixel");
 	//_bossStage = IMAGEMANAGER->findImage("STAGE_bossPixel");
 
+
 	_stageType = (STAGETYPE)stageType;
 	
+
 	if (_stageType == 0) _stage = IMAGEMANAGER->findImage("STAGE_stagePixel1");
 	if (_stageType == 1) _stage = IMAGEMANAGER->findImage("STAGE_stagePixel4");
 	if (_stageType == 2) _stage = IMAGEMANAGER->findImage("STAGE_normalPixel");
@@ -37,6 +37,8 @@ HRESULT pixelCollisionClass::init(float x, float y, int stageType)
 	_x = x;
 	_y = y;
 	_rc = RectMakeCenter(_x, _y, _stage->getWidth(), _stage->getHeight());
+
+
 
 	return S_OK;
 }
@@ -47,13 +49,20 @@ void pixelCollisionClass::release()
 
 void pixelCollisionClass::update()
 {
+	_probeLX = _player->getShadowX() - _player->getShadowImg()->getWidth() / 2;
+	_probeRX = _player->getShadowX() + _player->getShadowImg()->getWidth() / 2;
+	_probeTY = _player->getShadowY() - _player->getShadowImg()->getHeight() / 2;
+	_probeBY = _player->getShadowY() + _player->getShadowImg()->getHeight() / 2;
+
+
+
 	Colloision();
 }
 
 void pixelCollisionClass::render()
 {
 
-	if(_stage != NULL) _stage->render(getMemDC(), _rc.left, _rc.top);
+	if(_stage != NULL) _stage->render(getMemDC(), _x, _y);
 	//_stage->render(getMemDC(), _rc.left, _rc.top);
 }
 

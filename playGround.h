@@ -13,13 +13,13 @@
 #include "secondStage.h"
 #include "thirdStage.h"
 #include "stageManager.h"
-
  
 class playGround : public gameNode
 {
 private:
 	imageStorage* _imageStorage;
 	gameManager* _gameManager;
+
 
 	player* _player;
 	enemy* _enemy;

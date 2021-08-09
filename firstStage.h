@@ -4,9 +4,9 @@
 #include "enemy.h"
 #include "boss.h"
 #include "state.h"
-#include "pixelCollisionClass.h"
+//#include "pixelCollisionClass.h"
 
-//class pixelCollisionClass;
+class pixelCollisionClass;
 
 //±³½Ç
 class firstStage : public gameNode
@@ -26,6 +26,8 @@ private:
 	//ÇÈ¼¿ Å½»ö±â
 	float _probeLX, _probeTY, _probeRX, _probeBY;
 
+	int _firstType;
+
 public:
 	firstStage();
 	~firstStage();
@@ -36,6 +38,8 @@ public:
 	virtual void render();
 
 	void pixelCollision();
+
+	void setPlayer(player* player) { _player = player; }
 
 	void setpixelCollisionClassMemoryAddressLink(pixelCollisionClass* pixel) { _pixel = pixel; }
 };

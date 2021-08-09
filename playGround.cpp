@@ -21,6 +21,8 @@ HRESULT playGround::init()
 	_gameManager = new gameManager;
 	_gameManager->init();
 
+
+
 	SCENEMANAGER->addScene("imageStorage", _imageStorage);
 
 	//스테이지(씬 매니저)

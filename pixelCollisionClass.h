@@ -5,7 +5,8 @@
 #include "thirdStage.h"
 #include "bossStage1.h"
 #include "bossStage2.h"
-#include "player.h"
+
+class player;
 
 enum STAGETYPE
 {
@@ -29,6 +30,8 @@ private:
 
 	player* _player;
 
+	firstStage* _first;
+
 	RECT _rc;
 	float _x, _y;
 
@@ -51,4 +54,6 @@ public:
 
 	inline RECT getRect() { return _rc; }
 	int getPixelType() { return _stageType; }
+
+	void setfIRSTSTAGEMemoryAddressLink(firstStage* first) { _first = first; }
 };

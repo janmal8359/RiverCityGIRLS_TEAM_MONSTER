@@ -16,7 +16,7 @@ HRESULT bossStage1::init()
 	_isStop = false;
 
 	IMAGEMANAGER->findImage("STAGE_bossStage1");
-	IMAGEMANAGER->findImage("STAGE_bossPixel");
+	//IMAGEMANAGER->findImage("STAGE_bossPixel");
 
 	_x = 800;
 	_y = WINSIZEY / 2;
