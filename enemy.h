@@ -32,11 +32,14 @@ private:
 
 	image* _enemyImg;				//적 이미지
 	RECT _enemyRc;					//적 렉트
-	RECT _enemyAttackBox;			//적 어택 박스
+	
+	
 
 
 	float _enemyX, _enemyY;			//적 x,y값
 	float _enemyDistance;			//적과 플레이어 거리
+
+
 
 	int _enemyDir;					//적 방향
 
@@ -57,6 +60,7 @@ public:
 	//void enemyChase();									//추격
 
 	void enemyAni();										//적 애니메이션
+	
 
 	static void callBack(void* obj);
 	
@@ -96,9 +100,6 @@ public:
 	float getIsEenmyChase() { return _isEChase; }
 	void setIsEnemyChase(float isEchase) { _isEChase = isEchase; }
 
-	//적 어택박스
-	RECT getEnemyAttackBox() { return _enemyAttackBox; }
-
 	//적과 플레이어 거리값
 	float getEnemyDistance() { return _enemyDistance; }
 
@@ -109,7 +110,8 @@ public:
 	int getDir() { return _enemyDir; }
 
 	//적 이미지
-	image* getEnmeyImg() { return _enemyImg; }
+	image* getEnemyImg() { return _enemyImg; }
+	void setEnemyImg(image* EnemyIMG) { _enemyImg = EnemyIMG; }
 
 	//중간에 모션이 바뀌면 렌더로 바뀌지 않으 이미지가 로드됨 update부터 다시 시작이랍니다.
 	void setEnemyState(enemyState* EState) { _enemyState = EState; update(); update(); }

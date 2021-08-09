@@ -24,13 +24,11 @@ HRESULT enemy::init()
 	_enemySY = WINSIZEY / 2;
 
 	_enemyX = _enemySX;
-	_enemyY = _enemySY - _enemyImg->getFrameHeight() / 2 - 30;
+	_enemyY = _enemySY - _enemyImg->getFrameHeight() / 2;
 
 	_enemyRc = RectMakeCenter(_enemyX, _enemyY, _enemyImg->getFrameWidth(), _enemyImg->getFrameWidth());
 	_enemyShadowRc = RectMakeCenter(_enemySX, _enemySY, _enemyShadowImg->getWidth(), _enemyShadowImg->getHeight());
-
-
-
+			
 	_enemySpeed = 2;
 	_enemyJP = 0;
 	
@@ -55,10 +53,15 @@ void enemy::release()
 void enemy::update()
 {
 
-	_enemyState->setEnemy(this);
 
+
+	_enemyState->setEnemy(this);
+	
 	enemyMove();
 	enemyAttack();
+
+	_enemyY = _enemySY - _enemyImg->getFrameHeight() / 2;
+
 
 	_enemyDistance = getDistance(_player->getShadowX(), _player->getShadowY(), _enemySX + _enemyShadowImg->getFrameWidth(), _enemySY);
 	_enemyState->update();
@@ -72,11 +75,19 @@ void enemy::render()
 	sprintf_s(str1, "적과 플레이어거리 : %.2f", _enemyDistance);
 	TextOut(getMemDC(), _enemySX, _enemySY + 50, str1, strlen(str1));
 
-	_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
-	_enemyState->render();
 
+	sprintf_s(str1, "적 공격 : %d", _enemyState->getEattackIdx());
+	TextOut(getMemDC(), _enemySX, _enemySY + 70, str1, strlen(str1));
+
+
+	_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
+	
 	
 
+	
+	
+	
+	_enemyState->render();
 }
 
 void enemy::enemyStateRender(animation* motion)
@@ -94,16 +105,16 @@ void enemy::enemyMove()
 		{
 			if (_enemyDir == ENEMY_RIGHT)
 			{
-				_enemySX = _enemyX;
-				_enemyX -= cosf(getAngle(_player->getShadowX() - 80, _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
+				_enemyX = _enemySX;
+				_enemySX -= cosf(getAngle(_player->getShadowX() - 80, _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
 			}
 			if (_enemyDir == ENEMY_LEFT)
 			{
-				_enemySX = _enemyX;
-				_enemyX -= cosf(getAngle(_player->getShadowX() + 80, _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
+				_enemyX= _enemySX;
+				_enemySX -= cosf(getAngle(_player->getShadowX() + 80, _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
 			}
-			_enemySY = _enemyY + _enemyImg->getFrameHeight() / 2 + 30;
-			_enemyY -= -sin(getAngle(_player->getShadowX(), _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
+			//_enemyY = _enemySY - _enemyImg->getFrameHeight() / 2;
+			_enemySY -= -sin(getAngle(_player->getShadowX(), _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
 		}
 		if (_isEJump)
 		{
@@ -117,9 +128,7 @@ void enemy::enemyMove()
 			{
 				_enemyY = _enemySY - _enemyImg->getFrameHeight() / 2;
 				_isEJump = false;
-				
 			}
-
 		}
 	}
 
@@ -134,16 +143,37 @@ void enemy::enemyMove()
 		_enemyDir = ENEMY_LEFT;
 	}
 
-	_enemyRc = RectMakeCenter(_enemyX, _enemyY, _enemyImg->getFrameWidth(), _enemyImg->getFrameWidth());
+	_enemyRc = RectMakeCenter(_enemyX, _enemyY, _enemyImg->getFrameWidth(), _enemyImg->getFrameHeight());
 	_enemyShadowRc = RectMakeCenter(_enemySX, _enemySY, _enemyShadowImg->getWidth(), _enemyShadowImg->getHeight());
 }
 
 void enemy::enemyAttack()
 {
+	
+
+	if (_enemyDistance <= 87)
+	{
+		if (!_isEAttack)
+		{
+			_enemyState->setEattackIdx(_enemyState->getEattackIdx() + 1);
+			_isEAttack = true;
+		}
+	
+	}
+	if (_enemyDistance > 85)
+	{
+		_enemyState->setEattackIdx(0);
+		_isEAttack = false;
+	}
 	if (_isEAttack)
 	{
-		
+		_enemySpeed = 0;
 	}
+	if (!_isEAttack)
+	{
+		_enemySpeed = 2;
+	}
+	
 }
 
 

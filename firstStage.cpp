@@ -47,7 +47,7 @@ void firstStage::update()
 	_enemy->getEnemyState()->setEnemy(_enemy);
 	
 
-	pixelCollision();
+	//pixelCollision();
 }
 
 void firstStage::render()

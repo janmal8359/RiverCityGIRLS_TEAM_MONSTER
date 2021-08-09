@@ -15,6 +15,7 @@ class enemyState : public gameNode
 {
 protected:
 
+	int _EattackIdx;		//적 콤보
 	image* _enemyImg;
 	int _enemyDir;
 
@@ -38,10 +39,14 @@ public:
 
 	virtual void setEnemy(enemy* enemy) { _enemy = enemy; }
 
+	int getEattackIdx() { return _EattackIdx; }
+	void setEattackIdx(int EattackIdx) { _EattackIdx = EattackIdx; }
+
 	//접근자 설정자
 	
 	//적 애니
 	virtual animation* getEnemeyAni() { return _enemyAni; }
+	
 	//적 이미지
 	virtual image* getEnemyImg() { return _enemyImg; }
 };
@@ -86,7 +91,7 @@ class enemyAttack : public enemyState	//공격
 
 private:
 
-	int _EattackIdx;		//적 콤보
+	
 
 public:
 
