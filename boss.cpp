@@ -52,12 +52,12 @@ void boss::update()
 	//if (!_isJump) _jumpPower = 0;
 
 	if ((abs(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) < PI / 2 || abs(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) > 3 * PI / 2) &&
-		!_isAttack && !_isJump)
+		!_isAttack && !_isJump && !_isFloat)
 	{
 		_direction = (int)DIRECTION::LEFT;
 	}
 	else if ((abs(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) > PI / 2 && abs(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) < 3 * PI / 2) &&
-		!_isAttack && !_isJump)
+		!_isAttack && !_isJump && !_isFloat)
 	{
 		_direction = (int)DIRECTION::RIGHT;
 	}
@@ -90,11 +90,15 @@ void boss::render()
 
 	sprintf_s(str, "time : %.2f", _time);
 	TextOut(getMemDC(), 10, 400, str, strlen(str));
+
+	sprintf_s(str, "power : %.2f", _jumpPower);
+	TextOut(getMemDC(), 10, 430, str, strlen(str));
+
 }
 
 void boss::stateRender(animation* anim)
 {
-	if (_sy - _by <= 500) _bossImg->aniRender(getMemDC(), _bossRc.left, _bossRc.top, anim);
+	if (_sy - _by <= 400) _bossImg->aniRender(getMemDC(), _bossRc.left, _bossRc.top, anim);
 }
 
 void boss::bossAnim()
@@ -113,12 +117,19 @@ void boss::bossAnim()
 
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dropL", "BOSS_meteor", 0, 1, 10, false, true);
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dropR", "BOSS_meteor", 3, 2, 10, false, true);
+
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dashStartL", "BOSS_dash", 0, 1, 10, false, false);
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dashStartR", "BOSS_dash", 19, 18, 10, false, false);
+
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dashL", "BOSS_dash", 2, 9, 10, false, true);
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dashR", "BOSS_dash", 17, 10, 10, false, true);
 }
 
 void boss::move()
 {
 	if (_isMove) _speed = 2;
 	if (_isFloat) _speed = 5;
+	if (_isDash) _speed = 5;
 
 	_bx -= cosf(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) * _speed;
 	_sx = _bx;
@@ -137,7 +148,7 @@ void boss::jump()
 
 	if (_isJump)
 	{
-		if (_sy - _by < 500)
+		if (_sy - _by < 700)
 		{
 			_jumpPower += 30;
 		}
