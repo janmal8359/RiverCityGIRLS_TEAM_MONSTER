@@ -16,6 +16,14 @@ private:
 	UIBar _playerHPPoint[24];
 	UIBar _playerHPBackground;
 
+	bool mapLocked;
+	bool mapUnlocked;
+
+	bool scriptStart;
+	bool scriptEnd;
+	RECT scriptRc;
+	image* scriptImage;
+
 	int _playerHP;
 
 public:
@@ -26,5 +34,7 @@ public:
 	void release();
 	void update();
 	void render();
+
+	void scriptPlay();
 };
 
