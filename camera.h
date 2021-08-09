@@ -23,21 +23,32 @@ private:
 
 	RECT _cameraRc;
 
+	int  _stage;
+
+
 	image* _backGroundImg;
 	image* _pixelImg;
 
-	float _camX, _camY;
+
+	float _camXrc, _camYrc;
 
 
 
-
+	 
 public:
 
 	 HRESULT init();
 	 void release();
-	 void update(float playerX,float playerY);
+	 void update();
 	 void render();
 
 
+	 float getCamX() { return _camXrc; }
+	 float getCamY() { return _camYrc; }
+
+	 RECT getCameraRc() { return _cameraRc; }
+
+
+	 
 };
 
