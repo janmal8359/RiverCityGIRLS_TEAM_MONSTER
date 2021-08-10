@@ -65,8 +65,8 @@ void firstStage::update()
 	_boss->setPlayerMemoryAddressLink(_player);
 	_boss->update();
 
-	//_pixel->setPixelPlayer(_player);
-	//_pixel->update();
+	_pixel->setPixelPlayer(_player);
+	_pixel->update();
 
 	_enemy->update();
 	_enemy->getEnemyState()->setEnemy(_enemy);
