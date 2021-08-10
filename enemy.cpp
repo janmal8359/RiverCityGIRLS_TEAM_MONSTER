@@ -80,6 +80,9 @@ void enemy::render()
 	TextOut(getMemDC(), _enemySX, _enemySY + 70, str1, strlen(str1));
 
 
+	sprintf_s(str1, "적 공격시 : %d", (int)_isEAttack);
+	TextOut(getMemDC(), _enemySX, _enemySY + 90, str1, strlen(str1));
+
 	_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
 	
 	
@@ -103,12 +106,12 @@ void enemy::enemyMove()
 	{
 		if (_enemyDistance < 400)	//쫒아가는거
 		{
-			if (_enemyDir == ENEMY_RIGHT)
+			if (_enemyDir == (int)ENEMY_RIGHT)
 			{
 				_enemyX = _enemySX;
 				_enemySX -= cosf(getAngle(_player->getShadowX() - 80, _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
 			}
-			if (_enemyDir == ENEMY_LEFT)
+			if (_enemyDir == (int)ENEMY_LEFT)
 			{
 				_enemyX= _enemySX;
 				_enemySX -= cosf(getAngle(_player->getShadowX() + 80, _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
@@ -136,11 +139,11 @@ void enemy::enemyMove()
 	//플레이어와의 거리를 파악해서 방향 전환
 	if (_player->getShadowX() > _enemySX)
 	{
-		_enemyDir = ENEMY_RIGHT;
+		_enemyDir = (int)ENEMY_RIGHT;
 	}
 	if (_player->getShadowX() < _enemySX)
 	{
-		_enemyDir = ENEMY_LEFT;
+		_enemyDir = (int)ENEMY_LEFT;
 	}
 
 	_enemyRc = RectMakeCenter(_enemyX, _enemyY, _enemyImg->getFrameWidth(), _enemyImg->getFrameHeight());
@@ -151,28 +154,7 @@ void enemy::enemyAttack()
 {
 	
 
-	if (_enemyDistance <= 87)
-	{
-		if (!_isEAttack)
-		{
-			_enemyState->setEattackIdx(_enemyState->getEattackIdx() + 1);
-			_isEAttack = true;
-		}
 	
-	}
-	if (_enemyDistance > 85)
-	{
-		_enemyState->setEattackIdx(0);
-		_isEAttack = false;
-	}
-	if (_isEAttack)
-	{
-		_enemySpeed = 0;
-	}
-	if (!_isEAttack)
-	{
-		_enemySpeed = 2;
-	}
 	
 }
 

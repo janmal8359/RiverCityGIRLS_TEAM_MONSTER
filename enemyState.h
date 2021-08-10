@@ -29,13 +29,15 @@ public:
 	enemyState();
 	~enemyState();
 
-	virtual HRESULT init() = 0; //초기화
-	virtual void release() = 0;
-	virtual void update() = 0;
-	virtual void render() = 0;
+	virtual HRESULT init(); //초기화
+	virtual void release();
+	virtual void update();
+	virtual void render();
 
 	virtual void enemyStateChange() {};
 	virtual void enemyAni() {};
+
+	virtual void callBk();
 
 	virtual void setEnemy(enemy* enemy) { _enemy = enemy; }
 
@@ -106,7 +108,7 @@ public:
 	virtual void enemyStateChange();
 	virtual void enemyAni();
 
-	void callBk(); //콜백
+	virtual void callBk(); //콜백
 };
 
 
