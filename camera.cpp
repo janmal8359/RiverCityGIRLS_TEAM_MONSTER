@@ -58,7 +58,6 @@ void camera::release()
 
 void camera::update()
 {
-  
 }
 
 void camera::render()
@@ -70,6 +69,6 @@ void camera::render()
         _pixelImg->render(getMemDC(), 0, 0, _camX, _camY, WINSIZEX, WINSIZEY);
         Rectangle(getMemDC(), _cameraRc);
     }
-   // Rectangle(getMemDC(), _cameraRc);
+    Rectangle(getMemDC(), _cameraRc);
 
 }

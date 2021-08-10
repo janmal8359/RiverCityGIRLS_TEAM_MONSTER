@@ -20,7 +20,6 @@ HRESULT bossStage2::init()
 	IMAGEMANAGER->findImage("OBJECT_particle2");
 	IMAGEMANAGER->findImage("OBJECT_particle3");
 	IMAGEMANAGER->findImage("STAGE_bossStage2");
-	//IMAGEMANAGER->findImage("STAGE_bossPixel");
 
 	_player = new player;
 	_player->init();
@@ -51,7 +50,6 @@ void bossStage2::update()
 void bossStage2::render()
 {
 	IMAGEMANAGER->findImage("STAGE_bossStage2")->render(getMemDC(), 0, 0);
-	//IMAGEMANAGER->findImage("STAGE_bossPixel")->render(getMemDC(), 0, 0);
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{

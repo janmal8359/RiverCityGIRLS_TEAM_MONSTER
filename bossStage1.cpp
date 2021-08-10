@@ -17,7 +17,6 @@ HRESULT bossStage1::init()
 	_isStop = false;
 
 	IMAGEMANAGER->findImage("STAGE_bossStage1");
-	//IMAGEMANAGER->findImage("STAGE_bossPixel");
 
 	_x = 800;
 	_y = WINSIZEY / 2;
@@ -62,7 +61,6 @@ void bossStage1::update()
 void bossStage1::render()
 {
 	IMAGEMANAGER->findImage("STAGE_bossStage1")->render(getMemDC(), 0, 0);
-	//IMAGEMANAGER->findImage("STAGE_bossPixel")->render(getMemDC(), 0, 0);
 
 	/*
 	if(_isCheck)
@@ -77,5 +75,4 @@ void bossStage1::render()
 	}
 
 	_player->render();
-
 }

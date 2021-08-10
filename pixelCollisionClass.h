@@ -5,6 +5,7 @@
 #include "thirdStage.h"
 #include "bossStage1.h"
 #include "bossStage2.h"
+#include "camera.h"
 
 class player;
 
@@ -19,14 +20,9 @@ enum STAGETYPE
 class pixelCollisionClass : public gameNode
 {
 private:
-	//image* _firstStage;
-	//image* _secondStage;
-	//image* _thirdStage;
-	//image* _bossStage;
+	image* _stage;				//스테이지 타입에 따른 스테이지
 
-	image* _stage;
-
-	STAGETYPE _stageType;
+	STAGETYPE _stageType;		//스테이지 타입
 
 	player* _player;
 
@@ -35,6 +31,8 @@ private:
 	thirdStage*		_third;
 	bossStage1*		_boss1;
 	bossStage2*		_boss2;
+
+	camera* _camera;
 
 	RECT _rc;
 	float _x, _y;
@@ -60,8 +58,9 @@ public:
 	int getPixelType() { return (int)_stageType; }
 
 	void setfIRSTSTAGEMemoryAddressLink(firstStage* first) { _first = first; }
-	void setfIRSTSTAGEMemoryAddressLink(secondStage* second) { _second = second; }
-	void setfIRSTSTAGEMemoryAddressLink(thirdStage* third) { _third = third; }
-	void setfIRSTSTAGEMemoryAddressLink(bossStage1* boss1) { _boss1 = boss1; }
-	void setfIRSTSTAGEMemoryAddressLink(bossStage2* boss2) { _boss2 = boss2; }
+	void setSECONDSTAGEMemoryAddressLink(secondStage* second) { _second = second; }
+	void setTHIRDSTAGEMemoryAddressLink(thirdStage* third) { _third = third; }
+	void setBOSSSTAGE1MemoryAddressLink(bossStage1* boss1) { _boss1 = boss1; }
+	void setBOSSSTAGE2MemoryAddressLink(bossStage2* boss2) { _boss2 = boss2; }
+	void setCAMERAMemoryAddressLink(camera* camera) { _camera = camera; }
 };
