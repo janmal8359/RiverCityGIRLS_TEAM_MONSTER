@@ -38,7 +38,9 @@ HRESULT gameManager::init()
 	scriptEnd = true;
 	scriptImage = IMAGEMANAGER->findImage("SCENE_dialogWindow");
 	scriptRc = RectMakeCenter(WINSIZEX / 2, 650, scriptImage->getWidth(), scriptImage->getHeight());
-
+	_scriptIndex = _txtIndex = 0;
+	
+	_vScript = TXTDATA->txtLoad("´ëÈ­.txt");
 
 	return S_OK;
 }
@@ -100,6 +102,29 @@ void gameManager::render()
 		scriptPlay();
 		IMAGEMANAGER->findImage("SCENE_skipOutlines1")->render(getMemDC(), 1070, 10);
 
+		SetTextColor(getMemDC(), RGB(255, 255, 255));
+		char str[1024];
+		HFONT font, oldFont;
+		RECT rcText = RectMake(200, WINSIZEY - 56, WINSIZEX - 350, 76);
+		font = CreateFont(35, 0, 0, 0, 400, false, false, false,
+			DEFAULT_CHARSET,
+			OUT_STRING_PRECIS,
+			CLIP_DEFAULT_PRECIS,
+			PROOF_QUALITY,
+			DEFAULT_PITCH | FF_SWISS,
+			TEXT("ÈÞ¸Õ±¼¸²"));
+
+		if (_txtIndex > 90)
+		{
+			rcText = RectMake(200, WINSIZEY - 76, WINSIZEX - 350, 76);
+		}
+
+		oldFont = (HFONT)SelectObject(getMemDC(), font);
+		DrawText(getMemDC(), TEXT(_txt.c_str()), _txtIndex, &rcText,
+			DT_LEFT | DT_WORDBREAK | DT_VCENTER);
+
+		DeleteObject(font);
+
 	}
 	if (scriptEnd)
 	{
@@ -111,4 +136,24 @@ void gameManager::scriptPlay()
 {
 	scriptImage->render(getMemDC(), scriptRc.left, scriptRc.top);
 
+	_txt = _vScript[_scriptIndex];
+
+	if (_txtIndex <= _txt.length())
+	{
+		_txtIndex++;
+	}
+	else if (_txtIndex >= _txt.length() && KEYMANAGER->isOnceKeyDown(VK_SPACE))
+	{
+		_scriptIndex++;
+		_txtIndex = 0;
+	}
+
+	if (_txtIndex < _txt.length() && KEYMANAGER->isOnceKeyDown(VK_SPACE))
+		_txtIndex = _txt.length();
+
+	if (_scriptIndex >= _vScript.size())
+	{
+		scriptStart = false;
+		scriptEnd = true;
+	}
 }

@@ -23,6 +23,10 @@ private:
 	bool scriptEnd;
 	RECT scriptRc;
 	image* scriptImage;
+	int _scriptIndex;
+	int _txtIndex;
+	vector<string> _vScript;
+	string _txt;
 
 	int _playerHP;
 

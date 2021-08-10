@@ -91,9 +91,6 @@
     <Filter Include="playGround\1-1.STAGE_MANAGER\3.SAVEFILE">
       <UniqueIdentifier>{55bdae02-8043-4462-a7a6-5c0d01254fe9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\CAMERA">
-      <UniqueIdentifier>{0bbae0e9-6015-4c81-acc4-98f54f16d1e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\3.ENEMY_MANAGER\enemy">
       <UniqueIdentifier>{20b81c4d-1b79-4a81-8bf5-2739f5bf9858}</UniqueIdentifier>
     </Filter>
@@ -105,6 +102,9 @@
     </Filter>
     <Filter Include="리소스 파일\IMAGESTORAGE">
       <UniqueIdentifier>{ab165de8-e08f-446f-af80-90dc4bb6e80a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\5.GAME_MANAGER\CAMERA">
+      <UniqueIdentifier>{0bbae0e9-6015-4c81-acc4-98f54f16d1e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -244,7 +244,7 @@
       <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
     <ClInclude Include="camera.h">
-      <Filter>playGround\CAMERA</Filter>
+      <Filter>playGround\5.GAME_MANAGER\CAMERA</Filter>
     </ClInclude>
     <ClInclude Include="die.h">
       <Filter>playGround\4.PLAYER_STATE</Filter>
@@ -432,7 +432,7 @@
       <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClCompile>
     <ClCompile Include="camera.cpp">
-      <Filter>playGround\CAMERA</Filter>
+      <Filter>playGround\5.GAME_MANAGER\CAMERA</Filter>
     </ClCompile>
     <ClCompile Include="die.cpp">
       <Filter>playGround\4.PLAYER_STATE</Filter>
