@@ -106,6 +106,9 @@
     <Filter Include="playGround\5.GAME_MANAGER\CAMERA">
       <UniqueIdentifier>{0bbae0e9-6015-4c81-acc4-98f54f16d1e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2DGameFramework\zOrder">
+      <UniqueIdentifier>{fe678922-024f-45d8-a616-139c7f207cf0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -315,6 +318,9 @@
     <ClInclude Include="pixelCollisionClass.h">
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME</Filter>
     </ClInclude>
+    <ClInclude Include="zOrder.h">
+      <Filter>2DGameFramework\zOrder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -511,6 +517,9 @@
     </ClCompile>
     <ClCompile Include="pixelCollisionClass.cpp">
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME</Filter>
+    </ClCompile>
+    <ClCompile Include="zOrder.cpp">
+      <Filter>2DGameFramework\zOrder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
