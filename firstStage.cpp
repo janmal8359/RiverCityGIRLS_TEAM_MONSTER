@@ -72,7 +72,7 @@ void firstStage::render()
 	_enemy->render();
 	_boss->render();
 }
-
+/*
 void firstStage::pixelCollision()
 {
 	//그림자 4개의 꼭지점
@@ -252,3 +252,4 @@ void firstStage::pixelCollision()
 	//}
 	
 }
+*/

@@ -30,7 +30,11 @@ private:
 
 	player* _player;
 
-	firstStage* _first;
+	firstStage*		_first;
+	secondStage*	_second;
+	thirdStage*		_third;
+	bossStage1*		_boss1;
+	bossStage2*		_boss2;
 
 	RECT _rc;
 	float _x, _y;
@@ -56,4 +60,8 @@ public:
 	int getPixelType() { return _stageType; }
 
 	void setfIRSTSTAGEMemoryAddressLink(firstStage* first) { _first = first; }
+	void setfIRSTSTAGEMemoryAddressLink(secondStage* second) { _second = second; }
+	void setfIRSTSTAGEMemoryAddressLink(thirdStage* third) { _third = third; }
+	void setfIRSTSTAGEMemoryAddressLink(bossStage1* boss1) { _boss1 = boss1; }
+	void setfIRSTSTAGEMemoryAddressLink(bossStage2* boss2) { _boss2 = boss2; }
 };

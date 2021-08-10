@@ -15,7 +15,7 @@ private:
 	bool _isCheck;
 	bool _isNextCount;
 
-	image* _first;
+	//image* _first;
 	
 	player* _player;
 	enemy* _enemy;
@@ -24,9 +24,7 @@ private:
 	pixelCollisionClass* _pixel;
 
 	//ÇÈ¼¿ Å½»ö±â
-	float _probeLX, _probeTY, _probeRX, _probeBY;
-
-	int _firstType;
+	//float _probeLX, _probeTY, _probeRX, _probeBY;
 
 public:
 	firstStage();
@@ -37,7 +35,7 @@ public:
 	virtual void update();
 	virtual void render();
 
-	void pixelCollision();
+	//void pixelCollision();
 
 	void setPlayer(player* player) { _player = player; }
 

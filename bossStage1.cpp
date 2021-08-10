@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "bossStage1.h"
+#include "pixelCollisionClass.h"
 
 bossStage1::bossStage1()
 {
@@ -23,6 +24,13 @@ HRESULT bossStage1::init()
 
 	_rc = RectMakeCenter(_x, _y, 10, 1080);
 
+	_player = new player;
+	_player->init();
+
+	_pixel = new pixelCollisionClass;
+
+	_pixel->init(0, 0, 3);
+	_pixel->setPixelPlayer(_player);
 
 	return S_OK;
 }
@@ -42,6 +50,13 @@ void bossStage1::update()
 	}
 	*/
 
+	_player->update();
+
+	_player->getState()->setPlayer(_player);
+
+	_pixel->setPixelPlayer(_player);
+	_pixel->update();
+
 }
 
 void bossStage1::render()
@@ -55,4 +70,12 @@ void bossStage1::render()
 	videoPlay
 	}
 	*/
+
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		_pixel->render();
+	}
+
+	_player->render();
+
 }
