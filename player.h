@@ -32,7 +32,7 @@
 
 #pragma warning(disable:4996)
 
-class bossState;
+class boss;
 
 
 
@@ -42,7 +42,7 @@ private:
 	camera* _camera;
 
 	state* _state;
-	bossState* _bState;
+	boss* _boss;
 
 
 

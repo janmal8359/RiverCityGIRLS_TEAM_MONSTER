@@ -52,7 +52,6 @@ void gameManager::release()
 void gameManager::update()
 {
 	//플레이어 HP
-
 	if (KEYMANAGER->isOnceKeyDown(VK_F3) && _playerHP > 0)
 	{
 		_playerHP -=1;
@@ -61,7 +60,8 @@ void gameManager::update()
 	{
 		_playerHP +=1;
 	}
-	for (int i = 0; i < _playerHP; i++) {
+	for (int i = 0; i < _playerHP; i++) 
+	{
 		_playerHPPoint[i]._rc = RectMakeCenter(270 + i * 16, 53, _playerHPPoint[i]._image->getWidth(), _playerHPPoint[i]._image->getHeight());
 	}
 

@@ -2,7 +2,6 @@
 #include "gameNode.h"
 
 class boss;
-class player;
 
 enum class DIRECTION
 {
@@ -14,14 +13,21 @@ class bossState : public gameNode
 {
 protected:
 	image* _bossImg;
-	DIRECTION _direction;
+	int _direction;
 
 	boss* _boss;
 	RECT _bossRc;
 
-	player* _player;
+	//animation* _bossAnim;
+	animation* _bossAnimL;
+	animation* _bossAnimR;
 
-	animation* _bossAnim;
+	bool _isAnim;
+	bool _isStart;
+
+	float _distance;
+
+	int _bAttackPattern = 1;
 
 public:
 	virtual HRESULT init();
@@ -31,12 +37,14 @@ public:
 
 	virtual void stateChange();
 	virtual void anim();
+	virtual void animOver();
 
 	image* getImg() { return _bossImg; }
 	void setBoss(boss* boss) { _boss = boss; }
-	void setPlayer(player* player) { _player = player; }
 
-	animation* getBossAnim() { return _bossAnim; }
+	//animation* getBossAnim() { return _bossAnim; }
+
+	void setDirection(int direction) { _direction = direction; }
 
 protected:
 	void setBossState(boss* boss, bossState* state) { /*boss->setState(state); // 상태 변경*/ }
@@ -45,10 +53,10 @@ protected:
 class idleState : public bossState
 {
 private:
-	//idleState* instance;
 
 public:
-	//idleState* getInstance() { if (instance == nullptr) instance = new idleState(); return instance; }
+	idleState();
+	~idleState();
 
 	virtual HRESULT init();
 	virtual void release();
@@ -62,10 +70,10 @@ public:
 class walkState : public bossState
 {
 private:
-	walkState* instance;
 
 public:
-	walkState* getInstance() { if (instance == nullptr) instance = new walkState(); return instance; }
+	walkState();
+	~walkState();
 
 	virtual HRESULT init();
 	virtual void release();
@@ -79,29 +87,77 @@ public:
 class attackState : public bossState
 {
 private:
-	attackState* instance;
 
 public:
-	attackState* getInstance() { if (instance == nullptr) instance = new attackState(); return instance; }
+
+	attackState();
+	~attackState();
 
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	virtual void stateChange();
+	virtual void anim();
+	virtual void animOver();
 };
 
 class jumpState : public bossState
 {
 private:
-	jumpState* instance;
 
 public:
-	jumpState* getInstance() { if (instance == nullptr) instance = new jumpState(); return instance; }
+
+	jumpState();
+	~jumpState();
 
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	virtual void stateChange();
+	virtual void anim();
+	virtual void animOver();
+};
+
+class dashState : public bossState
+{
+private:
+
+public:
+
+	dashState();
+	~dashState();
+
+	virtual HRESULT init();
+	virtual void release();
+	virtual void update();
+	virtual void render();
+
+	virtual void stateChange();
+	virtual void anim();
+	virtual void animOver();
+};
+
+class roarState : public bossState
+{
+private:
+
+public:
+
+	roarState();
+	~roarState();
+
+	virtual HRESULT init();
+	virtual void release();
+	virtual void update();
+	virtual void render();
+
+	virtual void stateChange();
+	virtual void anim();
+	virtual void animOver();
 };
 
 class sitState : public bossState
