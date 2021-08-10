@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include <string>
 
 
 struct UIBar
@@ -29,6 +30,12 @@ private:
 	int _txtIndex;
 	vector<string> _vScript;
 	string _txt;
+	image* scriptSkip;
+	bool _scriptSkip;
+
+	image* kScript;
+	image* mScript;
+	
 
 	int _playerHP;
 

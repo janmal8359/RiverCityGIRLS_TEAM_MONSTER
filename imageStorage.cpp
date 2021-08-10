@@ -516,7 +516,7 @@ HRESULT imageStorage::init()
 	IMAGEMANAGER->addImage("SCENE_skipOutlines1", "Resource/IMG/ui/scene/UI_skip_outlines_FULL.bmp", 206, 78, true, RGB(255, 0, 255));
 
 	//다이얼로그 스킵 표시-화이트
-	IMAGEMANAGER->addImage("SCENE_skipOutlines2", "Resource/IMG/ui/scene/misuzu_name.bmp", 206, 78, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("SCENE_skipOutlines2", "Resource/IMG/ui/scene/UI_skip_outlines_WHITE.bmp", 206, 78, true, RGB(255, 0, 255));
 
 	//세이브 로드
 	IMAGEMANAGER->addImage("SCENE_saveLoadClose1", "Resource/IMG/ui/scene/save_load_close.bmp", 365, 150, true, RGB(255, 0, 255));
