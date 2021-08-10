@@ -57,7 +57,7 @@ public:
 	void setPixelPlayer(player* player) { _player = player; }
 
 	inline RECT getRect() { return _rc; }
-	int getPixelType() { return _stageType; }
+	int getPixelType() { return (int)_stageType; }
 
 	void setfIRSTSTAGEMemoryAddressLink(firstStage* first) { _first = first; }
 	void setfIRSTSTAGEMemoryAddressLink(secondStage* second) { _second = second; }

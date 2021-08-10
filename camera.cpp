@@ -64,6 +64,7 @@ void camera::update()
 void camera::render()
 {
     _backGroundImg->render(getMemDC(), 0, 0, _camX, _camY, WINSIZEX, WINSIZEY);
+
     if (KEYMANAGER->isToggleKey(VK_TAB))
     {
         _pixelImg->render(getMemDC(), 0, 0, _camX, _camY, WINSIZEX, WINSIZEY);

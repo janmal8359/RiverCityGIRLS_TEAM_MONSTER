@@ -62,10 +62,11 @@ void firstStage::update()
 
 	_player->getState()->setPlayer(_player);
 
+	_boss->setPlayerMemoryAddressLink(_player);
 	_boss->update();
 
-	_pixel->setPixelPlayer(_player);
-	_pixel->update();
+	//_pixel->setPixelPlayer(_player);
+	//_pixel->update();
 
 	_enemy->update();
 	_enemy->getEnemyState()->setEnemy(_enemy);
@@ -82,7 +83,7 @@ void firstStage::render()
 		//_first->render(getMemDC(), 0, 0);
 		_pixel->render();
 	}
-
+	
 	_camera->render();
 	_player->render();
 	_enemy->render();

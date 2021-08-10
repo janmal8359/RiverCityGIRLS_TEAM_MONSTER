@@ -90,7 +90,7 @@ void pixelCollisionClass::Colloision()
 				//책상 바닥
 				else if ((R == 0 && G == 255 && B == 0))//그린
 				{
-					//_player->setShadowX(+8);
+					//_player->setShadowX(_player->getShadowX() + 8);
 					//_player->setSpeed(6);
 					_player->setSpeed(0);
 				}
@@ -98,6 +98,7 @@ void pixelCollisionClass::Colloision()
 				else if (R == 0 && G == 255 && B == 255)//민트
 				{
 					_player->setSpeed(6);
+					// 플레이어 주변에 문 애니메이션 출력
 
 				}
 				//그 이외
