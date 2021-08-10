@@ -56,8 +56,9 @@ void pixelCollisionClass::update()
 
 void pixelCollisionClass::render()
 {
-	char str[256];
-	sprintf_s(str, "%0.2f", ((_probeTY + _probeBY) / 2) + _camera->getCamY());
+	char str[128];
+	
+	sprintf_s(str, "%0.2f,%0.2f", _camera->getCamY(), _player->getShadowY());
 
 	TextOut(getMemDC(), 0, WINSIZEY / 2, str, strlen(str));
 
@@ -125,11 +126,11 @@ void pixelCollisionClass::Colloision()
 			//_stage = IMAGEMANAGER->findImage("STAGE_stagePixel1");
 			//COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX() + _camera->getCamX(), i - _camera->getCamY()); 기본
 			//COLORREF color = GetPixel(_stage->getMemDC(), i + _camera->getCamX() + 50, _player->getShadowY() + _camaera->getCamY()); 민트가 y축 +50에 고정 라인 생성
-			COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX() + _camera->getCamX(), i + _camera->getCamY());
+			COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX() + _camera->getCamX(), _player->getShadowY() + _camera->getCamY());
 
 			int R = GetRValue(color);
-			int  G = GetGValue(color);
-			int  B = GetBValue(color);
+			int G = GetGValue(color);
+			int B = GetBValue(color);
 
 			if (!(R == 255 && G == 0 && B == 255))
 			{

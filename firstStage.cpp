@@ -37,6 +37,7 @@ HRESULT firstStage::init()
 
 	_pixel->init(0, 0, 0);
 	_pixel->setPixelPlayer(_player);
+	_pixel->setCAMERAMemoryAddressLink(_camera);
 
 	return S_OK; 
 }
@@ -63,12 +64,14 @@ void firstStage::update()
 
 void firstStage::render()
 {
-	if (KEYMANAGER->isToggleKey(VK_TAB))
+
+	_camera->render();
+
+	if (KEYMANAGER->isToggleKey(VK_F8))
 	{
 		_pixel->render();
 	}
-	
-	_camera->render();
+
 	_player->render();
 	//_enemy->render();
 	//_boss->render();
