@@ -312,6 +312,9 @@
     <ClInclude Include="grab.h">
       <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
+    <ClInclude Include="pixelCollisionClass.h">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -505,6 +508,9 @@
     </ClCompile>
     <ClCompile Include="grab.cpp">
       <Filter>playGround\4.PLAYER_STATE</Filter>
+    </ClCompile>
+    <ClCompile Include="pixelCollisionClass.cpp">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

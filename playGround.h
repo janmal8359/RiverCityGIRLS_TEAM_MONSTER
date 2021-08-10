@@ -14,7 +14,6 @@
 #include "secondStage.h"
 #include "thirdStage.h"
 #include "stageManager.h"
-
  
 class playGround : public gameNode
 {
@@ -23,6 +22,7 @@ private:
 	//sfxStorage* _sfxStorage;
 
 	gameManager* _gameManager;
+
 
 	player* _player;
 	enemy* _enemy;

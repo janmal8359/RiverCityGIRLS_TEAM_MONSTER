@@ -1,5 +1,9 @@
 #pragma once
 #include "gameNode.h"
+#include "player.h"
+
+class pixelCollisionClass;
+
 //보스방(등장 전)
 class bossStage1 : public gameNode
 {
@@ -14,6 +18,10 @@ private:
 	bool _isNextCount;
 	bool _isStop;
 
+	player* _player;
+
+	pixelCollisionClass* _pixel;
+
 public:
 	bossStage1();
 	~bossStage1();
@@ -22,5 +30,9 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	void setPlayer(player* player) { _player = player; }
+
+	void setpixelCollisionClassMemoryAddressLink(pixelCollisionClass* pixel) { _pixel = pixel; }
 };
 
