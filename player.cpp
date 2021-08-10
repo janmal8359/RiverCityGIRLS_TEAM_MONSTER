@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "player.h"
-#include "bossState.h"
 #include "camera.h"
 #include "boss.h"
 
@@ -20,8 +19,8 @@ HRESULT player::init()
     _state = new idle;
     _state->init();
 
-    _bState = new bossState;
-    _bState->init();
+   // _bState = new bossState;
+   // _bState->init();
 
     //_sfxStorage = new sfxStorage;
     //_sfxStorage->init();
