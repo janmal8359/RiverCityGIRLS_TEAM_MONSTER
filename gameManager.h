@@ -18,6 +18,18 @@ private:
 	UIBar _playerHPPoint[24];
 	UIBar _playerHPBackground;
 
+	bool mapLocked;
+	bool mapUnlocked;
+
+	bool scriptStart;
+	bool scriptEnd;
+	RECT scriptRc;
+	image* scriptImage;
+	int _scriptIndex;
+	int _txtIndex;
+	vector<string> _vScript;
+	string _txt;
+
 	int _playerHP;
 
 public:
@@ -29,6 +41,6 @@ public:
 	void update();
 	void render();
 
-
+	void scriptPlay();
 };
 
