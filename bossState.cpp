@@ -33,6 +33,12 @@ void bossState::render()
 
 	sprintf_s(str, "direction : %d", (int)_direction);
 	TextOut(getMemDC(), 10, 320, str, strlen(str));
+
+	sprintf_s(str, "frameIdxL : %d", (int)_bossAnimL->getNowPlayIdx());
+	TextOut(getMemDC(), 10, 500, str, strlen(str));
+
+	sprintf_s(str, "frameIdxR : %d", (int)_bossAnimR->getNowPlayIdx());
+	TextOut(getMemDC(), 10, 530, str, strlen(str));
 }
 
 void bossState::stateChange()
@@ -331,6 +337,8 @@ jumpState::jumpState()
 	_bossImg = IMAGEMANAGER->findImage("BOSS_meteor_J");
 	_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_jumpL");
 	_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_jumpR");
+	_bossAnimL->stop();
+	_bossAnimR->stop();
 }
 
 jumpState::~jumpState()
@@ -344,12 +352,16 @@ HRESULT jumpState::init()
 		_bossImg = IMAGEMANAGER->findImage("BOSS_meteor_J");
 		_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_jumpL");
 		_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_jumpR");
+		_bossAnimL->stop();
+		_bossAnimR->stop();
 	}
 	else if (_boss->getIsDrop())
 	{
 		_bossImg = IMAGEMANAGER->findImage("BOSS_meteor");
 		_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_dropL");
 		_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_dropR");
+		_bossAnimL->stop();
+		_bossAnimR->stop();
 	}
 
 	return S_OK;
@@ -401,7 +413,7 @@ void jumpState::anim()
 			}
 			if (_bossAnimL->isPlay())
 			{
-				if (_bossAnimL->getFramePos().x == 0) _bossAnimL->pause();
+				if (_bossAnimL->getNowPlayIdx() == 7) _bossAnimL->pause();
 				else _bossAnimL->resume();
 			}
 		}
@@ -415,17 +427,24 @@ void jumpState::anim()
 			}
 			if (_bossAnimR->isPlay())
 			{
-				if (_bossAnimR->getFramePos().x == 0) _bossAnimR->pause();
+				if (_bossAnimR->getNowPlayIdx() == 7) _bossAnimR->pause();
 				else _bossAnimR->resume();
 			}
 		}
 
-		if (!_boss->getIsJump() && (_bossAnimL->getFramePos().x <= 1 || _bossAnimR->getFramePos().x <= 1) &&
-			(!_boss->getMove() || !_boss->getFloat()) && !_boss->getIdle())
+		if (!_boss->getIsJump() && (_bossAnimL->getNowPlayIdx() >= 6 || _bossAnimR->getNowPlayIdx() >= 6) &&
+			(!_boss->getMove() || !_boss->getFloat()) && !_boss->getGroggy())
 		{
 			_boss->setIsJump(true);
 			//_isStart = true;
 		}
+
+		//if (!_boss->getIsJump() && (_bossAnimL->getFramePos().x <= 1 || _bossAnimR->getFramePos().x <= 1) &&
+		//	(!_boss->getMove() || !_boss->getFloat()) && !_boss->getGroggy())
+		//{
+		//	_boss->setIsJump(true);
+		//	//_isStart = true;
+		//}
 
 		if (_boss->getMove() && TIMEMANAGER->getWorldTime() >= _boss->getTime() + 3) _isStart = true;
 		else if (_boss->getIsJump() && _boss->getJumpPower() >= 800 && !_boss->getMove() && !_boss->getFloat()) _isStart = true;
@@ -506,8 +525,10 @@ void jumpState::animOver()
 		_boss->setMove(false);
 		_boss->setIsDrop(false);
 		_boss->setFloat(false);
-		_boss->setIdle(true);
-		_boss->setState(new idleState);
+		_boss->setIdle(false);
+		_boss->setGroggy(true);
+		_boss->setState(new groggyState);
+		//_boss->setState(new idleState);
 	}
 }
 
@@ -648,8 +669,23 @@ void sitState::render()
 
 
 // Groggy
+groggyState::groggyState()
+{
+	_bossImg = IMAGEMANAGER->findImage("BOSS_meteor_G");
+	_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_gHitL");
+	_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_gHitR");
+}
+
+groggyState::~groggyState()
+{
+}
+
 HRESULT groggyState::init()
 {
+	_bossImg = IMAGEMANAGER->findImage("BOSS_meteor_G");
+	_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_gHitL");
+	_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_gHitR");
+
 	return S_OK;
 }
 
@@ -660,11 +696,73 @@ void groggyState::release()
 void groggyState::update()
 {
 	bossState::update();
+
+	_bossImg = IMAGEMANAGER->findImage("BOSS_meteor_G");
+	_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_gHitL");
+	_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_gHitR");
 }
 
 void groggyState::render()
 {
 	bossState::render();
+}
+
+void groggyState::stateChange()
+{
+	if (TIMEMANAGER->getWorldTime() >= _boss->getTime() + 2)
+	{
+		_boss->setMove(false);
+		_boss->setDash(false);
+		_boss->setGroggy(false);
+		_boss->setIdle(true);
+		_boss->setTime(TIMEMANAGER->getWorldTime());
+		_bossAnimL->stop();
+		_bossAnimR->stop();
+		_boss->setState(new idleState);
+	}
+}
+
+void groggyState::anim()
+{
+	if (_direction == (int)DIRECTION::LEFT)
+	{
+		if (!_bossAnimL->isPlay())
+		{
+			_bossAnimL->start();
+		}
+		if (_bossAnimL->isPlay())
+		{
+			_bossAnimL->resume();
+		}
+	}
+
+	if (_direction == (int)DIRECTION::RIGHT)
+	{
+		if (!_bossAnimR->isPlay())
+		{
+			_bossAnimR->start();
+		}
+		if (_bossAnimR->isPlay())
+		{
+			_bossAnimR->resume();
+		}
+	}
+
+	_isStart = true;
+}
+
+void groggyState::animOver()
+{
+	//if (!_bossAnimL->isPlay() && !_bossAnimR->isPlay() && _isStart)
+	//{
+	//	_isStart = false;
+	//	_bossAnimL->stop();
+	//	_bossAnimR->stop();
+	//	_boss->setTime(TIMEMANAGER->getWorldTime());
+	//	_boss->setMove(true);
+	//	_boss->setDash(true);
+	//	_boss->setState(new dashState);
+	//}
 }
 
 

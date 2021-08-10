@@ -52,12 +52,12 @@ void boss::update()
 	//if (!_isJump) _jumpPower = 0;
 
 	if ((abs(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) < PI / 2 || abs(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) > 3 * PI / 2) &&
-		!_isAttack && !_isJump && !_isFloat)
+		!_isAttack && !_isJump && !_isFloat && !_isGroggy)
 	{
 		_direction = (int)DIRECTION::LEFT;
 	}
 	else if ((abs(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) > PI / 2 && abs(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) < 3 * PI / 2) &&
-		!_isAttack && !_isJump && !_isFloat)
+		!_isAttack && !_isJump && !_isFloat && !_isGroggy)
 	{
 		_direction = (int)DIRECTION::RIGHT;
 	}
@@ -123,6 +123,12 @@ void boss::bossAnim()
 
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dashL", "BOSS_dash", 2, 9, 10, false, true);
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dashR", "BOSS_dash", 17, 10, 10, false, true);
+
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_groggyL", "BOSS_groggy", 0, 3, 10, false, true);
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_groggyR", "BOSS_groggy", 7, 4, 10, false, true);
+
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_gHitL", "BOSS_meteor_G", 0, 5, 10, false, true);
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_gHitR", "BOSS_meteor_G", 11, 6, 10, false, true);
 }
 
 void boss::move()

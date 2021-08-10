@@ -177,15 +177,19 @@ public:
 class groggyState : public bossState
 {
 private:
-	groggyState* instance;
 
 public:
-	groggyState* getInstance() { if (instance == nullptr) instance = new groggyState(); return instance; }
+	groggyState();
+	~groggyState();
 
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	virtual void stateChange();
+	virtual void anim();
+	virtual void animOver();
 };
 
 class loseState : public bossState

@@ -56,6 +56,7 @@ private:
 	bool _isDrop;
 	bool _isFloat;
 	bool _isDash;
+	bool _isGroggy;
 
 public:
 	boss() {}
@@ -95,6 +96,7 @@ public:
 	bool getFloat() { return _isFloat; }
 	bool getDash() { return _isDash; }
 	bool getIdle() { return _isIdle; }
+	bool getGroggy() { return _isGroggy; }
 
 	float getTime() { return _time; }
 	float getJumpPower() { return _jumpPower; }
@@ -115,6 +117,7 @@ public:
 	void setFloat(bool isFloat) { _isFloat = isFloat; }
 	void setDash(bool dash) { _isDash = dash; }
 	void setIdle(bool idle) { _isIdle = idle; }
+	void setGroggy(bool groggy) { _isGroggy = groggy; }
 
 	void setTime(float time) { _time = time; }
 	void setJumpPower(float jumpPower) { _jumpPower = jumpPower; }
