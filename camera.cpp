@@ -71,4 +71,6 @@ void camera::render()
     }
     Rectangle(getMemDC(), _cameraRc);
 
+
+
 }

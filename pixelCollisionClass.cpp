@@ -56,6 +56,11 @@ void pixelCollisionClass::update()
 
 void pixelCollisionClass::render()
 {
+	char str[256];
+	sprintf_s(str, "%0.2f", ((_probeTY + _probeBY) / 2) + _camera->getCamY());
+
+	TextOut(getMemDC(), 0, WINSIZEY / 2, str, strlen(str));
+
 	//if(_stage != NULL) _stage->render(getMemDC(), _x, _y);
 }
 
@@ -63,7 +68,7 @@ void pixelCollisionClass::Colloision()
 {
 	//for (int _stageType = 0; _stageType < 4; _stageType++)
 	//{
-
+	
 		for (int i = _probeLX - 1; i < _probeRX + 1; i++)
 		{
 			//_stage = IMAGEMANAGER->findImage("STAGE_stagePixel1");
@@ -104,23 +109,23 @@ void pixelCollisionClass::Colloision()
 
 				}
 				//그 이외
-				//else
-				//{
-				//	_player->setSpeed(6);
-				//}
+				else
+				{
+					_player->setSpeed(6);
+				}
 			}
 			else
 			{
 				_player->setSpeed(6);
 			}
 		}
-
+	
 		for (int i = _probeTY - 1; i < _probeBY + 1; i++)
 		{
 			//_stage = IMAGEMANAGER->findImage("STAGE_stagePixel1");
 			//COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX() + _camera->getCamX(), i - _camera->getCamY()); 기본
 			//COLORREF color = GetPixel(_stage->getMemDC(), i + _camera->getCamX() + 50, _player->getShadowY() + _camaera->getCamY()); 민트가 y축 +50에 고정 라인 생성
-			COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX() + _camera->getCamX(), i - _camera->getCamY());
+			COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX() + _camera->getCamX(), i + _camera->getCamY());
 
 			int R = GetRValue(color);
 			int  G = GetGValue(color);
@@ -143,21 +148,21 @@ void pixelCollisionClass::Colloision()
 				//{
 				//	_player->setSpeed(6);
 				//}
-				else if (R == 255 && G == 255 && B == 0)//노란
+				else if ((R == 255 && G == 255 && B == 0))//노란
 				{
 					_player->setSpeed(6);
 				}
 				//아이콘 출현 구간
-				else if (R == 0 && G == 255 && B == 255)//민트
+				else if ((R == 0 && G == 255 && B == 255))//민트
 				{
 					_player->setSpeed(6);
 
 				}
 				//그 이외
-				//else
-				//{
-				//	_player->setSpeed(6);
-				//}
+				else
+				{
+					_player->setSpeed(6);
+				}
 			}
 			else
 			{
