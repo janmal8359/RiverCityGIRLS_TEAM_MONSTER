@@ -17,10 +17,10 @@ private:
 	
 	camera* _camera;
 	player* _player;
-//	enemy* _enemy;
+	//enemy* _enemy;
 	//boss* _boss;
 
-	pixelCollisionClass* _pixel1;
+	pixelCollisionClass* _pixel;
 
 public:
 	firstStage();
@@ -31,8 +31,8 @@ public:
 	virtual void update();
 	virtual void render();
 
-	//void setPlayer(player* player) { _player = player; }
+	void setPlayer(player* player) { _player = player; }
 
-	//void setpixelCollisionClassMemoryAddressLink(pixelCollisionClass* pixel) { _pixel1 = pixel; }
+	void setpixelCollisionClassMemoryAddressLink(pixelCollisionClass* pixel) { _pixel = pixel; }
 };
 

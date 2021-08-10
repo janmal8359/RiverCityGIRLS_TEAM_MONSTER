@@ -33,10 +33,10 @@ HRESULT firstStage::init()
 
 	_isCheck = false;
 
-	_pixel1 = new pixelCollisionClass;
+	_pixel = new pixelCollisionClass;
 
-	_pixel1->init(0, 0, 0);
-	_pixel1->setPixelPlayer(_player);
+	_pixel->init(0, 0, 0);
+	_pixel->setPixelPlayer(_player);
 
 	return S_OK; 
 }
@@ -54,8 +54,8 @@ void firstStage::update()
 	//_boss->setPlayerMemoryAddressLink(_player);
 	//_boss->update();
 
-	_pixel1->setPixelPlayer(_player);
-	_pixel1->update();
+	_pixel->setPixelPlayer(_player);
+	_pixel->update();
 
 //	_enemy->update();
 	//_enemy->getEnemyState()->setEnemy(_enemy);
@@ -65,7 +65,7 @@ void firstStage::render()
 {
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		_pixel1->render();
+		_pixel->render();
 	}
 	
 	_camera->render();

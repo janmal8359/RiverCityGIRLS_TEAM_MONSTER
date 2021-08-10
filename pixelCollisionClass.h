@@ -34,6 +34,8 @@ private:
 
 	camera* _camera;
 
+	RECT _probeLBox, _probeRBox, _probeTBox, _probeBBox;
+
 	RECT _rc;
 	float _x, _y;
 
