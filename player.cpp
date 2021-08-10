@@ -199,23 +199,56 @@ void player::move()
         if (KEYMANAGER->isStayKeyDown(VK_LEFT))
         {
             _dir = LEFT;
-            _sX -= _speed;
+          
+            if (_shadowRc.left < _camera->getCameraRc().left && _camera->getCamX() > 0 + _speed)
+            {
+                _camera->setCamX(_camera->getCamX() - _speed);
+            }
+            else
+            {
+                _sX -= _speed;
+            }
+  
         }
 
         if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
         {
             _dir = RIGHT;
-            _sX += _speed;
+            if (_shadowRc.right > _camera->getCameraRc().right && _camera->getCamX() < _camera->getBgImage()->getWidth() - WINSIZEX - _speed)
+            {
+                _camera->setCamX(_camera->getCamX() + _speed);
+            }
+            else
+            {
+                _sX += _speed;
+            }
+       
         }
         if (KEYMANAGER->isStayKeyDown(VK_UP))
         {
-            _pY -= _speed;
-            _sY -= _speed;
+            if (_shadowRc.top < _camera->getCameraRc().top && _camera->getCamY() > 0 + _speed)
+            {
+                _camera->setCamY(_camera->getCamY() - _speed);
+            }
+            else
+            {
+                _pY -= _speed;
+                _sY -= _speed;
+            }
+         
         }
         if (KEYMANAGER->isStayKeyDown(VK_DOWN))
         {
-            _pY += _speed;
-            _sY += _speed;
+            if (_shadowRc.bottom > _camera->getCameraRc().bottom && _camera->getCamY() < _camera->getBgImage()->getHeight() - WINSIZEY - _speed)
+            {
+                _camera->setCamY(_camera->getCamY() + _speed);
+            }
+            else 
+            {
+                _pY += _speed;
+                _sY += _speed;
+            }
+          
         }
     }
 

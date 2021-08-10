@@ -92,9 +92,9 @@ void firstStage::render()
 		//_first->render(getMemDC(), 0, 0);
 		_pixel->render();
 	}
-	_zO->render();
+	//_zO->render();
 	_camera->render();
-	//_player->render();
-	//_enemy->render();
+	_player->render();
+	_enemy->render();
 	//_boss->render();
 }
