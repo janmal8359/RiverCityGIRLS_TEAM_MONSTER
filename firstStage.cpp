@@ -87,5 +87,5 @@ void firstStage::render()
 	_camera->render();
 	_player->render();
 	_enemy->render();
-	_boss->render();
+	//_boss->render();
 }

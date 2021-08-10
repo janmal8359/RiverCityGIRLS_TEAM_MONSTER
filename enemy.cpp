@@ -52,18 +52,16 @@ void enemy::release()
 
 void enemy::update()
 {
-
-
-
 	_enemyState->setEnemy(this);
 	
 	enemyMove();
 	enemyAttack();
 
 	_enemyY = _enemySY - _enemyImg->getFrameHeight() / 2;
-
-
-	_enemyDistance = getDistance(_player->getShadowX(), _player->getShadowY(), _enemySX + _enemyShadowImg->getFrameWidth(), _enemySY);
+	
+	_enemyDistance = getDistance(_player->getShadowX() + 125, _player->getShadowY(), _enemySX, _enemySY);		//적이 왼쪽 바라볼때
+	_enemyDistanceR = getDistance(_player->getShadowX() - 125, _player->getShadowY(), _enemySX, _enemySY);		//적이 오른쪽 바라볼때
+	
 	_enemyState->update();
 	_enemyImg = _enemyState->getEnemyImg();
 }
@@ -75,13 +73,17 @@ void enemy::render()
 	sprintf_s(str1, "적과 플레이어거리 : %.2f", _enemyDistance);
 	TextOut(getMemDC(), _enemySX, _enemySY + 50, str1, strlen(str1));
 
-
-	sprintf_s(str1, "적 공격 : %d", _enemyState->getEattackIdx());
+	sprintf_s(str1, "적과 플레이어거리R : %.2f", _enemyDistanceR);
 	TextOut(getMemDC(), _enemySX, _enemySY + 70, str1, strlen(str1));
 
+	sprintf_s(str1, "적 공격 : %d", _enemyState->getEattackIdx());
+	TextOut(getMemDC(), _enemySX, _enemySY + 90, str1, strlen(str1));
 
 	sprintf_s(str1, "적 공격시 : %d", (int)_isEAttack);
-	TextOut(getMemDC(), _enemySX, _enemySY + 90, str1, strlen(str1));
+	TextOut(getMemDC(), _enemySX, _enemySY + 110, str1, strlen(str1));
+	
+	sprintf_s(str1, "적 동작카운트 : %d", (int)_enemyCount);
+	TextOut(getMemDC(), _enemySX, _enemySY + 110, str1, strlen(str1));
 
 	_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
 	
@@ -106,33 +108,41 @@ void enemy::enemyMove()
 	{
 		if (_enemyDistance < 400)	//쫒아가는거
 		{
-			if (_enemyDir == (int)ENEMY_RIGHT)
-			{
-				_enemyX = _enemySX;
-				_enemySX -= cosf(getAngle(_player->getShadowX() - 80, _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
-			}
+			
 			if (_enemyDir == (int)ENEMY_LEFT)
 			{
 				_enemyX= _enemySX;
-				_enemySX -= cosf(getAngle(_player->getShadowX() + 80, _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
+				_enemySX -= cosf(getAngle(_player->getShadowX(), _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
 			}
 			//_enemyY = _enemySY - _enemyImg->getFrameHeight() / 2;
 			_enemySY -= -sin(getAngle(_player->getShadowX(), _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
 		}
-		if (_isEJump)
+
+		if (_enemyDistanceR < 400)	//쫒아가는거
 		{
-			if (_enemyRc.bottom <= _enemySY)
+			if (_enemyDir == (int)ENEMY_RIGHT)
 			{
 				_enemyX = _enemySX;
-				_enemyY -= _enemyJP;
-				_enemyJP -= GRAVITY;
+				_enemySX -= cosf(getAngle(_player->getShadowX(), _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
 			}
-			else
-			{
-				_enemyY = _enemySY - _enemyImg->getFrameHeight() / 2;
-				_isEJump = false;
-			}
+			
+			//_enemyY = _enemySY - _enemyImg->getFrameHeight() / 2;
+			_enemySY -= -sin(getAngle(_player->getShadowX(), _player->getShadowY(), _enemySX, _enemySY)) * _enemySpeed;
 		}
+		//if (_isEJump)
+		//{
+		//	if (_enemyRc.bottom <= _enemySY)
+		//	{
+		//		_enemyX = _enemySX;
+		//		_enemyY -= _enemyJP;
+		//		_enemyJP -= GRAVITY;
+		//	}
+		//	else
+		//	{
+		//		_enemyY = _enemySY - _enemyImg->getFrameHeight() / 2;
+		//		_isEJump = false;
+		//	}
+		//}
 	}
 
 

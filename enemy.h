@@ -33,11 +33,12 @@ private:
 	image* _enemyImg;				//적 이미지
 	RECT _enemyRc;					//적 렉트
 	
-	
+	int _enemyCount;					//어택 동작카운트
 
 
 	float _enemyX, _enemyY;			//적 x,y값
-	float _enemyDistance;			//적과 플레이어 거리
+	float _enemyDistance;			//적이 왼쪽 바라볼때 플레이어 거리
+	float _enemyDistanceR;			//적이 오른쪽 바라볼때 플레이어 거리
 
 
 
@@ -91,20 +92,24 @@ public:
 	void setEnemyJumpPower(float EJump) { _enemyJP = EJump; }
 
 	//적 점프상황
-	float getIsEenmyJump() { return _isEJump; }
-	void setIsEnemyJump(float isEJump) { _isEJump = isEJump; }
+	bool getIsEenmyJump() { return _isEJump; }
+	void setIsEnemyJump(bool isEJump) { _isEJump = isEJump; }
 	//적 공격상황
-	float getIsEnemyAttack() { return _isEAttack; }
-	void setIsEnemyAttack(float isEattack) { _isEAttack = isEattack; }
+	bool getIsEnemyAttack() { return _isEAttack; }
+	void setIsEnemyAttack(bool isEattack) { _isEAttack = isEattack; }
 	//적 추격상황
-	float getIsEenmyChase() { return _isEChase; }
-	void setIsEnemyChase(float isEchase) { _isEChase = isEchase; }
+	bool getIsEenmyChase() { return _isEChase; }
+	void setIsEnemyChase(bool isEchase) { _isEChase = isEchase; }
 	//적 피격상황
-	float getIsEnemyHurt() { return _isEHurt; }
-	void setIsEnemyHurt(float isEhurt) { _isEHurt = isEhurt; }
+	bool getIsEnemyHurt() { return _isEHurt; }
+	void setIsEnemyHurt(bool isEhurt) { _isEHurt = isEhurt; }
 	
 	//적과 플레이어 거리값
-	float getEnemyDistance() { return _enemyDistance; }
+	float getEnemyDistance() { return _enemyDistance; }			//왼쪽 바라볼때
+	float getEnemyDistanceR() { return _enemyDistanceR; }		//오른쪽 바라볼때
+	
+	int getEnemyCount() { return _enemyCount; }								//에너미 동작 카운트
+	void setEnemyCount(int enemyCount) { _enemyCount = enemyCount; }		
 
 	//적 렉트
 	RECT getEnemyRc() { return _enemyRc; }
