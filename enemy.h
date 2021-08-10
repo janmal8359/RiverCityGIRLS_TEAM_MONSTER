@@ -2,6 +2,8 @@
 #include "gameNode.h"
 #include "enemyState.h"
 
+
+
 class player;
 
 class enemy : public gameNode
@@ -9,11 +11,6 @@ class enemy : public gameNode
 
 private:
 	
-	//지울거
-
-	RECT exRc;
-	POINT ex;
-	///
 	
 	player* _player;				//플레이어
 
@@ -31,13 +28,18 @@ private:
 	bool _isEJump;					//점프 불값
 	bool _isEChase;					//추격 불값
 	bool _isEAttack;				//공격 불값
-
+	bool _isEHurt;					//피격 불값 
 
 	image* _enemyImg;				//적 이미지
 	RECT _enemyRc;					//적 렉트
+	
+	
+
 
 	float _enemyX, _enemyY;			//적 x,y값
 	float _enemyDistance;			//적과 플레이어 거리
+
+
 
 	int _enemyDir;					//적 방향
 
@@ -54,9 +56,11 @@ public:
 
 	void enemyStateRender(animation* motion);				//스테이트 렌더?
 	void enemyMove();										//움직임
+	void enemyAttack();										//공격
 	//void enemyChase();									//추격
 
 	void enemyAni();										//적 애니메이션
+	
 
 	static void callBack(void* obj);
 	
@@ -90,12 +94,15 @@ public:
 	float getIsEenmyJump() { return _isEJump; }
 	void setIsEnemyJump(float isEJump) { _isEJump = isEJump; }
 	//적 공격상황
-	float getIsEenmyAttack() { return _isEAttack; }
+	float getIsEnemyAttack() { return _isEAttack; }
 	void setIsEnemyAttack(float isEattack) { _isEAttack = isEattack; }
 	//적 추격상황
 	float getIsEenmyChase() { return _isEChase; }
 	void setIsEnemyChase(float isEchase) { _isEChase = isEchase; }
-
+	//적 피격상황
+	float getIsEnemyHurt() { return _isEHurt; }
+	void setIsEnemyHurt(float isEhurt) { _isEHurt = isEhurt; }
+	
 	//적과 플레이어 거리값
 	float getEnemyDistance() { return _enemyDistance; }
 
@@ -103,10 +110,11 @@ public:
 	RECT getEnemyRc() { return _enemyRc; }
 
 	//적 방향
-	int getDir() { return _enemyDir; }
+	int getDir() { return (int)_enemyDir; }
 
 	//적 이미지
-	image* getEnmeyImg() { return _enemyImg; }
+	image* getEnemyImg() { return _enemyImg; }
+	void setEnemyImg(image* EnemyIMG) { _enemyImg = EnemyIMG; }
 
 	//중간에 모션이 바뀌면 렌더로 바뀌지 않으 이미지가 로드됨 update부터 다시 시작이랍니다.
 	void setEnemyState(enemyState* EState) { _enemyState = EState; update(); update(); }
