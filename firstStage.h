@@ -7,6 +7,8 @@
 #include "state.h"
 //#include "pixelCollisionClass.h"
 
+#include "zOrder.h"
+
 class pixelCollisionClass;
 
 //±³½Ç
@@ -22,7 +24,7 @@ private:
 	player* _player;
 	enemy* _enemy;
 	boss* _boss;
-
+	zOrder* _zO;
 
 	pixelCollisionClass* _pixel;
 

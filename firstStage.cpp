@@ -19,7 +19,6 @@ HRESULT firstStage::init()
 	
 	
 
-
 	
 	_boss = new boss;
 	_boss->setPlayerMemoryAddressLink(_player);
@@ -40,6 +39,12 @@ HRESULT firstStage::init()
 
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 
+	_zO = new zOrder;
+	_zO->init();
+	
+	_zO->setPlayer(_player);
+	_zO->setBoss(_boss);
+	_zO->setEnemy(_enemy);
 
 
 	_isCheck = false;
@@ -48,6 +53,8 @@ HRESULT firstStage::init()
 
 	_pixel->init(0, 0, 0);
 	_pixel->setPixelPlayer(_player);
+
+
 
 	return S_OK; 
 }
@@ -72,6 +79,8 @@ void firstStage::update()
 	_enemy->getEnemyState()->setEnemy(_enemy);
 
 	//pixelCollision();
+
+	_zO->update();
 }
 
 void firstStage::render()
@@ -83,9 +92,9 @@ void firstStage::render()
 		//_first->render(getMemDC(), 0, 0);
 		_pixel->render();
 	}
-	
+	_zO->render();
 	_camera->render();
-	_player->render();
-	_enemy->render();
-	_boss->render();
+	//_player->render();
+	//_enemy->render();
+	//_boss->render();
 }
