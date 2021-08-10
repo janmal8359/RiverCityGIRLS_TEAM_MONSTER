@@ -98,7 +98,7 @@ void boss::render()
 
 void boss::stateRender(animation* anim)
 {
-	if (_sy - _by <= 400) _bossImg->aniRender(getMemDC(), _bossRc.left, _bossRc.top, anim);
+	if (_sy - _by <= 700) _bossImg->aniRender(getMemDC(), _bossRc.left, _bossRc.top, anim);
 }
 
 void boss::bossAnim()
@@ -148,7 +148,7 @@ void boss::jump()
 
 	if (_isJump)
 	{
-		if (_sy - _by < 700)
+		if (_sy - _by < 1000)
 		{
 			_jumpPower += 30;
 		}

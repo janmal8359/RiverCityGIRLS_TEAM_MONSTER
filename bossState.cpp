@@ -98,6 +98,7 @@ void idleState::stateChange()
 			if (_bAttackPattern == 0)
 			{
 				_boss->setMove(true);
+				_boss->setIdle(false);
 				_boss->setTime(TIMEMANAGER->getWorldTime());
 				_bossAnimL->stop();
 				_bossAnimR->stop();
@@ -106,7 +107,8 @@ void idleState::stateChange()
 			else if (_bAttackPattern == 1)
 			{
 				_boss->setMove(false);
-				_boss->setIsJump(true);
+				_boss->setIsJump(false);
+				_boss->setIdle(false);
 				_bossAnimL->stop();
 				_bossAnimR->stop();
 				_boss->setState(new jumpState);
@@ -115,6 +117,7 @@ void idleState::stateChange()
 			{
 				_boss->setMove(true);
 				_boss->setDash(false);
+				_boss->setIdle(false);
 				_bossAnimL->stop();
 				_bossAnimR->stop();
 				_boss->setState(new dashState);
@@ -201,6 +204,7 @@ void walkState::stateChange()
 	else if (TIMEMANAGER->getWorldTime() >= _boss->getTime() + 4)
 	{
 		_boss->setMove(false);
+		_boss->setIdle(true);
 		_boss->setTime(TIMEMANAGER->getWorldTime());
 		_bossAnimL->stop();
 		_bossAnimR->stop();
@@ -269,6 +273,7 @@ void attackState::stateChange()
 	{
 		_boss->setMove(false);
 		_boss->setIsAttack(false);
+		_boss->setIdle(true);
 		_bossAnimL->stop();
 		_bossAnimR->stop();
 		_boss->setState(new idleState);
@@ -314,6 +319,7 @@ void attackState::animOver()
 		_boss->setTime(TIMEMANAGER->getWorldTime());
 		_boss->setIsAttack(false);
 		_boss->setMove(false);
+		_boss->setIdle(true);
 		_boss->setState(new idleState);
 	}
 }
@@ -390,11 +396,13 @@ void jumpState::anim()
 		{
 			if (!_bossAnimL->isPlay())
 			{
+				_bossAnimL->stop();
 				_bossAnimL->start();
 			}
 			if (_bossAnimL->isPlay())
 			{
-				_bossAnimL->resume();
+				if (_bossAnimL->getFramePos().x == 0) _bossAnimL->pause();
+				else _bossAnimL->resume();
 			}
 		}
 
@@ -402,16 +410,25 @@ void jumpState::anim()
 		{
 			if (!_bossAnimR->isPlay())
 			{
+				_bossAnimR->stop();
 				_bossAnimR->start();
 			}
 			if (_bossAnimR->isPlay())
 			{
-				_bossAnimR->resume();
+				if (_bossAnimR->getFramePos().x == 0) _bossAnimR->pause();
+				else _bossAnimR->resume();
 			}
 		}
 
+		if (!_boss->getIsJump() && (_bossAnimL->getFramePos().x <= 1 || _bossAnimR->getFramePos().x <= 1) &&
+			(!_boss->getMove() || !_boss->getFloat()) && !_boss->getIdle())
+		{
+			_boss->setIsJump(true);
+			//_isStart = true;
+		}
+
 		if (_boss->getMove() && TIMEMANAGER->getWorldTime() >= _boss->getTime() + 3) _isStart = true;
-		else if (_boss->getIsJump()) _isStart = true;
+		else if (_boss->getIsJump() && _boss->getJumpPower() >= 800 && !_boss->getMove() && !_boss->getFloat()) _isStart = true;
 	}
 
 	if (_boss->getIsDrop())
@@ -489,6 +506,7 @@ void jumpState::animOver()
 		_boss->setMove(false);
 		_boss->setIsDrop(false);
 		_boss->setFloat(false);
+		_boss->setIdle(true);
 		_boss->setState(new idleState);
 	}
 }

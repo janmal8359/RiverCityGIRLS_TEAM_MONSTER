@@ -49,6 +49,7 @@ private:
 	float _time;
 
 	// bool
+	bool _isIdle;
 	bool _isMove;
 	bool _isAttack;
 	bool _isJump;
@@ -93,6 +94,7 @@ public:
 	bool getIsDrop() { return _isDrop; }
 	bool getFloat() { return _isFloat; }
 	bool getDash() { return _isDash; }
+	bool getIdle() { return _isIdle; }
 
 	float getTime() { return _time; }
 	float getJumpPower() { return _jumpPower; }
@@ -112,6 +114,7 @@ public:
 	void setIsDrop(bool drop) { _isDrop = drop; }
 	void setFloat(bool isFloat) { _isFloat = isFloat; }
 	void setDash(bool dash) { _isDash = dash; }
+	void setIdle(bool idle) { _isIdle = idle; }
 
 	void setTime(float time) { _time = time; }
 	void setJumpPower(float jumpPower) { _jumpPower = jumpPower; }
