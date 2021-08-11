@@ -222,3 +222,18 @@ public:
 	virtual void enemyAni();
 
 };
+
+class enemyRun : public enemyState // 적 달리기 모션
+{
+public:
+	enemyRun();
+	~enemyRun();
+
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render() override;
+
+	virtual void enemyStateChange();
+	virtual void enemyAni();
+};

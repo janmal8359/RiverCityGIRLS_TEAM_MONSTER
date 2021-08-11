@@ -42,6 +42,7 @@ HRESULT enemy::init()
 	_isEWaitAttack = false;
 	
 	
+	
 	//ex.x = 500;
 	//ex.y = 500;
 

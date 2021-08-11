@@ -876,12 +876,13 @@ void enemyHurt::callBk()
 			//맞는 카운트가 3보다 작을때 카운트를 늘려라!
 			if (_EhultIdx < 3 && _enemy->getIsEnemyHurt())
 			{
+				_EHurtcount = 0;
 				_EhultIdx++;
 			}
 			else _EhultIdx = 0;
 				
 			}
-			if (_EHurtcount > 100)
+			if (_EHurtcount > 60)
 			{
 				
 				_enemy->setEnemyState(new enemyWaitAttack);
@@ -1173,4 +1174,42 @@ void enemyWaitAttack::enemyAni()
 	}
 }
 
+#pragma endregion
+//////////////////////////////////////////////	달 리 기  ////////////////////////////////////////////////////////////
+#pragma region 달리기
+
+
+
+enemyRun::enemyRun()
+{
+}
+
+enemyRun::~enemyRun()
+{
+}
+
+HRESULT enemyRun::init()
+{
+	return S_OK;
+}
+
+void enemyRun::release()
+{
+}
+
+void enemyRun::update()
+{
+}
+
+void enemyRun::render()
+{
+}
+
+void enemyRun::enemyStateChange()
+{
+}
+
+void enemyRun::enemyAni()
+{
+}
 #pragma endregion

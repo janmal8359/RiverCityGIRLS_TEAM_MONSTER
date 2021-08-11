@@ -30,6 +30,8 @@ private:
 	bool _isEAttack;				//공격 불값
 	bool _isEHurt;					//피격 불값
 	bool _isEWaitAttack;			//어택 대기 불값
+	bool _isDie;					//죽음 불값
+	bool _isRun;					//달리는 불값
 
 	image* _enemyImg;				//적 이미지
 	RECT _enemyRc;					//적 렉트
@@ -92,6 +94,7 @@ public:
 	float getEnemyJumpPower() { return _enemyJP; }
 	void setEnemyJumpPower(float EJump) { _enemyJP = EJump; }
 
+
 	//적 일반상황
 	bool getIsEnemyIdle() { return _isEIdle; }
 	void setIsEnemyIdle(bool isEIdle) { _isEIdle = isEIdle; }
@@ -110,6 +113,12 @@ public:
 	//적 어택대기 상황
 	bool getIsEnemyWaitAttack() { return _isEWaitAttack; }
 	void setIsEnemyWaitAttack(bool isEWaitAttack) { _isEWaitAttack = isEWaitAttack; }
+	//적 죽음 상황
+	bool getIsEnemyDie() { return _isDie; }
+	void setIsEnemyDie(bool isDie) { _isDie = isDie; }
+	//적 달리는 상황
+	bool getIsEnemyRun() { return _isRun; }
+	void setIsEnemyRun(bool isRun) { _isRun = isRun; }
 	
 	//적과 플레이어 거리값
 	float getEnemyDistance() { return _enemyDistance; }			//왼쪽 바라볼때
