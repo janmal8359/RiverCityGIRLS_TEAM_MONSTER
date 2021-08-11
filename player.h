@@ -168,10 +168,7 @@ public:
 
 	state* getState() { return _state; }
 
-
-
-
-
+	virtual float getPosY() { return _sY; }
 
 };
 

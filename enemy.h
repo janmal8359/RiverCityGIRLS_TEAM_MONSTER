@@ -124,5 +124,7 @@ public:
 	//player¿Í ¿¬µ¿
 	void setPlayerMemoryLink(player* player) { _player = player; }
 
+	virtual float getPosY() { return _enemySY; }
+
 };
 

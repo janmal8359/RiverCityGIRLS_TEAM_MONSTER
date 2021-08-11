@@ -246,9 +246,6 @@
     <ClInclude Include="walk.h">
       <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>playGround\5.GAME_MANAGER\CAMERA</Filter>
-    </ClInclude>
     <ClInclude Include="die.h">
       <Filter>playGround\4.PLAYER_STATE</Filter>
     </ClInclude>
@@ -320,6 +317,9 @@
     </ClInclude>
     <ClInclude Include="zOrder.h">
       <Filter>2DGameFramework\zOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>playGround\5.GAME_MANAGER\CAMERA</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

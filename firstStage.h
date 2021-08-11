@@ -18,6 +18,12 @@ private:
 	bool _isCheck;
 	bool _isNextCount;
 
+	typedef vector<gameNode*>				arrRender;
+	typedef vector<gameNode*>::iterator		iterRender;
+
+
+	arrRender _vRender;
+	iterRender _viRender;
 	//image* _first;
 	
 	camera* _camera;
@@ -45,5 +51,9 @@ public:
 	void setPlayer(player* player) { _player = player; }
 
 	void setpixelCollisionClassMemoryAddressLink(pixelCollisionClass* pixel) { _pixel = pixel; }
+
+	void selectionSort();
+
+	void swap(gameNode** a, gameNode** b);
 };
 

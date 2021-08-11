@@ -17,7 +17,8 @@ public:
 	virtual HRESULT init(bool managerInit);
 	virtual void release();			//메모리 해제 함슈
 	virtual void update();			//연산하는 함수
-	virtual void render();	//그리기 함수
+	virtual void render();	//그리기 함수4
+	virtual float getPosY(); // y값을 가져오는 함수
 
 	//백버퍼의 DC영역에 대한 접근자
 	HDC getMemDC() { return _backBuffer->getMemDC(); }

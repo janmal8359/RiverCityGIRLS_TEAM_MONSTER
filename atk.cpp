@@ -140,6 +140,5 @@ void atk::callBk()
 		_player->update();
 		
 	}
-
 }
 

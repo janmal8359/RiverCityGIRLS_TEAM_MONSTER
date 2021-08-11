@@ -13,7 +13,7 @@ HRESULT camera::init()
 
     _cameraRc = RectMakeCenter(_camXrc, _camYrc, 150, 150);
 
-    switch (_stage)
+    switch (_stageImg)
     {
     case FIRST_STAGE:
         _camX = 0;
@@ -58,7 +58,42 @@ void camera::release()
 
 void camera::update()
 {
-  
+    switch (_stageImg)
+    {
+    case FIRST_STAGE:
+        _camX = 0;
+        _camY = 0;
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage1");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel1");
+        break;
+    case SECOND_STAGE:
+        _camX = 0;
+        _camY = 0;
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage2");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel2");
+        break;
+    case THIRD_STAGE:
+        _camX = 0;
+        _camY = 0;
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage3");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel3");
+        break;
+    case BOSS_STAGE1:
+        _camX = 0;
+        _camY = 0;
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage1");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel1");
+        break;
+    case BOSS_STAGE2:
+        _camX = 0;
+        _camY = 0;
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage1");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel1");
+        break;
+    default:
+        break;
+    }
+
 }
 
 void camera::render()
