@@ -169,6 +169,7 @@ public:
 
 
 
+
 	// width, height
 	float getWidth() { return _shadowRc.right - _shadowRc.left; }
 	float getHeight() { return _shadowRc.bottom - _shadowRc.top; }
@@ -176,6 +177,7 @@ public:
 
 	// bossMemory
 	void setBossMemoryAddressLink(boss* boss) { _boss = boss; }
+
 
 };
 

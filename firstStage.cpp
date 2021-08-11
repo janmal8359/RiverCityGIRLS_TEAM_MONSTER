@@ -25,17 +25,17 @@ HRESULT firstStage::init()
 
 	_enemy = new enemy;
 	_enemy->init();
-<<<<<<< HEAD
+
 
 	//_camera = new camera;
 	//_camera->init();
 	//_camera->setStage(0);
-=======
+
 	
 	_camera = new camera;
 	_camera->init();
 	_camera->setStage(1);
->>>>>>> parent of 682375e (zorder 일단구현 객체화 확인)
+
 	
 	_player = new player;
 	_player->init();
@@ -76,10 +76,11 @@ void firstStage::update()
 	_player->getState()->setPlayer(_player);
 
 	_boss->setPlayerMemoryAddressLink(_player);
-<<<<<<< HEAD
-=======
+
 	_boss->update();
->>>>>>> parent of 682375e (zorder 일단구현 객체화 확인)
+
+	_boss->update();
+
 
 	_pixel->setPixelPlayer(_player);
 	_pixel->update();
@@ -100,17 +101,19 @@ void firstStage::render()
 	{
 		_pixel->render();
 	}
-<<<<<<< HEAD
+
 
 	_zO->render();
-=======
+
 	//_zO->render();
->>>>>>> parent of 682375e (zorder 일단구현 객체화 확인)
+
+	//_zO->render();
+
 	_camera->render();
 	_player->render();
 	_enemy->render();
 	//_boss->render();
-<<<<<<< HEAD
+
 }
 
 //�������� �Լ�
@@ -154,6 +157,5 @@ void firstStage::swap(gameNode** a, gameNode** b)
 	//_player->render();
 	//_enemy->render();
 	//_boss->render();
-=======
->>>>>>> parent of 682375e (zorder 일단구현 객체화 확인)
+
 }

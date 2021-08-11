@@ -58,7 +58,7 @@ void camera::release()
 
 void camera::update()
 {
-<<<<<<< HEAD
+
     switch (_stageImg)
     {
     case FIRST_STAGE:
@@ -94,9 +94,7 @@ void camera::update()
     default:
         break;
     }
-=======
-  
->>>>>>> parent of 682375e (zorder 일단구현 객체화 확인)
+
 }
 
 void camera::render()

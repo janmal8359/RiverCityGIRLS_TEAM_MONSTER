@@ -324,7 +324,7 @@
     <ClInclude Include="zOrder.h">
       <Filter>2DGameFramework\zOrder</Filter>
     </ClInclude>
-<<<<<<< HEAD
+
     <ClInclude Include="camera.h">
       <Filter>playGround\5.GAME_MANAGER\CAMERA</Filter>
     </ClInclude>
@@ -337,8 +337,6 @@
     <ClInclude Include="objectManager.h">
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
     </ClInclude>
-=======
->>>>>>> parent of 682375e (zorder 일단구현 객체화 확인)
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
