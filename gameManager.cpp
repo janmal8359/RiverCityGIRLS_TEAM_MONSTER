@@ -97,10 +97,7 @@ void gameManager::update()
 	{
 		mapLocked = true;
 	}
-	if (mapLocked && KEYMANAGER->isOnceKeyDown(VK_F2))
-	{
-		mapLocked = false;
-	}
+	
 
 	_count++;
 	if (_count % 30 == 0)
@@ -202,9 +199,12 @@ void gameManager::scriptPlay()
 			_scriptIndex++;
 			_txtIndex = 0;
 
+			_scriptSkip = false;
+
 			Sleep(700);
+
 		}
-	}
+	} 
 	else if (_scriptSkip)
 	{
 		scriptSkip = IMAGEMANAGER->findImage("SCENE_skipOutlines1");
@@ -213,6 +213,7 @@ void gameManager::scriptPlay()
 			_scriptIndex++;
 			_txtIndex = 0;
 
+			_scriptSkip = false;
 			Sleep(200);
 		}
 		if (_txtIndex < _txt.length())
@@ -234,7 +235,7 @@ void gameManager::eventMap()
 	chainLeft->render(getMemDC(), 0, 0);
 	chainRight->render(getMemDC(), WINSIZEX-40, 0);
 
-	//chainLock = IMAGEMANAGER->findImage("BATTLE_lockAppear");
+	chainLock = IMAGEMANAGER->findImage("BATTLE_lockAppear");
 	if (KEYMANAGER->isOnceKeyDown('1'))
 	{
 		chainLock = IMAGEMANAGER->findImage("BATTLE_lockDamage1");
@@ -246,7 +247,7 @@ void gameManager::eventMap()
 	else if (KEYMANAGER->isOnceKeyDown('3'))
 	{
 		chainLock = IMAGEMANAGER->findImage("BATTLE_lockDisappear");
-
+		
 		mapLocked = false;
 	}
 	
