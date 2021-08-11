@@ -21,6 +21,11 @@ private:
 
 	bool mapLocked;
 	bool mapUnlocked;
+	image* chainTop;
+	image* chainBottom;
+	image* chainLeft;
+	image* chainRight;
+	image* chainLock;
 
 	bool scriptStart;
 	bool scriptEnd;

@@ -45,6 +45,11 @@ HRESULT gameManager::init()
 	//맵 이벤트
 	mapLocked = false;
 	mapUnlocked = true;
+	chainTop = IMAGEMANAGER->findImage("BATTLE_stageChainTop");
+	chainBottom = IMAGEMANAGER->findImage("BATTLE_stageChainBottom");
+	chainLeft = IMAGEMANAGER->findImage("BATTLE_stageChainLeft");
+	chainRight = IMAGEMANAGER->findImage("BATTLE_stageChainRight");
+	chainLock = IMAGEMANAGER->findImage("BATTLE_lockAppear");
 
 	return S_OK;
 }
@@ -88,9 +93,16 @@ void gameManager::update()
 	}
 	
 	//맵 이벤트
-	if (KEYMANAGER->isOnceKeyDown(VK_F2) && mapLocked && !mapUnlocked)
+	if (KEYMANAGER->isOnceKeyDown(VK_F2) && !mapLocked)
 	{
+		mapLocked = true;
 	}
+	if (mapLocked && KEYMANAGER->isOnceKeyDown(VK_F2))
+	{
+		mapLocked = false;
+	}
+
+	eventMap();
 }
 
 void gameManager::render()
@@ -126,6 +138,15 @@ void gameManager::render()
 	if (scriptEnd)
 	{
 		//보스 스테이지 시작
+	}
+
+	if (mapLocked)
+	{
+		eventMap();
+	}
+	if (!mapLocked)
+	{
+		//카메라 움직임,.??
 	}
 }
 
@@ -200,5 +221,28 @@ void gameManager::scriptPlay()
 
 void gameManager::eventMap()
 {
+	chainTop->render(getMemDC(), 0, 0);
+	chainBottom->render(getMemDC(), 0, WINSIZEY-40);
+	chainLeft->render(getMemDC(), 0, 0);
+	chainRight->render(getMemDC(), WINSIZEX-40, 0);
 
+	//chainLock = IMAGEMANAGER->findImage("BATTLE_lockAppear");
+	/*if ()
+	{
+		chainLock = IMAGEMANAGER->findImage("BATTLE_lockDamage1");
+	}
+	else if ()
+	{
+		chainLock = IMAGEMANAGER->findImage("BATTLE_lockDamage2");
+		chainLock->frameRender(getMemDC(), WINSIZEX / 2, 0);
+	}
+	else if ()
+	{
+		chainLock = IMAGEMANAGER->findImage("BATTLE_lockDisappear");
+		chainLock->frameRender(getMemDC(), WINSIZEX / 2, 0);
+		mapLocked = false;
+	}
+	*/
+
+	chainLock->frameRender(getMemDC(), WINSIZEX / 2, 0);
 }
