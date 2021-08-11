@@ -26,6 +26,7 @@ private:
 	image* chainLeft;
 	image* chainRight;
 	image* chainLock;
+	int _count, _index;
 
 	bool scriptStart;
 	bool scriptEnd;

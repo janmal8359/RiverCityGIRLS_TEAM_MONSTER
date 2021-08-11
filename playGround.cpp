@@ -35,7 +35,6 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("bossStage1", new bossStage1);
 	SCENEMANAGER->addScene("bossStage2", new bossStage2);
 	SCENEMANAGER->changeScene("stage1");
-
 	
 	return S_OK;
 }

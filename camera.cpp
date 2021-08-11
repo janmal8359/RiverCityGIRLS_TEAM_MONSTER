@@ -73,3 +73,11 @@ void camera::render()
    // Rectangle(getMemDC(), _cameraRc);
 
 }
+
+void camera::cameraLock(float x, float y)
+{
+    _camXrc = WINSIZEX / 2;
+    _camYrc = WINSIZEY / 2;
+
+    _cameraRc = RectMakeCenter(_camXrc, _camYrc, 150, 150);
+}

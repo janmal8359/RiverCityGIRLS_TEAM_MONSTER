@@ -102,7 +102,15 @@ void gameManager::update()
 		mapLocked = false;
 	}
 
-	eventMap();
+	_count++;
+	if (_count % 30 == 0)
+	{
+		chainLock->setFrameX(_index);
+		_index++;
+
+		if (_index >= chainLock->getMaxFrameX()) _index = 6;
+		_count = 0;
+	}
 }
 
 void gameManager::render()
@@ -227,22 +235,20 @@ void gameManager::eventMap()
 	chainRight->render(getMemDC(), WINSIZEX-40, 0);
 
 	//chainLock = IMAGEMANAGER->findImage("BATTLE_lockAppear");
-	/*if ()
+	if (KEYMANAGER->isOnceKeyDown('1'))
 	{
 		chainLock = IMAGEMANAGER->findImage("BATTLE_lockDamage1");
 	}
-	else if ()
+	else if (KEYMANAGER->isOnceKeyDown('2'))
 	{
 		chainLock = IMAGEMANAGER->findImage("BATTLE_lockDamage2");
-		chainLock->frameRender(getMemDC(), WINSIZEX / 2, 0);
 	}
-	else if ()
+	else if (KEYMANAGER->isOnceKeyDown('3'))
 	{
 		chainLock = IMAGEMANAGER->findImage("BATTLE_lockDisappear");
-		chainLock->frameRender(getMemDC(), WINSIZEX / 2, 0);
+
 		mapLocked = false;
 	}
-	*/
-
+	
 	chainLock->frameRender(getMemDC(), WINSIZEX / 2, 0);
 }
