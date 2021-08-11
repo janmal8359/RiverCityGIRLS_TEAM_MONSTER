@@ -26,9 +26,9 @@ HRESULT firstStage::init()
 	_enemy = new enemy;
 	_enemy->init();
 
-	_camera = new camera;
-	_camera->init();
-	_camera->setStage(0);
+	//_camera = new camera;
+	//_camera->init();
+	//_camera->setStage(0);
 	
 	_player = new player;
 	_player->init();

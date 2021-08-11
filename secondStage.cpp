@@ -21,7 +21,7 @@ HRESULT secondStage::init()
 
 	_camera = new camera;
 	_camera->init();
-	_camera->setStage(1);
+	_camera->setStage(SECOND_STAGE);
 
 	_player = new player;
 	_player->init();
