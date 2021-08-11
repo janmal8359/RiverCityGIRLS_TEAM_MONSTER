@@ -5,12 +5,10 @@ class imageStorage : public gameNode
 {
 private:
 	
-
 	image* _background;
 	image* _loading;
 	animation* _load;
 	
-
 public:
 	int _currentCount;
 	imageStorage();

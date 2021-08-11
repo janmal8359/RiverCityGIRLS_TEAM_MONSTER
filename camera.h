@@ -1,7 +1,6 @@
 #pragma once
 #include "gameNode.h"
 
-
 enum stageImg
 {
 	FIRST_STAGE,

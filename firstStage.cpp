@@ -13,10 +13,6 @@ firstStage::~firstStage()
 HRESULT firstStage::init()
 {
 	IMAGEMANAGER->findImage("STAGE_stage1");
-	//_first = IMAGEMANAGER->findImage("STAGE_stagePixel1");
-	IMAGEMANAGER->findImage("BATTLE_unlockDoor1");
-	IMAGEMANAGER->findImage("BATTLE_unlockDoor2");
-	
 	
 	_camera = new camera;
 	_camera->init();
@@ -29,12 +25,15 @@ HRESULT firstStage::init()
 
 	_enemy = new enemy;
 	_enemy->init();
+
+	_camera = new camera;
+	_camera->init();
+	_camera->setStage(0);
+	
 	_player = new player;
 	_player->init();
 	_player->setCamera(_camera);
 	_player->setBossMemoryAddressLink(_boss);
-
-
 
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
@@ -46,13 +45,13 @@ HRESULT firstStage::init()
 	_zO->setBoss(_boss);
 	_zO->setEnemy(_enemy);
 
-
 	_isCheck = false;
 
 	_pixel = new pixelCollisionClass;
 
 	_pixel->init(0, 0, 0);
 	_pixel->setPixelPlayer(_player);
+	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
 
 
 
@@ -75,10 +74,9 @@ void firstStage::update()
 	_player->getState()->setPlayer(_player);
 
 	_boss->setPlayerMemoryAddressLink(_player);
-	//_boss->update();
 
-	//_pixel->setPixelPlayer(_player);
-	//_pixel->update();
+	_pixel->setPixelPlayer(_player);
+	_pixel->update();
 
 	//_enemy->update();
 	_enemy->getEnemyState()->setEnemy(_enemy);
@@ -93,13 +91,13 @@ void firstStage::update()
 
 void firstStage::render()
 {
-	//IMAGEMANAGER->findImage("STAGE_stage1")->render(getMemDC(), 0, 0);
-	
-	if (KEYMANAGER->isToggleKey(VK_TAB))
+	_camera->render();
+
+	if (KEYMANAGER->isToggleKey(VK_F8))
 	{
-		//_first->render(getMemDC(), 0, 0);
 		_pixel->render();
 	}
+
 	_zO->render();
 	_camera->render();
 
@@ -154,7 +152,7 @@ void firstStage::swap(gameNode** a, gameNode** b)
 	*a = *b;
 	*b = temp;
 
-	_player->render();
-	_enemy->render();
+	//_player->render();
+	//_enemy->render();
 	//_boss->render();
 }

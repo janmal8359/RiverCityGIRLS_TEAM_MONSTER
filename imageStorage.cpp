@@ -732,7 +732,7 @@ HRESULT imageStorage::init()
 	//책상
 	IMAGEMANAGER->addImage("OBJECT_desk", "Resource/IMG/object/desk.bmp", 147, 162, true, RGB(255, 0, 255));
 	//책상배열1
-	IMAGEMANAGER->addImage("OBJECT_desk1", "Resource/IMG/object/desk1.bmp", 939, 162, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("OBJECT_desk1", "Resource/IMG/object/desk1.bmp", 1174, 203, true, RGB(255, 0, 255));
 	//책상배열2
 	IMAGEMANAGER->addImage("OBJECT_desk2", "Resource/IMG/object/desk2.bmp", 936, 138, true, RGB(255, 0, 255));
 	//교사 책상
@@ -741,6 +741,10 @@ HRESULT imageStorage::init()
 	IMAGEMANAGER->addImage("OBJECT_table", "Resource/IMG/object/table.bmp", 339, 162, true, RGB(255, 0, 255));
 	//수영장팬스
 	IMAGEMANAGER->addImage("OBJECT_fence", "Resource/IMG/object/fence.bmp", 476, 71, true, RGB(255, 0, 255));
+	//기둥(오른쪽)
+	IMAGEMANAGER->addImage("OBJECT_RPillar", "Resource/IMG/object/stage02_pillar.bmp", 195, 864, true, RGB(255, 0, 255));
+	//기둥(왼쪽)																					 
+	IMAGEMANAGER->addImage("OBJECT_LPillar", "Resource/IMG/object/stage03_pillar.bmp", 195, 864, true, RGB(255, 0, 255));
 	//기둥 파편1
 	IMAGEMANAGER->addImage("OBJECT_particle1", "Resource/IMG/object/pillar_particle_1.bmp", 64, 64, true, RGB(255, 0, 255));
 	//기둥 파편2																					 

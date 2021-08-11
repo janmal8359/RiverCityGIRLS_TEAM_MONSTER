@@ -158,6 +158,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="characterSelect.h" />
     <ClInclude Include="commonMacroFunction.h" />
+    <ClInclude Include="crafting.h" />
     <ClInclude Include="dashAttack.h" />
     <ClInclude Include="dashSAttack.h" />
     <ClInclude Include="die.h" />
@@ -185,6 +186,8 @@
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="mainMenu.h" />
     <ClInclude Include="mode.h" />
+    <ClInclude Include="object.h" />
+    <ClInclude Include="objectManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="pixelCollisionClass.h" />
     <ClInclude Include="player.h" />
@@ -228,6 +231,7 @@
     <ClCompile Include="button.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="characterSelect.cpp" />
+    <ClCompile Include="crafting.cpp" />
     <ClCompile Include="dashAttack.cpp" />
     <ClCompile Include="dashSAttack.cpp" />
     <ClCompile Include="die.cpp" />
@@ -255,6 +259,8 @@
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="mainMenu.cpp" />
     <ClCompile Include="mode.cpp" />
+    <ClCompile Include="object.cpp" />
+    <ClCompile Include="objectManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

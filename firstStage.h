@@ -5,7 +5,6 @@
 #include "enemy.h"
 #include "boss.h"
 #include "state.h"
-//#include "pixelCollisionClass.h"
 
 #include "zOrder.h"
 
@@ -15,9 +14,6 @@ class pixelCollisionClass;
 class firstStage : public gameNode
 {
 private:
-	bool _isCheck;
-	bool _isNextCount;
-
 	typedef vector<gameNode*>				arrRender;
 	typedef vector<gameNode*>::iterator		iterRender;
 
@@ -32,10 +28,11 @@ private:
 	boss* _boss;
 	zOrder* _zO;
 
-	pixelCollisionClass* _pixel;
+	camera* _camera;
+	player* _player;
+	enemy* _enemy;
 
-	//ÇÈ¼¿ Å½»ö±â
-	//float _probeLX, _probeTY, _probeRX, _probeBY;
+	pixelCollisionClass* _pixel;
 
 public:
 	firstStage();
@@ -45,8 +42,6 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
-
-	//void pixelCollision();
 
 	void setPlayer(player* player) { _player = player; }
 

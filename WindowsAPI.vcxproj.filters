@@ -109,6 +109,9 @@
     <Filter Include="2DGameFramework\zOrder">
       <UniqueIdentifier>{fe678922-024f-45d8-a616-139c7f207cf0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\1-1.STAGE_MANAGER\6.GAME\objectClass">
+      <UniqueIdentifier>{6d2f53b9-5d28-4075-9b94-750725e368a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -321,6 +324,15 @@
     <ClInclude Include="camera.h">
       <Filter>playGround\5.GAME_MANAGER\CAMERA</Filter>
     </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
+    </ClInclude>
+    <ClInclude Include="crafting.h">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
+    </ClInclude>
+    <ClInclude Include="objectManager.h">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -520,6 +532,15 @@
     </ClCompile>
     <ClCompile Include="zOrder.cpp">
       <Filter>2DGameFramework\zOrder</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
+    </ClCompile>
+    <ClCompile Include="crafting.cpp">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
+    </ClCompile>
+    <ClCompile Include="objectManager.cpp">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

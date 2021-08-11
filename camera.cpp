@@ -93,7 +93,6 @@ void camera::update()
     default:
         break;
     }
-
 }
 
 void camera::render()
@@ -105,7 +104,9 @@ void camera::render()
         _pixelImg->render(getMemDC(), 0, 0, _camX, _camY, WINSIZEX, WINSIZEY);
         Rectangle(getMemDC(), _cameraRc);
     }
-   // Rectangle(getMemDC(), _cameraRc);
+    Rectangle(getMemDC(), _cameraRc);
+
+
 
     char str[128];
 

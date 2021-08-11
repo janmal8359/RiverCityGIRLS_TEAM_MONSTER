@@ -12,23 +12,25 @@ bossStage2::~bossStage2()
 
 HRESULT bossStage2::init()
 {
-	_isBreak = false;
-
-	IMAGEMANAGER->findImage("OBJECT_backPillar");
-	IMAGEMANAGER->findImage("OBJECT_firstPillar");
-	IMAGEMANAGER->findImage("OBJECT_particle1");
-	IMAGEMANAGER->findImage("OBJECT_particle2");
-	IMAGEMANAGER->findImage("OBJECT_particle3");
 	IMAGEMANAGER->findImage("STAGE_bossStage2");
-	//IMAGEMANAGER->findImage("STAGE_bossPixel");
+
+	_boss = new boss;
+	_boss->setPlayerMemoryAddressLink(_player);
+	_boss->init();
+
+	_camera = new camera;
+	_camera->init();
+	_camera->setStage(3);
 
 	_player = new player;
 	_player->init();
+	_player->setCamera(_camera);
 
 	_pixel = new pixelCollisionClass;
 
 	_pixel->init(0, 0, 3);
 	_pixel->setPixelPlayer(_player);
+	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
 
 	return S_OK;
 }
@@ -43,20 +45,22 @@ void bossStage2::update()
 
 	_player->getState()->setPlayer(_player);
 
+	_boss->setPlayerMemoryAddressLink(_player);
+	_boss->update();
+
 	_pixel->setPixelPlayer(_player);
 	_pixel->update();
-
 }
 
 void bossStage2::render()
 {
-	IMAGEMANAGER->findImage("STAGE_bossStage2")->render(getMemDC(), 0, 0);
-	//IMAGEMANAGER->findImage("STAGE_bossPixel")->render(getMemDC(), 0, 0);
+	_camera->render();
 
-	if (KEYMANAGER->isToggleKey(VK_TAB))
+	if (KEYMANAGER->isToggleKey(VK_F8))
 	{
 		_pixel->render();
 	}
 
 	_player->render();
+	_boss->render();
 }
