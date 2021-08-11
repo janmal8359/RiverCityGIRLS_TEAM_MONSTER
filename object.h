@@ -23,13 +23,10 @@ private:
 	RECT _objectRc;
 
 	OBJECTTYPE _objectType;
-	
-	float _particleAngle;
-	float _particleSpeed;
-	float _particleGravity;
-	
+
 	float _objectMX, _objectMY;		//오브젝트 가이드 중점값 - 반환형
 	float _objectOX, _objectOY;		//오브젝트 중점값
+
 	float _particleAngle;			//기둥 파편의 각도값
 	float _particleSpeed;			//기둥 파편의 속도값
 	float _particleGravity;			//기둥 파편의 중력값
@@ -44,21 +41,21 @@ public:
 	virtual void update();
 	virtual void render();
 
-	//오브젝트 가이트 중점 x
-	float getObjectMX() { return _objectMX; }
-	void setObjectMX(float objectMX) { _objectMX = objectMX; }
-	
-	//오브젝트 가이트 중점 y
-	float getObjectMX() { return _objectMY; }
-	void setObjectMX(float objectMY) { _objectMX = objectMY; }
-	
-	//오브젝트 중점 x
-	float getObjectMX() { return _objectMX; }
-	void setObjectMX(float objectMX) { _objectMX = objectMX; }
-	
-	//오브젝트 중점 y
-	float getObjectMX() { return _objectMY; }
-	void setObjectMX(float objectMY) { _objectMX = objectMY; }
+	////오브젝트 가이트 중점 x
+	//float getObjectMX() { return _objectMX; }
+	//void setObjectMX(float objectMX) { _objectMX = objectMX; }
+	//
+	////오브젝트 가이트 중점 y
+	//float getObjectMY() { return _objectMY; }
+	//void setObjectMY(float objectMY) { _objectMX = objectMY; }
+	//
+	////오브젝트 중점 x
+	//float getObjectOX() { return _objectOX; }
+	//void setObjectOX(float objectOX) { _objectMX = objectOX; }
+	//
+	////오브젝트 중점 y
+	//float getObjectOX() { return _objectOY; }
+	//void setObjectOX(float objectOY) { _objectMX = objectOY; }
 	
 	//파편의 각도
 	float getParticleAngle() { return _particleAngle; }

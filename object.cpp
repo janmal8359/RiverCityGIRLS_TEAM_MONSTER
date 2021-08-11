@@ -20,13 +20,13 @@ HRESULT object::init(float x, float y, int objectType)
 
 	if (_objectType == 0)_objectImg = IMAGEMANAGER->findImage("OBJECT_desk1");
 
-	_objectOX = x;
-	_objectOY = y;
+	_objectMX = x;
+	_objectMY = y;
 
-	_objectMX = _objectOX;
-	_objectMY = _objectOY - (_objectImg->getHeight() / 2);
+	_objectOX = _objectMX;
+	_objectOY = _objectMY - (_objectImg->getHeight() / 2);
 
-	_objectRc = RectMakeCenter(_objectMX, _objectMY, _objectImg->getWidth(), _objectImg->getHeight());
+	_objectRc = RectMakeCenter(_objectOX, _objectOY, _objectImg->getWidth(), _objectImg->getHeight());
 	
 	return S_OK;
 }
@@ -37,7 +37,7 @@ void object::release()
 
 void object::update()
 {
-	_objectRc = RectMakeCenter(_objectMX, _objectMY, _objectImg->getWidth(), _objectImg->getHeight());
+	_objectRc = RectMakeCenter(_objectOX, _objectOY, _objectImg->getWidth(), _objectImg->getHeight());
 }
 
 void object::render()

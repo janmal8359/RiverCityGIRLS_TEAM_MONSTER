@@ -1,6 +1,8 @@
 #pragma once
 #include "gameNode.h"
+#include "object.h"
 #include "crafting.h"
+#include "camera.h"
 #include <vector>
 
 class objectManager : public gameNode
@@ -13,6 +15,10 @@ private:
 	vObject		_vObject;
 	viObject	_viObject;
 
+	object* _object;
+
+	camera* _camera;
+
 public:
 	objectManager();
 	~objectManager();
@@ -21,6 +27,8 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	void setObject();
 
 	vector<object*> getVObject() { return _vObject; }
 	vector<object*>::iterator getViObject() { return _viObject; }
