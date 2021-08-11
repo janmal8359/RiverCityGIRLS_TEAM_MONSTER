@@ -33,9 +33,11 @@ private:
 	boss* _boss;
 	zOrder* _zO;
 
-	pixelCollisionClass* _pixel;
+	camera* _camera;
+	player* _player;
+	enemy* _enemy;
 
-	bool _isCheck;
+	pixelCollisionClass* _pixel;
 
 public:
 	firstStage();

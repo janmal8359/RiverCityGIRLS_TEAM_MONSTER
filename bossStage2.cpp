@@ -20,7 +20,7 @@ HRESULT bossStage2::init()
 
 	_camera = new camera;
 	_camera->init();
-	_camera->setStage(BOSS_STAGE2);
+	_camera->setStage(3);
 
 	_player = new player;
 	_player->init();
