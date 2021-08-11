@@ -18,7 +18,7 @@ public:
 	virtual void release();			//메모리 해제 함슈
 	virtual void update();			//연산하는 함수
 	virtual void render();	//그리기 함수
-
+	virtual float getPosY();
 	//백버퍼의 DC영역에 대한 접근자
 	HDC getMemDC() { return _backBuffer->getMemDC(); }
 	HDC getHDC() { return _hdc; }

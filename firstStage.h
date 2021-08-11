@@ -22,12 +22,7 @@ private:
 	arrRender _vRender;
 	iterRender _viRender;
 
-	bool _isCheck;
-	bool _isNextCount;
 
-
-	bool _isCheck;
-	bool _isNextCount;
 
 
 	//image* _first;
@@ -54,5 +49,8 @@ public:
 	void setPlayer(player* player) { _player = player; }
 
 	void setpixelCollisionClassMemoryAddressLink(pixelCollisionClass* pixel) { _pixel = pixel; }
+
+	void selectionSort();
+	void swap(gameNode** a, gameNode** b);
 };
 

@@ -61,7 +61,8 @@ HRESULT firstStage::init()
 	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
 
 
-
+	_vRender.push_back(_player);
+	_vRender.push_back(_enemy);
 	return S_OK; 
 }
 
@@ -91,6 +92,7 @@ void firstStage::update()
 	//pixelCollision();
 
 	_zO->update();
+	selectionSort();
 }
 
 void firstStage::render()
@@ -110,9 +112,18 @@ void firstStage::render()
 	//_zO->render();
 
 	_camera->render();
-	_player->render();
-	_enemy->render();
+	//_player->render();
+	//_enemy->render();
 	//_boss->render();
+
+	//게임노드의 객체를 상속받는 객체의 실질적 렌더
+	for (_viRender = _vRender.begin(); _viRender != _vRender.end(); _viRender++)
+	{
+		(*_viRender)->render();
+
+	}
+	//_boss->render();
+
 
 }
 

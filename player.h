@@ -178,6 +178,8 @@ public:
 	// bossMemory
 	void setBossMemoryAddressLink(boss* boss) { _boss = boss; }
 
+	virtual float getPosY() { return _sY; }
+
 
 };
 
