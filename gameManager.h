@@ -35,6 +35,7 @@ private:
 
 	image* kScript;
 	image* mScript;
+	image* scriptName;
 	
 
 	int _playerHP;
@@ -49,5 +50,7 @@ public:
 	void render();
 
 	void scriptPlay();
+
+	void eventMap();
 };
 

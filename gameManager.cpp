@@ -34,15 +34,15 @@ HRESULT gameManager::init()
 	scriptEnd = true;
 	_scriptSkip = false;
 	scriptImage = IMAGEMANAGER->findImage("SCENE_dialogWindow");
-	scriptRc = RectMakeCenter(WINSIZEX / 2, 650, scriptImage->getWidth(), scriptImage->getHeight());
+	scriptRc = RectMakeCenter(WINSIZEX / 2, 670, scriptImage->getWidth(), scriptImage->getHeight());
 	_scriptIndex = _txtIndex = 0;
 	scriptSkip = IMAGEMANAGER->findImage("SCENE_skipOutlines2");
-	_vScript = TXTDATA->txtLoad("Resource/µÇ³Ä.txt");
-	//_vScript = TXTDATA->txtLoad("Resource/½ºÅ©¸³Æ®.txt");
+	_vScript = TXTDATA->txtLoad("Resource/´ëÈ­.txt");
 	kScript = IMAGEMANAGER->findImage("SCENE_kyoko1");
 	mScript = IMAGEMANAGER->findImage("SCENE_misuzu1");
+	scriptName = IMAGEMANAGER->findImage("SCENE_kyokoName");
 
-	//¸Ê ÀÚ¹°¼è
+	//¸Ê ÀÌº¥Æ®
 	mapLocked = false;
 	mapUnlocked = true;
 
@@ -69,18 +69,6 @@ void gameManager::update()
 		_playerHPPoint[i]._rc = RectMakeCenter(270 + i * 16, 53, _playerHPPoint[i]._image->getWidth(), _playerHPPoint[i]._image->getHeight());
 	}
 
-	//¸Ê ÀÌº¥Æ®
-	/*if (KEYMANAGER->isOnceKeyDown() && !mapLocked && mapUnlocked)
-	{
-		mapLocked = true;
-		mapUnlocked = false;
-	}
-	if (KEYMANAGER->isOnceKeyDown() && mapLocked && !mapUnlocked)
-	{
-		mapLocked = false;
-		mapUnlocked = true;
-	}*/
-
 	//´ëÈ­ ½ºÅ©¸³Æ®
 	if (KEYMANAGER->isOnceKeyDown(VK_F1) && !scriptStart && scriptEnd)
 	{
@@ -99,12 +87,10 @@ void gameManager::update()
 			_scriptSkip = false;
 	}
 	
-
+	//¸Ê ÀÌº¥Æ®
 	if (KEYMANAGER->isOnceKeyDown(VK_F2) && mapLocked && !mapUnlocked)
 	{
 	}
-
-
 }
 
 void gameManager::render()
@@ -120,26 +106,22 @@ void gameManager::render()
 		scriptPlay();
 		scriptImage->render(getMemDC(), scriptRc.left, scriptRc.top);
 		scriptSkip->render(getMemDC(), 1070, 10); 
+		scriptName->render(getMemDC(), 0, 610);
 
 		SetBkMode(getMemDC(), TRANSPARENT);
 		SetTextColor(getMemDC(), RGB(255, 255, 255));
-		RECT rcText = RectMake(170, 600, 1000, 200);
+		RECT rcText = RectMake(190, 630, 1070, 200);
 
-		/*HFONT font2 = CreateFont(35, 0, 0, 0, 300, false, false, false,
+		HFONT font = CreateFont(35, 0, 0, 0, 200, false, false, false,
 			DEFAULT_CHARSET, OUT_STROKE_PRECIS, CLIP_DEFAULT_PRECIS,
-			PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("ÈÞ¸Õ±¼¸²"));*/
+			PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("ÈÞ¸Õ¸ÅÁ÷Ã¼"));
 
-		HFONT font2 = CreateFont(30, 0, 0, 0, 300, false, false, false,
-			HANGUL_CHARSET, OUT_STRING_PRECIS, CLIP_DEFAULT_PRECIS,
-			PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("¹ÙÅÁ"));
-		HFONT font2 = CreateFont(30, 0, 0, 0, 100, false, false, false, HANGUL_CHARSET, 0, 0, 0, 50, TEXT("ÈÞ¸Õ±¼¸²"));
+		HFONT oldFont = (HFONT)SelectObject(getMemDC(), font);
 
-		HFONT oldFont2 = (HFONT)SelectObject(getMemDC(), font2);
+		DrawText(getMemDC(), TEXT(_txt.c_str()), _txtIndex, &rcText, DT_VCENTER | DT_VCENTER | DT_WORDBREAK);
 
-		DrawText(getMemDC(), TEXT(_txt.c_str()), _txtIndex, &rcText, DT_LEFT | DT_VCENTER | DT_WORDBREAK);
-
-		SelectObject(getMemDC(), oldFont2);
-		DeleteObject(font2);
+		SelectObject(getMemDC(), oldFont);
+		DeleteObject(font);
 	}
 	if (scriptEnd)
 	{
@@ -153,12 +135,31 @@ void gameManager::scriptPlay()
 
 	if (_scriptIndex == 0 || _scriptIndex == 1 || _scriptIndex == 3 || _scriptIndex == 5 || _scriptIndex == 7 || _scriptIndex == 9 || _scriptIndex == 10)
 	{
-		kScript->render(getMemDC(), 15, 200);
+		if ( _scriptIndex == 5)
+		{
+			kScript = IMAGEMANAGER->findImage("SCENE_kyoko2");
+		}
+		if (_scriptIndex == 7 || _scriptIndex == 9 || _scriptIndex == 10)
+		{
+			kScript = IMAGEMANAGER->findImage("SCENE_kyoko3");
+		}
+		kScript->render(getMemDC(), 30, 150);
+		scriptName = IMAGEMANAGER->findImage("SCENE_kyokoName");
 	}
 	
 	if (_scriptIndex == 2 || _scriptIndex == 4 || _scriptIndex == 6 || _scriptIndex == 8 || _scriptIndex == 11)
 	{
-		mScript->render(getMemDC(), 850, 200);
+		mScript = IMAGEMANAGER->findImage("SCENE_misuzu1");
+		if (_scriptIndex == 6 || _scriptIndex == 11)
+		{
+			mScript = IMAGEMANAGER->findImage("SCENE_misuzu2");
+		}
+		if (_scriptIndex == 8)
+		{
+			mScript = IMAGEMANAGER->findImage("SCENE_misuzu3");
+		}
+		mScript->render(getMemDC(), 850, 160);
+		scriptName = IMAGEMANAGER->findImage("SCENE_misuzuName");
 	}
 
 	if (!_scriptSkip) {
@@ -195,4 +196,9 @@ void gameManager::scriptPlay()
 		scriptStart = false;
 		scriptEnd = true;
 	}
+}
+
+void gameManager::eventMap()
+{
+
 }
