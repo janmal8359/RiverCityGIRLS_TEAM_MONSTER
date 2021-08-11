@@ -192,6 +192,24 @@ public:
 	virtual void animOver();
 };
 
+class hitState : public bossState
+{
+private:
+
+public:
+	hitState();
+	~hitState();
+
+	virtual HRESULT init();
+	virtual void release();
+	virtual void update();
+	virtual void render();
+
+	virtual void stateChange();
+	virtual void anim();
+	virtual void animOver();
+};
+
 class loseState : public bossState
 {
 private:

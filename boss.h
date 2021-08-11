@@ -52,7 +52,7 @@ private:
 	// time
 	float _time;
 
-	// bool
+	// bool (state)
 	bool _isIdle;
 	bool _isMove;
 	bool _isAttack;
@@ -61,6 +61,7 @@ private:
 	bool _isFloat;
 	bool _isDash;
 	bool _isGroggy;
+	bool _isHit;
 
 	// camera
 	camera* _camera;
@@ -113,6 +114,7 @@ public:
 	bool getDash() { return _isDash; }
 	bool getIdle() { return _isIdle; }
 	bool getGroggy() { return _isGroggy; }
+	bool getHit() { return _isHit; }
 
 	float getTime() { return _time; }
 	float getJumpPower() { return _jumpPower; }
@@ -137,6 +139,7 @@ public:
 	void setDash(bool dash) { _isDash = dash; }
 	void setIdle(bool idle) { _isIdle = idle; }
 	void setGroggy(bool groggy) { _isGroggy = groggy; }
+	void setHit(bool hit) { _isHit = hit; }
 
 	void setTime(float time) { _time = time; }
 	void setJumpPower(float jumpPower) { _jumpPower = jumpPower; }
