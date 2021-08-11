@@ -36,9 +36,8 @@ HRESULT playGround::init()
 	SCENEMANAGER->addScene("bossStage2", new bossStage2);
 	SCENEMANAGER->changeScene("stage1");
 
-	SOUNDMANAGER->play("")
+	//SOUNDMANAGER->play("")
 
-	
 	return S_OK;
 }
 

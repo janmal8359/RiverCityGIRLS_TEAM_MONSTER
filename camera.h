@@ -59,7 +59,7 @@ public:
 	 RECT getCameraRc() { return _cameraRc; }
 
 
-
+	 void cameraLock(float x, float y);
 
 	 
 };

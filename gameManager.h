@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include <string>
 
 
 struct UIBar
@@ -20,6 +21,12 @@ private:
 
 	bool mapLocked;
 	bool mapUnlocked;
+	image* chainTop;
+	image* chainBottom;
+	image* chainLeft;
+	image* chainRight;
+	image* chainLock;
+	int _count, _index;
 
 	bool scriptStart;
 	bool scriptEnd;
@@ -29,6 +36,13 @@ private:
 	int _txtIndex;
 	vector<string> _vScript;
 	string _txt;
+	image* scriptSkip;
+	bool _scriptSkip;
+
+	image* kScript;
+	image* mScript;
+	image* scriptName;
+	
 
 	int _playerHP;
 
@@ -42,5 +56,7 @@ public:
 	void render();
 
 	void scriptPlay();
+
+	void eventMap();
 };
 

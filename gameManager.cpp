@@ -28,19 +28,28 @@ HRESULT gameManager::init()
 		_playerHPPoint[i]._image = IMAGEMANAGER->findImage("BATTLE_HP");
 		_playerHPPoint[i]._rc = RectMakeCenter(270+i*16, 53, _playerHPPoint[i]._image->getWidth(), _playerHPPoint[i]._image->getHeight());
 	}
-	
-	//맵 자물쇠
-	mapLocked = false;
-	mapUnlocked = true;
 
 	//대화 스크립트
 	scriptStart = false;
 	scriptEnd = true;
+	_scriptSkip = false;
 	scriptImage = IMAGEMANAGER->findImage("SCENE_dialogWindow");
-	scriptRc = RectMakeCenter(WINSIZEX / 2, 650, scriptImage->getWidth(), scriptImage->getHeight());
+	scriptRc = RectMakeCenter(WINSIZEX / 2, 670, scriptImage->getWidth(), scriptImage->getHeight());
 	_scriptIndex = _txtIndex = 0;
-	
+	scriptSkip = IMAGEMANAGER->findImage("SCENE_skipOutlines2");
 	_vScript = TXTDATA->txtLoad("Resource/대화.txt");
+	kScript = IMAGEMANAGER->findImage("SCENE_kyoko1");
+	mScript = IMAGEMANAGER->findImage("SCENE_misuzu1");
+	scriptName = IMAGEMANAGER->findImage("SCENE_kyokoName");
+
+	//맵 이벤트
+	mapLocked = false;
+	mapUnlocked = true;
+	chainTop = IMAGEMANAGER->findImage("BATTLE_stageChainTop");
+	chainBottom = IMAGEMANAGER->findImage("BATTLE_stageChainBottom");
+	chainLeft = IMAGEMANAGER->findImage("BATTLE_stageChainLeft");
+	chainRight = IMAGEMANAGER->findImage("BATTLE_stageChainRight");
+	chainLock = IMAGEMANAGER->findImage("BATTLE_lockAppear");
 
 	return S_OK;
 }
@@ -65,28 +74,42 @@ void gameManager::update()
 		_playerHPPoint[i]._rc = RectMakeCenter(270 + i * 16, 53, _playerHPPoint[i]._image->getWidth(), _playerHPPoint[i]._image->getHeight());
 	}
 
-	//맵 이벤트
-	/*if (KEYMANAGER->isOnceKeyDown() && !mapLocked && mapUnlocked)
-	{
-		mapLocked = true;
-		mapUnlocked = false;
-	}
-	if (KEYMANAGER->isOnceKeyDown() && mapLocked && !mapUnlocked)
-	{
-		mapLocked = false;
-		mapUnlocked = true;
-	}*/
-
 	//대화 스크립트
 	if (KEYMANAGER->isOnceKeyDown(VK_F1) && !scriptStart && scriptEnd)
 	{
 		scriptStart = true;
 		scriptEnd = false;
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_F2) && mapLocked && !mapUnlocked)
+
+	if (!_scriptSkip)
 	{
-		scriptStart = false;
-		scriptEnd = true;
+		if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
+			_scriptSkip = true;
+	}
+	if (_scriptSkip)
+	{
+		if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
+			_scriptSkip = false;
+	}
+	
+	//맵 이벤트
+	if (KEYMANAGER->isOnceKeyDown(VK_F2) && !mapLocked)
+	{
+		mapLocked = true;
+	}
+	if (mapLocked && KEYMANAGER->isOnceKeyDown(VK_F2))
+	{
+		mapLocked = false;
+	}
+
+	_count++;
+	if (_count % 30 == 0)
+	{
+		chainLock->setFrameX(_index);
+		_index++;
+
+		if (_index >= chainLock->getMaxFrameX()) _index = 6;
+		_count = 0;
 	}
 }
 
@@ -101,37 +124,131 @@ void gameManager::render()
 	if (scriptStart)
 	{
 		scriptPlay();
-		IMAGEMANAGER->findImage("SCENE_skipOutlines1")->render(getMemDC(), 1070, 10);
 		scriptImage->render(getMemDC(), scriptRc.left, scriptRc.top);
+		scriptSkip->render(getMemDC(), 1070, 10); 
+		scriptName->render(getMemDC(), 0, 610);
 
+		SetBkMode(getMemDC(), TRANSPARENT);
+		SetTextColor(getMemDC(), RGB(255, 255, 255));
+		RECT rcText = RectMake(190, 630, 1070, 200);
+
+		HFONT font = CreateFont(35, 0, 0, 0, 200, false, false, false,
+			DEFAULT_CHARSET, OUT_STROKE_PRECIS, CLIP_DEFAULT_PRECIS,
+			PROOF_QUALITY, DEFAULT_PITCH | FF_SWISS, TEXT("휴먼매직체"));
+
+		HFONT oldFont = (HFONT)SelectObject(getMemDC(), font);
+
+		DrawText(getMemDC(), TEXT(_txt.c_str()), _txtIndex, &rcText, DT_VCENTER | DT_VCENTER | DT_WORDBREAK);
+
+		SelectObject(getMemDC(), oldFont);
+		DeleteObject(font);
 	}
 	if (scriptEnd)
 	{
-		//IMAGEMANAGER->findImage("")
+		//보스 스테이지 시작
+	}
+
+	if (mapLocked)
+	{
+		eventMap();
+	}
+	if (!mapLocked)
+	{
+		//카메라 움직임,.??
 	}
 }
 
 void gameManager::scriptPlay()
 {
-
 	_txt = _vScript[_scriptIndex];
 
-	if (_txtIndex <= _txt.length())
+	if (_scriptIndex == 0 || _scriptIndex == 1 || _scriptIndex == 3 || _scriptIndex == 5 || _scriptIndex == 7 || _scriptIndex == 9 || _scriptIndex == 10)
 	{
-		_txtIndex++;
+		if ( _scriptIndex == 5)
+		{
+			kScript = IMAGEMANAGER->findImage("SCENE_kyoko2");
+		}
+		if (_scriptIndex == 7 || _scriptIndex == 9 || _scriptIndex == 10)
+		{
+			kScript = IMAGEMANAGER->findImage("SCENE_kyoko3");
+		}
+		kScript->render(getMemDC(), 30, 150);
+		scriptName = IMAGEMANAGER->findImage("SCENE_kyokoName");
 	}
-	else if (_txtIndex >= _txt.length() && KEYMANAGER->isOnceKeyDown(VK_RETURN))
+	
+	if (_scriptIndex == 2 || _scriptIndex == 4 || _scriptIndex == 6 || _scriptIndex == 8 || _scriptIndex == 11)
 	{
-		_scriptIndex++;
-		_txtIndex = 0;
+		mScript = IMAGEMANAGER->findImage("SCENE_misuzu1");
+		if (_scriptIndex == 6 || _scriptIndex == 11)
+		{
+			mScript = IMAGEMANAGER->findImage("SCENE_misuzu2");
+		}
+		if (_scriptIndex == 8)
+		{
+			mScript = IMAGEMANAGER->findImage("SCENE_misuzu3");
+		}
+		mScript->render(getMemDC(), 850, 160);
+		scriptName = IMAGEMANAGER->findImage("SCENE_misuzuName");
 	}
 
-	if (_txtIndex < _txt.length() && KEYMANAGER->isOnceKeyDown(VK_RETURN))
-		_txtIndex = _txt.length();
+	if (!_scriptSkip) {
+		scriptSkip = IMAGEMANAGER->findImage("SCENE_skipOutlines2");
+		if (_txtIndex <= _txt.length())
+		{
+			_txtIndex++;
+		}
+		else if (_txtIndex >= _txt.length())
+		{
+			_scriptIndex++;
+			_txtIndex = 0;
 
+			Sleep(700);
+		}
+	}
+	else if (_scriptSkip)
+	{
+		scriptSkip = IMAGEMANAGER->findImage("SCENE_skipOutlines1");
+		if (_txtIndex >= _txt.length())
+		{
+			_scriptIndex++;
+			_txtIndex = 0;
+
+			Sleep(200);
+		}
+		if (_txtIndex < _txt.length())
+		{
+			_txtIndex = _txt.length();
+		}
+	}
 	if (_scriptIndex >= _vScript.size())
 	{
 		scriptStart = false;
 		scriptEnd = true;
 	}
+}
+
+void gameManager::eventMap()
+{
+	chainTop->render(getMemDC(), 0, 0);
+	chainBottom->render(getMemDC(), 0, WINSIZEY-40);
+	chainLeft->render(getMemDC(), 0, 0);
+	chainRight->render(getMemDC(), WINSIZEX-40, 0);
+
+	//chainLock = IMAGEMANAGER->findImage("BATTLE_lockAppear");
+	if (KEYMANAGER->isOnceKeyDown('1'))
+	{
+		chainLock = IMAGEMANAGER->findImage("BATTLE_lockDamage1");
+	}
+	else if (KEYMANAGER->isOnceKeyDown('2'))
+	{
+		chainLock = IMAGEMANAGER->findImage("BATTLE_lockDamage2");
+	}
+	else if (KEYMANAGER->isOnceKeyDown('3'))
+	{
+		chainLock = IMAGEMANAGER->findImage("BATTLE_lockDisappear");
+
+		mapLocked = false;
+	}
+	
+	chainLock->frameRender(getMemDC(), WINSIZEX / 2, 0);
 }

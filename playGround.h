@@ -23,7 +23,6 @@ private:
 
 	gameManager* _gameManager;
 
-
 	player* _player;
 	enemy* _enemy;
 

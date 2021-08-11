@@ -112,3 +112,11 @@ void camera::render()
     sprintf_s(str, "camX : %.2f camY : %.2f", _camX, _camY);
     TextOut(getMemDC(), 10, 680, str, strlen(str));
 }
+
+void camera::cameraLock(float x, float y)
+{
+    _camXrc = WINSIZEX / 2;
+    _camYrc = WINSIZEY / 2;
+
+    _cameraRc = RectMakeCenter(_camXrc, _camYrc, 150, 150);
+}
