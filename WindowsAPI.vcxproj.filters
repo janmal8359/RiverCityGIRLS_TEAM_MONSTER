@@ -318,6 +318,15 @@
     <ClInclude Include="pixelCollisionClass.h">
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME</Filter>
     </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
+    </ClInclude>
+    <ClInclude Include="crafting.h">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
+    </ClInclude>
+    <ClInclude Include="objectManager.h">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -514,6 +523,15 @@
     </ClCompile>
     <ClCompile Include="pixelCollisionClass.cpp">
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
+    </ClCompile>
+    <ClCompile Include="crafting.cpp">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
+    </ClCompile>
+    <ClCompile Include="objectManager.cpp">
+      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
