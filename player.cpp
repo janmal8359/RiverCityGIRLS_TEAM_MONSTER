@@ -2,6 +2,7 @@
 #include "player.h"
 #include "camera.h"
 #include "boss.h"
+#include "enemy.h"
 
 player::player()
 {
@@ -129,6 +130,7 @@ void player::move()
             {
                 _camera->setCamX(_camera->getCamX() - _speed);
                 _boss->setBossShadowX(_boss->getBossShadowX() + _speed);
+                _enemy->setEnemySX(_enemy->getEnemySX() + _speed);
             }
             else
             {
@@ -144,6 +146,7 @@ void player::move()
             {
                 _camera->setCamX(_camera->getCamX() + _speed);
                 _boss->setBossShadowX(_boss->getBossShadowX() - _speed);
+                _enemy->setEnemySX(_enemy->getEnemySX() - _speed);
             }
             else
             {
@@ -157,6 +160,7 @@ void player::move()
             {
                 _camera->setCamY(_camera->getCamY() - _speed);
                 _boss->setBossShadowY(_boss->getBossShadowY() + _speed);
+                _enemy->setEnemySY(_enemy->getEnemySY() + _speed);
             }
             else
             {
@@ -170,6 +174,7 @@ void player::move()
             {
                 _camera->setCamY(_camera->getCamY() + _speed);
                 _boss->setBossShadowY(_boss->getBossShadowY() - _speed);
+                _enemy->setEnemySY(_enemy->getEnemySY() - _speed);
             }
             else
             {

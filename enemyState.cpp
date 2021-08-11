@@ -99,14 +99,14 @@ void enemyIdle::enemyStateChange()
 	//CHASE상태로 바꾼다
 	if (_enemyDir == ENEMY_LEFT)
 	{
-		if (_enemy->getEnemyDistance() <= 400 && _enemy->getIsEenmyChase() && _enemy->getIsEnemyIdle())			//플레이어과의 거리가 작아질시 추격상태이미지로
+		if (_enemy->getEnemyDistance() < 600 && _enemy->getIsEenmyChase() && _enemy->getIsEnemyIdle())			//플레이어과의 거리가 작아질시 추격상태이미지로
 		{
 			_enemy->setEnemyState(new enemyChase);
 		}
 	}
 	if (_enemyDir == ENEMY_RIGHT)
 	{
-		if (_enemy->getEnemyDistanceR() <= 400 && _enemy->getIsEenmyChase() && _enemy->getIsEnemyIdle())			//플레이어과의 거리가 작아질시 추격상태이미지로
+		if (_enemy->getEnemyDistanceR() < 600 && _enemy->getIsEenmyChase() && _enemy->getIsEnemyIdle())			//플레이어과의 거리가 작아질시 추격상태이미지로
 		{
 			_enemy->setEnemyState(new enemyChase);
 		}
@@ -215,7 +215,7 @@ void enemyChase::enemyStateChange()
 	
 		if (_enemyDir == ENEMY_LEFT)
 		{
-			if (_enemy->getEnemyDistance() > 400 && !_enemy->getIsEnemyAttack() && _enemy->getIsEenmyChase())			//플레이어과의 거리가 커질시 기본상태이미지로
+			if (_enemy->getEnemyDistance() > 600 && !_enemy->getIsEnemyAttack() && _enemy->getIsEenmyChase())			//플레이어과의 거리가 커질시 기본상태이미지로
 			{
 				_enemy->setIsEnemyAttack(false);
 				_enemy->setEnemyState(new enemyIdle);
@@ -223,7 +223,7 @@ void enemyChase::enemyStateChange()
 		}
 		if (_enemyDir == ENEMY_RIGHT)
 		{
-			if (_enemy->getEnemyDistanceR() > 400 && !_enemy->getIsEnemyAttack() && _enemy->getIsEenmyChase())			//플레이어과의 거리가 커질시 기본상태이미지로
+			if (_enemy->getEnemyDistanceR() > 600 && !_enemy->getIsEnemyAttack() && _enemy->getIsEenmyChase())			//플레이어과의 거리가 커질시 기본상태이미지로
 			{
 				_enemy->setIsEnemyAttack(false);
 				_enemy->setEnemyState(new enemyIdle);
@@ -248,7 +248,8 @@ void enemyChase::enemyStateChange()
 		}
 		
 		//피격시
-		if (_enemyDir == ENEMY_LEFT)
+		
+		if (_enemyDir == ENEMY_LEFT && _enemy->getEnemyDistance() < 10)
 		{
 			if (_enemy->getIsEnemyHurt())
 			{
@@ -257,7 +258,7 @@ void enemyChase::enemyStateChange()
 			}
 		}
 
-		if (_enemyDir == ENEMY_RIGHT)
+		if (_enemyDir == ENEMY_RIGHT && _enemy->getEnemyDistanceR() < 10)
 		{
 			if (_enemy->getIsEnemyHurt())
 			{
@@ -882,9 +883,8 @@ void enemyHurt::callBk()
 			else _EhultIdx = 0;
 				
 			}
-			if (_EHurtcount > 60)
+			if (_EHurtcount > 20)
 			{
-				
 				_enemy->setEnemyState(new enemyWaitAttack);
 			}
 		}
@@ -924,10 +924,7 @@ void enemyJump::render()
 
 void enemyJump::enemyStateChange()
 {
-	if (_enemy->getEnemyDistance() < 400)
-	{
-		_enemy->setEnemyState(new enemyChase);
-	}
+	
 }
 
 void enemyJump::enemyAni()
@@ -1125,7 +1122,7 @@ void enemyWaitAttack::enemyStateChange()
 
 	if (_enemyDir == ENEMY_LEFT)
 	{
-		if (_enemy->getEnemyDistance() < 10 && !_enemy->getIsEenmyChase() && !_enemy->getIsEnemyAttack() && !_enemy->getIsEnemyIdle() && _enemy->getIsEnemyWaitAttack() && _enemy->getEnemyCount() > RND->getFromFloatTo(100,400))
+		if (_enemy->getEnemyDistance() < 10 && !_enemy->getIsEenmyChase() && !_enemy->getIsEnemyAttack() && !_enemy->getIsEnemyIdle() && _enemy->getIsEnemyWaitAttack() && _enemy->getEnemyCount() > RND->getFromFloatTo(50,200))
 		{
 			_enemy->setEnemyState(new enemyAttack);
 
@@ -1134,7 +1131,7 @@ void enemyWaitAttack::enemyStateChange()
 	
 	if (_enemyDir == ENEMY_RIGHT)
 	{
-		if (_enemy->getEnemyDistanceR() < 10 && !_enemy->getIsEenmyChase() && !_enemy->getIsEnemyAttack() && !_enemy->getIsEnemyIdle() && _enemy->getIsEnemyWaitAttack() && _enemy->getEnemyCount() > RND->getFromFloatTo(100,400))
+		if (_enemy->getEnemyDistanceR() < 10 && !_enemy->getIsEenmyChase() && !_enemy->getIsEnemyAttack() && !_enemy->getIsEnemyIdle() && _enemy->getIsEnemyWaitAttack() && _enemy->getEnemyCount() > RND->getFromFloatTo(50,200))
 		{
 			_enemy->setEnemyState(new enemyAttack);
 		}
@@ -1143,7 +1140,7 @@ void enemyWaitAttack::enemyStateChange()
 	//피격시
 	if (_enemyDir == ENEMY_LEFT)
 	{
-		if (_enemy->getIsEnemyHurt() )
+		if (_enemy->getIsEnemyHurt())
 		{
 			_enemy->setEnemyState(new enemyHurt);
 
@@ -1152,7 +1149,7 @@ void enemyWaitAttack::enemyStateChange()
 
 	if (_enemyDir == ENEMY_RIGHT)
 	{
-		if (_enemy->getIsEnemyHurt() )
+		if (_enemy->getIsEnemyHurt())
 		{
 			_enemy->setEnemyState(new enemyHurt);
 
