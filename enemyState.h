@@ -15,10 +15,13 @@ class enemyState : public gameNode
 {
 protected:
 
-	int _EattackIdx;		//적 콤보
+	int _EattackIdx;		//적 공격시 카운트
+	int	_EhultIdx;			//적 피격시 카운트
 	image* _enemyImg;
 	int _enemyDir;
 
+
+	int _EHurtcount;			//피격 카운트
 	animation* _enemyAni;
 
 	enemy* _enemy;
@@ -41,8 +44,12 @@ public:
 
 	virtual void setEnemy(enemy* enemy) { _enemy = enemy; }
 
-	int getEattackIdx() { return _EattackIdx; }
+	int getEattackIdx() { return _EattackIdx; }			//공격카운트
 	void setEattackIdx(int EattackIdx) { _EattackIdx = EattackIdx; }
+
+	int getEhultIdx() { return _EhultIdx; }				//피격카운트
+
+	int getEhurtcount() { return _EHurtcount; }			//피격 시간 카운트
 
 	//접근자 설정자
 	
@@ -127,6 +134,8 @@ public:
 
 	virtual void enemyStateChange();
 	virtual void enemyAni();
+
+	virtual void callBk();
 };
 
 class enemyJump : public enemyState		//점프
