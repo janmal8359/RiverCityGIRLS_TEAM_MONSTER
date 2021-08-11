@@ -3,18 +3,17 @@
 #include "enemyState.h"
 
 
-
 class player;
+class camera;
 
 class enemy : public gameNode
 {
 
 private:
-	
-	
+		
 	player* _player;				//플레이어
-
-
+	camera* _camera;				//카메라
+	
 	enemyState* _enemyState;		//에너미 스테이트
 
 	image*	_enemyShadowImg;		//적 그림자 이미지
@@ -25,19 +24,24 @@ private:
 
 	float _enemyJP;					//점프파워
 
+	bool _isEIdle;					//기본 불값
 	bool _isEJump;					//점프 불값
 	bool _isEChase;					//추격 불값
 	bool _isEAttack;				//공격 불값
-	bool _isEHurt;					//피격 불값 
+	bool _isEHurt;					//피격 불값
+	bool _isEWaitAttack;			//어택 대기 불값
+	bool _isDie;					//죽음 불값
+	bool _isRun;					//달리는 불값
 
 	image* _enemyImg;				//적 이미지
 	RECT _enemyRc;					//적 렉트
 	
-	
+	int _enemyCount;					//어택 동작카운트
 
 
 	float _enemyX, _enemyY;			//적 x,y값
-	float _enemyDistance;			//적과 플레이어 거리
+	float _enemyDistance;			//적이 왼쪽 바라볼때 플레이어 거리
+	float _enemyDistanceR;			//적이 오른쪽 바라볼때 플레이어 거리
 
 
 
@@ -90,21 +94,38 @@ public:
 	float getEnemyJumpPower() { return _enemyJP; }
 	void setEnemyJumpPower(float EJump) { _enemyJP = EJump; }
 
+
+	//적 일반상황
+	bool getIsEnemyIdle() { return _isEIdle; }
+	void setIsEnemyIdle(bool isEIdle) { _isEIdle = isEIdle; }
 	//적 점프상황
-	float getIsEenmyJump() { return _isEJump; }
-	void setIsEnemyJump(float isEJump) { _isEJump = isEJump; }
+	bool getIsEenmyJump() { return _isEJump; }
+	void setIsEnemyJump(bool isEJump) { _isEJump = isEJump; }
 	//적 공격상황
-	float getIsEnemyAttack() { return _isEAttack; }
-	void setIsEnemyAttack(float isEattack) { _isEAttack = isEattack; }
+	bool getIsEnemyAttack() { return _isEAttack; }
+	void setIsEnemyAttack(bool isEattack) { _isEAttack = isEattack; }
 	//적 추격상황
-	float getIsEenmyChase() { return _isEChase; }
-	void setIsEnemyChase(float isEchase) { _isEChase = isEchase; }
+	bool getIsEenmyChase() { return _isEChase; }
+	void setIsEnemyChase(bool isEchase) { _isEChase = isEchase; }
 	//적 피격상황
-	float getIsEnemyHurt() { return _isEHurt; }
-	void setIsEnemyHurt(float isEhurt) { _isEHurt = isEhurt; }
+	bool getIsEnemyHurt() { return _isEHurt; }
+	void setIsEnemyHurt(bool isEhurt) { _isEHurt = isEhurt; }
+	//적 어택대기 상황
+	bool getIsEnemyWaitAttack() { return _isEWaitAttack; }
+	void setIsEnemyWaitAttack(bool isEWaitAttack) { _isEWaitAttack = isEWaitAttack; }
+	//적 죽음 상황
+	bool getIsEnemyDie() { return _isDie; }
+	void setIsEnemyDie(bool isDie) { _isDie = isDie; }
+	//적 달리는 상황
+	bool getIsEnemyRun() { return _isRun; }
+	void setIsEnemyRun(bool isRun) { _isRun = isRun; }
 	
 	//적과 플레이어 거리값
-	float getEnemyDistance() { return _enemyDistance; }
+	float getEnemyDistance() { return _enemyDistance; }			//왼쪽 바라볼때
+	float getEnemyDistanceR() { return _enemyDistanceR; }		//오른쪽 바라볼때
+	
+	int getEnemyCount() { return _enemyCount; }								//에너미 동작 카운트
+	void setEnemyCount(int enemyCount) { _enemyCount = enemyCount; }		
 
 	//적 렉트
 	RECT getEnemyRc() { return _enemyRc; }
@@ -126,5 +147,7 @@ public:
 
 	virtual float getPosY() { return _enemySY; }
 
+	//camera와 연동
+	void setCameraMemoryLink(camera* camera) { _camera = camera; }
 };
 

@@ -37,6 +37,7 @@ HRESULT firstStage::init()
 
 
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
+	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
 
 	_zO = new zOrder;
 	_zO->init();
@@ -152,4 +153,8 @@ void firstStage::swap(gameNode** a, gameNode** b)
 	gameNode* temp = *a;
 	*a = *b;
 	*b = temp;
+
+	_player->render();
+	_enemy->render();
+	//_boss->render();
 }
