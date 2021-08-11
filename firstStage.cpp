@@ -25,10 +25,17 @@ HRESULT firstStage::init()
 
 	_enemy = new enemy;
 	_enemy->init();
+<<<<<<< HEAD
 
 	//_camera = new camera;
 	//_camera->init();
 	//_camera->setStage(0);
+=======
+	
+	_camera = new camera;
+	_camera->init();
+	_camera->setStage(1);
+>>>>>>> parent of 682375e (zorder ì¼ë‹¨êµ¬í˜„ ê°ì²´í™” í™•ì¸)
 	
 	_player = new player;
 	_player->init();
@@ -55,11 +62,6 @@ HRESULT firstStage::init()
 
 
 
-	//vrender º¤ÅÍ¿¡ ·£´õÇÒ Å¬·¡½º¸¦ ³Ö´Â´Ù.
-	_vRender.push_back(_player);
-	_vRender.push_back(_enemy);
-
-
 	return S_OK; 
 }
 
@@ -69,24 +71,25 @@ void firstStage::release()
 
 void firstStage::update()
 {
-	//_player->update();
+	_player->update();
 
 	_player->getState()->setPlayer(_player);
 
 	_boss->setPlayerMemoryAddressLink(_player);
+<<<<<<< HEAD
+=======
+	_boss->update();
+>>>>>>> parent of 682375e (zorder ì¼ë‹¨êµ¬í˜„ ê°ì²´í™” í™•ì¸)
 
 	_pixel->setPixelPlayer(_player);
 	_pixel->update();
 
-	//_enemy->update();
+	_enemy->update();
 	_enemy->getEnemyState()->setEnemy(_enemy);
 
 	//pixelCollision();
 
 	_zO->update();
-
-	//º¤ÅÍ y°ªÀ» ¹Ş¾Æ ¼±ÅÃ Á¤·Ä
-	selectionSort();
 }
 
 void firstStage::render()
@@ -97,21 +100,17 @@ void firstStage::render()
 	{
 		_pixel->render();
 	}
+<<<<<<< HEAD
 
 	_zO->render();
+=======
+	//_zO->render();
+>>>>>>> parent of 682375e (zorder ì¼ë‹¨êµ¬í˜„ ê°ì²´í™” í™•ì¸)
 	_camera->render();
-
-
-	//_player->render();
-	//_enemy->render();
-
-	//°ÔÀÓ³ëµåÀÇ °´Ã¼¸¦ »ó¼Ó¹Ş´Â °´Ã¼ÀÇ ½ÇÁúÀû ·»´õ
-	for (_viRender = _vRender.begin(); _viRender != _vRender.end(); _viRender++)
-	{
-		(*_viRender)->render();
-
-	}
+	_player->render();
+	_enemy->render();
 	//_boss->render();
+<<<<<<< HEAD
 }
 
 //¼±ÅÃÁ¤·Ä ÇÔ¼ö
@@ -155,4 +154,6 @@ void firstStage::swap(gameNode** a, gameNode** b)
 	//_player->render();
 	//_enemy->render();
 	//_boss->render();
+=======
+>>>>>>> parent of 682375e (zorder ì¼ë‹¨êµ¬í˜„ ê°ì²´í™” í™•ì¸)
 }

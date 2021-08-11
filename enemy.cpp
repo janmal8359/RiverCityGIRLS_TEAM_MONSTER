@@ -110,6 +110,11 @@ void enemy::render()
 
 	_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
 	
+	
+
+	
+	
+	
 	_enemyState->render();
 }
 

@@ -47,10 +47,7 @@ public:
 	 void setCamY(float camY) { _camY = camY; }
 
 
-	 void setStage(stageImg _stageimage) { _stageImg = _stageimage; }
-
-
-
+	 void setStage(int nowStageNum) { _stage = nowStageNum; }
 
 	 image* getBgImage() { return _backGroundImg; }
 

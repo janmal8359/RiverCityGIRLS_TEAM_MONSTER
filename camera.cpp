@@ -13,7 +13,7 @@ HRESULT camera::init()
 
     _cameraRc = RectMakeCenter(_camXrc, _camYrc, 150, 150);
 
-    switch (_stageImg)
+    switch (_stage)
     {
     case FIRST_STAGE:
         _camX = 0;
@@ -58,6 +58,7 @@ void camera::release()
 
 void camera::update()
 {
+<<<<<<< HEAD
     switch (_stageImg)
     {
     case FIRST_STAGE:
@@ -93,6 +94,9 @@ void camera::update()
     default:
         break;
     }
+=======
+  
+>>>>>>> parent of 682375e (zorder 일단구현 객체화 확인)
 }
 
 void camera::render()

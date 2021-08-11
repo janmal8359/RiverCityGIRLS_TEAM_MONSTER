@@ -13,12 +13,9 @@ class zOrder : public gameNode
 {
 
 private:
-	map<float, int>	_mobj;
-	map<float, int>::iterator _miobj;
 
-
-	//multimap<float, int>			_mobj;
-	//multimap<float, int>::iterator  _miobj;
+	multimap<float, int>			_mobj;
+	multimap<float, int>::iterator  _miobj;
 
 	int mapIdx;
 
@@ -27,6 +24,14 @@ private:
 	enemy* _enemy;
 
 	boss* _boss;
+
+
+
+
+
+
+
+
 
 
 

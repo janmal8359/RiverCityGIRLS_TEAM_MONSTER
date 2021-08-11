@@ -137,6 +137,7 @@ void atk::callBk()
 		_player->setState(new idle);
 		_player->update();
 	}
+
 }
 
 //void atk::hitCheck()

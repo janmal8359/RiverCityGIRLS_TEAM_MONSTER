@@ -14,12 +14,18 @@ class pixelCollisionClass;
 class firstStage : public gameNode
 {
 private:
+<<<<<<< HEAD
 	typedef vector<gameNode*>				arrRender;
 	typedef vector<gameNode*>::iterator		iterRender;
 
 
 	arrRender _vRender;
 	iterRender _viRender;
+=======
+	bool _isCheck;
+	bool _isNextCount;
+
+>>>>>>> parent of 682375e (zorder 일단구현 객체화 확인)
 	//image* _first;
 	
 	camera* _camera;
@@ -44,9 +50,5 @@ public:
 	void setPlayer(player* player) { _player = player; }
 
 	void setpixelCollisionClassMemoryAddressLink(pixelCollisionClass* pixel) { _pixel = pixel; }
-
-	void selectionSort();
-
-	void swap(gameNode** a, gameNode** b);
 };
 

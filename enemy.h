@@ -145,9 +145,12 @@ public:
 	//player¿Í ¿¬µ¿
 	void setPlayerMemoryLink(player* player) { _player = player; }
 
+<<<<<<< HEAD
 	virtual float getPosY() { return _enemySY; }
 
 	//camera¿Í ¿¬µ¿
 	void setCameraMemoryLink(camera* camera) { _camera = camera; }
+=======
+>>>>>>> parent of 682375e (zorder ì¼ë‹¨êµ¬í˜„ ê°ì²´í™” í™•ì¸)
 };
 

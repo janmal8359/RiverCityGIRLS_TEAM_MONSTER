@@ -164,7 +164,10 @@ public:
 
 	state* getState() { return _state; }
 
-	virtual float getPosY() { return _sY; }
+
+
+
+
 
 	// width, height
 	float getWidth() { return _shadowRc.right - _shadowRc.left; }
