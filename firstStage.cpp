@@ -39,6 +39,7 @@ HRESULT firstStage::init()
 
 
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
+	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
 
 
 

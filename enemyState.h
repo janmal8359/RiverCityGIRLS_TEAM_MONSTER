@@ -196,3 +196,20 @@ public:
 	virtual void enemyStateChange();
 	virtual void enemyAni();
 };
+
+class enemyWaitAttack : public enemyState //공격모션 대기
+{
+
+public:
+	enemyWaitAttack();
+	~enemyWaitAttack();
+
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render() override;
+
+	virtual void enemyStateChange();
+	virtual void enemyAni();
+
+};

@@ -3,18 +3,17 @@
 #include "enemyState.h"
 
 
-
 class player;
+class camera;
 
 class enemy : public gameNode
 {
 
 private:
-	
-	
+		
 	player* _player;				//플레이어
-
-
+	camera* _camera;				//카메라
+	
 	enemyState* _enemyState;		//에너미 스테이트
 
 	image*	_enemyShadowImg;		//적 그림자 이미지
@@ -25,10 +24,12 @@ private:
 
 	float _enemyJP;					//점프파워
 
+	bool _isEIdle;					//기본 불값
 	bool _isEJump;					//점프 불값
 	bool _isEChase;					//추격 불값
 	bool _isEAttack;				//공격 불값
-	bool _isEHurt;					//피격 불값 
+	bool _isEHurt;					//피격 불값
+	bool _isEWaitAttack;			//어택 대기 불값
 
 	image* _enemyImg;				//적 이미지
 	RECT _enemyRc;					//적 렉트
@@ -91,6 +92,9 @@ public:
 	float getEnemyJumpPower() { return _enemyJP; }
 	void setEnemyJumpPower(float EJump) { _enemyJP = EJump; }
 
+	//적 일반상황
+	bool getIsEnemyIdle() { return _isEIdle; }
+	void setIsEnemyIdle(bool isEIdle) { _isEIdle = isEIdle; }
 	//적 점프상황
 	bool getIsEenmyJump() { return _isEJump; }
 	void setIsEnemyJump(bool isEJump) { _isEJump = isEJump; }
@@ -103,6 +107,9 @@ public:
 	//적 피격상황
 	bool getIsEnemyHurt() { return _isEHurt; }
 	void setIsEnemyHurt(bool isEhurt) { _isEHurt = isEhurt; }
+	//적 어택대기 상황
+	bool getIsEnemyWaitAttack() { return _isEWaitAttack; }
+	void setIsEnemyWaitAttack(bool isEWaitAttack) { _isEWaitAttack = isEWaitAttack; }
 	
 	//적과 플레이어 거리값
 	float getEnemyDistance() { return _enemyDistance; }			//왼쪽 바라볼때
@@ -129,5 +136,7 @@ public:
 	//player와 연동
 	void setPlayerMemoryLink(player* player) { _player = player; }
 
+	//camera와 연동
+	void setCameraMemoryLink(camera* camera) { _camera = camera; }
 };
 

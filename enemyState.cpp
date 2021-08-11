@@ -73,13 +73,17 @@ void enemyIdle::release()
 
 void enemyIdle::update()
 {
-	_enemy->setIsEnemyAttack(false);
-
 	enemyState::update();
+
+	_enemy->setIsEnemyAttack(false);					//기본 상태라서 공격을 안함
+	_enemy->setIsEnemyChase(false);						//기본 상태라서 추적을 안함
+	_enemy->setIsEnemyWaitAttack(false);					//다가가서 어택하기전 대기
+	_enemy->setIsEnemyIdle(true);						//기본 상태라서 기본임
+	_enemy->setEnemySpeed(0);							//기본 상태라서 속도가 0
+	_enemy->setEnemyCount(_enemy->getEnemyCount() + 1);	//기본 상태에 어택 카운트가 올라감
 	
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_idle");
-	
-	_enemy->setEnemyCount(_enemy->getEnemyCount() + 1);
+
 }
 
 void enemyIdle::render()
@@ -90,48 +94,18 @@ void enemyIdle::render()
 
 void enemyIdle::enemyStateChange()
 {	
-	if (_enemyDir == ENEMY_LEFT)
-	{
-		if (_enemy->getEnemyDistance() <= 400)			//플레이어과의 거리가 작아질시 추격상태이미지로
-		{
-			_enemy->setEnemyState(new enemyChase);
-		}
-	}
-	if (_enemyDir == ENEMY_RIGHT)
-	{
-		if (_enemy->getEnemyDistanceR() <= 400)			//플레이어과의 거리가 작아질시 추격상태이미지로
-		{
-			_enemy->setEnemyState(new enemyChase);
-		}
-	}
 
+	//CHASE상태로 바꾼다
 	if (_enemyDir == ENEMY_LEFT)
 	{
-		if (_enemy->getEnemyDistance() < 10 && !_enemy->getIsEnemyAttack())
-		{
-			_enemy->setEnemyState(new enemyAttack);
-	
-		}
-	}
-	
-	if (_enemyDir == ENEMY_RIGHT)
-	{
-		if (_enemy->getEnemyDistanceR() < 10 && !_enemy->getIsEnemyAttack())
-		{
-			_enemy->setEnemyState(new enemyAttack);
-	
-		}
-	}
-	if (_enemyDir == ENEMY_LEFT)
-	{
-		if (_enemy->getEnemyDistance() <= 400)			//플레이어과의 거리가 작아질시 추격상태이미지로
+		if (_enemy->getEnemyDistance() <= 400 && _enemy->getIsEenmyChase() && _enemy->getIsEnemyIdle())			//플레이어과의 거리가 작아질시 추격상태이미지로
 		{
 			_enemy->setEnemyState(new enemyChase);
 		}
 	}
-	if (_enemyDir == ENEMY_RIGHT)
+	else if (_enemyDir == ENEMY_RIGHT)
 	{
-		if (_enemy->getEnemyDistanceR() <= 400)			//플레이어과의 거리가 작아질시 추격상태이미지로
+		if (_enemy->getEnemyDistanceR() <= 400 && _enemy->getIsEenmyChase() && _enemy->getIsEnemyIdle())			//플레이어과의 거리가 작아질시 추격상태이미지로
 		{
 			_enemy->setEnemyState(new enemyChase);
 		}
@@ -139,40 +113,20 @@ void enemyIdle::enemyStateChange()
 
 	if (_enemyDir == ENEMY_LEFT)
 	{
-		if (_enemy->getEnemyDistance() < 10 && !_enemy->getIsEnemyAttack())
+		if (_enemy->getEnemyDistance() < 10 && !_enemy->getIsEenmyChase() && !_enemy->getIsEnemyAttack() && !_enemy->getIsEnemyIdle() && _enemy->getIsEnemyWaitAttack() && _enemy->getEnemyCount() > 100)
 		{
 			_enemy->setEnemyState(new enemyAttack);
-
+			
 		}
 	}
-
-	if (_enemyDir == ENEMY_RIGHT)
+	else if (_enemyDir == ENEMY_RIGHT)
 	{
-		if (_enemy->getEnemyDistanceR() < 10 && !_enemy->getIsEnemyAttack())
+		if (_enemy->getEnemyDistanceR() < 10 && !_enemy->getIsEenmyChase() && !_enemy->getIsEnemyAttack() && !_enemy->getIsEnemyIdle() && _enemy->getIsEnemyWaitAttack() && _enemy->getEnemyCount() > 100)
 		{
 			_enemy->setEnemyState(new enemyAttack);
-
+	
 		}
 	}
-
-	//if (_enemyDir == ENEMY_LEFT)
-	//{
-	//	if (_enemy->getEnemyDistance() < 10 && _enemy->getIsEnemyAttack() && _EattackIdx >2)
-	//	{
-	//		_enemy->setEnemyState(new enemyIdle);
-	//
-	//	}
-	//}
-	//
-	//if (_enemyDir == ENEMY_RIGHT)
-	//{
-	//	if (_enemy->getEnemyDistanceR() < 10 && _enemy->getIsEnemyAttack()&& _EattackIdx > 2)
-	//	{
-	//		_enemy->setEnemyState(new enemyIdle);
-	//
-	//	}
-	//}
-	
 }
 
 void enemyIdle::enemyAni()
@@ -218,9 +172,14 @@ void enemyChase::update()
 {
 	enemyState::update();
 
+
 	_enemy->setEnemyCount(_enemy->getEnemyCount() + 1);
 	
+	_enemy->setEnemySpeed(2.f);
 	_enemy->setIsEnemyAttack(false);
+	_enemy->setIsEnemyWaitAttack(false);
+	_enemy->setIsEnemyIdle(false);
+	_enemy->setIsEnemyChase(true);
 
 	//_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_run");
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_walk");
@@ -237,7 +196,7 @@ void enemyChase::enemyStateChange()
 	
 		if (_enemyDir == ENEMY_LEFT)
 		{
-			if (_enemy->getEnemyDistance() > 400)			//플레이어과의 거리가 커질시 기본상태이미지로
+			if (_enemy->getEnemyDistance() > 400 & !_enemy->getIsEnemyAttack())			//플레이어과의 거리가 커질시 기본상태이미지로
 			{
 				_enemy->setIsEnemyAttack(false);
 				_enemy->setEnemyState(new enemyIdle);
@@ -245,7 +204,7 @@ void enemyChase::enemyStateChange()
 		}
 		if (_enemyDir == ENEMY_RIGHT)
 		{
-			if (_enemy->getEnemyDistanceR() > 400)			//플레이어과의 거리가 커질시 기본상태이미지로
+			if (_enemy->getEnemyDistanceR() > 400 && !_enemy->getIsEnemyAttack())			//플레이어과의 거리가 커질시 기본상태이미지로
 			{
 				_enemy->setIsEnemyAttack(false);
 				_enemy->setEnemyState(new enemyIdle);
@@ -255,27 +214,28 @@ void enemyChase::enemyStateChange()
 		
 		if (_enemyDir == ENEMY_LEFT)
 		{
-			if (_enemy->getEnemyDistance() < 10)			//플레이어와의 거리가 10보다 작아질시
-			{
-				_enemy->setEnemySpeed(0.f);
-
-				if (_enemy->getEnemyCount() > 100)
+			if (_enemy->getEnemyDistance() < 10 && !_enemy->getIsEnemyAttack())
+			{	
+				_enemy->setEnemyState(new enemyWaitAttack);
+				
+				if (_enemy->getEnemyCount() > 100 && _enemy->getIsEnemyIdle()) //공격하는 경우 거리가 10보다 작아지고 어택상태가 아니고 추격상태도 아니고 아이들 상태에서만 가능
 				{
 					_enemy->setEnemyState(new enemyAttack);
 					_enemy->setIsEnemyAttack(true);
-					_enemy->setEnemyCount(0);
 				}
-				
 			}
 		}
 		if (_enemyDir == ENEMY_RIGHT)
 		{
-			if (_enemy->getEnemyDistanceR() < 10)			//플레이어와의 거리가 10보다 작아질시
+			if (_enemy->getEnemyDistanceR() < 10 && !_enemy->getIsEnemyAttack())			//플레이어와의 거리가 10보다 작아질시
 			{
-				_enemy->setEnemySpeed(0.f);
-				_enemy->setIsEnemyAttack(true);
-				_enemy->setEnemyState(new enemyAttack);
+				_enemy->setEnemyState(new enemyWaitAttack);
 
+				if (_enemy->getEnemyCount() > 100 && _enemy->getIsEnemyIdle())
+				{				
+					_enemy->setEnemyState(new enemyAttack);
+					_enemy->setIsEnemyAttack(true);
+				}
 			}
 		}
 		
@@ -317,7 +277,7 @@ void enemyChase::enemyAni()
 #pragma region 공격 상태
 enemyAttack::enemyAttack()
 {
-	_EattackIdx = 2;
+	_EattackIdx = 0;
 
 	if (_EattackIdx == 0)
 	{
@@ -356,6 +316,8 @@ enemyAttack::enemyAttack()
 			_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_comboAttack2L");
 		}
 	}
+
+	
 }
 
 enemyAttack::~enemyAttack()
@@ -394,6 +356,7 @@ HRESULT enemyAttack::init()
 		if (_enemyDir == (int)ENEMY_RIGHT)
 		{
 			_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_comboAttack2R");
+
 		}
 		if (_enemyDir == (int)ENEMY_LEFT)
 		{
@@ -413,6 +376,12 @@ void enemyAttack::update()
 {
 	enemyState::update();
 	
+	_enemy->setEnemySpeed(0);
+	_enemy->setIsEnemyIdle(false);
+	_enemy->setIsEnemyChase(false);
+	_enemy->setIsEnemyWaitAttack(false);
+	_enemy->setIsEnemyAttack(true);
+
 
 	if (_EattackIdx == 0)
 	{
@@ -451,12 +420,6 @@ void enemyAttack::update()
 		}
 	}
 	
-	//callBk();
-	
-	//_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_comboAttack3");
-
-	
-	
 	if(!_enemy->getIsEnemyAttack())						//어택 했을시
 	{
 		switch (_EattackIdx)							//어택 콤보수
@@ -464,19 +427,19 @@ void enemyAttack::update()
 		case 0:
 			_enemy->setIsEnemyAttack(true);
 			_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_comboAttack1");
-			//_EattackIdx = 1;
+			
 			break;
 	
 		case 1:
 			_enemy->setIsEnemyAttack(true);
 			_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_comboAttack2");
-			//_EattackIdx = 2;
+			
 			break;
 			
 		case 2:
 			_enemy->setIsEnemyAttack(true);
 			_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_comboAttack3");
-			//_EattackIdx = 0;
+			
 			break;
 		}
 	}
@@ -491,7 +454,7 @@ void enemyAttack::enemyStateChange()
 {
 	if (_enemyDir == ENEMY_LEFT)
 	{
-		if (_enemy->getEnemyDistance() >= 10 && !_enemy->getIsEnemyAttack())
+		if (_enemy->getEnemyDistance() >= 10 && !_enemy->getIsEnemyAttack() && !_enemy->getIsEenmyChase())
 		{
 			_enemy->setIsEnemyAttack(false);
 			_enemyAni->stop();
@@ -501,7 +464,7 @@ void enemyAttack::enemyStateChange()
 	}
 	if (_enemyDir == ENEMY_RIGHT)
 	{
-		if (_enemy->getEnemyDistanceR() >= 10 && !_enemy->getIsEnemyAttack())
+		if (_enemy->getEnemyDistanceR() >= 10 && !_enemy->getIsEnemyAttack() && !_enemy->getIsEenmyChase())
 		{
 			_enemy->setIsEnemyAttack(false);
 			_enemyAni->stop();
@@ -512,7 +475,7 @@ void enemyAttack::enemyStateChange()
 
 	if (_enemyDir == ENEMY_LEFT)
 	{
-		if (_enemy->getEnemyDistance() < 10 && _enemy->getIsEnemyAttack() && _EattackIdx >2)
+		if (_enemy->getEnemyDistance() < 10 && _enemy->getIsEnemyAttack() && _EattackIdx >3)
 		{
 			_enemy->setIsEnemyAttack(false);
 			_enemy->setEnemyState(new enemyIdle);
@@ -522,7 +485,7 @@ void enemyAttack::enemyStateChange()
 	
 	if (_enemyDir == ENEMY_RIGHT)
 	{
-		if (_enemy->getEnemyDistanceR() < 10 && _enemy->getIsEnemyAttack()&& _EattackIdx >2)
+		if (_enemy->getEnemyDistanceR() < 10 && _enemy->getIsEnemyAttack()&& _EattackIdx >3)
 		{
 			_enemy->setIsEnemyAttack(false);
 			_enemy->setEnemyState(new enemyIdle);
@@ -538,33 +501,26 @@ void enemyAttack::enemyAni()
 
 	if (_enemyDir == (int)ENEMY_LEFT)
 	{
-	
-		//if (!_enemyAni->isPlay()) _enemyAni->start();
-		//if (_enemyAni->isPlay()) _enemyAni->resume();
 		switch (_EattackIdx)
 		{
 		case 0:
 			_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_comboAttack1L");
 			_enemyAni->resume();
-			//_enemy->setIsEnemyAttack(false);
+	
 			break;
 		
 		case 1:
 			_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_comboAttack2L");
 			_enemyAni->resume();
-			//_enemy->setIsEnemyAttack(false);
+		
 			break;
 		
 		case 2:
 			_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_comboAttack3L");
 			_enemyAni->resume();
-			//_enemy->setIsEnemyAttack(false);
+		
 			break;
 		
-		default:
-			_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_comboAttack1L");
-			_enemyAni->resume();
-			break;
 		}
 		
 	}
@@ -594,9 +550,7 @@ void enemyAttack::enemyAni()
 		}
 
 		
-	}
-	
-
+	}\
 }
 void enemyAttack::callBk()				
 {
@@ -604,10 +558,16 @@ void enemyAttack::callBk()
 	{
 		if (_enemy->getIsEnemyAttack())
 		{
+
 			_enemyAni->stop();
-			if (_EattackIdx < 2) _EattackIdx++;
+			if (_EattackIdx < 3) _EattackIdx++;
 			else _EattackIdx = 0;
-			_enemy->setIsEnemyAttack(false);
+			
+			if (_EattackIdx >= 3)
+			{
+				_enemy->setEnemyCount(0);
+				_enemy->setEnemyState(new enemyWaitAttack);
+			}
 		}
 	}
 }
@@ -626,6 +586,8 @@ enemyHurt::~enemyHurt()
 
 HRESULT enemyHurt::init()
 {
+	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_gethit");
+
 	return S_OK;
 }
 
@@ -635,10 +597,15 @@ void enemyHurt::release()
 
 void enemyHurt::update()
 {
+	enemyState::update();
+
+	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_gethit");
+
 }
 
 void enemyHurt::render()
 {
+	enemyState::render();
 }
 
 void enemyHurt::enemyStateChange()
@@ -812,6 +779,102 @@ void enemyheld::enemyStateChange()
 
 void enemyheld::enemyAni()
 {
+}
+
+#pragma endregion
+#pragma region 어택하기전 대기 모션
+
+enemyWaitAttack::enemyWaitAttack()
+{
+	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_idle");
+}
+
+enemyWaitAttack::~enemyWaitAttack()
+{
+	
+}
+
+HRESULT enemyWaitAttack::init()
+{
+	enemyState::init();
+
+	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_idle");
+
+	return S_OK;
+}
+
+void enemyWaitAttack::release()
+{
+}
+
+void enemyWaitAttack::update()
+{
+	_enemy->setEnemyCount(_enemy->getEnemyCount() + 1);
+	_enemy->setEnemySpeed(0.f);
+	_enemy->setIsEnemyAttack(false);
+	_enemy->setIsEnemyIdle(false);
+	_enemy->setIsEnemyChase(false);
+	_enemy->setIsEnemyWaitAttack(true);
+
+
+	enemyState::update();
+
+	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_idle");
+}
+
+void enemyWaitAttack::render()
+{
+	enemyState::render();
+}
+
+void enemyWaitAttack::enemyStateChange()
+{
+	if (_enemyDir == ENEMY_LEFT)
+	{
+		if(_enemy->getEnemyDistance() > 10)
+		{
+			_enemy->setEnemyState(new enemyChase);
+		}
+	}
+
+	if (_enemyDir == ENEMY_RIGHT)
+	{
+		if (_enemy->getEnemyDistanceR() > 10)
+		{
+			_enemy->setEnemyState(new enemyChase);
+		}
+	}
+
+	if (_enemyDir == ENEMY_LEFT)
+	{
+		if (_enemy->getEnemyDistance() < 10 && !_enemy->getIsEenmyChase() && !_enemy->getIsEnemyAttack() && !_enemy->getIsEnemyIdle() && _enemy->getIsEnemyWaitAttack() && _enemy->getEnemyCount() > 100)
+		{
+			_enemy->setEnemyState(new enemyAttack);
+
+		}
+	}
+	if (_enemyDir == ENEMY_RIGHT)
+	{
+		if (_enemy->getEnemyDistanceR() < 10 && !_enemy->getIsEenmyChase() && !_enemy->getIsEnemyAttack() && !_enemy->getIsEnemyIdle() && _enemy->getIsEnemyWaitAttack() && _enemy->getEnemyCount() > 100)
+		{
+			_enemy->setEnemyState(new enemyAttack);
+
+		}
+	}
+}
+
+void enemyWaitAttack::enemyAni()
+{
+	if (_enemyDir == (int)ENEMY_LEFT)
+	{
+		_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_idleL");
+		_enemyAni->resume();
+	}
+	if (_enemyDir == (int)ENEMY_RIGHT)
+	{
+		_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_idleR");
+		_enemyAni->resume();
+	}
 }
 
 #pragma endregion
