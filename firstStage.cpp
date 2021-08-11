@@ -18,7 +18,13 @@ HRESULT firstStage::init()
 	_camera->init();
 	_camera->setStage(SECOND_STAGE);
 
+	_player = new player;
 	_boss = new boss;
+
+	_player->init();
+	_player->setCamera(_camera);
+	_player->setBossMemoryAddressLink(_boss);
+
 	_boss->setPlayerMemoryAddressLink(_player);
 	_boss->setCameraMemoryAddressLink(_camera);
 	_boss->init();
@@ -30,11 +36,6 @@ HRESULT firstStage::init()
 	//_camera->init();
 	//_camera->setStage(0);
 	
-	_player = new player;
-	_player->init();
-	_player->setCamera(_camera);
-	_player->setBossMemoryAddressLink(_boss);
-
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
 
@@ -53,11 +54,10 @@ HRESULT firstStage::init()
 	_pixel->setPixelPlayer(_player);
 	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
 
-
-
 	//vrender 벡터에 랜더할 클래스를 넣는다.
 	_vRender.push_back(_player);
 	_vRender.push_back(_enemy);
+	_vRender.push_back(_boss);
 
 
 	return S_OK; 
@@ -69,16 +69,17 @@ void firstStage::release()
 
 void firstStage::update()
 {
-	//_player->update();
+	_player->update();
 
 	_player->getState()->setPlayer(_player);
 
+	_boss->update();
 	_boss->setPlayerMemoryAddressLink(_player);
 
 	_pixel->setPixelPlayer(_player);
 	_pixel->update();
 
-	//_enemy->update();
+	_enemy->update();
 	_enemy->getEnemyState()->setEnemy(_enemy);
 
 	//pixelCollision();
@@ -104,6 +105,7 @@ void firstStage::render()
 
 	//_player->render();
 	//_enemy->render();
+	//_boss->render();
 
 	//게임노드의 객체를 상속받는 객체의 실질적 렌더
 	for (_viRender = _vRender.begin(); _viRender != _vRender.end(); _viRender++)
@@ -111,7 +113,6 @@ void firstStage::render()
 		(*_viRender)->render();
 
 	}
-	//_boss->render();
 }
 
 //선택정렬 함수
@@ -138,9 +139,7 @@ void firstStage::selectionSort()
 			}
 		}
 
-
 		swap(&_vRender[i], &_vRender[minIndex]); //render
-	
 	}
 }
 

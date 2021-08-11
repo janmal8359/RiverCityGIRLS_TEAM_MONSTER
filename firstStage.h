@@ -17,7 +17,6 @@ private:
 	typedef vector<gameNode*>				arrRender;
 	typedef vector<gameNode*>::iterator		iterRender;
 
-
 	arrRender _vRender;
 	iterRender _viRender;
 	//image* _first;

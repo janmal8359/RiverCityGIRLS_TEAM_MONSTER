@@ -86,6 +86,8 @@ public:
 	
 	void setBossPosAtCameraPos();
 
+	float getPosY() { return _sy; }
+
 
 	// get
 	float getBossShadowX() { return _sx; }
