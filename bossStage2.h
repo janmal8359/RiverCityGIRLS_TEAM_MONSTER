@@ -1,6 +1,9 @@
 #pragma once
 #include "gameNode.h"
+#include "camera.h"
 #include "player.h"
+#include "boss.h"
+#include "state.h"
 
 class pixelCollisionClass;
 
@@ -8,21 +11,11 @@ class pixelCollisionClass;
 class bossStage2 : public gameNode
 {
 private:
-	//오브젝트 용
-	image _object[6];
-	RECT _rc;
-	float _X, _Y;
-	float _radius;
-	float _angle;
-	float _speed;
-	float _gravity;
-	int _alphaValue;
-
+	camera* _camera;
 	player* _player;
+	boss* _boss;
 
 	pixelCollisionClass* _pixel;
-
-	bool _isBreak;
 
 public:
 	bossStage2();

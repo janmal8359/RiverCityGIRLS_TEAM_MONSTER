@@ -1,6 +1,8 @@
 #pragma once
 #include "gameNode.h"
+#include "camera.h"
 #include "player.h"
+#include "state.h"
 
 class pixelCollisionClass;
 
@@ -14,10 +16,8 @@ private:
 	//Ãæµ¹¿ë
 	RECT _rc;
 	float _x, _y;
-	bool _isCheck;
-	bool _isNextCount;
-	bool _isStop;
 
+	camera* _camera;
 	player* _player;
 
 	pixelCollisionClass* _pixel;

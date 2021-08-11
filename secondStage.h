@@ -1,6 +1,10 @@
 #pragma once
 #include "gameNode.h"
+#include "camera.h"
 #include "player.h"
+#include "enemy.h"
+#include "boss.h"
+#include "state.h"
 
 class pixelCollisionClass;
 
@@ -8,10 +12,11 @@ class pixelCollisionClass;
 class secondStage : public gameNode
 {
 private:
-	bool _isCheck;
-	bool _isNextCount;
 
+	camera* _camera;
 	player* _player;
+	enemy* _enemy;
+	boss* _boss;
 
 	pixelCollisionClass* _pixel;
 

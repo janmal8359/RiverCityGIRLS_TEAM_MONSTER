@@ -106,6 +106,9 @@
     <Filter Include="playGround\5.GAME_MANAGER\CAMERA">
       <UniqueIdentifier>{0bbae0e9-6015-4c81-acc4-98f54f16d1e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\1-1.STAGE_MANAGER\6.GAME\objectClass">
+      <UniqueIdentifier>{6d2f53b9-5d28-4075-9b94-750725e368a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
