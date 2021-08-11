@@ -26,10 +26,6 @@ HRESULT boss::init()
 	_speed = 0;
 	_jumpPower = 0;
 
-	//_direction = DIRECTION::LEFT;
-
-	//_isMove = true;
-
 	return S_OK;
 }
 
@@ -42,6 +38,7 @@ void boss::update()
 	_state->update();
 
 	_bossImg = _state->getImg();
+
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	_bx = _sx;
@@ -51,10 +48,7 @@ void boss::update()
 
 	if (_isMove) move();
 
-//	setBossPosAtCameraPos();
-
 	jump();
-	//if (!_isJump) _jumpPower = 0;
 
 	if ((abs(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) < PI / 2 || abs(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) > 3 * PI / 2) &&
 		!_isAttack && !_isJump && !_isFloat && !_isDrop && !_isGroggy)
@@ -75,6 +69,7 @@ void boss::update()
 
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	_bossRc = RectMakeCenter(_bx, _by, _bossImg->getFrameWidth(), _bossImg->getFrameHeight());
 	_bShadowRc = RectMakeCenter(_sx, _sy, _bShadowImg->getWidth(), _bShadowImg->getHeight());
 
@@ -98,7 +93,7 @@ void boss::render()
 	sprintf_s(str, "move : %d", (int)_isMove);
 	TextOut(getMemDC(), 10, 350, str, strlen(str));
 
-	sprintf_s(str, "groggy : %d", (int)_isGroggy);
+	sprintf_s(str, "hit : %d", (int)_isHit);
 	TextOut(getMemDC(), 10, 380, str, strlen(str));
 
 	sprintf_s(str, "time : %.2f", _time);
@@ -109,7 +104,6 @@ void boss::render()
 
 	sprintf_s(str, "camX : %.2f camY : %.2f", _camera->getCamX(), _camera->getCamY());
 	TextOut(getMemDC(), 10, 700, str, strlen(str));
-
 }
 
 void boss::stateRender(animation* anim)
@@ -146,8 +140,8 @@ void boss::bossAnim()
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_gHitL", "BOSS_meteor_G", 11, 6, 10, false, true);
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_gHitR", "BOSS_meteor_G", 0, 5, 10, false, true);
 
-	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_hitL", "BOSS_attacked3", 0, 2, 10, false, false);
-	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_hitR", "BOSS_attacked3", 5, 3, 10, false, false);
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_hitL", "BOSS_attacked3", 0, 2, 7, false, false);
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_hitR", "BOSS_attacked3", 5, 3, 7, false, false);
 }
 
 void boss::move()

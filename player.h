@@ -44,12 +44,6 @@ private:
 	state* _state;
 	boss* _boss;
 
-
-
-
-	imageStorage* _imageStorage;
-
-
 	image* _shadowImg;		//그림자 이미지
 	RECT   _shadowRc;       //그림자 직사각형
 	
@@ -100,6 +94,8 @@ public:
 	void playerAni();		//플레이어 애니메이션 모음
 	
 	void playerSound();
+
+	void attack();
 
 	static void callBack(void* obj);
 
@@ -168,6 +164,9 @@ public:
 
 	state* getState() { return _state; }
 
+	// width, height
+	float getWidth() { return _shadowRc.right - _shadowRc.left; }
+	float getHeight() { return _shadowRc.bottom - _shadowRc.top; }
 
 
 	// bossMemory

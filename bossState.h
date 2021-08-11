@@ -38,6 +38,7 @@ public:
 	virtual void stateChange();
 	virtual void anim();
 	virtual void animOver();
+	virtual void hitCheck();
 
 	image* getImg() { return _bossImg; }
 	void setBoss(boss* boss) { _boss = boss; }
@@ -101,6 +102,7 @@ public:
 	virtual void stateChange();
 	virtual void anim();
 	virtual void animOver();
+	virtual void hitCheck();
 };
 
 class jumpState : public bossState
@@ -120,6 +122,7 @@ public:
 	virtual void stateChange();
 	virtual void anim();
 	virtual void animOver();
+	virtual void hitCheck();
 };
 
 class dashState : public bossState
@@ -139,6 +142,7 @@ public:
 	virtual void stateChange();
 	virtual void anim();
 	virtual void animOver();
+	virtual void hitCheck();
 };
 
 class roarState : public bossState

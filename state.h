@@ -5,6 +5,7 @@
 #define GRAVITY 0.3f;
 
 class player;					//전방선언
+class boss;
 
 enum dir
 {
@@ -28,6 +29,11 @@ protected:
 	player* _player;
 	RECT _playerRc;
 
+	boss* _boss;
+
+	// distance
+	float _dx, _dy;
+
 public:
 
 	virtual HRESULT init();
@@ -37,6 +43,8 @@ public:
 
 	virtual void stateChange() {};
 	virtual void ani() {};
+	virtual void distance();
+	virtual void hitCheck();
 
 
 	virtual void setPlayer(player* player) { _player = player; }
@@ -49,7 +57,7 @@ public:
 	//점프파워 가져오기
 	virtual float getJumpPower() { return _jump; }
 
-
+	virtual void setBossMemoryAddressLink(boss* boss) { _boss = boss; }
 	
 
 	

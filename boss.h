@@ -92,8 +92,8 @@ public:
 	float getBossShadowY() { return _sy; }
 	float getBossX() { return _bx; }
 	float getBossY() { return _by; }
-	float getBossRectX() { return _bossRc.left; }
-	float getBossRectY() { return _bossRc.top; }
+	RECT getBossRect() { return _bossRc; }
+	RECT getBossShadowRect() { return _bShadowRc; }
 
 	float getBossShadowWidth() { return _bShadowRc.right - _bShadowRc.left; }
 	float getBossShadowHeight() { return _bShadowRc.bottom - _bShadowRc.top; }

@@ -12,9 +12,6 @@ enum stageImg
 };
 
 
-
-
-
 class camera : public gameNode
 {
 

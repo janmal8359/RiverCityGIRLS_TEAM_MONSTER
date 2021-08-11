@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "atk.h"
 #include "player.h"
+#include "boss.h"
 
 HRESULT atk::init()
 {
@@ -17,36 +18,36 @@ void atk::update()
 	state::update();
 
 	callBk();
-	if (KEYMANAGER->isOnceKeyDown('Q') && _attackIdx < 3)
+	if (KEYMANAGER->isOnceKeyDown('Q') && _attackIdx < 2)
 	{
+		_player->setIsAttacking(true);
 		
+		if (_player->getIsAttacking() && !_boss->getHit()) hitCheck();
+
 		if (_playerAni->getNowPlayIdx() >= _playerImg->getMaxFrameX()-2)
 		{
 			_playerAni->stop();
 			_attackIdx++;
-		
+
+			switch (_attackIdx)
+			{
+			case 0:
+
+				break;
+			case 1:
+				SOUNDMANAGER->stop("PLAYER_combo1");
+				SOUNDMANAGER->play("PLAYER_combo2", 1.0f);
+				break;
+			case 2:
+				SOUNDMANAGER->stop("PLAYER_combo2");
+				SOUNDMANAGER->play("PLAYER_combo3", 1.0f);
+				break;
+
+			default:
+
+				break;
+			}
 		}
-		
-
-		switch (_attackIdx)
-		{
-		case 0:
-	
-			break;
-		case 1:
-			SOUNDMANAGER->stop("PLAYER_combo1");
-			SOUNDMANAGER->play("PLAYER_combo2", 1.0f);
-			break;
-		case 2:
-			SOUNDMANAGER->stop("PLAYER_combo2");
-			SOUNDMANAGER->play("PLAYER_combo3", 1.0f);
-			break;
-
-		default:
-			
-			break;
-		}
-
 	}
 
 	switch (_attackIdx)
@@ -66,10 +67,6 @@ void atk::update()
 	default:
 		break;
 	}
-
-
-	
-	
 }
 
 void atk::render()
@@ -136,10 +133,40 @@ void atk::callBk()
 	if (!_playerAni->isPlay())
 	{
 		_playerAni->stop();
+		_player->setIsAttacking(false);
 		_player->setState(new idle);
 		_player->update();
-		
 	}
-
 }
+
+//void atk::hitCheck()
+//{
+//	_dx = abs(_player->getShadowX() - _boss->getBossShadowX());
+//	_dy = abs(_player->getShadowY() - _boss->getBossShadowY());
+//
+//	if (_player->getShadowRc().top < _boss->getBossShadowRect().bottom && _player->getShadowRc().bottom > _boss->getBossShadowRect().top && !_boss->getHit())
+//	{
+//		if (LEFT == _player->getDir())
+//		{
+//			if (_dx < _player->getWidth() && _player->getShadowX() > _boss->getBossShadowRect().left)
+//			{
+//				_boss->setHit(true);
+//			}
+//		}
+//		else if (RIGHT == _player->getDir())
+//		{
+//			if (_dx < _player->getWidth() && _player->getShadowX() < _boss->getBossShadowRect().right)
+//			{
+//				_boss->setHit(true);
+//			}
+//		}
+//	}
+//
+//	//if (abs(_player->getShadowX() - _boss->getBossShadowX()) < _player->getShadowRc().right - _player->getShadowRc().left && 
+//	//	abs(_player->getShadowY() - _boss->getBossShadowY()) < _player->getShadowRc().bottom - _player->getShadowRc().top &&
+//	//	!_boss->getHit())
+//	//{
+//	//	_boss->setHit(true);
+//	//}
+//}
 
