@@ -19,14 +19,8 @@ HRESULT player::init()
     _state = new idle;
     _state->init();
 
-   // _bState = new bossState;
-   // _bState->init();
-
     //_sfxStorage = new sfxStorage;
     //_sfxStorage->init();
-    // 
-    //_imageStorage = new imageStorage;
-    //_imageStorage->init();
 
     //플레이어 의 이미지와 그림자 이미지
     _playerImg = _state->getPlImg();
@@ -66,6 +60,7 @@ void player::update()
 {    
     _state->setPlayer(this);
     //_bState->setPlayer(this);       // 보스가 플레이어 위치 값 받아오는 용
+    _state->setBossMemoryAddressLink(_boss);
 
     move();
 
@@ -133,6 +128,7 @@ void player::move()
             if (_shadowRc.left < _camera->getCameraRc().left && _camera->getCamX() > 0 +_speed)
             {
                 _camera->setCamX(_camera->getCamX() - _speed);
+                _boss->setBossShadowX(_boss->getBossShadowX() + _speed);
             }
             else
             {
@@ -147,6 +143,7 @@ void player::move()
             if (_shadowRc.right > _camera->getCameraRc().right && _camera->getCamX()< _camera->getBgImage()->getWidth()-WINSIZEX-_speed)
             {
                 _camera->setCamX(_camera->getCamX() + _speed);
+                _boss->setBossShadowX(_boss->getBossShadowX() - _speed);
             }
             else
             {
@@ -159,6 +156,7 @@ void player::move()
             if (_shadowRc.top < _camera->getCameraRc().top && _camera->getCamY() > 0 + _speed)
             {
                 _camera->setCamY(_camera->getCamY() - _speed);
+                _boss->setBossShadowY(_boss->getBossShadowY() + _speed);
             }
             else
             {
@@ -171,6 +169,7 @@ void player::move()
             if (_shadowRc.bottom > _camera->getCameraRc().bottom && _camera->getCamY() < _camera->getBgImage()->getHeight() - WINSIZEY - _speed)
             {
                 _camera->setCamY(_camera->getCamY() + _speed);
+                _boss->setBossShadowY(_boss->getBossShadowY() - _speed);
             }
             else
             {
@@ -332,6 +331,10 @@ void player::playerSound()
     SOUNDMANAGER->addSound("PLAYER_combo1", "Resource/SFX/Player/Kyoko/vo_kyoko_effort_16.wav", false, false);
     SOUNDMANAGER->addSound("PLAYER_combo2", "Resource/SFX/Player/Kyoko/vo_kyoko_effort_18.wav", false, false);
     SOUNDMANAGER->addSound("PLAYER_combo3", "Resource/SFX/Player/Kyoko/vo_kyoko_effort_22.wav", false, false);
+}
+
+void player::attack()
+{
 }
 
 void player::callBack(void* obj)

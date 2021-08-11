@@ -33,6 +33,12 @@ void bossState::render()
 
 	sprintf_s(str, "direction : %d", (int)_direction);
 	TextOut(getMemDC(), 10, 320, str, strlen(str));
+
+	sprintf_s(str, "frameIdxL : %d", (int)_bossAnimL->getNowPlayIdx());
+	TextOut(getMemDC(), 10, 500, str, strlen(str));
+
+	sprintf_s(str, "frameIdxR : %d", (int)_bossAnimR->getNowPlayIdx());
+	TextOut(getMemDC(), 10, 530, str, strlen(str));
 }
 
 void bossState::stateChange()
@@ -44,6 +50,10 @@ void bossState::anim()
 }
 
 void bossState::animOver()
+{
+}
+
+void bossState::hitCheck()
 {
 }
 
@@ -77,8 +87,6 @@ void idleState::update()
 	bossState::update();
 
 	_bossImg = IMAGEMANAGER->findImage("BOSS_idle");
-
-	//_bAttackPattern = 1;
 }
 
 void idleState::render()
@@ -88,49 +96,44 @@ void idleState::render()
 
 void idleState::stateChange()
 {
+	if (_boss->getHit())
+	{
+		_bossAnimL->stop();
+		_bossAnimR->stop();
+		_boss->setIdle(false);
+		_boss->setState(new hitState);
+	}
 	if (TIMEMANAGER->getWorldTime() >= _boss->getTime() + 2)
 	{
 		_bAttackPattern = RND->getInt(3);
 		
-		// 임시 키 조작으로 이동
-		//if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) > 150)
-		//{
-			if (_bAttackPattern == 0)
-			{
-				_boss->setMove(true);
-				_boss->setIdle(false);
-				_boss->setTime(TIMEMANAGER->getWorldTime());
-				_bossAnimL->stop();
-				_bossAnimR->stop();
-				_boss->setState(new walkState);
-			}
-			else if (_bAttackPattern == 1)
-			{
-				_boss->setMove(false);
-				_boss->setIsJump(false);
-				_boss->setIdle(false);
-				_bossAnimL->stop();
-				_bossAnimR->stop();
-				_boss->setState(new jumpState);
-			}
-			else if (_bAttackPattern == 2)
-			{
-				_boss->setMove(true);
-				_boss->setDash(false);
-				_boss->setIdle(false);
-				_bossAnimL->stop();
-				_bossAnimR->stop();
-				_boss->setState(new dashState);
-			}
-		//}
-		//else if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) <= 150)
-		//{
-		//	_boss->setMove(false);
-		//	_boss->setIsAttack(true);
-		//	_bossAnimL->stop();
-		//	_bossAnimR->stop();
-		//	_boss->setState(new attackState);
-		//}
+		if (_bAttackPattern == 0)
+		{
+			_boss->setMove(true);
+			_boss->setIdle(false);
+			_boss->setTime(TIMEMANAGER->getWorldTime());
+			_bossAnimL->stop();
+			_bossAnimR->stop();
+			_boss->setState(new walkState);
+		}
+		else if (_bAttackPattern == 1)
+		{
+			_boss->setMove(false);
+			_boss->setIsJump(false);
+			_boss->setIdle(false);
+			_bossAnimL->stop();
+			_bossAnimR->stop();
+			_boss->setState(new jumpState);
+		}
+		else if (_bAttackPattern == 2)
+		{
+			_boss->setMove(true);
+			_boss->setDash(false);
+			_boss->setIdle(false);
+			_bossAnimL->stop();
+			_bossAnimR->stop();
+			_boss->setState(new dashState);
+		}
 	}
 }
 
@@ -187,13 +190,16 @@ void walkState::render()
 
 void walkState::stateChange()
 {
-	//if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) <= 50)
-	//{
-	//	_boss->setMove(false);
-	//	_boss->setState(new idleState);
-	//}
+	if (_boss->getHit())
+	{
+		_bossAnimL->stop();
+		_bossAnimR->stop();
+		_boss->setMove(false);
+		_boss->setState(new hitState);
+	}
 
-	if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) <= 150)
+	//if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) <= 150)
+	if (_boss->getDistanceX() < _boss->getBossShadowWidth()&& _boss->getDistanceY() < _boss->getBossShadowHeight() / 2)
 	{
 		_boss->setMove(false);
 		_boss->setIsAttack(true);
@@ -229,7 +235,6 @@ void walkState::anim()
 
 
 // Attack
-
 attackState::attackState()
 {
 	_bossImg = IMAGEMANAGER->findImage("BOSS_slap");
@@ -268,6 +273,14 @@ void attackState::render()
 
 void attackState::stateChange()
 {
+	if (_boss->getHit())
+	{
+		_bossAnimL->stop();
+		_bossAnimR->stop();
+		_boss->setMove(false);
+		_boss->setIsAttack(false);
+		_boss->setState(new hitState);
+	}
 	if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) > 150 &&
 		_boss->getIsAttack() == false)
 	{
@@ -278,6 +291,10 @@ void attackState::stateChange()
 		_bossAnimR->stop();
 		_boss->setState(new idleState);
 	}
+}
+
+void attackState::hitCheck()
+{
 }
 
 void attackState::anim()
@@ -331,6 +348,8 @@ jumpState::jumpState()
 	_bossImg = IMAGEMANAGER->findImage("BOSS_meteor_J");
 	_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_jumpL");
 	_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_jumpR");
+	_bossAnimL->stop();
+	_bossAnimR->stop();
 }
 
 jumpState::~jumpState()
@@ -344,12 +363,16 @@ HRESULT jumpState::init()
 		_bossImg = IMAGEMANAGER->findImage("BOSS_meteor_J");
 		_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_jumpL");
 		_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_jumpR");
+		_bossAnimL->stop();
+		_bossAnimR->stop();
 	}
 	else if (_boss->getIsDrop())
 	{
-		_bossImg = IMAGEMANAGER->findImage("BOSS_meteor");
+		_bossImg = IMAGEMANAGER->findImage("BOSS_down");
 		_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_dropL");
 		_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_dropR");
+		_bossAnimL->stop();
+		_bossAnimR->stop();
 	}
 
 	return S_OK;
@@ -371,7 +394,7 @@ void jumpState::update()
 	}
 	else if (_boss->getIsDrop())
 	{
-		_bossImg = IMAGEMANAGER->findImage("BOSS_meteor");
+		_bossImg = IMAGEMANAGER->findImage("BOSS_down");
 		_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_dropL");
 		_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_dropR");
 	}
@@ -388,6 +411,10 @@ void jumpState::stateChange()
 {
 }
 
+void jumpState::hitCheck()
+{
+}
+
 void jumpState::anim()
 {
 	if (!_boss->getIsDrop())
@@ -401,7 +428,7 @@ void jumpState::anim()
 			}
 			if (_bossAnimL->isPlay())
 			{
-				if (_bossAnimL->getFramePos().x == 0) _bossAnimL->pause();
+				if (_bossAnimL->getNowPlayIdx() == 7) _bossAnimL->pause();
 				else _bossAnimL->resume();
 			}
 		}
@@ -415,13 +442,13 @@ void jumpState::anim()
 			}
 			if (_bossAnimR->isPlay())
 			{
-				if (_bossAnimR->getFramePos().x == 0) _bossAnimR->pause();
+				if (_bossAnimR->getNowPlayIdx() == 7) _bossAnimR->pause();
 				else _bossAnimR->resume();
 			}
 		}
 
-		if (!_boss->getIsJump() && (_bossAnimL->getFramePos().x <= 1 || _bossAnimR->getFramePos().x <= 1) &&
-			(!_boss->getMove() || !_boss->getFloat()) && !_boss->getIdle())
+		if (!_boss->getIsJump() && (_bossAnimL->getNowPlayIdx() >= 6 || _bossAnimR->getNowPlayIdx() >= 6) &&
+			(!_boss->getMove() || !_boss->getFloat()) && !_boss->getGroggy())
 		{
 			_boss->setIsJump(true);
 			//_isStart = true;
@@ -437,6 +464,7 @@ void jumpState::anim()
 		{
 			if (!_bossAnimL->isPlay())
 			{
+				_bossAnimL->stop();
 				_bossAnimL->start();
 			}
 			if (_bossAnimL->isPlay())
@@ -449,6 +477,7 @@ void jumpState::anim()
 		{
 			if (!_bossAnimR->isPlay())
 			{
+				_bossAnimR->stop();
 				_bossAnimR->start();
 			}
 			if (_bossAnimR->isPlay())
@@ -459,8 +488,8 @@ void jumpState::anim()
 
 		if (_boss->getJumpPower() <= 0)
 		{
-			_bossAnimL->stop();
-			_bossAnimR->stop();
+			//_bossAnimL->stop();
+			//_bossAnimR->stop();
 			_isStart = true;
 		}
 	}
@@ -506,8 +535,9 @@ void jumpState::animOver()
 		_boss->setMove(false);
 		_boss->setIsDrop(false);
 		_boss->setFloat(false);
-		_boss->setIdle(true);
-		_boss->setState(new idleState);
+		_boss->setIdle(false);
+		_boss->setGroggy(true);
+		_boss->setState(new groggyState);
 	}
 }
 
@@ -546,6 +576,10 @@ void dashState::release()
 {
 }
 
+void dashState::hitCheck()
+{
+}
+
 void dashState::update()
 {
 	bossState::update();
@@ -571,7 +605,17 @@ void dashState::render()
 
 void dashState::stateChange()
 {
-	if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) <= 50 ||
+	if (_boss->getHit())
+	{
+		_bossAnimL->stop();
+		_bossAnimR->stop();
+		_boss->setMove(false);
+		_boss->setDash(false);
+		_boss->setState(new hitState);
+	}
+	//if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) <= 50 ||
+	//	TIMEMANAGER->getWorldTime() >= _boss->getTime() + 5)
+	if (_boss->getDistanceX() < _boss->getBossShadowWidth() && _boss->getDistanceY() < _boss->getBossShadowHeight() / 2 || 
 		TIMEMANAGER->getWorldTime() >= _boss->getTime() + 5)
 	{
 		_boss->setMove(false);
@@ -648,8 +692,23 @@ void sitState::render()
 
 
 // Groggy
+groggyState::groggyState()
+{
+	_bossImg = IMAGEMANAGER->findImage("BOSS_meteor_G");
+	_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_gHitL");
+	_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_gHitR");
+}
+
+groggyState::~groggyState()
+{
+}
+
 HRESULT groggyState::init()
 {
+	_bossImg = IMAGEMANAGER->findImage("BOSS_meteor_G");
+	_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_gHitL");
+	_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_gHitR");
+
 	return S_OK;
 }
 
@@ -660,6 +719,10 @@ void groggyState::release()
 void groggyState::update()
 {
 	bossState::update();
+
+	_bossImg = IMAGEMANAGER->findImage("BOSS_meteor_G");
+	_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_gHitL");
+	_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_gHitR");
 }
 
 void groggyState::render()
@@ -667,6 +730,161 @@ void groggyState::render()
 	bossState::render();
 }
 
+void groggyState::stateChange()
+{
+	//if (_boss->getHit())
+	//{
+	//	_bossAnimL->stop();
+	//	_bossAnimR->stop();
+	//	_boss->setIdle(false);
+	//	_boss->setMove(false);
+	//	_boss->setDash(false);
+	//	_boss->setGroggy(false);
+	//	_boss->setState(new hitState);
+	//}
+	if (TIMEMANAGER->getWorldTime() >= _boss->getTime() + 2)
+	{
+		_boss->setMove(false);
+		_boss->setDash(false);
+		_boss->setGroggy(false);
+		_boss->setIdle(true);
+		_boss->setTime(TIMEMANAGER->getWorldTime());
+		_bossAnimL->stop();
+		_bossAnimR->stop();
+		_boss->setState(new idleState);
+	}
+}
+
+void groggyState::anim()
+{
+	if (_direction == (int)DIRECTION::LEFT)
+	{
+		if (!_bossAnimL->isPlay())
+		{
+			_bossAnimL->start();
+		}
+		if (_bossAnimL->isPlay())
+		{
+			_bossAnimL->resume();
+		}
+	}
+
+	if (_direction == (int)DIRECTION::RIGHT)
+	{
+		if (!_bossAnimR->isPlay())
+		{
+			_bossAnimR->start();
+		}
+		if (_bossAnimR->isPlay())
+		{
+			_bossAnimR->resume();
+		}
+	}
+
+	_isStart = true;
+}
+
+void groggyState::animOver()
+{
+}
+
+// hit
+hitState::hitState()
+{
+	_bossImg = IMAGEMANAGER->findImage("BOSS_attacked3");
+	_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_hitL");
+	_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_hitR");
+	_bossAnimL->stop();
+	_bossAnimR->stop();
+	//_boss->setHit(false);
+}
+
+hitState::~hitState()
+{
+
+}
+
+HRESULT hitState::init()
+{
+	_bossImg = IMAGEMANAGER->findImage("BOSS_attacked3");
+	_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_hitL");
+	_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_hitR");
+	_bossAnimL->stop();
+	_bossAnimR->stop();
+	//_boss->setHit(false);
+
+	return S_OK;
+}
+
+void hitState::release()
+{
+}
+
+void hitState::update()
+{
+	bossState::update();
+
+	_bossImg = IMAGEMANAGER->findImage("BOSS_attacked3");
+	_bossAnimL = KEYANIMANAGER->findAnimation("BOSS_hitL");
+	_bossAnimR = KEYANIMANAGER->findAnimation("BOSS_hitR");
+}
+
+void hitState::render()
+{
+	bossState::render();
+}
+
+void hitState::stateChange()
+{
+}
+
+void hitState::anim()
+{
+	if (_direction == (int)DIRECTION::LEFT)
+	{
+		if (!_bossAnimL->isPlay())
+		{
+			_bossAnimL->stop();
+			_bossAnimL->start();
+		}
+		if (_bossAnimL->isPlay())
+		{
+			_bossAnimL->resume();
+		}
+	}
+
+	if (_direction == (int)DIRECTION::RIGHT)
+	{
+		if (!_bossAnimR->isPlay())
+		{
+			_bossAnimR->stop();
+			_bossAnimR->start();
+		}
+		if (_bossAnimR->isPlay())
+		{
+			_bossAnimR->resume();
+		}
+	}
+
+	_isStart = true;
+}
+
+void hitState::animOver()
+{
+	if (!_bossAnimL->isPlay() && !_bossAnimR->isPlay() && _isStart)
+	{
+		_bossAnimL->stop();
+		_bossAnimR->stop();
+		_isStart = true;
+		_boss->setMove(false);
+		_boss->setDash(false);
+		_boss->setGroggy(false);
+		_boss->setIdle(true);
+		_boss->setHit(false);
+		//_boss->setTime(TIMEMANAGER->getWorldTime());
+		_boss->setState(new idleState);
+	}
+}
 
 // Lose
 HRESULT loseState::init()

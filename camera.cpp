@@ -107,4 +107,8 @@ void camera::render()
     }
    // Rectangle(getMemDC(), _cameraRc);
 
+    char str[128];
+
+    sprintf_s(str, "camX : %.2f camY : %.2f", _camX, _camY);
+    TextOut(getMemDC(), 10, 680, str, strlen(str));
 }

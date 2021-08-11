@@ -50,8 +50,10 @@ void idle::stateChange()
  
 	else if (KEYMANAGER->isOnceKeyDown('Q'))
 	{
+		_player->setIsAttacking(true);
 		SOUNDMANAGER->play("PLAYER_combo1", 1.0f);
 		_player->setState(new atk);
+		hitCheck();
 	}
 	else if (KEYMANAGER->isStayKeyDown('F'))
 	{

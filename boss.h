@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "bossState.h"
+#include "camera.h"
 
 class bossState;
 class player;
@@ -37,6 +38,9 @@ private:
 	float _sx, _sy;		// shadowImgPos
 	float _bx, _by;		// bossImgPos
 
+	// distance
+	float _dx, _dy;		// distance bShadow to pShadow
+
 	// velocity
 	float _speed;
 	float _jumpPower;
@@ -48,7 +52,7 @@ private:
 	// time
 	float _time;
 
-	// bool
+	// bool (state)
 	bool _isIdle;
 	bool _isMove;
 	bool _isAttack;
@@ -56,6 +60,11 @@ private:
 	bool _isDrop;
 	bool _isFloat;
 	bool _isDash;
+	bool _isGroggy;
+	bool _isHit;
+
+	// camera
+	camera* _camera;
 
 public:
 	boss() {}
@@ -73,6 +82,9 @@ public:
 
 	void move();
 	void jump();
+	void calDistance();
+	
+	void setBossPosAtCameraPos();
 
 
 	// get
@@ -80,8 +92,14 @@ public:
 	float getBossShadowY() { return _sy; }
 	float getBossX() { return _bx; }
 	float getBossY() { return _by; }
-	float getBossRectX() { return _bossRc.left; }
-	float getBossRectY() { return _bossRc.top; }
+	RECT getBossRect() { return _bossRc; }
+	RECT getBossShadowRect() { return _bShadowRc; }
+
+	float getBossShadowWidth() { return _bShadowRc.right - _bShadowRc.left; }
+	float getBossShadowHeight() { return _bShadowRc.bottom - _bShadowRc.top; }
+
+	float getDistanceX() { return _dx; }
+	float getDistanceY() { return _dy; }
 
 	int getBossDirection() { return _direction; }
 
@@ -95,6 +113,8 @@ public:
 	bool getFloat() { return _isFloat; }
 	bool getDash() { return _isDash; }
 	bool getIdle() { return _isIdle; }
+	bool getGroggy() { return _isGroggy; }
+	bool getHit() { return _isHit; }
 
 	float getTime() { return _time; }
 	float getJumpPower() { return _jumpPower; }
@@ -106,6 +126,9 @@ public:
 	void setBossX(float x) { _bx = x; }
 	void setBossY(float y) { _by = y; }
 
+	void setDistanceX(float dx) { _dx = dx; }
+	void setDistanceY(float dy) { _dy = dy; }
+
 	void setBossDirection(int dir) { _direction = dir; }
 
 	void setMove(bool move) { _isMove = move; }
@@ -115,6 +138,8 @@ public:
 	void setFloat(bool isFloat) { _isFloat = isFloat; }
 	void setDash(bool dash) { _isDash = dash; }
 	void setIdle(bool idle) { _isIdle = idle; }
+	void setGroggy(bool groggy) { _isGroggy = groggy; }
+	void setHit(bool hit) { _isHit = hit; }
 
 	void setTime(float time) { _time = time; }
 	void setJumpPower(float jumpPower) { _jumpPower = jumpPower; }
@@ -122,6 +147,7 @@ public:
 
 	// Memory
 	void setPlayerMemoryAddressLink(player* player) { _player = player; }
+	void setCameraMemoryAddressLink(camera* camera) { _camera = camera; }
 
 };
 

@@ -8,8 +8,6 @@ private:
 	int _attackIdx;     //ÄÞº¸
 
 
-
-
 public:
 	virtual HRESULT init();
 	virtual void release();
@@ -20,6 +18,8 @@ public:
 	virtual void ani();
 
 	void callBk();	//ÄÝ¹é
+
+	//virtual void hitCheck();
 
 };
 

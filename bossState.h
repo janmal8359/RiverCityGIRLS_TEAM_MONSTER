@@ -38,6 +38,7 @@ public:
 	virtual void stateChange();
 	virtual void anim();
 	virtual void animOver();
+	virtual void hitCheck();
 
 	image* getImg() { return _bossImg; }
 	void setBoss(boss* boss) { _boss = boss; }
@@ -101,6 +102,7 @@ public:
 	virtual void stateChange();
 	virtual void anim();
 	virtual void animOver();
+	virtual void hitCheck();
 };
 
 class jumpState : public bossState
@@ -120,6 +122,7 @@ public:
 	virtual void stateChange();
 	virtual void anim();
 	virtual void animOver();
+	virtual void hitCheck();
 };
 
 class dashState : public bossState
@@ -139,6 +142,7 @@ public:
 	virtual void stateChange();
 	virtual void anim();
 	virtual void animOver();
+	virtual void hitCheck();
 };
 
 class roarState : public bossState
@@ -177,15 +181,37 @@ public:
 class groggyState : public bossState
 {
 private:
-	groggyState* instance;
 
 public:
-	groggyState* getInstance() { if (instance == nullptr) instance = new groggyState(); return instance; }
+	groggyState();
+	~groggyState();
 
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	virtual void stateChange();
+	virtual void anim();
+	virtual void animOver();
+};
+
+class hitState : public bossState
+{
+private:
+
+public:
+	hitState();
+	~hitState();
+
+	virtual HRESULT init();
+	virtual void release();
+	virtual void update();
+	virtual void render();
+
+	virtual void stateChange();
+	virtual void anim();
+	virtual void animOver();
 };
 
 class loseState : public bossState
