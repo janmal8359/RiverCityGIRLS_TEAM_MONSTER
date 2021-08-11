@@ -199,7 +199,8 @@ void walkState::stateChange()
 	//	_boss->setState(new idleState);
 	//}
 
-	if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) <= 150)
+	//if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) <= 150)
+	if (_boss->getDistanceX() < _boss->getBossShadowWidth()&& _boss->getDistanceY() < _boss->getBossShadowHeight() / 2)
 	{
 		_boss->setMove(false);
 		_boss->setIsAttack(true);
@@ -235,7 +236,6 @@ void walkState::anim()
 
 
 // Attack
-
 attackState::attackState()
 {
 	_bossImg = IMAGEMANAGER->findImage("BOSS_slap");
@@ -592,7 +592,9 @@ void dashState::render()
 
 void dashState::stateChange()
 {
-	if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) <= 50 ||
+	//if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) <= 50 ||
+	//	TIMEMANAGER->getWorldTime() >= _boss->getTime() + 5)
+	if (_boss->getDistanceX() < _boss->getBossShadowWidth() && _boss->getDistanceY() < _boss->getBossShadowHeight() / 2 || 
 		TIMEMANAGER->getWorldTime() >= _boss->getTime() + 5)
 	{
 		_boss->setMove(false);

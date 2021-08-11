@@ -46,7 +46,11 @@ void boss::update()
 	_bx = _sx;
 	_by = _sy - _bossImg->getFrameHeight() / 2;
 
+	calDistance();
+
 	if (_isMove) move();
+
+//	setBossPosAtCameraPos();
 
 	jump();
 	//if (!_isJump) _jumpPower = 0;
@@ -94,11 +98,14 @@ void boss::render()
 	sprintf_s(str, "power : %.2f", _jumpPower);
 	TextOut(getMemDC(), 10, 430, str, strlen(str));
 
+	sprintf_s(str, "camX : %.2f camY : %.2f", _camera->getCamX(), _camera->getCamY());
+	TextOut(getMemDC(), 10, 700, str, strlen(str));
+
 }
 
 void boss::stateRender(animation* anim)
 {
-	if (_sy - _by <= 700) _bossImg->aniRender(getMemDC(), _bossRc.left, _bossRc.top, anim);
+	if (_jumpPower <= 700) _bossImg->aniRender(getMemDC(), _bossRc.left, _bossRc.top, anim);
 }
 
 void boss::bossAnim()
@@ -121,27 +128,43 @@ void boss::bossAnim()
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dashStartL", "BOSS_dash", 0, 1, 10, false, false);
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dashStartR", "BOSS_dash", 19, 18, 10, false, false);
 
-	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dashL", "BOSS_dash", 2, 9, 10, false, true);
-	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dashR", "BOSS_dash", 17, 10, 10, false, true);
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dashL", "BOSS_dash", 9, 2, 10, false, true);
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_dashR", "BOSS_dash", 10, 17, 10, false, true);
 
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_groggyL", "BOSS_groggy", 0, 3, 10, false, true);
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_groggyR", "BOSS_groggy", 7, 4, 10, false, true);
 
-	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_gHitL", "BOSS_meteor_G", 0, 5, 10, false, true);
-	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_gHitR", "BOSS_meteor_G", 11, 6, 10, false, true);
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_gHitL", "BOSS_meteor_G", 11, 6, 10, false, true);
+	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_gHitR", "BOSS_meteor_G", 0, 5, 10, false, true);
 }
 
 void boss::move()
 {
 	if (_isMove) _speed = 2;
-	if (_isFloat) _speed = 5;
-	if (_isDash) _speed = 5;
+	if (_isFloat) _speed = 7;
+	if (_isDash) _speed = 6;
 
-	_bx -= cosf(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) * _speed;
-	_sx = _bx;
+	if (_dx > _bShadowRc.right - _bShadowRc.left && !_isFloat)
+	{
+		_bx -= cosf(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) * _speed;
+		_sx = _bx;
+	}
+	else if (_isFloat)
+	{
+		_bx -= cosf(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) * _speed;
+		_sx = _bx;
+	}
 
-	_by -= -sinf(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) * _speed + _jumpPower;
-	_sy = _by + _bossImg->getFrameHeight() / 2 + _jumpPower;
+	if (_dy > (_bShadowRc.bottom - _bShadowRc.top) / 2 && !_isFloat)
+	{
+		_by -= -sinf(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) * _speed + _jumpPower;
+		_sy = _by + _bossImg->getFrameHeight() / 2 + _jumpPower;
+	}
+	else if (_isFloat)
+	{
+		_by -= -sinf(getAngle(_player->getShadowX(), _player->getShadowY(), _sx, _sy)) * _speed + _jumpPower;
+		_sy = _by + _bossImg->getFrameHeight() / 2 + _jumpPower;
+	}
 }
 
 void boss::jump()
@@ -166,4 +189,16 @@ void boss::jump()
 			_jumpPower -= 30;
 		}
 	}
+}
+
+void boss::calDistance()
+{
+	_dx = abs(_player->getShadowX() - _sx);
+	_dy = abs(_player->getShadowY() - _sy);
+}
+
+void boss::setBossPosAtCameraPos()
+{
+	_sx += _camera->getCamX();
+	_sy += _camera->getCamY();
 }

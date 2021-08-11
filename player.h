@@ -170,7 +170,8 @@ public:
 
 
 
-
+	// bossMemory
+	void setBossMemoryAddressLink(boss* boss) { _boss = boss; }
 
 
 };

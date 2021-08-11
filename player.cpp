@@ -133,6 +133,7 @@ void player::move()
             if (_shadowRc.left < _camera->getCameraRc().left && _camera->getCamX() > 0 +_speed)
             {
                 _camera->setCamX(_camera->getCamX() - _speed);
+                _boss->setBossShadowX(_boss->getBossShadowX() + _speed);
             }
             else
             {
@@ -147,6 +148,7 @@ void player::move()
             if (_shadowRc.right > _camera->getCameraRc().right && _camera->getCamX()< _camera->getBgImage()->getWidth()-WINSIZEX-_speed)
             {
                 _camera->setCamX(_camera->getCamX() + _speed);
+                _boss->setBossShadowX(_boss->getBossShadowX() - _speed);
             }
             else
             {
@@ -159,6 +161,7 @@ void player::move()
             if (_shadowRc.top < _camera->getCameraRc().top && _camera->getCamY() > 0 + _speed)
             {
                 _camera->setCamY(_camera->getCamY() - _speed);
+                _boss->setBossShadowY(_boss->getBossShadowY() + _speed);
             }
             else
             {
@@ -171,6 +174,7 @@ void player::move()
             if (_shadowRc.bottom > _camera->getCameraRc().bottom && _camera->getCamY() < _camera->getBgImage()->getHeight() - WINSIZEY - _speed)
             {
                 _camera->setCamY(_camera->getCamY() + _speed);
+                _boss->setBossShadowY(_boss->getBossShadowY() - _speed);
             }
             else
             {

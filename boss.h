@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "bossState.h"
+#include "camera.h"
 
 class bossState;
 class player;
@@ -37,6 +38,9 @@ private:
 	float _sx, _sy;		// shadowImgPos
 	float _bx, _by;		// bossImgPos
 
+	// distance
+	float _dx, _dy;		// distance bShadow to pShadow
+
 	// velocity
 	float _speed;
 	float _jumpPower;
@@ -58,6 +62,9 @@ private:
 	bool _isDash;
 	bool _isGroggy;
 
+	// camera
+	camera* _camera;
+
 public:
 	boss() {}
 	~boss() {}
@@ -74,6 +81,9 @@ public:
 
 	void move();
 	void jump();
+	void calDistance();
+	
+	void setBossPosAtCameraPos();
 
 
 	// get
@@ -83,6 +93,12 @@ public:
 	float getBossY() { return _by; }
 	float getBossRectX() { return _bossRc.left; }
 	float getBossRectY() { return _bossRc.top; }
+
+	float getBossShadowWidth() { return _bShadowRc.right - _bShadowRc.left; }
+	float getBossShadowHeight() { return _bShadowRc.bottom - _bShadowRc.top; }
+
+	float getDistanceX() { return _dx; }
+	float getDistanceY() { return _dy; }
 
 	int getBossDirection() { return _direction; }
 
@@ -108,6 +124,9 @@ public:
 	void setBossX(float x) { _bx = x; }
 	void setBossY(float y) { _by = y; }
 
+	void setDistanceX(float dx) { _dx = dx; }
+	void setDistanceY(float dy) { _dy = dy; }
+
 	void setBossDirection(int dir) { _direction = dir; }
 
 	void setMove(bool move) { _isMove = move; }
@@ -125,6 +144,7 @@ public:
 
 	// Memory
 	void setPlayerMemoryAddressLink(player* player) { _player = player; }
+	void setCameraMemoryAddressLink(camera* camera) { _camera = camera; }
 
 };
 

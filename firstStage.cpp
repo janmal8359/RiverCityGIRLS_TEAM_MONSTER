@@ -20,21 +20,23 @@ HRESULT firstStage::init()
 	
 
 
+	_camera = new camera;
+	_camera->init();
+	_camera->setStage(1);
+
 	
 	_boss = new boss;
 	_boss->setPlayerMemoryAddressLink(_player);
+	_boss->setCameraMemoryAddressLink(_camera);
 	_boss->init();
 
 	_enemy = new enemy;
 	_enemy->init();
 	
-	_camera = new camera;
-	_camera->init();
-	_camera->setStage(1);
-	
 	_player = new player;
 	_player->init();
 	_player->setCamera(_camera);
+	_player->setBossMemoryAddressLink(_boss);
 
 
 
