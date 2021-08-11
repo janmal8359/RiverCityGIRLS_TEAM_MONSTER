@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "enemy.h"
 #include "player.h"
-#include "camera.h"
+
 
 enemy::enemy()
 {
@@ -30,7 +30,7 @@ HRESULT enemy::init()
 	_enemyRc = RectMakeCenter(_enemyX, _enemyY, _enemyImg->getFrameWidth(), _enemyImg->getFrameWidth());
 	_enemyShadowRc = RectMakeCenter(_enemySX, _enemySY, _enemyShadowImg->getWidth(), _enemyShadowImg->getHeight());
 			
-	_enemySpeed = 2;
+	_enemySpeed = 0;
 	_enemyJP = 0;
 	
 

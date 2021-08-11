@@ -33,9 +33,7 @@ private:
 	boss* _boss;
 	zOrder* _zO;
 
-	camera* _camera;
-	player* _player;
-	enemy* _enemy;
+
 
 	pixelCollisionClass* _pixel;
 

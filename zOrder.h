@@ -7,6 +7,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "boss.h"
+#include "camera.h"
 
 
 class zOrder : public gameNode
@@ -14,10 +15,9 @@ class zOrder : public gameNode
 
 private:
 
-	multimap<float, int>			_mobj;
-	multimap<float, int>::iterator  _miobj;
+	vector<gameNode*>				_vRender;
+	vector<gameNode*>::iterator		_viRender;
 
-	int mapIdx;
 
 	player* _player;
 
@@ -25,7 +25,7 @@ private:
 
 	boss* _boss;
 
-
+	camera* _camera;
 
 
 
@@ -44,13 +44,16 @@ public:
 	void update();
 	void render();
 
+	void selectionSort();
+	void swap(gameNode** a, gameNode** b);
 
-	void ZOrder();
-	void draw();
 
 
-	void setPlayer(player* player) { _player = player; }
-	void setBoss(boss* boss) { _boss = boss; }
-	void setEnemy(enemy* enemy) { _enemy = enemy; }
+
+	void setPlayer(player* player)	 { _player = player; }
+	void setBoss(boss* boss)		 { _boss = boss; }
+	void setEnemy(enemy* enemy)		 { _enemy = enemy; }
+	void setCamera(camera* camera)	 { _camera = camera; }
+	
 };
 

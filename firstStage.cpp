@@ -26,22 +26,6 @@ HRESULT firstStage::init()
 	_enemy = new enemy;
 	_enemy->init();
 
-
-	//_camera = new camera;
-	//_camera->init();
-	//_camera->setStage(0);
-
-	
-	_camera = new camera;
-	_camera->init();
-	_camera->setStage(1);
-
-
-	_camera = new camera;
-	_camera->init();
-	_camera->setStage(0);
-
-	
 	_player = new player;
 	_player->init();
 	_player->setCamera(_camera);
@@ -50,14 +34,17 @@ HRESULT firstStage::init()
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
 
+
+
+
 	_zO = new zOrder;
 	_zO->init();
-	
 	_zO->setPlayer(_player);
 	_zO->setBoss(_boss);
 	_zO->setEnemy(_enemy);
+	_zO->setCamera(_camera);
 
-	_isCheck = false;
+
 
 	_pixel = new pixelCollisionClass;
 

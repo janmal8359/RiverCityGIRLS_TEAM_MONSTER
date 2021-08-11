@@ -73,32 +73,32 @@ void pixelCollisionClass::Colloision()
 				//벽
 				if (R == 255 && G == 0 && B == 0)			//레드
 				{
-					_player->setSpeed(6);					//0으로 변경
+					//_player->setSpeed(6);					//0으로 변경
 				}
 				//책상 바닥
 				else if (R == 0 && G == 255 && B == 0)		//그린 - 0으로 변경
 				{
-					_player->setSpeed(6);
+					//_player->setSpeed(6);
 				}
 				else if (R == 255 && G == 255 && B == 0)	//노란
 				{
-					_player->setSpeed(6);
+					//_player->setSpeed(6);
 				}
 				//아이콘 출현 구간
 				else if (R == 0 && G == 255 && B == 255)	//민트
 				{
-					_player->setSpeed(6);
+					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
 				}
 				//그 이외
 				else
 				{
-					_player->setSpeed(6);
+					//_player->setSpeed(6);
 				}
 			}
 			else
 			{
-				_player->setSpeed(6);
+				//_player->setSpeed(6);
 			}
 		}
 	
@@ -115,33 +115,33 @@ void pixelCollisionClass::Colloision()
 				//벽
 				if (R == 255 && G == 0 && B == 0)			//레드
 				{
-					_player->setSpeed(6);					//0으로 변경
+					//_player->setSpeed(6);					//0으로 변경
 				}
 				//책상 바닥
 				else if ((R == 0 && G == 255 && B == 0))	//그린 - 0으로 변경
 				{
-					_player->setSpeed(6);
+					//_player->setSpeed(6);
 				}
 				else if ((R == 255 && G == 255 && B == 0))	//노란
 				{
-					_player->setSpeed(6);
+					//_player->setSpeed(6);
 				}
 				//아이콘 출현 구간
 				else if ((R == 0 && G == 255 && B == 255))	//민트
 				{
-					_player->setSpeed(6);
-					_player->setSpeed(6);
+					//_player->setSpeed(6);
+					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
 				}
 				//그 이외
 				else
 				{
-					_player->setSpeed(6);
+					//_player->setSpeed(6);
 				}
 			}
 			else
 			{
-				_player->setSpeed(6);
+				//_player->setSpeed(6);
 			}
 		}
 }

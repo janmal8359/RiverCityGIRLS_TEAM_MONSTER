@@ -48,6 +48,7 @@ void atk::update()
 				break;
 			}
 		}
+
 	}
 
 	switch (_attackIdx)

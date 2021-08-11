@@ -1,10 +1,10 @@
 #pragma once
 #include "gameNode.h"
 #include "enemyState.h"
-
+#include "camera.h"
 
 class player;
-class camera;
+
 
 class enemy : public gameNode
 {
