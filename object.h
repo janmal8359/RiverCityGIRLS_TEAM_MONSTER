@@ -1,6 +1,6 @@
 #pragma once
 #include "gameNode.h"
-
+#include "player.h"
 
 enum OBJECTTYPE
 {
@@ -19,6 +19,8 @@ private:
 	//bool _isCheck;					//기둥 & 보스 충돌
 	//bool _isShot;						//기둧 파편 발사
 	
+	player* _player;
+
 	image* _objectImg;
 
 	RECT _objectRc;
@@ -77,5 +79,7 @@ public:
 	//오브젝트 이미지
 	image* getObjectImg() { return	_objectImg; }
 	void setObjectImg(image* objectImg) { _objectImg = objectImg; }
+
+	void setMemoryAddrsLink(player* player) { _player = player; }
 };
 

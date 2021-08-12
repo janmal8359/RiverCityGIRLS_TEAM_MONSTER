@@ -191,6 +191,6 @@ public:
 	virtual float getPosY() { return _sY; }
 
 	//오브젝트 메모리
-	void setObjectMemoryAddressLink(object* object) { _object = object; }
+	void setObjectMemoryAddressLink(object* objectP) { _object = objectP; }
 };
 

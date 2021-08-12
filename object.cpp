@@ -20,8 +20,11 @@ HRESULT object::init(float x, float y, int objectType)
 
 	if (_objectType == 0)_objectImg = IMAGEMANAGER->findImage("OBJECT_desk1");
 
-	_objectMX = x;
-	_objectMY = y;
+	_objectMX = 600;
+	_objectMY = 300;
+
+	_objectOX = 100;
+	_objectOY = 100;
 
 	_objectOX = _objectMX;
 	_objectOY = _objectMY - (_objectImg->getHeight() / 2);
