@@ -30,7 +30,7 @@ HRESULT zOrder::init()
 	_enemy->init();
 
 	_object = new object;
-	_object->init(_object->getObjectMX(), _object->getObjectMY(), 0);
+	_object->init(_object->getObjectOX(), _object->getObjectOY(), 0);
 	_object->setMemoryAddrsLink(_player);
 	
 	_objectManager = new objectManager;
