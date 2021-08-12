@@ -40,6 +40,8 @@ HRESULT enemy::init()
 	_isEChase = false;
 	_isEHurt = false;
 	_isEWaitAttack = false;
+	_isRun = false;
+	_isRunAttack = false;
 	
 	
 	
@@ -69,6 +71,9 @@ void enemy::update()
 	
 	_enemyState->update();
 	_enemyImg = _enemyState->getEnemyImg();
+	
+	_enemySX != _player->getShadowX();
+	_enemySY != _player->getShadowY();
 }
 
 void enemy::render()
@@ -108,6 +113,15 @@ void enemy::render()
 	sprintf_s(str1, "적 피격 카운트 : %d", _enemyState->getEhurtcount());
 	TextOut(getMemDC(), _enemySX , _enemySY + 230 , str1, strlen(str1));
 
+	sprintf_s(str1, "적 달리기 확인 : %d", _isRun);
+	TextOut(getMemDC(), _enemySX + 150, _enemySY + 170, str1, strlen(str1));
+
+	sprintf_s(str1, "적 속도 : % .2f", _enemySpeed);
+	TextOut(getMemDC(), _enemySX + 150, _enemySY + 150, str1, strlen(str1));
+
+	sprintf_s(str1, "적 대쉬공격 확인 : %d",_isRunAttack);
+	TextOut(getMemDC(), _enemySX + 150, _enemySY + 190, str1, strlen(str1));
+
 	_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
 	
 	_enemyState->render();
@@ -124,7 +138,7 @@ void enemy::enemyMove()
 {
 	if(_enemyDir == ENEMY_RIGHT)
 	{
-		if (_enemyDistance < 600  && _enemyDistance >= 10)	//쫒아가는거
+		if (_enemyDistance < 800  && _enemyDistance >= 10)	//쫒아가는거
 		{			
 			_isEChase = true;
 		}
@@ -132,7 +146,7 @@ void enemy::enemyMove()
 
 	if (_enemyDir == ENEMY_LEFT)
 	{
-		if (_enemyDistanceR < 600 && _enemyDistanceR >= 10)	//쫒아가는거
+		if (_enemyDistanceR < 800 && _enemyDistanceR >= 10)	//쫒아가는거
 		{
 			_isEChase = true;
 		}
@@ -177,15 +191,15 @@ void enemy::enemyMove()
 		if (_enemyDir == (int)ENEMY_LEFT)
 		{
 			_enemyX = _enemySX;
-			_enemySX -= cosf(getAngle(_player->getShadowX() + 125, _player->getShadowY(), _enemySX , _enemySY )) * 0;
-			_enemySY -= -sin(getAngle(_player->getShadowX() + 125, _player->getShadowY(), _enemySX , _enemySY )) * 0;
+			_enemySX -= cosf(getAngle(_player->getShadowX() + 125, _player->getShadowY(), _enemySX , _enemySY )) * _enemySpeed;
+			_enemySY -= -sin(getAngle(_player->getShadowX() + 125, _player->getShadowY(), _enemySX , _enemySY )) * _enemySpeed;
 		}
 
 		if (_enemyDir == (int)ENEMY_RIGHT)
 		{
 			_enemyX = _enemySX;
-			_enemySX -= cosf(getAngle(_player->getShadowX() - 125, _player->getShadowY(), _enemySX , _enemySY )) * 0;
-			_enemySY -= -sin(getAngle(_player->getShadowX() - 125, _player->getShadowY(), _enemySX , _enemySY )) * 0;
+			_enemySX -= cosf(getAngle(_player->getShadowX() - 125, _player->getShadowY(), _enemySX , _enemySY )) * _enemySpeed;
+			_enemySY -= -sin(getAngle(_player->getShadowX() - 125, _player->getShadowY(), _enemySX , _enemySY )) * _enemySpeed;
 		}
 		
 
@@ -264,6 +278,10 @@ void enemy::enemyAni()
 	//점프 공격
 	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_jumpAttackL", "SCHOOLGIRL_jumpAttack", 13, 7, 10, false, false);
 	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_jumpAttackR", "SCHOOLGIRL_jumpAttack", 0, 6, 10, false, false);
+
+	//대쉬 공격
+	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_dashAttackL", "SCHOOLGIRL_jumpAttack", 11, 7, 10, false, false);
+	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_dashAttackR", "SCHOOLGIRL_jumpAttack", 2, 6, 10, false, false);
 
 	//피격 쓰러진 상태
 	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_backdownL", "SCHOOLGIRL_backdown", 53, 27, 10, false, false);

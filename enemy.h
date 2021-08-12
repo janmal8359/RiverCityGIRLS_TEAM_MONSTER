@@ -32,6 +32,7 @@ private:
 	bool _isEWaitAttack;			//어택 대기 불값
 	bool _isDie;					//죽음 불값
 	bool _isRun;					//달리는 불값
+	bool _isRunAttack;				//대쉬 공격 불값
 
 	image* _enemyImg;				//적 이미지
 	RECT _enemyRc;					//적 렉트
@@ -119,6 +120,9 @@ public:
 	//적 달리는 상황
 	bool getIsEnemyRun() { return _isRun; }
 	void setIsEnemyRun(bool isRun) { _isRun = isRun; }
+
+	bool getIsEnemyRunAttack() { return _isRunAttack; }
+	void setIsEnemyRunAttack(bool isRunAttack) { _isRunAttack = isRunAttack; }
 	
 	//적과 플레이어 거리값
 	float getEnemyDistance() { return _enemyDistance; }			//왼쪽 바라볼때
