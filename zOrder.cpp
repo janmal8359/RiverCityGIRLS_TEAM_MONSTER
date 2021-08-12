@@ -29,19 +29,15 @@ HRESULT zOrder::init()
 	_enemy = new enemy;
 	_enemy->init();
 
-	_object = new object;
-	_object->init(_object->getObjectOX(), _object->getObjectOY(), 0);
-	_object->setMemoryAddrsLink(_player);
-	
 	_objectManager = new objectManager;
-	_objectManager->setObjectMemoryAddressLink(_object);
+	_objectManager->init();
+	_objectManager->setObject();
 
 	_player = new player;
 	_player->init();
 	_player->setCamera(_camera);
 	_player->setBossMemoryAddressLink(_boss);
-	_player->setEnemyMemoryAddressLink(_enemy);
-	_player->setObjectMemoryAddressLink(_object);
+	_player->setObjectManagerAddressLink(_objectManager);
 
 
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
@@ -56,7 +52,7 @@ HRESULT zOrder::init()
 	_vRender.push_back(_player);
 	_vRender.push_back(_enemy);
 	_vRender.push_back(_boss);
-	_vRender.push_back(_object);
+	_vRender.push_back(_objectManager);
 
 	return S_OK;
 }
@@ -76,7 +72,7 @@ void zOrder::update()
 
 	_boss->update();
 
-	_object->update();
+	_objectManager->update();
 
 	_pixel->setPixelPlayer(_player);
 	_pixel->update();

@@ -38,6 +38,7 @@ class object;
 
 class enemy;
 
+class objectManager;//추가
 
 class player : public gameNode
 {
@@ -48,6 +49,7 @@ private:
 	boss* _boss;
 
 	object* _object;
+	objectManager* _objectManager;//추가
 
 	enemy* _enemy;
 
@@ -191,6 +193,8 @@ public:
 	virtual float getPosY() { return _sY; }
 
 	//오브젝트 메모리
-	void setObjectMemoryAddressLink(object* objectP) { _object = objectP; }
+	void setObjectMemoryAddressLink(object* object) { _object = object; }
+
+	void setObjectManagerAddressLink(objectManager* objectManager) {_objectManager = objectManager;}//추가
 };
 

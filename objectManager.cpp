@@ -18,7 +18,7 @@ void objectManager::release()
 {
 }
 
-void objectManager::update()
+void objectManager::update()//°ª true
 {
 	for (_viObject = _vObject.begin(); _viObject != _vObject.end(); ++_viObject)
 	{
@@ -28,7 +28,7 @@ void objectManager::update()
 
 }
 
-void objectManager::render()
+void objectManager::render()//°ª false
 {
 	for (_viObject = _vObject.begin(); _viObject != _vObject.end(); ++_viObject)
 	{

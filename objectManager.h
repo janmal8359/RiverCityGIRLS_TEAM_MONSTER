@@ -1,7 +1,7 @@
 #pragma once
 #include "gameNode.h"
-#include "object.h"
 #include "desk.h"
+#include "player.h"
 #include "camera.h"
 #include <vector>
 
@@ -15,9 +15,9 @@ private:
 	vObject		_vObject;
 	viObject	_viObject;
 
-	object* _object;
-
 	camera* _camera;
+
+	player* _player;
 
 public:
 	objectManager();
@@ -32,6 +32,8 @@ public:
 
 	vector<object*> getVObject() { return _vObject; }
 	vector<object*>::iterator getViObject() { return _viObject; }
+	 
+	void setPlayerMemoryAddressLink(player* player) { _player = player; }
 
-	void setObjectMemoryAddressLink(object* object) { _object = object; }
+	void setCameraMemoryAddressLink(camera* camera) { _camera = camera; }
 };
