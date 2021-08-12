@@ -4,6 +4,7 @@
 #include "boss.h"
 #include "objectManager.h"
 #include "enemy.h"
+#include "enemyManager.h"
 
 player::player()
 {
@@ -132,7 +133,10 @@ void player::move()
                 _camera->setCamX(_camera->getCamX() - _speed);
                 _boss->setBossShadowX(_boss->getBossShadowX() + _speed);
 
-                _enemy->setEnemySX(_enemy->getEnemySX() + _speed);
+                for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
+                {
+                    _enemyManager->getVGirl()[i]->setEnemySX(_enemyManager->getVGirl()[i]->getEnemySX() + _speed);
+                }
             }
             else
             {
@@ -148,7 +152,11 @@ void player::move()
             {
                 _camera->setCamX(_camera->getCamX() + _speed);
                 _boss->setBossShadowX(_boss->getBossShadowX() - _speed);
-                _enemy->setEnemySX(_enemy->getEnemySX() - _speed);
+                //_enemy->setEnemySX(_enemy->getEnemySX() - _speed);
+                for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
+                {
+                    _enemyManager->getVGirl()[i]->setEnemySX(_enemyManager->getVGirl()[i]->getEnemySX() - _speed);
+                }
             }
             else
             {
@@ -162,7 +170,11 @@ void player::move()
             {
                 _camera->setCamY(_camera->getCamY() - _speed);
                 _boss->setBossShadowY(_boss->getBossShadowY() + _speed);
-                _enemy->setEnemySY(_enemy->getEnemySY() + _speed);
+                //_enemy->setEnemySY(_enemy->getEnemySY() + _speed);
+                for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
+                {
+                    _enemyManager->getVGirl()[i]->setEnemySY(_enemyManager->getVGirl()[i]->getEnemySY() + _speed);
+                }
             }
             else
             {
@@ -176,7 +188,11 @@ void player::move()
             {
                 _camera->setCamY(_camera->getCamY() + _speed);
                 _boss->setBossShadowY(_boss->getBossShadowY() - _speed);
-                _enemy->setEnemySY(_enemy->getEnemySY() - _speed);
+                //_enemy->setEnemySY(_enemy->getEnemySY() - _speed);
+                for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
+                {
+                    _enemyManager->getVGirl()[i]->setEnemySY(_enemyManager->getVGirl()[i]->getEnemySY() - _speed);
+                }
             }
             else
             {

@@ -38,6 +38,8 @@ class objectManager;
 
 class enemy;
 
+class enemyManager;
+
 
 class player : public gameNode
 {
@@ -48,6 +50,7 @@ private:
 	boss* _boss;
 
 	objectManager* _object;
+	enemyManager* _enemyManager;
 
 	enemy* _enemy;
 
@@ -187,6 +190,8 @@ public:
 	void setBossMemoryAddressLink(boss* boss) { _boss = boss; }
 	// enemyMemory
 	void setEnemyMemoryAddressLink(enemy* enemy) { _enemy = enemy; }
+	// enemyManager
+	void setEnemyManagerMemoryAddressLink(enemyManager* enemyManager) { _enemyManager = enemyManager; }
 
 	virtual float getPosY() { return _sY; }
 

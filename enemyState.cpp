@@ -836,6 +836,11 @@ void enemyHurt::enemyStateChange()
 			_enemy->setEnemyState(new enemyChase);
 		}
 	}
+
+	if (_enemy->getIsEnemyDie())
+	{
+		_enemy->setEnemyState(new enemyDie);
+	}
 }
 
 void enemyHurt::enemyAni()
@@ -969,6 +974,7 @@ void enemyJump::enemyAni()
 
 enemyDie::enemyDie()
 {
+	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_weapon_swing");
 }
 
 enemyDie::~enemyDie()
@@ -977,6 +983,9 @@ enemyDie::~enemyDie()
 
 HRESULT enemyDie::init()
 {
+	enemyState::init();
+
+	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_weapon_swing");
 	return S_OK;
 }
 
@@ -986,10 +995,15 @@ void enemyDie::release()
 
 void enemyDie::update()
 {
+	enemyState::update();
+
+	_enemy->setEnemySpeed(0);
+	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_weapon_swing");
 }
 
 void enemyDie::render()
 {
+	enemyState::render();
 }
 
 void enemyDie::enemyStateChange()
@@ -998,6 +1012,16 @@ void enemyDie::enemyStateChange()
 
 void enemyDie::enemyAni()
 {
+	if (_enemyDir == (int)ENEMY_LEFT)
+	{
+		_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_dieL");
+		_enemyAni->resume();
+	}
+	if (_enemyDir == (int)ENEMY_RIGHT)
+	{
+		_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_dieR");
+		_enemyAni->resume();
+	}
 }
 
 

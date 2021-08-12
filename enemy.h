@@ -38,6 +38,7 @@ private:
 	RECT _enemyRc;					//적 렉트
 	
 	int _enemyCount;					//어택 동작카운트
+	int _hitCount;
 
 
 	float _enemyX, _enemyY;			//적 x,y값
@@ -55,6 +56,7 @@ public:
 	~enemy();
 
 	HRESULT init();					//초기화
+	HRESULT init(POINT pt);
 	void release();					//메모리 해제
 	void update();					//연산함수
 	void render();					//그리기 함수
@@ -130,6 +132,9 @@ public:
 	
 	int getEnemyCount() { return _enemyCount; }								//에너미 동작 카운트
 	void setEnemyCount(int enemyCount) { _enemyCount = enemyCount; }		
+
+	int getHitCount() { return _hitCount; }
+	void setHitCount(int hitCount) { _hitCount = hitCount; }
 
 	//적 렉트
 	RECT getEnemyRc() { return _enemyRc; }

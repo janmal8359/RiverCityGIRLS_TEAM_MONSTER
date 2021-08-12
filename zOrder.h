@@ -8,6 +8,7 @@
 #include "enemy.h"
 #include "boss.h"
 #include "camera.h"
+#include "enemyManager.h"
 
 class pixelCollisionClass;
 
@@ -24,6 +25,8 @@ private:
 	player* _player;
 
 	enemy* _enemy;
+
+	enemyManager* _enemyManager;
 
 	boss* _boss;
 
