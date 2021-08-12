@@ -89,6 +89,8 @@ void pixelCollisionClass::Colloision()
 				{
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
+					
+					//특정 키 입력시 다음 스테이지로 이동
 				}
 				//그 이외
 				else
