@@ -12,7 +12,6 @@ zOrder::~zOrder()
 
 HRESULT zOrder::init()
 {
-
 	//_vRender.push_back(_player);
 	//_vRender.push_back(_enemy);
 	//_vRender.push_back(_boss);
@@ -28,11 +27,29 @@ void zOrder::release()
 void zOrder::update()
 {
 	selectionSort();
+
+	ZOrder();
 }
 
 void zOrder::render()
 {
-	//for (_viRender = _vRender.begin(); _viRender != _vRender.end(); _viRender++)
+	draw();
+}
+
+void zOrder::ZOrder()
+{
+	//다중적을 담고있는 em에서 가져와서 넣어주는 역할
+	//vector<enemy*> _vEnemy = _em->getVEnemy();
+
+	_mobj.clear();
+
+	//플레이어 삽입
+	_mobj.insert(make_pair(_player->getShadowY(), 0));
+
+	mapIdx = _mobj.size();
+
+	//적이 추가 되었을때
+	//for (int i = 0; i < _vEnemy.size(); i++)
 	//{
 	//	(*_viRender)->render();
 	//}
@@ -69,9 +86,27 @@ void zOrder::selectionSort()
 
 void zOrder::swap(gameNode** a, gameNode** b)
 {
-	//gameNode 
-	/*gameNode* temp = *a;
-	*a = *b;
-	*b = temp;*/
+	_mobj.insert(make_pair(_enemy->getEnemySY(), 1));
+
+	mapIdx = _mobj.size();
+}
+
+void zOrder::draw()
+{
+	for (_miobj = _mobj.begin(); _miobj != _mobj.end(); ++_miobj)
+	{
+		if (_miobj->second == 0)
+		{
+			_player->render();
+		}
+		if (_miobj->second == 1)
+		{
+			_enemy->render();
+		}
+		if (_miobj->second == 2)
+		{
+			_boss->render();
+		}
+	}
 }
 
