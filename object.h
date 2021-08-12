@@ -43,20 +43,20 @@ public:
 	virtual void render();
 
 	////오브젝트 가이트 중점 x
-	//float getObjectMX() { return _objectMX; }
-	//void setObjectMX(float objectMX) { _objectMX = objectMX; }
-	//
-	////오브젝트 가이트 중점 y
-	//float getObjectMY() { return _objectMY; }
-	//void setObjectMY(float objectMY) { _objectMX = objectMY; }
-	//
-	////오브젝트 중점 x
-	//float getObjectOX() { return _objectOX; }
-	//void setObjectOX(float objectOX) { _objectMX = objectOX; }
-	//
-	////오브젝트 중점 y
-	//float getObjectOX() { return _objectOY; }
-	//void setObjectOX(float objectOY) { _objectMX = objectOY; }
+	float getObjectMX() { return _objectMX; }
+	void setObjectMX(float objectMX) { _objectMX = objectMX; }
+	
+	//오브젝트 가이트 중점 y
+	float getObjectMY() { return _objectMY; }
+	void setObjectMY(float objectMY) { _objectMX = objectMY; }
+	
+	//오브젝트 중점 x
+	float getObjectOX() { return _objectOX; }
+	void setObjectOX(float objectOX) { _objectMX = objectOX; }
+	
+	//오브젝트 중점 y
+	float getObjectOY() { return _objectOY; }
+	void setObjectOY(float objectOY) { _objectMX = objectOY; }
 	
 	//파편의 각도
 	float getParticleAngle() { return _particleAngle; }

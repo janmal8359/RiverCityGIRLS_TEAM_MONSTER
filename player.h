@@ -34,7 +34,7 @@
 
 class boss;
 
-class objectManager;
+class object;
 
 class enemy;
 
@@ -47,7 +47,7 @@ private:
 	state* _state;
 	boss* _boss;
 
-	objectManager* _object;
+	object* _object;
 
 	enemy* _enemy;
 
@@ -191,6 +191,6 @@ public:
 	virtual float getPosY() { return _sY; }
 
 	//오브젝트 메모리
-	void setObjectMemoryAddressLink(objectManager* objectManager) { _object = objectManager; }
+	void setObjectMemoryAddressLink(object* object) { _object = object; }
 };
 

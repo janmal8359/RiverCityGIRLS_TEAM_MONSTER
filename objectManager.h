@@ -32,4 +32,6 @@ public:
 
 	vector<object*> getVObject() { return _vObject; }
 	vector<object*>::iterator getViObject() { return _viObject; }
+
+	void setObjectMemoryAddressLink(object* object) { _object = object; }
 };

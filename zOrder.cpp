@@ -29,11 +29,15 @@ HRESULT zOrder::init()
 	_enemy = new enemy;
 	_enemy->init();
 
+	_object = new object;
+	_object->init();
+
 	_player = new player;
 	_player->init();
 	_player->setCamera(_camera);
 	_player->setBossMemoryAddressLink(_boss);
 	_player->setEnemyMemoryAddressLink(_enemy);
+	_player->setObjectMemoryAddressLink(_object);
 
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
@@ -43,8 +47,6 @@ HRESULT zOrder::init()
 	_pixel->init(0, 0, 0);
 	_pixel->setPixelPlayer(_player);
 	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
-
-
 
 	_vRender.push_back(_player);
 	_vRender.push_back(_enemy);

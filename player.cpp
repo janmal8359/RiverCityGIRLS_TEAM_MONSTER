@@ -2,7 +2,7 @@
 #include "player.h"
 #include "camera.h"
 #include "boss.h"
-#include "objectManager.h"
+#include "object.h"
 #include "enemy.h"
 
 player::player()
@@ -131,8 +131,8 @@ void player::move()
             {
                 _camera->setCamX(_camera->getCamX() - _speed);
                 _boss->setBossShadowX(_boss->getBossShadowX() + _speed);
-
                 _enemy->setEnemySX(_enemy->getEnemySX() + _speed);
+                _object->setObjectMX(_object->getObjectMX() + _speed);
             }
             else
             {
@@ -149,6 +149,7 @@ void player::move()
                 _camera->setCamX(_camera->getCamX() + _speed);
                 _boss->setBossShadowX(_boss->getBossShadowX() - _speed);
                 _enemy->setEnemySX(_enemy->getEnemySX() - _speed);
+                _object->setObjectMX(_object->getObjectMX() - _speed);
             }
             else
             {
@@ -163,6 +164,7 @@ void player::move()
                 _camera->setCamY(_camera->getCamY() - _speed);
                 _boss->setBossShadowY(_boss->getBossShadowY() + _speed);
                 _enemy->setEnemySY(_enemy->getEnemySY() + _speed);
+                _object->setObjectMY(_object->getObjectMY() + _speed);
             }
             else
             {
@@ -177,6 +179,7 @@ void player::move()
                 _camera->setCamY(_camera->getCamY() + _speed);
                 _boss->setBossShadowY(_boss->getBossShadowY() - _speed);
                 _enemy->setEnemySY(_enemy->getEnemySY() - _speed);
+                _object->setObjectMY(_object->getObjectMY() - _speed);
             }
             else
             {
