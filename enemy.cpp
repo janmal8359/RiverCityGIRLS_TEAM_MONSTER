@@ -271,8 +271,13 @@ void enemy::enemyMove()
 	if (_hitCount > 200)
 	{
 		_isDie = true;
+	}
+
+	if (_isDie && _dieCount < 10)
+	{
 		
 	}
+	
 	
 
 	//플레이어와의 거리를 파악해서 방향 전환
@@ -289,13 +294,7 @@ void enemy::enemyMove()
 	_enemyShadowRc = RectMakeCenter(_enemySX , _enemySY , _enemyShadowImg->getWidth(), _enemyShadowImg->getHeight());
 }
 
-void enemy::enemyAttack()
-{
-	
 
-	
-	
-}
 
 
 
@@ -341,7 +340,7 @@ void enemy::enemyAni()
 
 	//쓰러진 상태
 	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_dieL", "SCHOOLGIRL_weapon_swing", 33, 17, 10, false, false);
-	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_dieR", "SCHOOLGIRL_weapon_swing", 0, 16, 10, false, false);
+	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_dieR", "SCHOOLGIRL_weapon_swing", 0, 17, 10, false, false);
 
 	//피격 쓰러진 상태
 	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_backdownL", "SCHOOLGIRL_backdown", 53, 27, 10, false, false);

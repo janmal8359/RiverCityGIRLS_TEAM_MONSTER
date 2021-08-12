@@ -62,8 +62,12 @@ HRESULT zOrder::init()
 
 	_vRender.push_back(_player);
 	//_vRender.push_back(_enemy);
-	//_vRender.push_back((*_enemyManager->getVIGirl()));
-	_vRender.push_back(_enemyManager);
+	
+	for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
+	{
+		_vRender.push_back(_enemyManager->getVGirl()[i]);
+	}
+	//_vRender.push_back(_enemyManager);
 	//_vRender.push_back(_boss);
 
 	return S_OK;

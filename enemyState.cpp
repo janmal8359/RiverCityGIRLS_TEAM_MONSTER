@@ -996,7 +996,10 @@ void enemyDie::release()
 void enemyDie::update()
 {
 	enemyState::update();
-
+	if (_enemy->getDieCount() > 10)
+	{
+		_enemy->setDieCount(0);
+	}
 	_enemy->setEnemySpeed(0);
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_weapon_swing");
 }

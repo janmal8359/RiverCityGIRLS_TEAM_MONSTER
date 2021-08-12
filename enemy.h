@@ -37,8 +37,9 @@ private:
 	image* _enemyImg;				//적 이미지
 	RECT _enemyRc;					//적 렉트
 	
-	int _enemyCount;					//어택 동작카운트
+	int _enemyCount;				//어택 동작카운트
 	int _hitCount;
+	int _dieCount;					//죽었을때 날라가는거 멈추는 카운트
 
 
 	float _enemyX, _enemyY;			//적 x,y값
@@ -63,7 +64,6 @@ public:
 
 	void enemyStateRender(animation* motion);				//스테이트 렌더?
 	void enemyMove();										//움직임
-	void enemyAttack();										//공격
 	//void enemyChase();									//추격
 
 	void enemyAni();										//적 애니메이션
@@ -135,6 +135,9 @@ public:
 
 	int getHitCount() { return _hitCount; }
 	void setHitCount(int hitCount) { _hitCount = hitCount; }
+
+	int getDieCount() { return _dieCount; }
+	void setDieCount(int dieCount) { _dieCount = dieCount; }
 
 	//적 렉트
 	RECT getEnemyRc() { return _enemyRc; }
