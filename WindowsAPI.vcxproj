@@ -158,7 +158,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="characterSelect.h" />
     <ClInclude Include="commonMacroFunction.h" />
-    <ClInclude Include="crafting.h" />
+    <ClInclude Include="desk.h" />
     <ClInclude Include="dashAttack.h" />
     <ClInclude Include="dashSAttack.h" />
     <ClInclude Include="die.h" />
@@ -231,7 +231,7 @@
     <ClCompile Include="button.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="characterSelect.cpp" />
-    <ClCompile Include="crafting.cpp" />
+    <ClCompile Include="desk.cpp" />
     <ClCompile Include="dashAttack.cpp" />
     <ClCompile Include="dashSAttack.cpp" />
     <ClCompile Include="die.cpp" />

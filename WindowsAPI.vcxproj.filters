@@ -331,7 +331,7 @@
     <ClInclude Include="object.h">
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
     </ClInclude>
-    <ClInclude Include="crafting.h">
+    <ClInclude Include="desk.h">
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
     </ClInclude>
     <ClInclude Include="objectManager.h">
@@ -540,7 +540,7 @@
     <ClCompile Include="object.cpp">
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
     </ClCompile>
-    <ClCompile Include="crafting.cpp">
+    <ClCompile Include="desk.cpp">
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
     </ClCompile>
     <ClCompile Include="objectManager.cpp">

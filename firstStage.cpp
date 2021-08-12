@@ -55,6 +55,18 @@ HRESULT firstStage::init()
 	//_pixel->init(0, 0, 0);
 	//_pixel->setPixelPlayer(_player);
 	//_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
+	//_camera->setStage(0);
+	
+	// Hangil
+	//_object = new objectManager;
+	//_object->init();
+	//_object->setObject();
+	//
+	//_player = new player;
+	//_player->init();
+	//_player->setCamera(_camera);
+	//_player->setBossMemoryAddressLink(_boss);
+	//_player->setObjectMemoryAddressLink(_object);
 
 
 	_zO = new zOrder;
@@ -65,11 +77,6 @@ HRESULT firstStage::init()
 	//_vRender.push_back(_player);
 	//_vRender.push_back(_enemy);
 	//_vRender.push_back(_boss);
-
-
-	
-
-
 
 
 	//_vRender.push_back(_player);
@@ -102,6 +109,12 @@ void firstStage::update()
 
 	//_player->getState()->setPlayer(_player);
 
+	//////////////////////////////////////////////////////////////////////////
+	//_object->update();
+	//
+	//_player->getState()->setPlayer(_player);
+	//////////////////////////////////////////////////////////////////////////
+
 	//_boss->setPlayerMemoryAddressLink(_player);
 
 	//_boss->update();
@@ -130,12 +143,19 @@ void firstStage::render()
 	//	_pixel->render();
 	//}
 
+	//_camera->render();
+	////_object->render();
+	//if (KEYMANAGER->isToggleKey(VK_F8))
+	//{
+	//	_pixel->render();
+	//}
 
 	_zO->render();
 
 	//_zO->render();
 
 	//_zO->render();
+	//_object->render();
 
 	//_camera->render();
 	//_player->render();

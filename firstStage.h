@@ -6,6 +6,12 @@
 //#include "boss.h"
 //#include "state.h"
 
+//#include "camera.h"
+//#include "player.h"
+//#include "enemy.h"
+//#include "boss.h"
+//#include "state.h"
+//#include "objectManager.h"
 #include "zOrder.h"
 
 class pixelCollisionClass;
@@ -30,11 +36,19 @@ private:
 	//player* _player;
 	//enemy* _enemy;
 	//boss* _boss;
+
+	//objectManager* _object;
+
+	//camera* _camera;
+	//player* _player;
+	//enemy* _enemy;
+	//boss* _boss;
+
 	zOrder* _zO;
 
 
 
-	pixelCollisionClass* _pixel;
+	//pixelCollisionClass* _pixel;
 
 public:
 	firstStage();
@@ -47,7 +61,7 @@ public:
 
 	//void setPlayer(player* player) { _player = player; }
 
-	void setpixelCollisionClassMemoryAddressLink(pixelCollisionClass* pixel) { _pixel = pixel; }
+	//void setpixelCollisionClassMemoryAddressLink(pixelCollisionClass* pixel) { _pixel = pixel; }
 
 	void selectionSort();
 	void swap(gameNode** a, gameNode** b);

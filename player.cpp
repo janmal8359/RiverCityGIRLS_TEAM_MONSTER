@@ -2,6 +2,7 @@
 #include "player.h"
 #include "camera.h"
 #include "boss.h"
+#include "objectManager.h"
 
 player::player()
 {
@@ -129,6 +130,7 @@ void player::move()
             {
                 _camera->setCamX(_camera->getCamX() - _speed);
                 _boss->setBossShadowX(_boss->getBossShadowX() + _speed);
+                //_object->
             }
             else
             {
