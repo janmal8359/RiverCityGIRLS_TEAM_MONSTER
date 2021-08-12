@@ -179,7 +179,6 @@ void player::move()
                 {
                     _objectManager->getVObject()[i]->setObjectMY(_objectManager->getVObject()[i]->getObjectMY() + _speed);
                 }
-
             }
             else
             {
@@ -199,7 +198,6 @@ void player::move()
                 {
                     _objectManager->getVObject()[i]->setObjectMY(_objectManager->getVObject()[i]->getObjectMY() - _speed);
                 }
-
             }
             else
             {
@@ -237,7 +235,6 @@ void player::move()
             {
                 _sX -= _speed;
             }
-  
         }
 
         if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
