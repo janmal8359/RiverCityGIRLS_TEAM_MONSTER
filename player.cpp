@@ -137,7 +137,7 @@ void player::move()
 
                 for (int i = 0; i < _objectManager->getVObject().size(); ++i)
                 {
-                    _objectManager->getVObject()[i]->setObjectMX(_objectManager->getVObject()[i]->getObjectMX() - _speed);
+                    _objectManager->getVObject()[i]->setObjectMX(_objectManager->getVObject()[i]->getObjectMX() + _speed);
                 }
             }
             else
@@ -158,7 +158,7 @@ void player::move()
                
                 for (int i = 0; i < _objectManager->getVObject().size(); ++i)
                 {
-                    _objectManager->getVObject()[i]->setObjectMX(_objectManager->getVObject()[i]->getObjectMX() + _speed);
+                    _objectManager->getVObject()[i]->setObjectMX(_objectManager->getVObject()[i]->getObjectMX() - _speed);
                 }
             }
             else
@@ -177,7 +177,7 @@ void player::move()
 
                 for (int i = 0; i < _objectManager->getVObject().size(); ++i)
                 {
-                    _objectManager->getVObject()[i]->setObjectMY(_objectManager->getVObject()[i]->getObjectMY() - _speed);
+                    _objectManager->getVObject()[i]->setObjectMY(_objectManager->getVObject()[i]->getObjectMY() + _speed);
                 }
 
             }
@@ -197,7 +197,7 @@ void player::move()
 
                 for (int i = 0; i < _objectManager->getVObject().size(); ++i)
                 {
-                    _objectManager->getVObject()[i]->setObjectMY(_objectManager->getVObject()[i]->getObjectMY() + _speed);
+                    _objectManager->getVObject()[i]->setObjectMY(_objectManager->getVObject()[i]->getObjectMY() - _speed);
                 }
 
             }

@@ -37,6 +37,9 @@ void object::release()
 
 void object::update()
 {
+	_objectOX = _objectMX;
+	_objectOY = _objectMY - (_objectImg->getHeight() / 2);
+
 	_objectRc = RectMakeCenter(_objectOX, _objectOY, _objectImg->getWidth(), _objectImg->getHeight());
 }
 

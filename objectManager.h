@@ -15,9 +15,9 @@ private:
 	vObject		_vObject;
 	viObject	_viObject;
 
-	camera* _camera;
+	//camera* _camera;
 
-	player* _player;
+	//player* _player;
 
 public:
 	objectManager();
@@ -33,7 +33,7 @@ public:
 	vector<object*> getVObject() { return _vObject; }
 	vector<object*>::iterator getViObject() { return _viObject; }
 	 
-	void setPlayerMemoryAddressLink(player* player) { _player = player; }
+	/*void setPlayerMemoryAddressLink(player* player) { _player = player; }
 
-	void setCameraMemoryAddressLink(camera* camera) { _camera = camera; }
+	void setCameraMemoryAddressLink(camera* camera) { _camera = camera; }*/
 };

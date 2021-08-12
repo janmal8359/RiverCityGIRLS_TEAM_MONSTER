@@ -19,7 +19,7 @@ private:
 	//bool _isCheck;					//기둥 & 보스 충돌
 	//bool _isShot;						//기둧 파편 발사
 	
-	player* _player;
+	//player* _player;
 
 	image* _objectImg;
 
@@ -80,6 +80,6 @@ public:
 	image* getObjectImg() { return	_objectImg; }
 	void setObjectImg(image* objectImg) { _objectImg = objectImg; }
 
-	void setMemoryAddrsLink(player* player) { _player = player; }
+	//void setMemoryAddrsLink(player* player) { _player = player; }
 };
 

@@ -20,28 +20,32 @@ void objectManager::release()
 
 void objectManager::update()
 {
-	for (_viObject = _vObject.begin(); _viObject != _vObject.end(); ++_viObject)
-	{
-		(*_viObject)->update();
-	}
-
-	//for (int i = 0; i < _objectManager->getVObject().size; ++i) - _objectManager 변수명 선언 시
+	//for (_viObject = _vObject.begin(); _viObject != _vObject.end(); ++_viObject)
 	//{
-
+	//	(*_viObject)->update();
 	//}
+
+	for (int i = 0; i < getVObject().size(); ++i)
+	{
+		//_vObject[i]->setObjectMX(_vObject[i]->getObjectMX());
+		//_vObject[i]->setObjectMY(_vObject[i]->getObjectMY());
+		_vObject[i]->update();
+	}
 }
 
 void objectManager::render()
 {
-	for (_viObject = _vObject.begin(); _viObject != _vObject.end(); ++_viObject)
-	{
-		(*_viObject)->render();
-	}
-
-	//for (int i = 0; i < _objectManager->getVObject().size; ++i) - _objectManager 변수명 선언 시
+	//for (_viObject = _vObject.begin(); _viObject != _vObject.end(); ++_viObject)
 	//{
-
+	//	(*_viObject)->render();
 	//}
+
+	for (int i = 0; i < getVObject().size(); ++i)
+	{
+		//_vObject[i]->setObjectMX(_vObject[i]->getObjectMX());
+		//_vObject[i]->setObjectMY(_vObject[i]->getObjectMY());
+		_vObject[i]->render();
+	}
 }
 
 void objectManager::setObject()
