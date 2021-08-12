@@ -31,12 +31,6 @@ private:
 
 	pixelCollisionClass* _pixel;
 
-
-
-
-
-
-
 public:
 	zOrder();
 	~zOrder();

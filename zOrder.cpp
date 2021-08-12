@@ -33,6 +33,7 @@ HRESULT zOrder::init()
 	_player->init();
 	_player->setCamera(_camera);
 	_player->setBossMemoryAddressLink(_boss);
+	_player->setEnemyMemoryAddressLink(_enemy);
 
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
@@ -76,32 +77,13 @@ void zOrder::update()
 
 	selectionSort();
 
-	ZOrder();
+	//zOrder();
 }
 
 void zOrder::render()
 {
-	draw();
-}
-
-void zOrder::ZOrder()
-{
-	//다중적을 담고있는 em에서 가져와서 넣어주는 역할
-	//vector<enemy*> _vEnemy = _em->getVEnemy();
-
-	_mobj.clear();
-
-	//플레이어 삽입
-	_mobj.insert(make_pair(_player->getShadowY(), 0));
-
-	mapIdx = _mobj.size();
-
-	//적이 추가 되었을때
-	//for (int i = 0; i < _vEnemy.size(); i++)
-	//{
-	//	(*_viRender)->render();
-	//}
-
+	//draw();
+	
 	_camera->render();
 
 	if (KEYMANAGER->isToggleKey(VK_F8))
@@ -114,6 +96,37 @@ void zOrder::ZOrder()
 		(*_viRender)->render();
 	}
 }
+
+//void zOrder::ZOrder()
+//{
+//	//다중적을 담고있는 em에서 가져와서 넣어주는 역할
+//	//vector<enemy*> _vEnemy = _em->getVEnemy();
+//
+//	_mobj.clear();
+//
+//	//플레이어 삽입
+//	_mobj.insert(make_pair(_player->getShadowY(), 0));
+//
+//	mapIdx = _mobj.size();
+//
+//	//적이 추가 되었을때
+//	//for (int i = 0; i < _vEnemy.size(); i++)
+//	//{
+//	//	(*_viRender)->render();
+//	//}
+//
+//	_camera->render();
+//
+//	if (KEYMANAGER->isToggleKey(VK_F8))
+//	{
+//		_pixel->render();
+//	}
+//
+//	for (_viRender = _vRender.begin(); _viRender != _vRender.end(); _viRender++)
+//	{
+//		(*_viRender)->render();
+//	}
+//}
 
 void zOrder::selectionSort()
 {
@@ -146,32 +159,32 @@ void zOrder::selectionSort()
 
 void zOrder::swap(gameNode** a, gameNode** b)
 {
-	_mobj.insert(make_pair(_enemy->getEnemySY(), 1));
-
-	mapIdx = _mobj.size();
-}
-
-void zOrder::draw()
-{
-	for (_miobj = _mobj.begin(); _miobj != _mobj.end(); ++_miobj)
-	{
-		if (_miobj->second == 0)
-		{
-			_player->render();
-		}
-		if (_miobj->second == 1)
-		{
-			_enemy->render();
-		}
-		if (_miobj->second == 2)
-		{
-			_boss->render();
-		}
-	}
-
-	//gameNode 
 	gameNode* temp = *a;
 	*a = *b;
 	*b = temp;
 }
+
+//void zOrder::draw()
+//{
+//	for (_miobj = _mobj.begin(); _miobj != _mobj.end(); ++_miobj)
+//	{
+//		if (_miobj->second == 0)
+//		{
+//			_player->render();
+//		}
+//		if (_miobj->second == 1)
+//		{
+//			_enemy->render();
+//		}
+//		if (_miobj->second == 2)
+//		{
+//			_boss->render();
+//		}
+//	}
+//
+//	//gameNode 
+//	gameNode* temp = *a;
+//	*a = *b;
+//	*b = temp;
+//}
 
