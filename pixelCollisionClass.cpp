@@ -85,13 +85,18 @@ void pixelCollisionClass::Colloision()
 					//_player->setSpeed(6);
 				}
 				//아이콘 출현 구간
-				else if (R == 0 && G == 255 && B == 255)	//민트
+				else if (R == 0 && G == 255 && B == 255 && KEYMANAGER->isOnceKeyDown('J'))	//민트
 				{
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
-					
 					//특정 키 입력시 다음 스테이지로 이동
-				}
+					_camera->setStage(2);
+					_player->setShadowX(500);
+					_player->setShadowY(600);
+					_camera->setCamX(0);
+					_camera->setCamY(0);
+				} 
+				
 				//그 이외
 				else
 				{
@@ -129,11 +134,16 @@ void pixelCollisionClass::Colloision()
 					//_player->setSpeed(6);
 				}
 				//아이콘 출현 구간
-				else if ((R == 0 && G == 255 && B == 255))	//민트
+				else if ((R == 0 && G == 255 && B == 255) && KEYMANAGER->isOnceKeyDown('J'))	//민트
 				{
 					//_player->setSpeed(6);
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
+						_camera->setStage(2);
+						_player->setShadowX(500);
+						_player->setShadowY(600);
+						_camera->setCamX(0);
+						_camera->setCamY(0);
 				}
 				//그 이외
 				else

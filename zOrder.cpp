@@ -19,7 +19,7 @@ HRESULT zOrder::init()
 
 	_camera = new camera;
 	_camera->init();
-	_camera->setStage(SECOND_STAGE);
+	_camera->setStage((int)stageImg::FIRST_STAGE);
 
 	_boss = new boss;
 	_boss->setPlayerMemoryAddressLink(_player);
@@ -43,8 +43,6 @@ HRESULT zOrder::init()
 	_pixel->init(0, 0, 0);
 	_pixel->setPixelPlayer(_player);
 	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
-
-
 
 	_vRender.push_back(_player);
 	_vRender.push_back(_enemy);
@@ -74,6 +72,8 @@ void zOrder::update()
 
 	_enemy->update();
 	_enemy->getEnemyState()->setEnemy(_enemy);
+
+	_camera->update();
 
 	selectionSort();
 

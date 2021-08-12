@@ -13,8 +13,9 @@ bossStage1::~bossStage1()
 HRESULT bossStage1::init()
 {
 
-	IMAGEMANAGER->findImage("STAGE_bossStage1");
+	//IMAGEMANAGER->findImage("STAGE_bossStage1");
 
+	/*
 	_x = 800;
 	_y = WINSIZEY / 2;
 
@@ -33,6 +34,10 @@ HRESULT bossStage1::init()
 	_pixel->init(0, 0, 3);
 	_pixel->setPixelPlayer(_player);
 	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
+	*/
+	_zO = new zOrder;
+	_zO->init();
+
 
 	return S_OK;
 }
@@ -43,22 +48,26 @@ void bossStage1::release()
 
 void bossStage1::update()
 {
+	_zO->update();
+	/*
 	_player->update();
 
 	_player->getState()->setPlayer(_player);
 
 	_pixel->setPixelPlayer(_player);
 	_pixel->update();
+	*/
 }
 
 void bossStage1::render()
 {
-	_camera->render();
+	_zO->render();
+	/*_camera->render();
 
 	if (KEYMANAGER->isToggleKey(VK_F8))
 	{
 		_pixel->render();
 	}
 
-	_player->render();
+	_player->render();*/
 }

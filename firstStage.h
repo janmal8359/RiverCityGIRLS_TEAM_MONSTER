@@ -21,11 +21,11 @@ class firstStage : public gameNode
 {
 private:
 
-	typedef vector<gameNode*>				arrRender;
-	typedef vector<gameNode*>::iterator		iterRender;
+	//typedef vector<gameNode*>				arrRender;
+	//typedef vector<gameNode*>::iterator		iterRender;
 
-	arrRender _vRender;
-	iterRender _viRender;
+	//arrRender _vRender;
+	//iterRender _viRender;
 
 
 
@@ -63,7 +63,7 @@ public:
 
 	//void setpixelCollisionClassMemoryAddressLink(pixelCollisionClass* pixel) { _pixel = pixel; }
 
-	void selectionSort();
-	void swap(gameNode** a, gameNode** b);
+	//void selectionSort();
+	//void swap(gameNode** a, gameNode** b);
 };
 

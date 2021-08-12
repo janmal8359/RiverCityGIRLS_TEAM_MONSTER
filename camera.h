@@ -1,7 +1,7 @@
 #pragma once
 #include "gameNode.h"
 
-enum stageImg
+enum class stageImg
 {
 	FIRST_STAGE,
 	SECOND_STAGE,
@@ -47,7 +47,7 @@ public:
 	 void setCamY(float camY) { _camY = camY; }
 
 
-	 void setStage(int nowStageNum) { _stage = nowStageNum; }
+	 void setStage(int nowStageNum) { _stageImg = (stageImg)nowStageNum; }
 
 	 image* getBgImage() { return _backGroundImg; }
 

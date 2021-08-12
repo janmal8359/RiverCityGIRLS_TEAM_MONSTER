@@ -74,10 +74,6 @@ void player::update()
     {
         //_hp-=   
     }
-   
-   
-
-
 }
 
 void player::render()
