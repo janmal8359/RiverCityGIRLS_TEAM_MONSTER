@@ -130,7 +130,7 @@ void player::move()
             {
                 _camera->setCamX(_camera->getCamX() - _speed);
                 _boss->setBossShadowX(_boss->getBossShadowX() + _speed);
-                _object->
+                //_object->
             }
             else
             {
