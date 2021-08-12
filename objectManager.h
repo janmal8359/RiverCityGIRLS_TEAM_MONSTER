@@ -1,7 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "object.h"
-#include "crafting.h"
+#include "desk.h"
 #include "camera.h"
 #include <vector>
 

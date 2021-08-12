@@ -5,7 +5,7 @@
 #include "enemy.h"
 #include "boss.h"
 #include "state.h"
-
+#include "objectManager.h"
 #include "zOrder.h"
 
 class pixelCollisionClass;
@@ -22,6 +22,8 @@ private:
 	iterRender _viRender;
 	//image* _first;
 	
+	objectManager* _object;
+
 	camera* _camera;
 	player* _player;
 	enemy* _enemy;

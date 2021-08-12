@@ -30,10 +30,15 @@ HRESULT firstStage::init()
 	//_camera->init();
 	//_camera->setStage(0);
 	
+	_object = new objectManager;
+	_object->init();
+	_object->setObject();
+
 	_player = new player;
 	_player->init();
 	_player->setCamera(_camera);
 	_player->setBossMemoryAddressLink(_boss);
+	_player->setObjectMemoryAddressLink(_object);
 
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
@@ -53,8 +58,6 @@ HRESULT firstStage::init()
 	_pixel->setPixelPlayer(_player);
 	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
 
-
-
 	//vrender 벡터에 랜더할 클래스를 넣는다.
 	_vRender.push_back(_player);
 	_vRender.push_back(_enemy);
@@ -70,6 +73,8 @@ void firstStage::release()
 void firstStage::update()
 {
 	//_player->update();
+
+	_object->update();
 
 	_player->getState()->setPlayer(_player);
 
@@ -92,7 +97,7 @@ void firstStage::update()
 void firstStage::render()
 {
 	_camera->render();
-
+	//_object->render();
 	if (KEYMANAGER->isToggleKey(VK_F8))
 	{
 		_pixel->render();
@@ -101,6 +106,7 @@ void firstStage::render()
 	_zO->render();
 	_camera->render();
 
+	_object->render();
 
 	//_player->render();
 	//_enemy->render();

@@ -34,7 +34,7 @@
 
 class boss;
 
-
+class objectManager;
 
 class player : public gameNode
 {
@@ -43,6 +43,7 @@ private:
 
 	state* _state;
 	boss* _boss;
+	objectManager* _object;
 
 	image* _shadowImg;		//그림자 이미지
 	RECT   _shadowRc;       //그림자 직사각형
@@ -173,6 +174,8 @@ public:
 
 	// bossMemory
 	void setBossMemoryAddressLink(boss* boss) { _boss = boss; }
-
+	
+	//오브젝트 메모리
+	void setObjectMemoryAddressLink(objectManager* objectManager) { _object = objectManager; }
 };
 

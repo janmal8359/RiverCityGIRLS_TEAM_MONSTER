@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 
+
 enum OBJECTTYPE
 {
 	DESK,

@@ -48,9 +48,9 @@ void objectManager::setObject()
 				for (int j = 0; j < 2; j++)
 				{
 					object* object;
-					object = new crafting;
+					object = new desk;
 					//object->init(_object->setObjectOX(_object->getObjectMX() + (WINSIZEX / 2) - 150), _object->setObjectOX(_object->getObjectMY() + (WINSIZEY / 2) + (50 + 50 * j)), 0);
-					object->init(WINSIZEX / 2 - 150, WINSIZEY / 2 + (50 + 50 * j), DESK);
+					object->init(WINSIZEX / 2 - 150, WINSIZEY / 2 + (250 + 100 * j), DESK);
 					_vObject.push_back(object);
 				}
 			}
