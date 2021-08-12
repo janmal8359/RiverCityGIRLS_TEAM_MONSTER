@@ -50,8 +50,7 @@ void objectManager::setObject()
 				{
 					object* object;
 					object = new desk;
-					//object->init(_object->getObjectOX() + (WINSIZEX / 2) - 150, _object->getObjectOY() + (WINSIZEY / 2) + (50 + 50 * j), 0);
-					object->init(WINSIZEX / 2 - (150 - 100 * j), WINSIZEY / 2 + (50 + 100 * j), 0);
+					object->init(1028 - j * 200, 665 + j * 200, DESK);
 					_vObject.push_back(object);
 				}
 			}
