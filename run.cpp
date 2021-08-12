@@ -29,6 +29,7 @@ void run::stateChange()
   
     if (KEYMANAGER->isOnceKeyDown('Q'))
     {
+        SOUNDMANAGER->play("PLAYER_combo1", 1.0f);
        _player->setState(new atk);
     }
     if (KEYMANAGER->isOnceKeyDown('W'))
@@ -56,6 +57,10 @@ void run::stateChange()
     {
         _player->setJumpPower(20.0f);
         _player->setState(new jump);
+    }
+    if (_player->getIsGetHit())
+    {
+        _player->setState(new hit);
     }
 }
 

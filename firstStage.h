@@ -1,10 +1,10 @@
 #pragma once
 #include "gameNode.h"
-#include "camera.h"
-#include "player.h"
-#include "enemy.h"
-#include "boss.h"
-#include "state.h"
+//#include "camera.h"
+//#include "player.h"
+//#include "enemy.h"
+//#include "boss.h"
+//#include "state.h"
 
 #include "zOrder.h"
 
@@ -27,10 +27,10 @@ private:
 
 	//image* _first;
 	
-	camera* _camera;
-	player* _player;
-	enemy* _enemy;
-	boss* _boss;
+	//camera* _camera;
+	//player* _player;
+	//enemy* _enemy;
+	//boss* _boss;
 	zOrder* _zO;
 
 
@@ -46,7 +46,7 @@ public:
 	virtual void update();
 	virtual void render();
 
-	void setPlayer(player* player) { _player = player; }
+	//void setPlayer(player* player) { _player = player; }
 
 	void setpixelCollisionClassMemoryAddressLink(pixelCollisionClass* pixel) { _pixel = pixel; }
 
