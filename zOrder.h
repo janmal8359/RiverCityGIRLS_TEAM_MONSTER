@@ -9,6 +9,8 @@
 #include "boss.h"
 #include "camera.h"
 
+class pixelCollisionClass;
+
 
 class zOrder : public gameNode
 {
@@ -27,7 +29,7 @@ private:
 
 	camera* _camera;
 
-
+	pixelCollisionClass* _pixel;
 
 
 
@@ -50,10 +52,14 @@ public:
 
 
 
-	void setPlayer(player* player)	 { _player = player; }
+
+	/*void setPlayer(player* player)	 { _player = player; }
 	void setBoss(boss* boss)		 { _boss = boss; }
 	void setEnemy(enemy* enemy)		 { _enemy = enemy; }
-	void setCamera(camera* camera)	 { _camera = camera; }
-	
+	void setCamera(camera* camera)	 { _camera = camera; }*/
+
+
+
+
 };
 

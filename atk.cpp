@@ -68,6 +68,10 @@ void atk::update()
 	default:
 		break;
 	}
+	if (_player->getIsGetHit())
+	{
+		_player->setState(new hit);
+	}
 }
 
 void atk::render()

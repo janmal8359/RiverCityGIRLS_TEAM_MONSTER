@@ -71,6 +71,11 @@ void idle::stateChange()
 	}
 
 
+	if (_player->getIsGetHit())
+	{
+		_player->setState(new hit);
+	}
+
 
 }
 

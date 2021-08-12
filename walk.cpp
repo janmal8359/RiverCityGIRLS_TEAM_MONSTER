@@ -46,6 +46,7 @@ void walk::stateChange()
     }
     if (KEYMANAGER->isOnceKeyDown('Q'))
     {
+        SOUNDMANAGER->play("PLAYER_combo1", 1.0f);
         _player->setState(new atk);
     }
 }
