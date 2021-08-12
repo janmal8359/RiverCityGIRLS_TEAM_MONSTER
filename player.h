@@ -195,6 +195,6 @@ public:
 	//오브젝트 메모리
 	void setObjectMemoryAddressLink(object* object) { _object = object; }
 
-	void setObjectManagerAddressLink(objectManager* objectManager) {_objectManager = objectManager;}//추가
+	void setObjectManagerMemoryAddressLink(objectManager* objectManager) {_objectManager = objectManager;}//추가
 };
 

@@ -37,7 +37,7 @@ HRESULT zOrder::init()
 	_player->init();
 	_player->setCamera(_camera);
 	_player->setBossMemoryAddressLink(_boss);
-	_player->setObjectManagerAddressLink(_objectManager);
+	_player->setObjectManagerMemoryAddressLink(_objectManager);
 
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
