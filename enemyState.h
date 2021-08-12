@@ -20,6 +20,9 @@ protected:
 	image* _enemyImg;
 	int _enemyDir;
 
+	int _ERunAttackIdx;			//런 공격 콤보가 없어서 쓸모는 없는데 일단 만들어주자 조건을 위해
+	int _ERunAttackCount;		//런 공격시 풀리는 카운트
+
 
 	int _EHurtcount;			//피격 카운트
 	animation* _enemyAni;
@@ -236,4 +239,23 @@ public:
 
 	virtual void enemyStateChange();
 	virtual void enemyAni();
+};
+
+class enemyRunAttack : public enemyState //적 달리기 공격
+{
+public:
+	enemyRunAttack();
+	~enemyRunAttack();
+	
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render() override;
+
+	virtual void enemyStateChange();
+	virtual void enemyAni();
+
+	virtual void callBk();
+	
+
 };

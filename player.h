@@ -36,6 +36,9 @@ class boss;
 
 class objectManager;
 
+class enemy;
+
+
 class player : public gameNode
 {
 private:
@@ -43,7 +46,11 @@ private:
 
 	state* _state;
 	boss* _boss;
+
 	objectManager* _object;
+
+	enemy* _enemy;
+
 
 	image* _shadowImg;		//그림자 이미지
 	RECT   _shadowRc;       //그림자 직사각형
@@ -178,6 +185,8 @@ public:
 
 	// bossMemory
 	void setBossMemoryAddressLink(boss* boss) { _boss = boss; }
+	// enemyMemory
+	void setEnemyMemoryAddressLink(enemy* enemy) { _enemy = enemy; }
 
 	virtual float getPosY() { return _sY; }
 

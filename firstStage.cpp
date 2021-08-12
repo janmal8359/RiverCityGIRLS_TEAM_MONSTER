@@ -68,6 +68,12 @@ HRESULT firstStage::init()
 	//_player->setBossMemoryAddressLink(_boss);
 	//_player->setObjectMemoryAddressLink(_object);
 
+	//_player = new player;
+	//_player->init();
+	//_player->setCamera(_camera);
+	//_player->setBossMemoryAddressLink(_boss);
+	//_player->setEnemyMemoryAddressLink(_enemy);
+
 
 	_zO = new zOrder;
 	_zO->init();
