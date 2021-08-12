@@ -50,15 +50,15 @@ public:
 	
 	//오브젝트 가이트 중점 y
 	float getObjectMY() { return _objectMY; }
-	void setObjectMY(float objectMY) { _objectMX = objectMY; }
+	void setObjectMY(float objectMY) { _objectMY = objectMY; }
 	
 	//오브젝트 중점 x
 	float getObjectOX() { return _objectOX; }
-	void setObjectOX(float objectOX) { _objectMX = objectOX; }
+	void setObjectOX(float objectOX) { _objectOX = objectOX; }
 	
 	//오브젝트 중점 y
 	float getObjectOY() { return _objectOY; }
-	void setObjectOY(float objectOY) { _objectMX = objectOY; }
+	void setObjectOY(float objectOY) { _objectOY = objectOY; }
 	
 	//파편의 각도
 	float getParticleAngle() { return _particleAngle; }
