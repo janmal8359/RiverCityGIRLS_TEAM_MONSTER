@@ -1301,14 +1301,14 @@ void enemyRun::enemyStateChange()
 	{
 		if (_enemy->getEnemyDistance() < 10)
 		{
-			_enemy->setEnemyState(new enemyRunAttack);
+			_enemy->setEnemyState(new enemyAttack);
 		}
 	}
 	if (_enemyDir == (int)ENEMY_RIGHT)
 	{
 		if (_enemy->getEnemyDistanceR() < 10)
 		{
-			_enemy->setEnemyState(new enemyRunAttack);
+			_enemy->setEnemyState(new enemyAttack);
 		}
 	}
 }

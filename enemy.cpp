@@ -162,6 +162,9 @@ void enemy::render()
 	sprintf_s(str1, "적 죽음 확인 : %d", _isDie);
 	TextOut(getMemDC(), _enemySX + 150, _enemySY + 210, str1, strlen(str1));
 
+	sprintf_s(str1, "적 죽음 카운트 : %d", _hitCount);
+	TextOut(getMemDC(), _enemySX + 150, _enemySY + 230, str1, strlen(str1));
+
 	_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
 	
 	
@@ -262,9 +265,10 @@ void enemy::enemyMove()
 	if(!_player->getIsAttacking())
 	{
 		_isEHurt = false;
+
 	}
 
-	if (_hitCount > 3)
+	if (_hitCount > 200)
 	{
 		_isDie = true;
 		
