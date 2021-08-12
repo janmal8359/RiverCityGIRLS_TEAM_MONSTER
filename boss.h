@@ -97,6 +97,8 @@ public:
 	RECT getBossRect() { return _bossRc; }
 	RECT getBossShadowRect() { return _bShadowRc; }
 
+	float getBossWidth() { return _bossRc.right - _bossRc.left; }
+	float getBossHeight() { return _bossRc.bottom - _bossRc.top; }
 	float getBossShadowWidth() { return _bShadowRc.right - _bShadowRc.left; }
 	float getBossShadowHeight() { return _bShadowRc.bottom - _bShadowRc.top; }
 

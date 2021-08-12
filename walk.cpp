@@ -25,6 +25,11 @@ void walk::render()
 
 void walk::stateChange()
 {
+    if (_player->getIsGetHit())
+    {
+        _playerAni->stop();
+        _player->setState(new hit);
+    }
     if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
     {
         _player->setJumpPower(20.0f);

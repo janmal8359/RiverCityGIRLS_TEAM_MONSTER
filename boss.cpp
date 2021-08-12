@@ -13,6 +13,7 @@ HRESULT boss::init()
 	_state->init();
 
 	_state->setBoss(this);
+	_state->setPlayerMemoryAddressLink(_player);
 
 	_bossImg = _state->getImg();
 	_bShadowImg = IMAGEMANAGER->findImage("SHADOW");
@@ -74,6 +75,7 @@ void boss::update()
 	_bShadowRc = RectMakeCenter(_sx, _sy, _bShadowImg->getWidth(), _bShadowImg->getHeight());
 
 	_state->setBoss(this);
+	_state->setPlayerMemoryAddressLink(_player);
 
 
 }

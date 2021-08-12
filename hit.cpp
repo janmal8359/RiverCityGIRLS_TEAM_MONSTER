@@ -47,6 +47,7 @@ void hit::callBk()
     if (!_playerAni->isPlay())
     {
         _playerAni->stop();
+        _player->setIsGetHit(false);
         _player->setState(new idle);
     }
 }

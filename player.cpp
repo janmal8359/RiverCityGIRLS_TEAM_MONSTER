@@ -64,7 +64,7 @@ void player::update()
     //_bState->setPlayer(this);       // 보스가 플레이어 위치 값 받아오는 용
     _state->setBossMemoryAddressLink(_boss);
 
-    move();
+    if (!_isGetHit) move();
 
     _state->update();
     _playerImg = _state->getPlImg();
@@ -309,8 +309,8 @@ void player::playerAni()
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_guardL", "PLAYER_guard", 2, 0, 10, false, false);
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_guardR", "PLAYER_guard", 3, 5, 10, false, false);
 
-    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_hitL", "PLAYER_hit", 0, 1, 10, false, false);
-    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_hitR", "PLAYER_hit", 3, 2, 10, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_hitL", "PLAYER_hit", 0, 1, 3, false, false);
+    KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_hitR", "PLAYER_hit", 3, 2, 3, false, false);
 
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_jumpAttackL", "PLAYER_jumpAttack", 0, 9, 10, false, false);
     KEYANIMANAGER->addCoordinateFrameAnimation("PLAYER_jumpAttackR", "PLAYER_jumpAttack", 18, 10, 10, false, false);

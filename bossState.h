@@ -2,6 +2,7 @@
 #include "gameNode.h"
 
 class boss;
+class player;
 
 enum class DIRECTION
 {
@@ -18,6 +19,8 @@ protected:
 	boss* _boss;
 	RECT _bossRc;
 
+	player* _player;
+
 	//animation* _bossAnim;
 	animation* _bossAnimL;
 	animation* _bossAnimR;
@@ -26,6 +29,8 @@ protected:
 	bool _isStart;
 
 	float _distance;
+
+	float _dx, _dy;
 
 	int _bAttackPattern = 1;
 
@@ -42,6 +47,7 @@ public:
 
 	image* getImg() { return _bossImg; }
 	void setBoss(boss* boss) { _boss = boss; }
+	void setPlayerMemoryAddressLink(player* player) { _player = player; }
 
 	//animation* getBossAnim() { return _bossAnim; }
 
@@ -102,7 +108,6 @@ public:
 	virtual void stateChange();
 	virtual void anim();
 	virtual void animOver();
-	virtual void hitCheck();
 };
 
 class jumpState : public bossState
@@ -142,7 +147,6 @@ public:
 	virtual void stateChange();
 	virtual void anim();
 	virtual void animOver();
-	virtual void hitCheck();
 };
 
 class roarState : public bossState
