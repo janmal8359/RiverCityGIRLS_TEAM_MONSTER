@@ -30,10 +30,8 @@ void atk::update()
 			_attackIdx++;
 
 			switch (_attackIdx)
-			{
-			
-				
-				0:
+			{	
+			case 0:
 
 				break;
 			case 1:

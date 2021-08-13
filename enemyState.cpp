@@ -459,7 +459,7 @@ void enemyAttack::update()
 		switch (_EattackIdx)							//¾îÅÃ ÄÞº¸¼ö
 		{	
 		
-			0:
+		case 0:
 			_enemy->setIsEnemyAttack(true);
 			_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_comboAttack1");
 			

@@ -1,9 +1,13 @@
 #pragma once
 #include "gameNode.h"
-#include "desk.h"
 #include "player.h"
 #include "camera.h"
 #include <vector>
+
+#include "desk.h"
+#include "LPillar.h"
+#include "RPillar.h"
+#include "particle.h"
 
 class objectManager : public gameNode
 {
