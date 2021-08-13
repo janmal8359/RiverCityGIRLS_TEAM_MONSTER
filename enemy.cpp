@@ -78,7 +78,7 @@ HRESULT enemy::init(POINT pt)
 	_enemyJP = 10.f;
 	_enemyGravity = 0.5f;
 
-	_vanishImgCount = 200;
+	_vanishImgCount = 150;
 
 	_enemyHp = 1000;
 	
@@ -131,14 +131,14 @@ void enemy::render()
 
 	char str1[128];
 
-	sprintf_s(str1, "플레이어 hit : %d", _enemyState->gethitCheck());
-	TextOut(getMemDC(), _enemySX, _enemySY + 50, str1, strlen(str1));
-
-	sprintf_s(str1, "적 이미지 사라지는거 : %d", _vanishImgCount);
-	TextOut(getMemDC(), _enemySX , _enemySY + 70, str1, strlen(str1));
-	
-	sprintf_s(str1, "적 이미지가 사라졌는가 : %d", _isVanishImg);
-	TextOut(getMemDC(), _enemySX , _enemySY + 90 , str1, strlen(str1));
+	//sprintf_s(str1, "플레이어 hit : %d", _enemyState->gethitCheck());
+	//TextOut(getMemDC(), _enemySX, _enemySY + 50, str1, strlen(str1));
+	//
+	//sprintf_s(str1, "적 이미지 사라지는거 : %d", _vanishImgCount);
+	//TextOut(getMemDC(), _enemySX , _enemySY + 70, str1, strlen(str1));
+	//
+	//sprintf_s(str1, "적 이미지가 사라졌는가 : %d", _isVanishImg);
+	//TextOut(getMemDC(), _enemySX , _enemySY + 90 , str1, strlen(str1));
 	//
 	//sprintf_s(str1, "체력 : %d", _enemyHp);
 	//TextOut(getMemDC(), _enemySX, _enemySY + 90, str1, strlen(str1));
