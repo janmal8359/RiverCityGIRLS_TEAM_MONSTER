@@ -24,8 +24,7 @@ HRESULT introVideo::init()
 
     MCIWndPlay(_vid);
 
-    _gameManager = new gameManager;
-    _gameManager->init();
+
 
     _currentGauge = 0;
     _maxGauge = 206;
@@ -48,7 +47,7 @@ void introVideo::update()
     if (MCIWndGetLength(_vid) <= MCIWndGetPosition(_vid))
     {
         MCIWndDestroy(_vid);
-        SCENEMANAGER->changeScene("stage1");
+        SCENEMANAGER->changeScene("imageStorage");
 
     }
     
@@ -68,7 +67,7 @@ void introVideo::update()
         _currentGauge = 0;
         _streamSwitch = false;
         MCIWndDestroy(_vid);
-        SCENEMANAGER->changeScene("stage1");
+        SCENEMANAGER->changeScene("imageStorage");
     }
 
     if (KEYMANAGER->isStayKeyDown(VK_RETURN))
@@ -77,7 +76,11 @@ void introVideo::update()
     }
     if (KEYMANAGER->isOnceKeyUp(VK_RETURN))
     {
-        _currentGauge = 0;
+        _currentGauge -= 2;
+        if (_currentGauge < 20)
+        {
+            _currentGauge = 0;
+        }
     }
     //if (KEYMANAGER->isOnceKeyUp(VK_RETURN))
     //{

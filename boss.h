@@ -34,6 +34,8 @@ private:
 	image* _bossImg;
 	RECT _bossRc;
 
+	int _hp;
+
 	// position
 	float _sx, _sy;		// shadowImgPos
 	float _bx, _by;		// bossImgPos
@@ -90,6 +92,7 @@ public:
 
 
 	// get
+	int getBossHp() { return _hp; }
 	float getBossShadowX() { return _sx; }
 	float getBossShadowY() { return _sy; }
 	float getBossX() { return _bx; }
@@ -148,6 +151,9 @@ public:
 	void setTime(float time) { _time = time; }
 	void setJumpPower(float jumpPower) { _jumpPower = jumpPower; }
 
+	void setBossHp(int hp) { _hp -= hp; }
+
+	
 
 	// Memory
 	void setPlayerMemoryAddressLink(player* player) { _player = player; }

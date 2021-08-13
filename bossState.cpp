@@ -69,6 +69,7 @@ void bossState::hitCheck()
 			if (_dx < _boss->getBossWidth() && _boss->getBossX() > _player->getShadowRc().left)
 			{
 				_player->setIsGetHit(true);
+				_player->setPlayerHp(1);
 			}
 		}
 		else if ((int)DIRECTION::RIGHT == _boss->getBossDirection())
@@ -76,6 +77,7 @@ void bossState::hitCheck()
 			if (_dx < _boss->getBossWidth() && _boss->getBossX() < _player->getShadowRc().right)
 			{
 				_player->setIsGetHit(true);
+				_player->setPlayerHp(1);
 			}
 		}
 	}
@@ -451,6 +453,7 @@ void jumpState::hitCheck()
 	if (_dx < _boss->getBossShadowWidth() * 2 && _dy < _boss->getBossShadowHeight() * 2 && !_player->getIsGetHit())
 	{
 		_player->setIsGetHit(true);
+		_player->setPlayerHp(1);
 	}
 
 	//

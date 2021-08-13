@@ -22,7 +22,11 @@ void atk::update()
 	{
 		_player->setIsAttacking(true);
 		
-		if (_player->getIsAttacking() && !_boss->getHit()) hitCheck();
+		if (_player->getIsAttacking() && !_boss->getHit())
+		{
+			hitCheck();
+			_boss->setBossHp(10);
+		}
 
 		if (_playerAni->getNowPlayIdx() >= _playerImg->getMaxFrameX()-2)
 		{

@@ -27,6 +27,8 @@ HRESULT boss::init()
 	_speed = 0;
 	_jumpPower = 0;
 
+	_hp = 200;
+
 	return S_OK;
 }
 
@@ -69,6 +71,7 @@ void boss::update()
 
 	//EFFECTMANAGER->update();
 
+	if (_hp <= 0) exit(1);
 
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -147,6 +150,8 @@ void boss::bossAnim()
 
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_hitL", "BOSS_attacked3", 0, 2, 7, false, false);
 	KEYANIMANAGER->addCoordinateFrameAnimation("BOSS_hitR", "BOSS_attacked3", 5, 3, 7, false, false);
+
+
 }
 
 void boss::move()

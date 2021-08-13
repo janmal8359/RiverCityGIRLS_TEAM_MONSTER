@@ -5,7 +5,7 @@
 //#include <Windows.h>
 #include <Vfw.h>
 #include "progressBar.h"
-#include "gameManager.h"
+
 
 
 class introVideo : public gameNode
@@ -15,7 +15,7 @@ private:
 	int _count;
 	bool _iskeydown;
 
-	gameManager* _gameManager;
+
 
 	progressBar* _skip;
 	float _currentGauge, _maxGauge;

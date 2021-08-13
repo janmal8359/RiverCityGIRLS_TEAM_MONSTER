@@ -24,6 +24,8 @@ HRESULT zOrder::init()
 	_pixel = new pixelCollisionClass;
 	_objectManager = new objectManager;
 	_enemyManager = new enemyManager;
+	_gaM = new gameManager;
+
 
 
 	_camera->setStage((int)stageImg::FIRST_STAGE);
@@ -43,10 +45,12 @@ HRESULT zOrder::init()
 	_player->setCamera(_camera);
 	_player->setBossMemoryAddressLink(_boss);
 	_player->setEnemyMemoryAddressLink(_enemy);
+	_player->setGm(_gaM);
 	
 
 	_boss->setPlayerMemoryAddressLink(_player);
 	_boss->setCameraMemoryAddressLink(_camera);
+
 
 
 	_objectManager->init();
@@ -57,12 +61,14 @@ HRESULT zOrder::init()
 	_pixel->init(0, 0, 0);
 	_pixel->setPixelPlayer(_player);
 	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
-
+	_pixel->setGameManager(_gaM);
 	_player->setObjectManagerMemoryAddressLink(_objectManager);
 
-
-
+	_gaM->setPixelM(_pixel);
+	_gaM->setPlayer(_player);
 	
+	
+	_gaM->init();
 
 
 	_camera->init();
@@ -128,6 +134,7 @@ HRESULT zOrder::init()
 
 void zOrder::release()
 {
+
 }
 
 void zOrder::update()
@@ -154,6 +161,7 @@ void zOrder::update()
 
 	_camera->update();
 
+	_gaM->update();
 	selectionSort();
 
 	//
@@ -173,7 +181,7 @@ void zOrder::render()
 {
 
 	_camera->render();
-
+	_gaM->render();
 
 	if (KEYMANAGER->isToggleKey(VK_F8))
 	{

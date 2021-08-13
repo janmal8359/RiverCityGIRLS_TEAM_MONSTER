@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "pixelCollisionClass.h"
 #include "player.h"
+#include "gameManager.h"
 
 pixelCollisionClass::pixelCollisionClass()
 {
@@ -45,10 +46,11 @@ void pixelCollisionClass::release()
 
 void pixelCollisionClass::update()
 {
-	_probeLX = _player->getShadowX() - (_player->getShadowImg()->getWidth()  / 2 );
-	_probeRX = _player->getShadowX() + (_player->getShadowImg()->getWidth()  / 2 );
-	_probeTY = _player->getShadowY() - (_player->getShadowImg()->getHeight() / 2 );
-	_probeBY = _player->getShadowY() + (_player->getShadowImg()->getHeight() / 2 );
+	_probeLX = _player->getShadowX() - (_player->getShadowImg()->getWidth()  / 2 +10);
+	_probeRX = _player->getShadowX() + (_player->getShadowImg()->getWidth()  / 2 -10);
+	_probeTY = _player->getShadowY() - (_player->getShadowImg()->getHeight() / 2 +10);
+	_probeBY = _player->getShadowY() + (_player->getShadowImg()->getHeight() / 2 -10);
+	_probeMid = _player->getShadowY();
 
 	/*if (_stageType == FIRSTSTAGE) _stage = IMAGEMANAGER->findImage("STAGE_stagePixel1");
 	if (_stageType == 1) _stage = IMAGEMANAGER->findImage("STAGE_stagePixel4");
@@ -70,7 +72,7 @@ void pixelCollisionClass::render()
 
 //	TextOut(getMemDC(), 0, WINSIZEY / 2, str, strlen(str));
 
-	_stage->render(getMemDC(), 0 - _camera->getCamX(), 0 - _camera->getCamY());
+	//_stage->render(getMemDC(), 0 - _camera->getCamX(), 0 - _camera->getCamY());
 }
 
 void pixelCollisionClass::Colloision()
@@ -83,62 +85,21 @@ void pixelCollisionClass::Colloision()
 			int G = GetGValue(color);
 			int B = GetBValue(color);
 
-			if ((R == 255 && G == 0 && B == 255)&& (R == 255 && G == 0 && B == 255)&&
-				(R == 255 && G == 0 && B == 255)&& (R == 255 && G == 0 && B == 255)&&
-				(R == 255 && G == 0 && B == 255)&& (R == 255 && G == 0 && B == 255))
-
-
-
-			//벽
-			if (!(R == 255 && G == 0 && B == 255))
+			if (_player->getIsJump())
 			{
-				//벽
-				if (!R == 255 && G == 0 && B == 0)			//레드
+				if ((R == 255 && G == 0 && B == 0) || (R == 0 && G == 255 && B == 0))			//레드
 				{
-					if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
-					{
-						_player->setShadowX(_player->getShadowX() + _player->getSpeed() );
-
-
-						_player->setSpeed(0);
-					}
-
-					if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
-					{
-						_player->setShadowX(_player->getShadowX() - _player->getSpeed());
-
-						_player->setSpeed(0);
-					}
-					//_player->setSpeed(6);					//0으로 변경
-					_player->setLK(false);
+					_player->setLK(true);
 				}
-	
-				//책상 바닥
-				 if (R == 0 && G == 255 && B == 0)		//그린 - 0으로 변경
-				{
+			}
+			else
+			{
+				_player->setLK(false);
+			}
 
-					if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
-					{
-						_player->setShadowX(_player->getShadowX() + _player->getSpeed());
-						
 
-						_player->setSpeed(0);
-					}
-					
-					if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
-					{
-						_player->setShadowX(_player->getShadowX() - _player->getSpeed());
-
-						_player->setSpeed(0);
-					}
-
-				}
-				else if (R == 255 && G == 255 && B == 0)	//노란
-				{
-					//_player->setSpeed(6);
-				}
 				//아이콘 출현 구간
-				else if (R == 0 && G == 255 && B == 255 && KEYMANAGER->isOnceKeyDown('J'))	//민트 스테이지2 넘어갈 때
+				if (R == 0 && G == 255 && B == 255 && KEYMANAGER->isOnceKeyDown('J'))	//민트 스테이지2 넘어갈 때
 				{
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
@@ -167,24 +128,16 @@ void pixelCollisionClass::Colloision()
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
 					//특정 키 입력시 다음 스테이지로 이동
-					_camera->setStage(4);
+					_camera->setStage(3);
 					_player->setShadowX(400);
 					_player->setShadowY(540);
 					_camera->setCamX(0);
 					_camera->setCamY(210);
 					_stageType = BOSSSTAGE;
+					_gM->setScriptStart(true);
 				}
 				
-				//그 이외
-				else
-				{
-					//_player->setSpeed(6);
-				}
-			}
-			else
-			{
-				//_player->setSpeed(6);
-			}
+
 		}
 	
 		for (int i = _probeTY - 1; i < _probeTY +1 ; i++)	// 위아래
@@ -195,29 +148,22 @@ void pixelCollisionClass::Colloision()
 			int G = GetGValue(color);
 			int B = GetBValue(color);
 
-			if (!(R == 255 && G == 0 && B == 255))
-			{
-				//벽
-				if (R == 255 && G == 0 && B == 0)			//레드
+				if ((R == 255 && G == 0 && B == 0) || (R == 0 && G == 255 && B == 0))			//레드
 				{
-					if (KEYMANAGER->isOnceKeyUp(VK_UP))
-					{
-						_player->setShadowY(_player->getShadowY() + _player->getSpeed() * 1.5);
-
-
-						_player->setSpeed(0);
-					}
-
-					if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
-					{
-						_player->setShadowY(_player->getShadowY() - _player->getSpeed() * 1.5);
-					}
-
-					_player->setSpeed(0);
-					//_player->setSpeed(6);					
+					_player->setUK(true);
 				}
+				else if ((R == 0 && G == 255 && B == 0) && _player->getIsJump())
+				{
+					_player->setUK(false);
+				}
+				else
+				{
+					_player->setUK(false);
+				}
+
+		
 				//책상 바닥
-				else if ((R == 0 && G == 255 && B == 0))	//그린 - 0으로 변경
+				if ((R == 0 && G == 255 && B == 0))	//그린 - 0으로 변경
 				{
 
 					if (KEYMANAGER->isOnceKeyUp(VK_UP))
@@ -235,12 +181,9 @@ void pixelCollisionClass::Colloision()
 
 					_player->setSpeed(0);
 				}
-				else if ((R == 255 && G == 255 && B == 0))	//노란
-				{
-					//_player->setSpeed(6);
-				}
+
 				//아이콘 출현 구간
-				else if ((R == 0 && G == 255 && B == 255) && KEYMANAGER->isOnceKeyDown('J'))	//민트 스테이지2 넘어갈 때
+				if ((R == 0 && G == 255 && B == 255) && KEYMANAGER->isOnceKeyDown('J'))	//민트 스테이지2 넘어갈 때
 				{
 					_isCheck = false;
 					//_player->setSpeed(6);
@@ -272,24 +215,18 @@ void pixelCollisionClass::Colloision()
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
 					//특정 키 입력시 다음 스테이지로 이동
-					_camera->setStage(4);
+					_camera->setStage(3);
 					_player->setShadowX(400);
 					_player->setShadowY(540);
 					_camera->setCamX(0);
 					_camera->setCamY(210);
 					_stageType = BOSSSTAGE;
+					_gM->setScriptStart(true);
 				}
-				//그 이외
-				else
-				{
-					//_player->setSpeed(6);
-				}
-			}
-			else
-			{
-				//_player->setSpeed(6);
-			}
+
 		}
+		
+		
 		for (int i = _probeRX - 1; i < _probeRX + 1; i++)  // 좌우
 		{
 			COLORREF color = GetPixel(_stage->getMemDC(), i + _camera->getCamX(), _player->getShadowY() + _camera->getCamY());
@@ -298,39 +235,22 @@ void pixelCollisionClass::Colloision()
 			int G = GetGValue(color);
 			int B = GetBValue(color);
 
-			if (!(R == 255 && G == 0 && B == 255))
+			if ((R == 255 && G == 0 && B == 0) || (R == 0 && G == 255 && B == 0))			//레드
 			{
-				//벽
-				if (R == 255 && G == 0 && B == 0)			//레드
-				{
-
-				}
-				//책상 바닥
-				else if (R == 0 && G == 255 && B == 0)		//그린 - 0으로 변경
-				{
-
-					if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
-					{
-						_player->setShadowX(_player->getShadowX() + _player->getSpeed() * 1.5);
+				_player->setRK(true);
+			}
+			else if ((R == 0 && G == 255 && B == 0) && _player->getIsJump())
+			{
+				_player->setRK(false);
+			}
+			else
+			{
+				_player->setRK(false);
+			}
 
 
-						_player->setSpeed(0);
-					}
-
-					if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
-					{
-						_player->setShadowX(_player->getShadowX() - _player->getSpeed() * 1.5);
-
-						_player->setSpeed(0);
-					}
-
-				}
-				else if (R == 255 && G == 255 && B == 0)	//노란
-				{
-					//_player->setSpeed(6);
-				}
 				//아이콘 출현 구간
-				else if (R == 0 && G == 255 && B == 255 && KEYMANAGER->isOnceKeyDown('J'))	//민트 스테이지2 넘어갈 때
+				if (R == 0 && G == 255 && B == 255 && KEYMANAGER->isOnceKeyDown('J'))	//민트 스테이지2 넘어갈 때
 				{
 					_isCheck = false;
 					//_player->setSpeed(6);
@@ -362,25 +282,19 @@ void pixelCollisionClass::Colloision()
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
 					//특정 키 입력시 다음 스테이지로 이동
-					_camera->setStage(4);
+					_camera->setStage(3);
 					_player->setShadowX(400);
 					_player->setShadowY(540);
 					_camera->setCamX(0);
 					_camera->setCamY(210);
 					_stageType = BOSSSTAGE;
+					_gM->setScriptStart(true);
+					
 				}
 
-				//그 이외
-				else
-				{
-					//_player->setSpeed(6);
-				}
-			}
-			else
-			{
-				//_player->setSpeed(6);
-			}
 		}
+		
+		
 
 		for (int i = _probeBY - 1; i < _probeBY + 1; i++)	// 위아래
 		{
@@ -390,39 +304,22 @@ void pixelCollisionClass::Colloision()
 			int G = GetGValue(color);
 			int B = GetBValue(color);
 
-			if (!(R == 255 && G == 0 && B == 255))
+			if ((R == 255 && G == 0 && B == 0) || (R == 0 && G == 255 && B == 0))			//레드
 			{
-				//벽
-				if (R == 255 && G == 0 && B == 0)			//레드
-				{
+				_player->setDK(true);
+			}
+			else if ((R == 0 && G == 255 && B == 0)&&_player->getIsJump())
+			{
+				_player->setDK(false);
+			}
+			else
+			{
+				_player->setDK(false);
+			}
+		
 
-					//_player->setSpeed(6);					
-				}
-				//책상 바닥
-				else if ((R == 0 && G == 255 && B == 0))	//그린 - 0으로 변경
-				{
-
-					if (KEYMANAGER->isOnceKeyUp(VK_UP))
-					{
-						_player->setShadowY(_player->getShadowY() + _player->getSpeed() * 1.5);
-
-
-						_player->setSpeed(0);
-					}
-
-					if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
-					{
-						_player->setShadowY(_player->getShadowY() - _player->getSpeed() * 1.5);
-					}
-
-					_player->setSpeed(0);
-				}
-				else if ((R == 255 && G == 255 && B == 0))	//노란
-				{
-					//_player->setSpeed(6);
-				}
 				//아이콘 출현 구간
-				else if ((R == 0 && G == 255 && B == 255) && KEYMANAGER->isOnceKeyDown('J'))	//민트 스테이지2 넘어갈 때
+				if ((R == 0 && G == 255 && B == 255) && KEYMANAGER->isOnceKeyDown('J'))	//민트 스테이지2 넘어갈 때
 				{
 					//_player->setSpeed(6);
 					//_player->setSpeed(6);
@@ -451,22 +348,35 @@ void pixelCollisionClass::Colloision()
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
 					//특정 키 입력시 다음 스테이지로 이동
-					_camera->setStage(4);
+					_camera->setStage(3);
 					_player->setShadowX(400);
 					_player->setShadowY(540);
 					_camera->setCamX(0);
 					_camera->setCamY(210);
 					_stageType = BOSSSTAGE;
+					_gM->setScriptStart(true);
 				}
-				//그 이외
-				else
-				{
-					//_player->setSpeed(6);
-				}
-			}
-			else
+			
+
+		}
+
+		//바닥값을 받는
+		for (int i = _probeMid - 1; i < _probeMid + 1; i++)	// 위아래
+		{
+			COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX() + _camera->getCamX(), i + _camera->getCamY());
+
+			int R = GetRValue(color);
+			int G = GetGValue(color);
+			int B = GetBValue(color);
+
+
+			if (R == 255 && G == 255 && B == 0)
 			{
-				//_player->setSpeed(6);
+				_player->setShadowY(i);
 			}
+	/*		else if (R == 255 && G == 0 && B == 255)
+			{
+				_player->setShadowY(+10);
+			}*/
 		}
 }

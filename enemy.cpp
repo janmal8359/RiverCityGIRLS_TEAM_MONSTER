@@ -400,6 +400,7 @@ void enemy::playerHit()
 		if (_enemyDistanceR < 10 && _enemyState->gethitCheck() && !_player->getIsGetHit())
 		{
 			_player->setIsGetHit(true);
+			_player->setPlayerHp(1);
 		}
 	
 	}
@@ -409,6 +410,7 @@ void enemy::playerHit()
 		if (_enemyDistance < 10 && _enemyState->gethitCheck() && !_player->getIsGetHit())
 		{
 			_player->setIsGetHit(true);
+			_player->setPlayerHp(1);
 		}
 
 	}

@@ -1,29 +1,30 @@
 #pragma once
 #include "gameNode.h"
-#include "animation.h"
+
+#define LOADINGMAX 1
+
 class imageStorage : public gameNode
 {
 private:
 	
 	image* _background;
 	image* _loading;
-	animation* _load;
+
+
+	int _count,frameX;
 	
 public:
-	int _currentCount;
 	imageStorage();
 	~imageStorage();
 
-	virtual HRESULT init();
-	virtual void release();
-	virtual void update();
-	virtual void render();
+	int _currentCount;
 
-	void playerImage();
-	void npcImage();
-	void enemyImage();
-	void effectImage();
-	void objectImage();
+	 HRESULT init();
+	 void release();
+	 void update();
+	 void render();
+
+
 
 	
 };

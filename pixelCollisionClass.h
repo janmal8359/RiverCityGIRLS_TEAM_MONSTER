@@ -7,6 +7,8 @@
 #include "bossStage2.h"
 #include "camera.h"
 
+
+class gameManager;
 class player;
 
 enum PlayerDir
@@ -31,6 +33,7 @@ private:
 	STAGETYPE _stageType;		//스테이지 타입
 
 	player* _player;
+	gameManager* _gM;
 
 	firstStage*		_first; 
 	secondStage*	_second;
@@ -46,12 +49,18 @@ private:
 	float _x, _y;
 
 	//픽셀 탐색기
-	float _probeLX, _probeTY, _probeRX, _probeBY;
+	float _probeLX, _probeTY, _probeRX, _probeBY,_probeMid;
 
 	//player 방향
 	int _dir;
 
 	bool _isCheck;
+
+
+	bool _event;
+
+
+
 public:
 	pixelCollisionClass();
 	~pixelCollisionClass();
@@ -77,4 +86,6 @@ public:
 	void setCAMERAMemoryAddressLink(camera* camera) { _camera = camera; }
 
 	//void setIsCheck(bool isCheck) { _isCheck = isCheck; }
+
+	void setGameManager(gameManager* gm) { _gM = gm; }
 };

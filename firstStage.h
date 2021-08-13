@@ -14,6 +14,7 @@
 //#include "objectManager.h"
 #include "zOrder.h"
 
+
 class pixelCollisionClass;
 
 //±³½Ç
@@ -45,6 +46,7 @@ private:
 	//boss* _boss;
 
 	zOrder* _zO;
+
 
 
 
