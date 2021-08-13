@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "enemyState.h"
+
 #include "camera.h"
 
 class player;
@@ -15,6 +16,7 @@ private:
 	camera* _camera;				//카메라
 	
 	enemyState* _enemyState;		//에너미 스테이트
+	
 
 	image*	_enemyShadowImg;		//적 그림자 이미지
 	RECT	_enemyShadowRc;			//그림자 렉트
@@ -23,6 +25,7 @@ private:
 	float _enemySpeed, _enemyRes;	//속도,속도줄어듬?
 
 	float _enemyJP;					//점프파워
+	float _enemyGravity;			//중력값
 
 	bool _isEIdle;					//기본 불값
 	bool _isEJump;					//점프 불값
@@ -33,11 +36,23 @@ private:
 	bool _isDie;					//죽음 불값
 	bool _isRun;					//달리는 불값
 	bool _isRunAttack;				//대쉬 공격 불값
+	bool _isCompleteDeath;			//완전한 죽음
+
 
 	image* _enemyImg;				//적 이미지
 	RECT _enemyRc;					//적 렉트
 	
-	int _enemyCount;					//어택 동작카운트
+	int _enemyCount;				//어택 동작카운트
+	int _hitCount;
+	int _dieCount;					//죽었을때 날라가는거 멈추는 카운트
+	float _dieSpeed;				//죽었을때 스피두
+	
+	int _completeDeath;				//완전한 죽음
+
+
+	
+	int _enemyHp;					//에너미 체력
+	
 
 
 	float _enemyX, _enemyY;			//적 x,y값
@@ -55,14 +70,14 @@ public:
 	~enemy();
 
 	HRESULT init();					//초기화
+	HRESULT init(POINT pt);
 	void release();					//메모리 해제
 	void update();					//연산함수
 	virtual void render() override;					//그리기 함수
 
 	void enemyStateRender(animation* motion);				//스테이트 렌더?
 	void enemyMove();										//움직임
-	void enemyAttack();										//공격
-	//void enemyChase();									//추격
+	void enemyHp();											//Hp 함수
 
 	void enemyAni();										//적 애니메이션
 	
@@ -120,6 +135,9 @@ public:
 	//적 달리는 상황
 	bool getIsEnemyRun() { return _isRun; }
 	void setIsEnemyRun(bool isRun) { _isRun = isRun; }
+	//적 완전히 죽임
+	bool getIsEnemyCompleteDeath() { return _isCompleteDeath; }
+	void setIsEnemyCompleteDeath(bool CompleteDeath) { _isCompleteDeath = CompleteDeath; }
 
 	bool getIsEnemyRunAttack() { return _isRunAttack; }
 	void setIsEnemyRunAttack(bool isRunAttack) { _isRunAttack = isRunAttack; }
@@ -130,6 +148,15 @@ public:
 	
 	int getEnemyCount() { return _enemyCount; }								//에너미 동작 카운트
 	void setEnemyCount(int enemyCount) { _enemyCount = enemyCount; }		
+
+	int getHitCount() { return _hitCount; }
+	void setHitCount(int hitCount) { _hitCount = hitCount; }
+
+	int getDieCount() { return _dieCount; }
+	void setDieCount(int dieCount) { _dieCount = dieCount; }
+
+	int getEnemyHp() { return _enemyHp; }
+	void setEnemeyHp(int enemyHp) { _enemyHp = enemyHp; }
 
 	//적 렉트
 	RECT getEnemyRc() { return _enemyRc; }
@@ -145,6 +172,8 @@ public:
 	void setEnemyState(enemyState* EState) { _enemyState = EState; update(); update(); }
 
 	enemyState* getEnemyState() { return _enemyState; }
+
+	
 
 	//player와 연동
 	void setPlayerMemoryLink(player* player) { _player = player; }

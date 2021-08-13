@@ -1,9 +1,11 @@
 #include "pch.h"
+#include "pch.h"
 #include "player.h"
 #include "camera.h"
 #include "boss.h"
 #include "object.h"
 #include "enemy.h"
+#include "enemyManager.h"
 
 #include "objectManager.h"//Ãß°¡
 
@@ -138,6 +140,10 @@ void player::move()
                 {
                     _objectManager->getVObject()[i]->setObjectMX(_objectManager->getVObject()[i]->getObjectMX() + _speed);
                 }
+                for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
+                {
+                    _enemyManager->getVGirl()[i]->setEnemySX(_enemyManager->getVGirl()[i]->getEnemySX() + _speed);
+                }
             }
             else
             {
@@ -159,6 +165,10 @@ void player::move()
                 {
                     _objectManager->getVObject()[i]->setObjectMX(_objectManager->getVObject()[i]->getObjectMX() - _speed);
                 }
+                for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
+                {
+                    _enemyManager->getVGirl()[i]->setEnemySX(_enemyManager->getVGirl()[i]->getEnemySX() - _speed);
+                }
             }
             else
             {
@@ -178,6 +188,10 @@ void player::move()
                 {
                     _objectManager->getVObject()[i]->setObjectMY(_objectManager->getVObject()[i]->getObjectMY() + _speed);
                 }
+                for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
+                {
+                    _enemyManager->getVGirl()[i]->setEnemySY(_enemyManager->getVGirl()[i]->getEnemySY() + _speed);
+                }
             }
             else
             {
@@ -196,6 +210,11 @@ void player::move()
                 for (int i = 0; i < _objectManager->getVObject().size(); ++i)
                 {
                     _objectManager->getVObject()[i]->setObjectMY(_objectManager->getVObject()[i]->getObjectMY() - _speed);
+                }
+                for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
+                {
+                    _enemyManager->getVGirl()[i]->setEnemySY(_enemyManager->getVGirl()[i]->getEnemySY() - _speed);
+                }
                 }
             }
             else

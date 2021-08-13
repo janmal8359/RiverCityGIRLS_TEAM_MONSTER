@@ -11,6 +11,7 @@
 //#include "effect.h"
 #include "object.h"
 #include "objectManager.h"
+#include "enemyManager.h"
 
 class pixelCollisionClass;
 
@@ -27,6 +28,8 @@ private:
 	player* _player;
 
 	enemy* _enemy;
+
+	enemyManager* _enemyManager;
 
 	boss* _boss;
 

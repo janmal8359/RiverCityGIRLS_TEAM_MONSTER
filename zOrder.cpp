@@ -26,7 +26,20 @@ HRESULT zOrder::init()
 	//_camera->init();
 	//_camera->setStage((int)stageImg::FIRST_STAGE);
 
+	_boss->setPlayerMemoryAddressLink(_player);
+	_boss->setCameraMemoryAddressLink(_camera);
+	_boss->init();
+
+	//_enemy = new enemy;
+	//_enemy->init();
+
+	_enemyManager = new enemyManager;
+	_enemyManager->init();
+	_enemyManager->setSchoolGirl();
+
+
 	_player->setBossMemoryAddressLink(_boss);
+
 	_player->setEnemyMemoryAddressLink(_enemy);
 	_player->setCamera(_camera);
 
@@ -39,8 +52,20 @@ HRESULT zOrder::init()
 
 	_player->setObjectManagerMemoryAddressLink(_objectManager);
 
-	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
-	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
+
+	//for (_enemyManager->getVIGirl() = _enemyManager->getVGirl().begin(); _enemyManager->getVIGirl() != _enemyManager->getVGirl().end(); ++_enemyManager->getVIGirl())
+	//{
+	//	_player->setEnemyMemoryAddressLink((*_enemyManager->getVIGirl()));
+	//}
+	for (int i = 0; i < _enemyManager->getVGirl().size(); )
+	{
+		_player->setEnemyManagerMemoryAddressLink(_enemyManager);
+		_enemyManager->getVGirl()[i]->setPlayerMemoryLink(_player);
+
+		++i;
+	}
+	//_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
+	//_enemy->setCameraMemoryLink(_camera);				//카메라 연동
 
 	for (int i = 0; i < _objectManager->getVObject().size();)
 	{
@@ -72,6 +97,7 @@ HRESULT zOrder::init()
 
 	_vRender.push_back(_player);
 	//_vRender.push_back(_enemy);
+
 	_vRender.push_back(_boss);
 	_vRender.push_back(_objectManager);
 	
@@ -82,6 +108,14 @@ HRESULT zOrder::init()
 
 	//_ef = new effect;
 	//_ef->init(IMAGEMANAGER->addFrameImage("smash", "resources/IMG/effect/Boss smash.bmp", 960, 89, 10, 1, true, RGB(255, 0, 255)), 96, 89, 1, 0.5f);
+
+
+	for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
+	{
+		_vRender.push_back(_enemyManager->getVGirl()[i]);
+	}
+	//_vRender.push_back(_enemyManager);
+	//_vRender.push_back(_boss);
 
 
 	return S_OK;
@@ -106,8 +140,10 @@ void zOrder::update()
 	_pixel->setPixelPlayer(_player);
 	_pixel->update();
 
-	_enemy->update();
-	_enemy->getEnemyState()->setEnemy(_enemy);
+	//_enemy->update();
+	//_enemy->getEnemyState()->setEnemy(_enemy);
+
+	_enemyManager->update();
 
 	_camera->update();
 
