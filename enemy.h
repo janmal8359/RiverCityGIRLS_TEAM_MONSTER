@@ -37,6 +37,7 @@ private:
 	bool _isRun;					//달리는 불값
 	bool _isRunAttack;				//대쉬 공격 불값
 	bool _isCompleteDeath;			//완전한 죽음
+	bool _isVanishImg;				//이미지 제거
 
 
 	image* _enemyImg;				//적 이미지
@@ -45,6 +46,9 @@ private:
 	int _enemyCount;				//어택 동작카운트
 	int _hitCount;
 	int _dieCount;					//죽었을때 날라가는거 멈추는 카운트
+
+	int _vanishImgCount;			//죽고 나서 이미지 없애는거
+
 	float _dieSpeed;				//죽었을때 스피두
 	
 	int _completeDeath;				//완전한 죽음
