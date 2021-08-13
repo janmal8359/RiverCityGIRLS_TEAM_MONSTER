@@ -64,6 +64,9 @@ HRESULT enemyIdle::init()
 
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_idle");
 	
+	
+	
+	
 	return S_OK;
 }
 
@@ -75,14 +78,16 @@ void enemyIdle::update()
 {
 	enemyState::update();
 
+	_enemy->setIsEnemyIdle(true);						//기본 상태라서 기본임
 	_enemy->setIsEnemyAttack(false);					//기본 상태라서 공격을 안함
 	_enemy->setIsEnemyChase(false);						//기본 상태라서 추적을 안함
 	_enemy->setIsEnemyWaitAttack(false);				//다가가서 어택하기전 대기
 	_enemy->setIsEnemyHurt(false);						//기본 상태라 맞질 않음
-	_enemy->setIsEnemyIdle(true);						//기본 상태라서 기본임
+	_enemy->setIsEnemyRun(false);						//달리기 상태 아님
+	_enemy->setIsEnemyDie(false);						//죽은 상태 아님
+
 	_enemy->setEnemyCount(_enemy->getEnemyCount() + 1);	//기본 상태에 어택 카운트가 올라감
 	_enemy->setEnemySpeed(0);							//기본 상태라서 속도가 0
-	_enemy->setIsEnemyRun(false);
 	
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_idle");
 
@@ -149,7 +154,7 @@ void enemyIdle::enemyStateChange()
 	//피격시
 	if (_enemyDir == ENEMY_LEFT)
 	{
-		if (_enemy->getIsEnemyHurt())
+		if (_enemy->getIsEnemyHurt() && _enemy->getEnemyDistance() < 10 && _enemy->getIsEnemyIdle())
 		{
 			_enemy->setEnemyState(new enemyHurt);
 
@@ -158,7 +163,7 @@ void enemyIdle::enemyStateChange()
 
 	if (_enemyDir == ENEMY_RIGHT)
 	{
-		if (_enemy->getIsEnemyHurt())
+		if (_enemy->getIsEnemyHurt() && _enemy->getEnemyDistanceR() < 10 && _enemy->getIsEnemyIdle())
 		{
 			_enemy->setEnemyState(new enemyHurt);
 
@@ -212,12 +217,14 @@ void enemyChase::update()
 	_enemy->setEnemyCount(_enemy->getEnemyCount() + 1);
 	
 	_enemy->setEnemySpeed(3.f);
-	_enemy->setIsEnemyAttack(false);
-	_enemy->setIsEnemyWaitAttack(false);
+	
 	_enemy->setIsEnemyIdle(false);
-	_enemy->setIsEnemyHurt(false);
+	_enemy->setIsEnemyAttack(false);
 	_enemy->setIsEnemyChase(true);
+	_enemy->setIsEnemyWaitAttack(false);
+	_enemy->setIsEnemyHurt(false);
 	_enemy->setIsEnemyRun(false);
+	_enemy->setIsEnemyDie(false);
 
 
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_walk");
@@ -268,18 +275,18 @@ void enemyChase::enemyStateChange()
 		
 		//피격시
 		
-		if (_enemyDir == ENEMY_LEFT && _enemy->getEnemyDistance() < 10)
+		if (_enemyDir == ENEMY_LEFT)
 		{
-			if (_enemy->getIsEnemyHurt())
+			if (_enemy->getIsEnemyHurt() && _enemy->getEnemyDistance() < 10 && _enemy->getIsEenmyChase())
 			{
 				_enemy->setEnemyState(new enemyHurt);
-
+		
 			}
 		}
 
-		if (_enemyDir == ENEMY_RIGHT && _enemy->getEnemyDistanceR() < 10)
+		if (_enemyDir == ENEMY_RIGHT )
 		{
-			if (_enemy->getIsEnemyHurt())
+			if (_enemy->getIsEnemyHurt() && _enemy->getEnemyDistanceR() < 10 && _enemy->getIsEenmyChase())
 			{
 				_enemy->setEnemyState(new enemyHurt);
 
@@ -410,11 +417,14 @@ void enemyAttack::update()
 	enemyState::update();
 	
 	_enemy->setEnemySpeed(0);
-	_enemy->setIsEnemyRun(false);
+
 	_enemy->setIsEnemyIdle(false);
+	_enemy->setIsEnemyAttack(true);
 	_enemy->setIsEnemyChase(false);
 	_enemy->setIsEnemyWaitAttack(false);
-	_enemy->setIsEnemyAttack(true);
+	_enemy->setIsEnemyHurt(false);
+	_enemy->setIsEnemyRun(false);
+	_enemy->setIsEnemyDie(false);
 
 
 	if (_EattackIdx == 0)
@@ -530,7 +540,7 @@ void enemyAttack::enemyStateChange()
 	//피격시
 	if (_enemyDir == ENEMY_LEFT)
 	{
-		if (_enemy->getIsEnemyHurt())
+		if (_enemy->getIsEnemyHurt() && _enemy->getEnemyDistance() < 10 && _enemy->getIsEnemyAttack())
 		{
 			_enemy->setEnemyState(new enemyHurt);
 
@@ -539,7 +549,7 @@ void enemyAttack::enemyStateChange()
 
 	if (_enemyDir == ENEMY_RIGHT)
 	{
-		if (_enemy->getIsEnemyHurt())
+		if (_enemy->getIsEnemyHurt() && _enemy->getEnemyDistanceR() < 10 && _enemy->getIsEnemyAttack())
 		{
 			_enemy->setEnemyState(new enemyHurt);
 
@@ -718,11 +728,15 @@ void enemyHurt::update()
 {
 	
 	enemyState::update();
+	
+
 	_enemy->setIsEnemyIdle(false);
 	_enemy->setIsEnemyAttack(false);
-	_enemy->setIsEnemyWaitAttack(false);
 	_enemy->setIsEnemyChase(false);
-	_enemy->setEnemyCount(0);
+	_enemy->setIsEnemyWaitAttack(false);
+	_enemy->setIsEnemyHurt(true);
+	_enemy->setIsEnemyRun(false);
+	_enemy->setIsEnemyDie(false);
 
 	_EHurtcount++;
 
@@ -799,8 +813,8 @@ void enemyHurt::render()
 
 void enemyHurt::enemyStateChange()
 {
-	
-	
+
+
 	if (_enemyDir == ENEMY_LEFT)
 	{
 		if (_enemy->getEnemyDistance() < 10 && _enemy->getIsEnemyHurt() && _EhultIdx > 3)
@@ -809,7 +823,7 @@ void enemyHurt::enemyStateChange()
 
 		}
 	}
-	
+
 	if (_enemyDir == ENEMY_RIGHT)
 	{
 		if (_enemy->getEnemyDistanceR() < 10 && _enemy->getIsEnemyHurt() && _EhultIdx > 3)
@@ -836,10 +850,28 @@ void enemyHurt::enemyStateChange()
 			_enemy->setEnemyState(new enemyChase);
 		}
 	}
-
-	if (_enemy->getIsEnemyDie())
+	if (_enemyDir == ENEMY_RIGHT)
 	{
-		_enemy->setEnemyState(new enemyDie);
+		if (!_enemy->getIsEnemyDie() && _enemy->getEnemyHp() < 1)
+		{
+			_enemy->setEnemyState(new enemyDie);
+		}
+	}
+
+	if (_enemyDir == ENEMY_LEFT)
+	{
+		if (_enemy->getEnemyDistance() < 10 &&!_enemy->getIsEnemyDie() && _enemy->getEnemyHp() < 1)
+		{
+			_enemy->setEnemyState(new enemyDie);
+
+		}
+	}
+	if (_enemyDir == ENEMY_RIGHT)
+	{
+		if (_enemy->getEnemyDistanceR() < 10 && !_enemy->getIsEnemyDie() && _enemy->getEnemyHp() < 1)
+		{
+			_enemy->setEnemyState(new enemyDie);
+		}
 	}
 }
 
@@ -996,11 +1028,15 @@ void enemyDie::release()
 void enemyDie::update()
 {
 	enemyState::update();
-	if (_enemy->getDieCount() > 10)
-	{
-		_enemy->setDieCount(0);
-	}
-	_enemy->setEnemySpeed(0);
+
+	_enemy->setIsEnemyIdle(false);
+	_enemy->setIsEnemyAttack(false);
+	_enemy->setIsEnemyChase(false);
+	_enemy->setIsEnemyWaitAttack(false);
+	_enemy->setIsEnemyHurt(false);
+	_enemy->setIsEnemyRun(false);
+	_enemy->setIsEnemyDie(true);
+	
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_weapon_swing");
 }
 
@@ -1131,13 +1167,15 @@ void enemyWaitAttack::update()
 {
 	_enemy->setEnemyCount(_enemy->getEnemyCount() + 1);
 	_enemy->setEnemySpeed(0.f);
-	_enemy->setIsEnemyAttack(false);
+		
 	_enemy->setIsEnemyIdle(false);
+	_enemy->setIsEnemyAttack(false);
 	_enemy->setIsEnemyChase(false);
+	_enemy->setIsEnemyWaitAttack(true);
 	_enemy->setIsEnemyHurt(false);
 	_enemy->setIsEnemyRun(false);
-	_enemy->setIsEnemyRunAttack(false);
-	_enemy->setIsEnemyWaitAttack(true);
+	_enemy->setIsEnemyDie(false);
+	
 	_EhultIdx = 0;
 
 
@@ -1189,7 +1227,7 @@ void enemyWaitAttack::enemyStateChange()
 	//피격시
 	if (_enemyDir == ENEMY_LEFT)
 	{
-		if (_enemy->getIsEnemyHurt())
+		if (_enemy->getIsEnemyHurt() && _enemy->getEnemyDistance() < 10 && _enemy->getIsEnemyWaitAttack())
 		{
 			_enemy->setEnemyState(new enemyHurt);
 
@@ -1198,7 +1236,7 @@ void enemyWaitAttack::enemyStateChange()
 
 	if (_enemyDir == ENEMY_RIGHT)
 	{
-		if (_enemy->getIsEnemyHurt())
+		if (_enemy->getIsEnemyHurt() && _enemy->getEnemyDistanceR() < 10 && _enemy->getIsEnemyWaitAttack())
 		{
 			_enemy->setEnemyState(new enemyHurt);
 
@@ -1266,10 +1304,16 @@ void enemyRun::release()
 
 void enemyRun::update()
 {
+	
 	_enemy->setIsEnemyIdle(false);
 	_enemy->setIsEnemyAttack(false);
 	_enemy->setIsEnemyChase(false);
+	_enemy->setIsEnemyWaitAttack(false);
+	_enemy->setIsEnemyHurt(false);
 	_enemy->setIsEnemyRun(true);
+	_enemy->setIsEnemyDie(false);	
+	
+	
 	_enemy->setEnemySpeed(4.0f);
 
 	enemyState::update();
@@ -1312,6 +1356,24 @@ void enemyRun::enemyStateChange()
 		if (_enemy->getEnemyDistanceR() < 10)
 		{
 			_enemy->setEnemyState(new enemyAttack);
+		}
+	}
+
+	if (_enemyDir == ENEMY_LEFT)
+	{
+		if (_enemy->getIsEnemyHurt() && _enemy->getEnemyDistance() < 10 && _enemy->getIsEnemyRun())
+		{
+			_enemy->setEnemyState(new enemyHurt);
+
+		}
+	}
+
+	if (_enemyDir == ENEMY_RIGHT)
+	{
+		if (_enemy->getIsEnemyHurt() && _enemy->getEnemyDistanceR() < 10 && _enemy->getIsEnemyRun())
+		{
+			_enemy->setEnemyState(new enemyHurt);
+
 		}
 	}
 }

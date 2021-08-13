@@ -324,7 +324,6 @@
     <ClInclude Include="zOrder.h">
       <Filter>2DGameFramework\zOrder</Filter>
     </ClInclude>
-
     <ClInclude Include="camera.h">
       <Filter>playGround\5.GAME_MANAGER\CAMERA</Filter>
     </ClInclude>

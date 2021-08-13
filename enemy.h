@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "enemyState.h"
+
 #include "camera.h"
 
 class player;
@@ -15,6 +16,7 @@ private:
 	camera* _camera;				//카메라
 	
 	enemyState* _enemyState;		//에너미 스테이트
+	
 
 	image*	_enemyShadowImg;		//적 그림자 이미지
 	RECT	_enemyShadowRc;			//그림자 렉트
@@ -40,6 +42,11 @@ private:
 	int _enemyCount;				//어택 동작카운트
 	int _hitCount;
 	int _dieCount;					//죽었을때 날라가는거 멈추는 카운트
+	float _dieSpeed;				//죽었을때 스피두
+
+	
+	int _enemyHp;					//에너미 체력
+	
 
 
 	float _enemyX, _enemyY;			//적 x,y값
@@ -64,7 +71,7 @@ public:
 
 	void enemyStateRender(animation* motion);				//스테이트 렌더?
 	void enemyMove();										//움직임
-	//void enemyChase();									//추격
+	void enemyHp();											//Hp 함수
 
 	void enemyAni();										//적 애니메이션
 	
@@ -139,6 +146,9 @@ public:
 	int getDieCount() { return _dieCount; }
 	void setDieCount(int dieCount) { _dieCount = dieCount; }
 
+	int getEnemyHp() { return _enemyHp; }
+	void setEnemeyHp(int enemyHp) { _enemyHp = enemyHp; }
+
 	//적 렉트
 	RECT getEnemyRc() { return _enemyRc; }
 
@@ -153,6 +163,8 @@ public:
 	void setEnemyState(enemyState* EState) { _enemyState = EState; update(); update(); }
 
 	enemyState* getEnemyState() { return _enemyState; }
+
+	
 
 	//player와 연동
 	void setPlayerMemoryLink(player* player) { _player = player; }
