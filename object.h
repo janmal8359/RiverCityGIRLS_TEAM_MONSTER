@@ -81,5 +81,7 @@ public:
 	void setObjectImg(image* objectImg) { _objectImg = objectImg; }
 
 	void setPlayerMemoryAddrsLink(player* player) { _player = player; }
+
+	virtual float getPosY() { return _objectMY; }
 };
 

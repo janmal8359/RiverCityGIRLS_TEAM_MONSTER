@@ -33,6 +33,7 @@ HRESULT object::init(float x, float y, int objectType)
 
 	_objectRc = RectMakeCenter(_objectOX, _objectOY, _objectImg->getWidth(), _objectImg->getHeight());
 	
+
 	return S_OK;
 }
 

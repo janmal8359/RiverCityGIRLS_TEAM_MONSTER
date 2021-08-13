@@ -25,7 +25,7 @@ void objectManager::update()
 	//	(*_viObject)->update();
 	//}
 
-	for (int i = 0; i < getVObject().size(); ++i)
+	for (int i = 0; i < _vObject.size(); ++i)
 	{
 		//_vObject[i]->setObjectMX(_vObject[i]->getObjectMX());
 		//_vObject[i]->setObjectMY(_vObject[i]->getObjectMY());
@@ -40,7 +40,7 @@ void objectManager::render()
 	//	(*_viObject)->render();
 	//}
 
-	for (int i = 0; i < getVObject().size(); ++i)
+	for (int i = 0; i < _vObject.size(); ++i)
 	{
 		//_vObject[i]->setObjectMX(_vObject[i]->getObjectMX());
 		//_vObject[i]->setObjectMY(_vObject[i]->getObjectMY());
@@ -50,14 +50,14 @@ void objectManager::render()
 
 void objectManager::setObject()
 {
-	int num = 0;
-
-	for (int i = 0; i < 6; i++)
-	{
-		switch (num)
-		{
-		case 0://Ã¥»ó
-			{
+	//int num = 0;
+	//
+	//for (int i = 0; i < 6; i++)
+	//{
+	//	switch (num)
+	//	{
+	//	case 0://Ã¥»ó
+	//		{
 				for (int j = 0; j < 2; j++)
 				{
 					object* object;
@@ -65,65 +65,65 @@ void objectManager::setObject()
 					object->init(1028 - j * 200, 665 + j * 200, DESK);
 					_vObject.push_back(object);
 				}
-			}
-			break;
-		case 1://ÁÂÃø ±âµÕ
-		{
-			for (int j = 0; j < 2; j++)
-			{
-				object* object;
-				object = new LPillar;
-				object->init((WINSIZEX / 2) - 30, 300 + j * 300, LPILLAR);
-				_vObject.push_back(object);
-			}
-		}
-		break;
-		case 2://¿ìÃø ±âµÕ
-		{
-			for (int j = 0; j < 2; j++)
-			{
-				object* object;
-				object = new RPillar;
-				object->init((WINSIZEX / 2) + 300, 300 + j * 300, RPILLAR);
-				_vObject.push_back(object);
-			}
-		}
-		break;
-		case 3://±âµÕ ÆÄÆí1
-		{
-			for (int j = 0; j < 10; j++)
-			{
-				object* object;
-				object = new particle;
-				object->init(WINSIZEX / 2, WINSIZEY / 2, PARTICLE1);
-				_vObject.push_back(object);
-			}
-		}
-		break;
-		case 4://±âµÕ ÆÄÆí2
-		{
-			for (int j = 0; j < 10; j++)
-			{
-				object* object;
-				object = new particle;
-				object->init(WINSIZEX / 2, WINSIZEY / 2, PARTICLE2);
-				_vObject.push_back(object);
-			}
-		}
-		break;
-		case 5://±âµÕ ÆÄÆí3
-		{
-			for (int j = 0; j < 10; j++)
-			{
-				object* object;
-				object = new particle;
-				object->init(WINSIZEX / 2, WINSIZEY / 2, PARTICLE3);
-				_vObject.push_back(object);
-			}
-		}
-		break;
-		}
+			//}
+			//break;
+		//case 1://ÁÂÃø ±âµÕ
+		//{
+		//	for (int j = 0; j < 2; j++)
+		//	{
+		//		object* object;
+		//		object = new LPillar;
+		//		object->init((WINSIZEX / 2) - 30, 300 + j * 300, LPILLAR);
+		//		_vObject.push_back(object);
+		//	}
+		//}
+		//break;
+		//case 2://¿ìÃø ±âµÕ
+		//{
+		//	for (int j = 0; j < 2; j++)
+		//	{
+		//		object* object;
+		//		object = new RPillar;
+		//		object->init((WINSIZEX / 2) + 300, 300 + j * 300, RPILLAR);
+		//		_vObject.push_back(object);
+		//	}
+		//}
+		//break;
+		//case 3://±âµÕ ÆÄÆí1
+		//{
+		//	for (int j = 0; j < 10; j++)
+		//	{
+		//		object* object;
+		//		object = new particle;
+		//		object->init(WINSIZEX / 2, WINSIZEY / 2, PARTICLE1);
+		//		_vObject.push_back(object);
+		//	}
+		//}
+		//break;
+		//case 4://±âµÕ ÆÄÆí2
+		//{
+		//	for (int j = 0; j < 10; j++)
+		//	{
+		//		object* object;
+		//		object = new particle;
+		//		object->init(WINSIZEX / 2, WINSIZEY / 2, PARTICLE2);
+		//		_vObject.push_back(object);
+		//	}
+		//}
+		//break;
+		//case 5://±âµÕ ÆÄÆí3
+		//{
+		//	for (int j = 0; j < 10; j++)
+		//	{
+		//		object* object;
+		//		object = new particle;
+		//		object->init(WINSIZEX / 2, WINSIZEY / 2, PARTICLE3);
+		//		_vObject.push_back(object);
+		//	}
+		//}
+		//break;
+		//}
 
-	}
+	//}
 
 }
