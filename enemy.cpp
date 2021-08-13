@@ -105,7 +105,8 @@ void enemy::update()
 	_enemyState->setEnemy(this);
 	
 	enemyMove();
-	
+	playerHit();
+
 	//_enemyX = _enemySX;
 	if (!_isDie)
 	{
@@ -124,31 +125,35 @@ void enemy::update()
 
 void enemy::render()
 {
-
+	
 	char str1[128];
-	sprintf_s(str1, "적과 플레이어거리 : %.2f", _enemyDistance);
-	TextOut(getMemDC(), _enemySX , _enemySY + 50, str1, strlen(str1));
 
-	sprintf_s(str1, "적과 플레이어거리R : %.2f", _enemyDistanceR);
-	TextOut(getMemDC(), _enemySX , _enemySY + 70 , str1, strlen(str1));
+	sprintf_s(str1, "플레이어 hit : %d", _enemyState->gethitCheck());
+	TextOut(getMemDC(), _enemySX, _enemySY + 50, str1, strlen(str1));
 
-	sprintf_s(str1, "체력 : %d", _enemyHp);
-	TextOut(getMemDC(), _enemySX, _enemySY + 90, str1, strlen(str1));
-
-	sprintf_s(str1, "방향 : %d", _enemyDir);
-	TextOut(getMemDC(), _enemySX, _enemySY + 110, str1, strlen(str1));
-
-	sprintf_s(str1, "플레이어 방향 : %d",_player->getDir());
-	TextOut(getMemDC(), _enemySX, _enemySY + 130, str1, strlen(str1));
-
-	sprintf_s(str1, "죽었는가 : %d", (int)_isDie);
-	TextOut(getMemDC(), _enemySX, _enemySY + 150, str1, strlen(str1));
-
-	sprintf_s(str1, "완전히 죽었는가 : %d", (int)_isCompleteDeath);
-	TextOut(getMemDC(), _enemySX, _enemySY + 170, str1, strlen(str1));
-
-	sprintf_s(str1, "완전히 죽기 전 : %d", (int) _completeDeath);
-	TextOut(getMemDC(), _enemySX, _enemySY + 190, str1, strlen(str1));
+	//sprintf_s(str1, "적과 플레이어거리 : %.2f", _enemyDistance);
+	//TextOut(getMemDC(), _enemySX , _enemySY + 50, str1, strlen(str1));
+	//
+	//sprintf_s(str1, "적과 플레이어거리R : %.2f", _enemyDistanceR);
+	//TextOut(getMemDC(), _enemySX , _enemySY + 70 , str1, strlen(str1));
+	//
+	//sprintf_s(str1, "체력 : %d", _enemyHp);
+	//TextOut(getMemDC(), _enemySX, _enemySY + 90, str1, strlen(str1));
+	//
+	//sprintf_s(str1, "방향 : %d", _enemyDir);
+	//TextOut(getMemDC(), _enemySX, _enemySY + 110, str1, strlen(str1));
+	//
+	//sprintf_s(str1, "플레이어 방향 : %d",_player->getDir());
+	//TextOut(getMemDC(), _enemySX, _enemySY + 130, str1, strlen(str1));
+	//
+	//sprintf_s(str1, "죽었는가 : %d", (int)_isDie);
+	//TextOut(getMemDC(), _enemySX, _enemySY + 150, str1, strlen(str1));
+	//
+	//sprintf_s(str1, "완전히 죽었는가 : %d", (int)_isCompleteDeath);
+	//TextOut(getMemDC(), _enemySX, _enemySY + 170, str1, strlen(str1));
+	//
+	//sprintf_s(str1, "완전히 죽기 전 : %d", (int) _completeDeath);
+	//TextOut(getMemDC(), _enemySX, _enemySY + 190, str1, strlen(str1));
 	//sprintf_s(str1, "적 공격콤보 : %d", _enemyState->getEattackIdx());
 	//TextOut(getMemDC(), _enemySX , _enemySY + 90 , str1, strlen(str1));
 	//
@@ -170,8 +175,8 @@ void enemy::render()
 	//sprintf_s(str1, "적 공격 대기 확인 : %d", _isEWaitAttack);
 	//TextOut(getMemDC(), _enemySX, _enemySY + 210, str1, strlen(str1));
 	//
-	sprintf_s(str1, "적 피격 확인 : %d", _isEHurt);
-	TextOut(getMemDC(), _enemySX, _enemySY + 230 , str1, strlen(str1));
+	//sprintf_s(str1, "적 피격 확인 : %d", _isEHurt);
+	//TextOut(getMemDC(), _enemySX, _enemySY + 230 , str1, strlen(str1));
 	//
 	//sprintf_s(str1, "적 피격 카운트 : %d", _enemyState->getEhurtcount());
 	//TextOut(getMemDC(), _enemySX , _enemySY + 250 , str1, strlen(str1));
@@ -363,6 +368,8 @@ void enemy::enemyMove()
 
 	_enemyRc = RectMakeCenter(_enemyX , _enemyY , _enemyImg->getFrameWidth(), _enemyImg->getFrameHeight());
 	_enemyShadowRc = RectMakeCenter(_enemySX , _enemySY , _enemyShadowImg->getWidth(), _enemyShadowImg->getHeight());
+
+
 }
 
 void enemy::enemyHp()
@@ -370,6 +377,27 @@ void enemy::enemyHp()
 	if (_isEHurt)
 	{
 		_enemyHp -= 10;
+	}
+}
+
+void enemy::playerHit()
+{
+	if (_enemyDir == ENEMY_RIGHT)
+	{
+		if (_enemyDistanceR < 10 && _enemyState->gethitCheck() && !_player->getIsGetHit())
+		{
+			_player->setIsGetHit(true);
+		}
+	
+	}
+
+	if (_enemyDir == ENEMY_LEFT)
+	{
+		if (_enemyDistance < 10 && _enemyState->gethitCheck() && !_player->getIsGetHit())
+		{
+			_player->setIsGetHit(true);
+		}
+
 	}
 }
 

@@ -16,7 +16,8 @@ enemyState::~enemyState()
 HRESULT enemyState::init()
 {
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_idle");
-
+	
+	_isHitCheck = false;
 	return S_OK;
 }
 
@@ -27,7 +28,7 @@ void enemyState::release()
 void enemyState::update()
 {
 	_enemyDir = _enemy->getDir(); 
-
+	
 	callBk();
 	enemyAni();
 	
@@ -430,6 +431,10 @@ void enemyAttack::update()
 	_enemy->setIsEnemyRun(false);
 	_enemy->setIsEnemyDie(false);
 
+	if ((_enemyAni->getNowPlayIdx() == 5 || _enemyAni->getNowPlayIdx() == 5 &&!_isHitCheck))
+	{
+		_isHitCheck = true;
+	}
 
 	if (_EattackIdx == 0)
 	{
