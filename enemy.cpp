@@ -78,6 +78,8 @@ HRESULT enemy::init(POINT pt)
 	_enemyJP = 10.f;
 	_enemyGravity = 0.5f;
 
+	_vanishImgCount = 150;
+
 	_enemyHp = 1000;
 	
 
@@ -92,6 +94,7 @@ HRESULT enemy::init(POINT pt)
 	_isRunAttack = false;
 	_isDie = false;
 	_isCompleteDeath = false;
+	_isVanishImg = false;
 
 	return S_OK;
 }
@@ -125,17 +128,17 @@ void enemy::update()
 
 void enemy::render()
 {
-	
+
 	char str1[128];
 
-	sprintf_s(str1, "플레이어 hit : %d", _enemyState->gethitCheck());
-	TextOut(getMemDC(), _enemySX, _enemySY + 50, str1, strlen(str1));
-
-	//sprintf_s(str1, "적과 플레이어거리 : %.2f", _enemyDistance);
-	//TextOut(getMemDC(), _enemySX , _enemySY + 50, str1, strlen(str1));
+	//sprintf_s(str1, "플레이어 hit : %d", _enemyState->gethitCheck());
+	//TextOut(getMemDC(), _enemySX, _enemySY + 50, str1, strlen(str1));
 	//
-	//sprintf_s(str1, "적과 플레이어거리R : %.2f", _enemyDistanceR);
-	//TextOut(getMemDC(), _enemySX , _enemySY + 70 , str1, strlen(str1));
+	//sprintf_s(str1, "적 이미지 사라지는거 : %d", _vanishImgCount);
+	//TextOut(getMemDC(), _enemySX , _enemySY + 70, str1, strlen(str1));
+	//
+	//sprintf_s(str1, "적 이미지가 사라졌는가 : %d", _isVanishImg);
+	//TextOut(getMemDC(), _enemySX , _enemySY + 90 , str1, strlen(str1));
 	//
 	//sprintf_s(str1, "체력 : %d", _enemyHp);
 	//TextOut(getMemDC(), _enemySX, _enemySY + 90, str1, strlen(str1));
@@ -196,14 +199,14 @@ void enemy::render()
 	//sprintf_s(str1, "적 죽음 카운트 : %d", _hitCount);
 	//TextOut(getMemDC(), _enemySX + 150, _enemySY + 230, str1, strlen(str1));
 
-	_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
 	
 	
-
+	if (!_isVanishImg)
+	{
+		_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
+		_enemyState->render();
+	}
 	
-	
-	
-	_enemyState->render();
 }
 
 void enemy::enemyStateRender(animation* motion)
@@ -346,6 +349,16 @@ void enemy::enemyMove()
 	if (_completeDeath > 31)
 	{
 		_isCompleteDeath = true;
+	}
+
+	if (_isCompleteDeath)
+	{
+		_vanishImgCount--;
+	}
+
+	if (_vanishImgCount < 0)
+	{
+		_isVanishImg = true;
 	}
 
 	if(!_player->getIsAttacking() && _isEHurt)
