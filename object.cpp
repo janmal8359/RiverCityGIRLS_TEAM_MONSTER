@@ -16,6 +16,8 @@ HRESULT object::init()
 
 HRESULT object::init(float x, float y, int objectType)
 {
+	_isCheck = false;
+
 	_objectType = (OBJECTTYPE)objectType;
 
 	if (_objectType == 0)_objectImg = IMAGEMANAGER->findImage("OBJECT_desk1");
@@ -51,5 +53,9 @@ void object::update()
 
 void object::render()
 {
-	_objectImg->render(getMemDC(), _objectRc.left, _objectRc.top);
+	if (_pixel->getPixelType() && _isCheck)
+	{
+		_objectImg->render(getMemDC(), _objectRc.left, _objectRc.top);
+	}
+
 }

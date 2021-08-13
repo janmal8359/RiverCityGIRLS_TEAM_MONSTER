@@ -57,7 +57,7 @@ void objectManager::setObject()
 	//	switch (num)
 	//	{
 	//	case 0://Ã¥»ó
-	//		{
+	//		
 				for (int j = 0; j < 2; j++)
 				{
 					object* object;
