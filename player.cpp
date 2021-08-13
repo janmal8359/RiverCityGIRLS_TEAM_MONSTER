@@ -35,7 +35,7 @@ HRESULT player::init()
 
     //그림자의 초기 좌표값 및 중점
     _sX = WINSIZEX / 2;
-    _sY = WINSIZEY / 2;
+    _sY = WINSIZEY - 100;
 
     _pX = _sX; // 플레이어의 x는 그림자X값과 같다.
     _pY = _sY - _playerImg->getFrameHeight() / 2;

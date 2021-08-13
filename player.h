@@ -42,6 +42,7 @@ class objectManager;//Ãß°¡
 
 class enemyManager;
 
+
 class player : public gameNode
 {
 private:
