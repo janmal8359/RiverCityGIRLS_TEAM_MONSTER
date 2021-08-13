@@ -48,12 +48,14 @@ void pixelCollisionClass::update()
 	_probeTY = _player->getShadowY() - (_player->getShadowImg()->getHeight() / 2 );
 	_probeBY = _player->getShadowY() + (_player->getShadowImg()->getHeight() / 2 );
 
-	if (_stageType == FIRSTSTAGE) _stage = IMAGEMANAGER->findImage("STAGE_stagePixel1");
+	/*if (_stageType == FIRSTSTAGE) _stage = IMAGEMANAGER->findImage("STAGE_stagePixel1");
 	if (_stageType == 1) _stage = IMAGEMANAGER->findImage("STAGE_stagePixel4");
 	if (_stageType == THIRDSTAGE) _stage = IMAGEMANAGER->findImage("STAGE_normalPixel");
-	if (_stageType == BOSSSTAGE) _stage = IMAGEMANAGER->findImage("STAGE_bossPixel");
+	if (_stageType == BOSSSTAGE) _stage = IMAGEMANAGER->findImage("STAGE_bossPixel");*/
 
-	_dir = _player->getDir();
+	_stage = _camera->getPixImage();
+
+	//_dir = _player->getDir();
 
 	Colloision();
 }
@@ -66,12 +68,12 @@ void pixelCollisionClass::render()
 
 //	TextOut(getMemDC(), 0, WINSIZEY / 2, str, strlen(str));
 
-	_stage->render(getMemDC(), 0-_camera->getCamX(),0- _camera->getCamY());
+	_stage->render(getMemDC(), 0 - _camera->getCamX(), 0 - _camera->getCamY());
 }
 
 void pixelCollisionClass::Colloision()
 {	
-		for (int i = _probeLX - 2; i < _probeRX + 2; i++)  // 좌우
+		for (int i = _probeLX - 1; i < _probeLX + 1; i++)  // 좌우
 		{
 			COLORREF color = GetPixel(_stage->getMemDC(), i + _camera->getCamX(), _player->getShadowY() + _camera->getCamY());
 
@@ -79,24 +81,23 @@ void pixelCollisionClass::Colloision()
 			int G = GetGValue(color);
 			int B = GetBValue(color);
 
+			if ((R == 255 && G == 0 && B == 255)&& (R == 255 && G == 0 && B == 255)&&
+				(R == 255 && G == 0 && B == 255)&& (R == 255 && G == 0 && B == 255)&&
+				(R == 255 && G == 0 && B == 255)&& (R == 255 && G == 0 && B == 255))
+
+
+
+			//벽
 			if (!(R == 255 && G == 0 && B == 255))
 			{
 				//벽
-				if (R == 255 && G == 0 && B == 0)			//레드
+				if (!R == 255 && G == 0 && B == 0)			//레드
 				{
-					//if (PLAYERLEFT == _player->getDir())
-					//{
-					//	_player->setShadowX(_player->getShadowX() + 1);
-					//}
-					//
-					//if (PLAYERRIGHT == _player->getDir())
-					//{
-					//	_player->setShadowX(_player->getShadowX() - 1);
-					//}
-					//_player->setSpeed(6);					//0으로 변경
+					_player->setLK(false);
 				}
+	
 				//책상 바닥
-				else if (R == 0 && G == 255 && B == 0)		//그린 - 0으로 변경
+				 if (R == 0 && G == 255 && B == 0)		//그린 - 0으로 변경
 				{
 
 					if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
@@ -169,7 +170,7 @@ void pixelCollisionClass::Colloision()
 			}
 		}
 	
-		for (int i = _probeTY - 2; i < _probeBY + 21; i++)	// 위아래
+		for (int i = _probeTY - 1; i < _probeTY +1 ; i++)	// 위아래
 		{
 			COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX() + _camera->getCamX(), i + _camera->getCamY());
 
@@ -220,6 +221,182 @@ void pixelCollisionClass::Colloision()
 						_camera->setCamX(0);
 						_camera->setCamY(100);
 						_stageType = THIRDSTAGE;
+				}
+				else if (R == 100 && G == 0 && B == 100 && KEYMANAGER->isOnceKeyDown('J'))	//스테이지2에서 스테이지1 넘어갈 때
+				{
+					//_player->setSpeed(6);
+					// 플레이어 주변에 문 애니메이션 출력
+					//특정 키 입력시 다음 스테이지로 이동
+					_camera->setStage(0);
+					_player->setShadowX(669);
+					_player->setShadowY(423);
+					_camera->setCamX(1239);
+					_camera->setCamY(110);
+					_stageType = FIRSTSTAGE;
+				}
+				else if (R == 100 && G == 100 && B == 100 && KEYMANAGER->isOnceKeyDown('J'))	//스테이지2에서 보스 스테이지 넘어갈 때
+				{
+					//_player->setSpeed(6);
+					// 플레이어 주변에 문 애니메이션 출력
+					//특정 키 입력시 다음 스테이지로 이동
+					_camera->setStage(4);
+					_player->setShadowX(400);
+					_player->setShadowY(540);
+					_camera->setCamX(0);
+					_camera->setCamY(210);
+					_stageType = BOSSSTAGE;
+				}
+				//그 이외
+				else
+				{
+					//_player->setSpeed(6);
+				}
+			}
+			else
+			{
+				//_player->setSpeed(6);
+			}
+		}
+		for (int i = _probeRX - 1; i < _probeRX + 1; i++)  // 좌우
+		{
+			COLORREF color = GetPixel(_stage->getMemDC(), i + _camera->getCamX(), _player->getShadowY() + _camera->getCamY());
+
+			int R = GetRValue(color);
+			int G = GetGValue(color);
+			int B = GetBValue(color);
+
+			if (!(R == 255 && G == 0 && B == 255))
+			{
+				//벽
+				if (R == 255 && G == 0 && B == 0)			//레드
+				{
+
+				}
+				//책상 바닥
+				else if (R == 0 && G == 255 && B == 0)		//그린 - 0으로 변경
+				{
+
+					if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
+					{
+						_player->setShadowX(_player->getShadowX() + _player->getSpeed() * 1.5);
+
+
+						_player->setSpeed(0);
+					}
+
+					if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+					{
+						_player->setShadowX(_player->getShadowX() - _player->getSpeed() * 1.5);
+
+						_player->setSpeed(0);
+					}
+
+				}
+				else if (R == 255 && G == 255 && B == 0)	//노란
+				{
+					//_player->setSpeed(6);
+				}
+				//아이콘 출현 구간
+				else if (R == 0 && G == 255 && B == 255 && KEYMANAGER->isOnceKeyDown('J'))	//민트 스테이지2 넘어갈 때
+				{
+					//_player->setSpeed(6);
+					// 플레이어 주변에 문 애니메이션 출력
+					//특정 키 입력시 다음 스테이지로 이동
+					_camera->setStage(2);
+					_player->setShadowX(200);
+					_player->setShadowY(580);
+					_camera->setCamX(0);
+					_camera->setCamY(100);
+					_stageType = THIRDSTAGE;
+				}
+				else if (R == 100 && G == 0 && B == 100 && KEYMANAGER->isOnceKeyDown('J'))	//스테이지2에서 스테이지1 넘어갈 때
+				{
+					//_player->setSpeed(6);
+					// 플레이어 주변에 문 애니메이션 출력
+					//특정 키 입력시 다음 스테이지로 이동
+					_camera->setStage(0);
+					_player->setShadowX(669);
+					_player->setShadowY(423);
+					_camera->setCamX(1239);
+					_camera->setCamY(110);
+					_stageType = FIRSTSTAGE;
+				}
+				else if (R == 100 && G == 100 && B == 100 && KEYMANAGER->isOnceKeyDown('J'))	//스테이지2에서 스테이지3 넘어갈 때
+				{
+					//_player->setSpeed(6);
+					// 플레이어 주변에 문 애니메이션 출력
+					//특정 키 입력시 다음 스테이지로 이동
+					_camera->setStage(4);
+					_player->setShadowX(400);
+					_player->setShadowY(540);
+					_camera->setCamX(0);
+					_camera->setCamY(210);
+					_stageType = BOSSSTAGE;
+				}
+
+				//그 이외
+				else
+				{
+					//_player->setSpeed(6);
+				}
+			}
+			else
+			{
+				//_player->setSpeed(6);
+			}
+		}
+
+		for (int i = _probeBY - 1; i < _probeBY + 1; i++)	// 위아래
+		{
+			COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX() + _camera->getCamX(), i + _camera->getCamY());
+
+			int R = GetRValue(color);
+			int G = GetGValue(color);
+			int B = GetBValue(color);
+
+			if (!(R == 255 && G == 0 && B == 255))
+			{
+				//벽
+				if (R == 255 && G == 0 && B == 0)			//레드
+				{
+
+					//_player->setSpeed(6);					
+				}
+				//책상 바닥
+				else if ((R == 0 && G == 255 && B == 0))	//그린 - 0으로 변경
+				{
+
+					if (KEYMANAGER->isOnceKeyUp(VK_UP))
+					{
+						_player->setShadowY(_player->getShadowY() + _player->getSpeed() * 1.5);
+
+
+						_player->setSpeed(0);
+					}
+
+					if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
+					{
+						_player->setShadowY(_player->getShadowY() - _player->getSpeed() * 1.5);
+					}
+
+					_player->setSpeed(0);
+				}
+				else if ((R == 255 && G == 255 && B == 0))	//노란
+				{
+					//_player->setSpeed(6);
+				}
+				//아이콘 출현 구간
+				else if ((R == 0 && G == 255 && B == 255) && KEYMANAGER->isOnceKeyDown('J'))	//민트 스테이지2 넘어갈 때
+				{
+					//_player->setSpeed(6);
+					//_player->setSpeed(6);
+					// 플레이어 주변에 문 애니메이션 출력
+					_camera->setStage(2);
+					_player->setShadowX(200);
+					_player->setShadowY(580);
+					_camera->setCamX(0);
+					_camera->setCamY(100);
+					_stageType = THIRDSTAGE;
 				}
 				else if (R == 100 && G == 0 && B == 100 && KEYMANAGER->isOnceKeyDown('J'))	//스테이지2에서 스테이지1 넘어갈 때
 				{

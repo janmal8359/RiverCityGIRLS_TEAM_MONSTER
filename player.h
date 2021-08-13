@@ -88,6 +88,13 @@ private:
 
 	//개떡같은 카메라 제작중
 
+
+	bool _DK;				//윗키불
+	bool _UK;				//아래키불
+	bool _RK;				//오른쪽키불
+	bool _LK;				//왼쪽키불
+
+
 	stageImg _stage;
 	
 
@@ -202,5 +209,13 @@ public:
 	void setObjectMemoryAddressLink(object* object) { _object = object; }
 
 	void setObjectManagerMemoryAddressLink(objectManager* objectManager) {_objectManager = objectManager;}//추가
+
+	
+	void setRK(bool Rk) { _RK = Rk; }
+	void setLK(bool Lk) { _LK = Lk; }
+	void setUK(bool Uk) { _UK = Uk; }
+	void setDK(bool Dk) { _DK = Dk; }
+
+
 };
 

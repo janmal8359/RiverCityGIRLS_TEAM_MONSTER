@@ -22,8 +22,10 @@ HRESULT zOrder::init()
 	_boss = new boss;
 	_enemy = new enemy;
 	_pixel = new pixelCollisionClass;
+	_objectManager = new objectManager;
+	_enemyManager = new enemyManager;
 
-	//_camera->init();
+
 	_camera->setStage((int)stageImg::FIRST_STAGE);
 
 	_boss->setPlayerMemoryAddressLink(_player);
@@ -33,30 +35,51 @@ HRESULT zOrder::init()
 	//_enemy = new enemy;
 	//_enemy->init();
 
-	_enemyManager = new enemyManager;
+
 	_enemyManager->init();
 	_enemyManager->setSchoolGirl();
 
-
-	_player->setBossMemoryAddressLink(_boss);
-
-	_player->setEnemyMemoryAddressLink(_enemy);
+	_player->init();
 	_player->setCamera(_camera);
+	_player->setBossMemoryAddressLink(_boss);
+	_player->setEnemyMemoryAddressLink(_enemy);
+	
 
 	_boss->setPlayerMemoryAddressLink(_player);
 	_boss->setCameraMemoryAddressLink(_camera);
 
-	_objectManager = new objectManager;
+
 	_objectManager->init();
 	_objectManager->setObject();
+
+
+
+	_pixel->init(0, 0, 0);
+	_pixel->setPixelPlayer(_player);
+	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
 
 	_player->setObjectManagerMemoryAddressLink(_objectManager);
 
 
+
+	
+
+
+	_camera->init();
+
+	_boss->init();
+
+	_enemy->init();
+
+	_player->init();
+
+
+
+
 	//for (_enemyManager->getVIGirl() = _enemyManager->getVGirl().begin(); _enemyManager->getVIGirl() != _enemyManager->getVGirl().end(); ++_enemyManager->getVIGirl())
-	//{
-	//	_player->setEnemyMemoryAddressLink((*_enemyManager->getVIGirl()));
-	//}
+//{
+//	_player->setEnemyMemoryAddressLink((*_enemyManager->getVIGirl()));
+//}
 	for (int i = 0; i < _enemyManager->getVGirl().size(); )
 	{
 		_player->setEnemyManagerMemoryAddressLink(_enemyManager);
@@ -75,26 +98,8 @@ HRESULT zOrder::init()
 		++i;
 	}
 
-	_pixel = new pixelCollisionClass;
 
-	_pixel->init(0, 0, 0);
-	_pixel->setPixelPlayer(_player);
-	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
-	
-
-
-	_camera->init();
-
-	//_camera->setStage(SECOND_STAGE);
-
-	_boss->init();
-
-	_enemy->init();
-
-	_player->init();
-
-	_pixel->init(0, 0, 0);
-
+	//넣어준다.
 	_vRender.push_back(_player);
 	//_vRender.push_back(_enemy);
 
