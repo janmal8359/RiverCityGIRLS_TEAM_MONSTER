@@ -73,7 +73,7 @@ void objectManager::setObject()
 			{
 				object* object;
 				object = new LPillar;
-				object->init((WINSIZEX / 2) - 200, 500 + j * 500, LPILLAR);
+				object->init((WINSIZEX / 2) - 200, 300 + j * 300, LPILLAR);
 				_vObject.push_back(object);
 			}
 		}
@@ -84,7 +84,7 @@ void objectManager::setObject()
 			{
 				object* object;
 				object = new RPillar;
-				object->init((WINSIZEX / 2) + 200, 500 + j * 500, RPILLAR);
+				object->init((WINSIZEX / 2) + 200, 300 + j * 300, RPILLAR);
 				_vObject.push_back(object);
 			}
 		}
