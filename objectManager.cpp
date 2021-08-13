@@ -67,6 +67,61 @@ void objectManager::setObject()
 				}
 			}
 			break;
+		case 1://ÁÂÃø ±âµÕ
+		{
+			for (int j = 0; j < 2; j++)
+			{
+				object* object;
+				object = new LPillar;
+				object->init((WINSIZEX / 2) - 200, 500 + j * 500, LPILLAR);
+				_vObject.push_back(object);
+			}
+		}
+		break;
+		case 2://¿ìÃø ±âµÕ
+		{
+			for (int j = 0; j < 2; j++)
+			{
+				object* object;
+				object = new RPillar;
+				object->init((WINSIZEX / 2) + 200, 500 + j * 500, RPILLAR);
+				_vObject.push_back(object);
+			}
+		}
+		break;
+		case 3://±âµÕ ÆÄÆí1
+		{
+			for (int j = 0; j < 10; j++)
+			{
+				object* object;
+				object = new particle;
+				object->init(0, 0, PARTICLE1);
+				_vObject.push_back(object);
+			}
+		}
+		break;
+		case 4://±âµÕ ÆÄÆí2
+		{
+			for (int j = 0; j < 10; j++)
+			{
+				object* object;
+				object = new particle;
+				object->init(0, 0, PARTICLE2);
+				_vObject.push_back(object);
+			}
+		}
+		break;
+		case 5://±âµÕ ÆÄÆí3
+		{
+			for (int j = 0; j < 10; j++)
+			{
+				object* object;
+				object = new particle;
+				object->init(0, 0, PARTICLE3);
+				_vObject.push_back(object);
+			}
+		}
+		break;
 		}
 
 	}
