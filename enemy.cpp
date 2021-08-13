@@ -75,7 +75,8 @@ HRESULT enemy::init(POINT pt)
 	_enemyShadowRc = RectMakeCenter(_enemySX, _enemySY, _enemyShadowImg->getWidth(), _enemyShadowImg->getHeight());
 
 	_enemySpeed = 0;
-	_enemyJP = 0;
+	_enemyJP = 10.f;
+	_enemyGravity = 0.5f;
 
 	_enemyHp = 1000;
 	
@@ -90,6 +91,7 @@ HRESULT enemy::init(POINT pt)
 	_isRun = false;
 	_isRunAttack = false;
 	_isDie = false;
+	_isCompleteDeath = false;
 
 	return S_OK;
 }
@@ -104,9 +106,12 @@ void enemy::update()
 	
 	enemyMove();
 	
+	//_enemyX = _enemySX;
+	if (!_isDie)
+	{
+		_enemyY = _enemySY - _enemyImg->getFrameHeight() / 2;
+	}
 
-	_enemyY = _enemySY - _enemyImg->getFrameHeight() / 2;
-	
 	_enemyDistance = getDistance(_player->getShadowX() + 125, _player->getShadowY(), _enemySX , _enemySY);		//적이 왼쪽 바라볼때
 	_enemyDistanceR = getDistance(_player->getShadowX() - 125, _player->getShadowY(), _enemySX , _enemySY);		//적이 오른쪽 바라볼때
 	
@@ -136,9 +141,14 @@ void enemy::render()
 	sprintf_s(str1, "플레이어 방향 : %d",_player->getDir());
 	TextOut(getMemDC(), _enemySX, _enemySY + 130, str1, strlen(str1));
 
-	sprintf_s(str1, "죽음카운트 : %d",_dieCount);
+	sprintf_s(str1, "죽었는가 : %d", (int)_isDie);
 	TextOut(getMemDC(), _enemySX, _enemySY + 150, str1, strlen(str1));
 
+	sprintf_s(str1, "완전히 죽었는가 : %d", (int)_isCompleteDeath);
+	TextOut(getMemDC(), _enemySX, _enemySY + 170, str1, strlen(str1));
+
+	sprintf_s(str1, "완전히 죽기 전 : %d", (int) _completeDeath);
+	TextOut(getMemDC(), _enemySX, _enemySY + 190, str1, strlen(str1));
 	//sprintf_s(str1, "적 공격콤보 : %d", _enemyState->getEattackIdx());
 	//TextOut(getMemDC(), _enemySX , _enemySY + 90 , str1, strlen(str1));
 	//
@@ -286,15 +296,15 @@ void enemy::enemyMove()
 		}
 	}
 
-	if (_enemyDir == (int)ENEMY_LEFT)
+	if (_enemyDir == (int)ENEMY_LEFT)			//죽었을때 날라가는거
 	{
 		if (_isDie)
 		{
 			_dieSpeed = 2;
 			_dieCount++;
+			_completeDeath++;
 
-
-			if (_dieCount > 40)
+			if (_dieCount > 30)
 			{
 				_dieSpeed = 0;
 			}
@@ -310,19 +320,28 @@ void enemy::enemyMove()
 
 			_dieSpeed = 2;
 			_dieCount++;
+			_completeDeath++;
 
 
-			if (_dieCount > 40)
+			if (_dieCount > 30)
 			{
 				_dieSpeed = 0;
 			}
 
 			_enemySX -= _dieSpeed;
-
-
 		}
 	}
 
+	if (_isDie && _enemyRc.bottom < _enemySY)
+	{
+		_enemyY -= _enemyJP;
+		_enemyJP -= _enemyGravity;
+	}
+
+	if (_completeDeath > 31)
+	{
+		_isCompleteDeath = true;
+	}
 
 	if(!_player->getIsAttacking() && _isEHurt)
 	{
@@ -331,12 +350,12 @@ void enemy::enemyMove()
 	}
 
 	//플레이어와의 거리를 파악해서 방향 전환
-	if (_player->getShadowX() > _enemySX && !_isDie)
+	if (_player->getShadowX() > _enemySX && !_isDie && !_isCompleteDeath)
 	{
 		enemyHp();
 		_enemyDir = (int)ENEMY_RIGHT;
 	}
-	if (_player->getShadowX() < _enemySX && !_isDie)
+	if (_player->getShadowX() < _enemySX && !_isDie && !_isCompleteDeath)
 	{
 		enemyHp();
 		_enemyDir = (int)ENEMY_LEFT;
@@ -401,6 +420,10 @@ void enemy::enemyAni()
 	//쓰러진 상태
 	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_dieL", "SCHOOLGIRL_weapon_swing", 33, 17, 10, false, false);
 	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_dieR", "SCHOOLGIRL_weapon_swing", 0, 17, 10, false, false);
+
+	//완전히 죽은 상태
+	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_CompleteDeathL", "SCHOOLGIRL_weapon_swing", 18, 17, 10, false, false);
+	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_CompleteDeathR", "SCHOOLGIRL_weapon_swing", 16, 17, 10, false, false);
 
 	//피격 쓰러진 상태
 	KEYANIMANAGER->addCoordinateFrameAnimation("SCHOOLGIRL_backdownL", "SCHOOLGIRL_backdown", 53, 27, 10, false, false);

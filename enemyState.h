@@ -259,3 +259,19 @@ public:
 	
 
 };
+
+class enemyCompleteDeath : public enemyState //적 완전히 죽음 나중에 이걸로 지우면 될려나.
+{
+public:
+	enemyCompleteDeath();
+	~enemyCompleteDeath();
+
+
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render() override;
+
+	virtual void enemyStateChange();
+	virtual void enemyAni();
+};

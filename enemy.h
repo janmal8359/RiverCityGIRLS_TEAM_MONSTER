@@ -25,6 +25,7 @@ private:
 	float _enemySpeed, _enemyRes;	//속도,속도줄어듬?
 
 	float _enemyJP;					//점프파워
+	float _enemyGravity;			//중력값
 
 	bool _isEIdle;					//기본 불값
 	bool _isEJump;					//점프 불값
@@ -35,6 +36,8 @@ private:
 	bool _isDie;					//죽음 불값
 	bool _isRun;					//달리는 불값
 	bool _isRunAttack;				//대쉬 공격 불값
+	bool _isCompleteDeath;			//완전한 죽음
+
 
 	image* _enemyImg;				//적 이미지
 	RECT _enemyRc;					//적 렉트
@@ -43,6 +46,9 @@ private:
 	int _hitCount;
 	int _dieCount;					//죽었을때 날라가는거 멈추는 카운트
 	float _dieSpeed;				//죽었을때 스피두
+	
+	int _completeDeath;				//완전한 죽음
+
 
 	
 	int _enemyHp;					//에너미 체력
@@ -129,6 +135,9 @@ public:
 	//적 달리는 상황
 	bool getIsEnemyRun() { return _isRun; }
 	void setIsEnemyRun(bool isRun) { _isRun = isRun; }
+	//적 완전히 죽임
+	bool getIsEnemyCompleteDeath() { return _isCompleteDeath; }
+	void setIsEnemyCompleteDeath(bool CompleteDeath) { _isCompleteDeath = CompleteDeath; }
 
 	bool getIsEnemyRunAttack() { return _isRunAttack; }
 	void setIsEnemyRunAttack(bool isRunAttack) { _isRunAttack = isRunAttack; }

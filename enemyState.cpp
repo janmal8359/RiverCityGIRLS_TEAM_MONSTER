@@ -1047,6 +1047,11 @@ void enemyDie::render()
 
 void enemyDie::enemyStateChange()
 {
+	if (_enemy->getIsEnemyCompleteDeath())
+	{
+		_enemy->setEnemyState(new enemyCompleteDeath);
+	}
+	
 }
 
 void enemyDie::enemyAni()
@@ -1498,5 +1503,65 @@ void enemyRunAttack::callBk()
 	//		//_enemy->setEnemyState(new enemyIdle);
 	//	}	
 	//}
+}
+#pragma endregion
+//////////////////////////////////////////////	적 완전히 죽음  ///////////////////////////////////////////////////////
+#pragma region 적 완전히 죽음 
+enemyCompleteDeath::enemyCompleteDeath()
+{
+	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_weapon_swing");
+}
+
+enemyCompleteDeath::~enemyCompleteDeath()
+{
+}
+
+HRESULT enemyCompleteDeath::init()
+{
+	enemyState::init();
+
+	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_weapon_swing");
+	return S_OK;
+}
+
+void enemyCompleteDeath::release()
+{
+}
+
+void enemyCompleteDeath::update()
+{
+	enemyState::update();
+	
+	_enemy->setIsEnemyDie(false);
+
+
+	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_weapon_swing");
+
+}
+
+void enemyCompleteDeath::render()
+{
+	enemyState::render();
+}
+
+void enemyCompleteDeath::enemyStateChange()
+{
+}
+
+void enemyCompleteDeath::enemyAni()
+{
+	if (_enemyDir == (int)ENEMY_LEFT)
+	{
+		_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_CompleteDeathL");
+		_enemyAni->resume();
+	}
+	if (_enemyDir == (int)ENEMY_RIGHT)
+	{
+		_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_CompleteDeathR");
+		_enemyAni->resume();
+	}
+
+
+
 }
 #pragma endregion
