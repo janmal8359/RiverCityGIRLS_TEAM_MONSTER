@@ -251,7 +251,7 @@ void gameManager::scriptPlay()
 
 			//Sleep(200);
 		}
-		if (_txtIndex < _txt.length())
+		else if (_txtIndex < _txt.length())
 		{
 			_scriptSkip = false;
 			_txtIndex = _txt.length();
