@@ -132,6 +132,8 @@ void zOrder::release()
 
 void zOrder::update()
 {
+	EFFECTMANAGER->update();
+
 	_player->update();
 
 	_player->getState()->setPlayer(_player);
@@ -154,7 +156,6 @@ void zOrder::update()
 
 	selectionSort();
 
-	EFFECTMANAGER->update();
 	//
 	//if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
 	//{
@@ -178,6 +179,7 @@ void zOrder::render()
 	{
 		_pixel->render();
 	}
+	EFFECTMANAGER->render();
 
 
 	for (_viRender = _vRender.begin(); _viRender != _vRender.end(); ++_viRender)
@@ -186,7 +188,6 @@ void zOrder::render()
 	}
 	//_ef->render();
 
-	EFFECTMANAGER->render();
 	char str[128];
 
 	sprintf_s(str, "vecterSize : %d", _vRender.size());

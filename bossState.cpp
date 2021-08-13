@@ -351,7 +351,8 @@ void attackState::anim()
 
 	if ((_bossAnimL->getNowPlayIdx() == 9 || _bossAnimR->getNowPlayIdx() == 9) && _player->getIsGetHit())
 	{
-		EFFECTMANAGER->play("EFFECT_bossSmash", _player->getPlayerX(), _player->getPlayerY());
+		if (_boss->getBossDirection() == (int)DIRECTION::LEFT) EFFECTMANAGER->play("EFFECT_bossSmash", _player->getPlayerX() + 40, _player->getPlayerY() - 30);
+		else if (_boss->getBossDirection() == (int)DIRECTION::RIGHT) EFFECTMANAGER->play("EFFECT_bossSmash", _player->getPlayerX() - 40, _player->getPlayerY() - 30);
 	}
 
 	_isStart = true;
@@ -552,6 +553,7 @@ void jumpState::anim()
 			//_bossAnimR->stop();
 			hitCheck();
 			EFFECTMANAGER->play("EFFECT_bossMeteor", _boss->getBossShadowX(), _boss->getBossY() + 60);
+			EFFECTMANAGER->play("EFFECT_bossStand1", _boss->getBossShadowX(), _boss->getBossShadowY());
 			_isStart = true;
 		}
 	}
@@ -698,6 +700,8 @@ void dashState::stateChange()
 
 void dashState::anim()
 {
+	static int count = 0;
+
 	if (_direction == (int)DIRECTION::LEFT)
 	{
 		if (!_bossAnimL->isPlay())
@@ -707,6 +711,11 @@ void dashState::anim()
 		if (_bossAnimL->isPlay())
 		{
 			_bossAnimL->resume();
+		}
+		
+		if (count % 10 == 0)
+		{
+			EFFECTMANAGER->play("EFFECT_runL", _boss->getBossShadowX() + _boss->getBossWidth() / 2, _boss->getBossShadowY() - 50);
 		}
 	}
 
@@ -720,7 +729,13 @@ void dashState::anim()
 		{
 			_bossAnimR->resume();
 		}
+
+		if (count % 10 == 0)
+		{
+			EFFECTMANAGER->play("EFFECT_runR", _boss->getBossShadowX() - _boss->getBossWidth() / 2, _boss->getBossShadowY() - 50);
+		}
 	}
+	count++;
 
 	_isStart = true;
 }
