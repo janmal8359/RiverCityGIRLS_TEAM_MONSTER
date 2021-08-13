@@ -9,6 +9,12 @@
 
 class player;
 
+enum PlayerDir
+{
+	PLAYERLEFT,
+	PLAYERRIGHT
+};
+
 enum STAGETYPE
 {
 	FIRSTSTAGE,
@@ -41,6 +47,9 @@ private:
 
 	//ÇÈ¼¿ Å½»ö±â
 	float _probeLX, _probeTY, _probeRX, _probeBY;
+
+	//player ¹æÇâ
+	int _dir;
 
 public:
 	pixelCollisionClass();

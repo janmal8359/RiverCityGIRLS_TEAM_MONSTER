@@ -1,9 +1,13 @@
 #pragma once
 #include "gameNode.h"
-#include "object.h"
-#include "desk.h"
+#include "player.h"
 #include "camera.h"
 #include <vector>
+
+#include "desk.h"
+#include "LPillar.h"
+#include "RPillar.h"
+#include "particle.h"
 
 class objectManager : public gameNode
 {
@@ -15,9 +19,9 @@ private:
 	vObject		_vObject;
 	viObject	_viObject;
 
-	object* _object;
+	//camera* _camera;
 
-	camera* _camera;
+	//player* _player;
 
 public:
 	objectManager();
@@ -32,4 +36,8 @@ public:
 
 	vector<object*> getVObject() { return _vObject; }
 	vector<object*>::iterator getViObject() { return _viObject; }
+	 
+	//void setPlayerMemoryAddressLink(player* player) { _player = player; }
+
+	//void setCameraMemoryAddressLink(camera* camera) { _camera = camera; }
 };

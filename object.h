@@ -1,6 +1,6 @@
 #pragma once
 #include "gameNode.h"
-
+#include "player.h"
 
 enum OBJECTTYPE
 {
@@ -19,6 +19,8 @@ private:
 	//bool _isCheck;					//기둥 & 보스 충돌
 	//bool _isShot;						//기둧 파편 발사
 	
+	player* _player;
+
 	image* _objectImg;
 
 	RECT _objectRc;
@@ -43,20 +45,20 @@ public:
 	virtual void render();
 
 	////오브젝트 가이트 중점 x
-	//float getObjectMX() { return _objectMX; }
-	//void setObjectMX(float objectMX) { _objectMX = objectMX; }
-	//
-	////오브젝트 가이트 중점 y
-	//float getObjectMY() { return _objectMY; }
-	//void setObjectMY(float objectMY) { _objectMX = objectMY; }
-	//
-	////오브젝트 중점 x
-	//float getObjectOX() { return _objectOX; }
-	//void setObjectOX(float objectOX) { _objectMX = objectOX; }
-	//
-	////오브젝트 중점 y
-	//float getObjectOX() { return _objectOY; }
-	//void setObjectOX(float objectOY) { _objectMX = objectOY; }
+	float getObjectMX() { return _objectMX; }
+	void setObjectMX(float objectMX) { _objectMX = objectMX; }
+	
+	//오브젝트 가이트 중점 y
+	float getObjectMY() { return _objectMY; }
+	void setObjectMY(float objectMY) { _objectMY = objectMY; }
+	
+	//오브젝트 중점 x
+	float getObjectOX() { return _objectOX; }
+	void setObjectOX(float objectOX) { _objectOX = objectOX; }
+	
+	//오브젝트 중점 y
+	float getObjectOY() { return _objectOY; }
+	void setObjectOY(float objectOY) { _objectOY = objectOY; }
 	
 	//파편의 각도
 	float getParticleAngle() { return _particleAngle; }
@@ -77,5 +79,7 @@ public:
 	//오브젝트 이미지
 	image* getObjectImg() { return	_objectImg; }
 	void setObjectImg(image* objectImg) { _objectImg = objectImg; }
+
+	void setPlayerMemoryAddrsLink(player* player) { _player = player; }
 };
 

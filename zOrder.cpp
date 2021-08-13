@@ -16,15 +16,15 @@ HRESULT zOrder::init()
 	//_vRender.push_back(_player);
 	//_vRender.push_back(_enemy);
 	//_vRender.push_back(_boss);
+
 	_player = new player;
 	_camera = new camera;
 	_boss = new boss;
 	_enemy = new enemy;
 	_pixel = new pixelCollisionClass;
 
-	_camera->init();
-	_camera->setStage((int)stageImg::FIRST_STAGE);
-
+	//_camera->init();
+	//_camera->setStage((int)stageImg::FIRST_STAGE);
 
 	_player->setBossMemoryAddressLink(_boss);
 	_player->setEnemyMemoryAddressLink(_enemy);
@@ -33,9 +33,26 @@ HRESULT zOrder::init()
 	_boss->setPlayerMemoryAddressLink(_player);
 	_boss->setCameraMemoryAddressLink(_camera);
 
+	_objectManager = new objectManager;
+	_objectManager->init();
+	_objectManager->setObject();
+
+	_player->setObjectManagerMemoryAddressLink(_objectManager);
+
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
 
+	for (int i = 0; i < _objectManager->getVObject().size();)
+	{
+		_player->setObjectManagerMemoryAddressLink(_objectManager);
+		_objectManager->getVObject()[i]->setPlayerMemoryAddrsLink(_player);
+
+		++i;
+	}
+
+	_pixel = new pixelCollisionClass;
+
+	_pixel->init(0, 0, 0);
 	_pixel->setPixelPlayer(_player);
 	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
 	
@@ -53,11 +70,15 @@ HRESULT zOrder::init()
 
 	_pixel->init(0, 0, 0);
 
-
-
 	_vRender.push_back(_player);
 	//_vRender.push_back(_enemy);
 	_vRender.push_back(_boss);
+	_vRender.push_back(_objectManager);
+	
+	for (int i = 0; i < _objectManager->getVObject().size(); ++i)
+	{
+		_vRender.push_back(_objectManager->getVObject()[i]);
+	}
 
 	//_ef = new effect;
 	//_ef->init(IMAGEMANAGER->addFrameImage("smash", "resources/IMG/effect/Boss smash.bmp", 960, 89, 10, 1, true, RGB(255, 0, 255)), 96, 89, 1, 0.5f);
@@ -68,7 +89,6 @@ HRESULT zOrder::init()
 
 void zOrder::release()
 {
-	
 }
 
 void zOrder::update()
@@ -81,6 +101,7 @@ void zOrder::update()
 
 	_boss->update();
 
+	_objectManager->update();
 
 	_pixel->setPixelPlayer(_player);
 	_pixel->update();
@@ -111,6 +132,7 @@ void zOrder::render()
 	
 	
 	_camera->render();
+
 
 	if (KEYMANAGER->isToggleKey(VK_F8))
 	{

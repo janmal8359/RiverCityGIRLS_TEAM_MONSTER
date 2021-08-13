@@ -2,8 +2,10 @@
 #include "player.h"
 #include "camera.h"
 #include "boss.h"
-#include "objectManager.h"
+#include "object.h"
 #include "enemy.h"
+
+#include "objectManager.h"//Ãß°¡
 
 player::player()
 {
@@ -130,8 +132,12 @@ void player::move()
             {
                 _camera->setCamX(_camera->getCamX() - _speed);
                 _boss->setBossShadowX(_boss->getBossShadowX() + _speed);
+                //_enemy->setEnemySX(_enemy->getEnemySX() + _speed);
 
-                _enemy->setEnemySX(_enemy->getEnemySX() + _speed);
+                for (int i = 0; i < _objectManager->getVObject().size(); ++i)
+                {
+                    _objectManager->getVObject()[i]->setObjectMX(_objectManager->getVObject()[i]->getObjectMX() + _speed);
+                }
             }
             else
             {
@@ -147,7 +153,12 @@ void player::move()
             {
                 _camera->setCamX(_camera->getCamX() + _speed);
                 _boss->setBossShadowX(_boss->getBossShadowX() - _speed);
-                _enemy->setEnemySX(_enemy->getEnemySX() - _speed);
+                //_enemy->setEnemySX(_enemy->getEnemySX() - _speed);
+               
+                for (int i = 0; i < _objectManager->getVObject().size(); ++i)
+                {
+                    _objectManager->getVObject()[i]->setObjectMX(_objectManager->getVObject()[i]->getObjectMX() - _speed);
+                }
             }
             else
             {
@@ -161,7 +172,12 @@ void player::move()
             {
                 _camera->setCamY(_camera->getCamY() - _speed);
                 _boss->setBossShadowY(_boss->getBossShadowY() + _speed);
-                _enemy->setEnemySY(_enemy->getEnemySY() + _speed);
+                //_enemy->setEnemySY(_enemy->getEnemySY() + _speed);
+
+                for (int i = 0; i < _objectManager->getVObject().size(); ++i)
+                {
+                    _objectManager->getVObject()[i]->setObjectMY(_objectManager->getVObject()[i]->getObjectMY() + _speed);
+                }
             }
             else
             {
@@ -175,7 +191,12 @@ void player::move()
             {
                 _camera->setCamY(_camera->getCamY() + _speed);
                 _boss->setBossShadowY(_boss->getBossShadowY() - _speed);
-                _enemy->setEnemySY(_enemy->getEnemySY() - _speed);
+                //_enemy->setEnemySY(_enemy->getEnemySY() - _speed);
+
+                for (int i = 0; i < _objectManager->getVObject().size(); ++i)
+                {
+                    _objectManager->getVObject()[i]->setObjectMY(_objectManager->getVObject()[i]->getObjectMY() - _speed);
+                }
             }
             else
             {
@@ -208,12 +229,16 @@ void player::move()
             if (_shadowRc.left < _camera->getCameraRc().left && _camera->getCamX() > 0 + _speed)
             {
                 _camera->setCamX(_camera->getCamX() - _speed);
+
+                for (int i = 0; i < _objectManager->getVObject().size(); ++i)
+                {
+                    _objectManager->getVObject()[i]->setObjectMX(_objectManager->getVObject()[i]->getObjectMX() + _speed);
+                }
             }
             else
             {
                 _sX -= _speed;
             }
-  
         }
 
         if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
@@ -222,6 +247,11 @@ void player::move()
             if (_shadowRc.right > _camera->getCameraRc().right && _camera->getCamX() < _camera->getBgImage()->getWidth() - WINSIZEX - _speed)
             {
                 _camera->setCamX(_camera->getCamX() + _speed);
+
+                for (int i = 0; i < _objectManager->getVObject().size(); ++i)
+                {
+                    _objectManager->getVObject()[i]->setObjectMX(_objectManager->getVObject()[i]->getObjectMX() - _speed);
+                }
             }
             else
             {
@@ -234,6 +264,11 @@ void player::move()
             if (_shadowRc.top < _camera->getCameraRc().top && _camera->getCamY() > 0 + _speed)
             {
                 _camera->setCamY(_camera->getCamY() - _speed);
+
+                for (int i = 0; i < _objectManager->getVObject().size(); ++i)
+                {
+                    _objectManager->getVObject()[i]->setObjectMY(_objectManager->getVObject()[i]->getObjectMY() + _speed);
+                }
             }
             else
             {
@@ -247,6 +282,11 @@ void player::move()
             if (_shadowRc.bottom > _camera->getCameraRc().bottom && _camera->getCamY() < _camera->getBgImage()->getHeight() - WINSIZEY - _speed)
             {
                 _camera->setCamY(_camera->getCamY() + _speed);
+
+                for (int i = 0; i < _objectManager->getVObject().size(); ++i)
+                {
+                    _objectManager->getVObject()[i]->setObjectMY(_objectManager->getVObject()[i]->getObjectMY() - _speed);
+                }
             }
             else 
             {

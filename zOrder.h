@@ -9,6 +9,8 @@
 #include "boss.h"
 #include "camera.h"
 //#include "effect.h"
+#include "object.h"
+#include "objectManager.h"
 
 class pixelCollisionClass;
 
@@ -27,6 +29,10 @@ private:
 	enemy* _enemy;
 
 	boss* _boss;
+
+	object* _object;
+
+	objectManager* _objectManager;
 
 	camera* _camera;
 
