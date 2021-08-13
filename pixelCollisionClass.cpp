@@ -84,15 +84,20 @@ void pixelCollisionClass::Colloision()
 				//벽
 				if (R == 255 && G == 0 && B == 0)			//레드
 				{
-					//if (PLAYERLEFT == _player->getDir())
-					//{
-					//	_player->setShadowX(_player->getShadowX() + 1);
-					//}
-					//
-					//if (PLAYERRIGHT == _player->getDir())
-					//{
-					//	_player->setShadowX(_player->getShadowX() - 1);
-					//}
+					if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
+					{
+						_player->setShadowX(_player->getShadowX() + _player->getSpeed() * 1.5);
+
+
+						_player->setSpeed(0);
+					}
+
+					if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+					{
+						_player->setShadowX(_player->getShadowX() - _player->getSpeed() * 1.5);
+
+						_player->setSpeed(0);
+					}
 					//_player->setSpeed(6);					//0으로 변경
 				}
 				//책상 바닥
@@ -182,7 +187,20 @@ void pixelCollisionClass::Colloision()
 				//벽
 				if (R == 255 && G == 0 && B == 0)			//레드
 				{
+					if (KEYMANAGER->isOnceKeyUp(VK_UP))
+					{
+						_player->setShadowY(_player->getShadowY() + _player->getSpeed() * 1.5);
 
+
+						_player->setSpeed(0);
+					}
+
+					if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
+					{
+						_player->setShadowY(_player->getShadowY() - _player->getSpeed() * 1.5);
+					}
+
+					_player->setSpeed(0);
 					//_player->setSpeed(6);					
 				}
 				//책상 바닥
