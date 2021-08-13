@@ -440,7 +440,7 @@ void jumpState::hitCheck()
 	_dx = abs(_player->getShadowX() - _boss->getBossShadowX());
 	_dy = abs(_player->getShadowY() - _boss->getBossShadowY());
 
-	if (_dx < _boss->getBossShadowX() * 2 && _dy < _boss->getBossShadowY() * 2 && !_player->getIsGetHit())
+	if (_dx < _boss->getBossShadowWidth() * 2 && _dy < _boss->getBossShadowHeight() * 2 && !_player->getIsGetHit())
 	{
 		_player->setIsGetHit(true);
 	}
