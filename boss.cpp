@@ -67,6 +67,8 @@ void boss::update()
 		_isHit = true;
 	}
 
+	//EFFECTMANAGER->update();
+
 
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,6 +86,7 @@ void boss::render()
 {
 	_bShadowImg->render(getMemDC(), _bShadowRc.left, _bShadowRc.top);
 	_state->render();
+	//EFFECTMANAGER->render();
 
 	char str[128];
 	sprintf_s(str, "_sx : %.2f  _sy : %.2f", _sx, _sy);
@@ -149,7 +152,7 @@ void boss::bossAnim()
 void boss::move()
 {
 	if (_isMove) _speed = 2;
-	if (_isFloat) _speed = 7;
+	if (_isFloat) _speed = 3;
 	if (_isDash) _speed = 6;
 
 	if (_dx > _bShadowRc.right - _bShadowRc.left && !_isFloat)

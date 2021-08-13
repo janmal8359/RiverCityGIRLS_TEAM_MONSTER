@@ -620,7 +620,7 @@ HRESULT imageStorage::init()
 	//보스 점프 공격 frameY(2)
 	EFFECTMANAGER->addEffect("EFFECT_bossMeteor1", "resources/IMG/effect/Boss meteor.bmp", 1620, 640, 405, 320, 1, 5.0f, 100);
 	//보스 숄더어택 피격
-	EFFECTMANAGER->addEffect("EFFECT_bossSmash", "resources/IMG/effect/Boss smash.bmp", 960, 89, 96, 89, 1, 5.0f, 100);
+	EFFECTMANAGER->addEffect("EFFECT_bossSmash", "resources/IMG/effect/Boss smash.bmp", 960, 89, 96, 89, 1, 0.5f, 100);
 	//보스 숄더어택 피격(중첩)
 	EFFECTMANAGER->addEffect("EFFECT_bossSmash1", "resources/IMG/effect/et_boom_big.bmp", 960, 89, 96, 89, 1, 5.0f, 100);
 	//보스 방어

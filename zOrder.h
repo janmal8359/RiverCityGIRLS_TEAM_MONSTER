@@ -8,6 +8,7 @@
 #include "enemy.h"
 #include "boss.h"
 #include "camera.h"
+//#include "effect.h"
 
 class pixelCollisionClass;
 
@@ -30,6 +31,8 @@ private:
 	camera* _camera;
 
 	pixelCollisionClass* _pixel;
+
+	//effect* _ef;
 
 public:
 	zOrder();

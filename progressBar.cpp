@@ -18,8 +18,8 @@ HRESULT progressBar::init(int x, int y, int width, int height)
 
 	_rcProgress = RectMake(x, y, width, height);
 
-	_progressBarTop = IMAGEMANAGER->addImage("frontBar", "hpBarTop.bmp", width, height, true, RGB(255, 0, 255));
-	_progressBarBottom = IMAGEMANAGER->addImage("backBar", "hpBarBottom.bmp", width, height, true, RGB(255, 0, 255));
+	_progressBarTop = IMAGEMANAGER->addImage("frontBar", "Resource/IMG/ui/scene/UI_skip_outlines_FULL.bmp", width, height, true, RGB(255, 0, 255));
+	_progressBarBottom = IMAGEMANAGER->addImage("backBar", "Resource/IMG/ui/scene/UI_skip_outlines_WHITE.bmp", width, height, true, RGB(255, 0, 255));
 
 	_width = _progressBarTop->getWidth();
 

@@ -20,6 +20,7 @@ void bossState::update()
 	animOver();
 	anim();
 	stateChange();
+
 }
 
 void bossState::render()
@@ -340,9 +341,10 @@ void attackState::anim()
 	}
 
 	// 보스가 플레이어를 공격하면
-	if ((_bossAnimL->getNowPlayIdx() >= 9 || _bossAnimR->getNowPlayIdx() >= 9) && !_player->getIsGetHit())
+	if ((_bossAnimL->getNowPlayIdx() == 9 || _bossAnimR->getNowPlayIdx() == 9) && !_player->getIsGetHit())
 	{
 		hitCheck();
+		EFFECTMANAGER->play("EFFECT_bossSmash", WINSIZEX / 2, WINSIZEY / 2);
 	}
 
 	_isStart = true;
@@ -435,8 +437,10 @@ void jumpState::stateChange()
 
 void jumpState::hitCheck()
 {
+	_dx = abs(_player->getShadowX() - _boss->getBossShadowX());
+	_dy = abs(_player->getShadowY() - _boss->getBossShadowY());
 
-	if (_dx < _boss->getBossShadowX() * 2 || _dy < _boss->getBossShadowY() * 2 && !_player->getIsGetHit())
+	if (_dx < _boss->getBossShadowX() * 2 && _dy < _boss->getBossShadowY() * 2 && !_player->getIsGetHit())
 	{
 		_player->setIsGetHit(true);
 	}
@@ -661,7 +665,7 @@ void dashState::stateChange()
 	}
 	//if (getDistance(_boss->getPlayer()->getShadowX(), _boss->getPlayer()->getShadowY(), _boss->getBossShadowX(), _boss->getBossShadowY()) <= 50 ||
 	//	TIMEMANAGER->getWorldTime() >= _boss->getTime() + 5)
-	if (_boss->getDistanceX() < _boss->getBossShadowWidth() && _boss->getDistanceY() < _boss->getBossShadowHeight() / 2)
+	if (_boss->getDistanceX() < _boss->getBossShadowWidth() && _boss->getDistanceY() < _boss->getBossShadowHeight() / 2 && _boss->getDash())
 	{
 		hitCheck();
 		_boss->setMove(false);

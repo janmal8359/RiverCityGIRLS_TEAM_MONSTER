@@ -51,6 +51,13 @@ HRESULT gameManager::init()
 	chainRight = IMAGEMANAGER->findImage("BATTLE_stageChainRight");
 	chainLock = IMAGEMANAGER->findImage("BATTLE_lockAppear");
 
+	_currentGauge = 0;
+	_maxGauge = 206;
+
+	_skip = new progressBar;
+	_skip->init(WINSIZEX - 250, 20, 206, 78);
+	_skip->setGauge(_currentGauge, _maxGauge);
+
 	return S_OK;
 }
 
@@ -60,6 +67,16 @@ void gameManager::release()
 
 void gameManager::update()
 {
+	_skip->setGauge(_currentGauge, _maxGauge);
+	_skip->update();
+
+	if (_currentGauge >= _maxGauge)
+	{
+		scriptEnd = true;
+		scriptStart = false;
+		_currentGauge = 0;
+	}
+
 	//플레이어 HP
 	if (KEYMANAGER->isOnceKeyDown(VK_F3) && _playerHP > 0)
 	{
@@ -92,6 +109,18 @@ void gameManager::update()
 			_scriptSkip = false;
 	}
 	
+	if (scriptStart && !scriptEnd)
+	{
+		if (KEYMANAGER->isStayKeyDown(VK_RETURN))
+		{
+			_currentGauge += 2;
+		}
+		if (KEYMANAGER->isOnceKeyUp(VK_RETURN))
+		{
+			_currentGauge = 0;
+		}
+	}
+
 	//맵 이벤트
 	if (KEYMANAGER->isOnceKeyDown(VK_F2) && !mapLocked)
 	{
@@ -153,6 +182,8 @@ void gameManager::render()
 	{
 		//카메라 움직임,.??
 	}
+
+	_skip->render();
 }
 
 void gameManager::scriptPlay()
@@ -190,18 +221,22 @@ void gameManager::scriptPlay()
 
 	if (!_scriptSkip) {
 		scriptSkip = IMAGEMANAGER->findImage("SCENE_skipOutlines2");
-		if (_txtIndex <= _txt.length())
+		if (_txtIndex < _txt.length())
 		{
 			_txtIndex++;
 		}
 		else if (_txtIndex >= _txt.length())
 		{
-			_scriptIndex++;
-			_txtIndex = 0;
+			if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
+			{
+				_scriptSkip = false;
 
-			_scriptSkip = false;
+				_txtIndex = 0;
+				_scriptIndex++;
 
-			Sleep(700);
+
+				//Sleep(700);
+			}
 
 		}
 	} 
@@ -210,14 +245,15 @@ void gameManager::scriptPlay()
 		scriptSkip = IMAGEMANAGER->findImage("SCENE_skipOutlines1");
 		if (_txtIndex >= _txt.length())
 		{
-			_scriptIndex++;
-			_txtIndex = 0;
-
 			_scriptSkip = false;
-			Sleep(200);
+			_txtIndex = 0;
+			_scriptIndex++;
+
+			//Sleep(200);
 		}
 		if (_txtIndex < _txt.length())
 		{
+			_scriptSkip = false;
 			_txtIndex = _txt.length();
 		}
 	}

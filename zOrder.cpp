@@ -50,6 +50,10 @@ HRESULT zOrder::init()
 	_vRender.push_back(_enemy);
 	_vRender.push_back(_boss);
 
+	//_ef = new effect;
+	//_ef->init(IMAGEMANAGER->addFrameImage("smash", "resources/IMG/effect/Boss smash.bmp", 960, 89, 10, 1, true, RGB(255, 0, 255)), 96, 89, 1, 0.5f);
+
+
 	return S_OK;
 }
 
@@ -77,6 +81,17 @@ void zOrder::update()
 
 	selectionSort();
 
+	//EFFECTMANAGER->update();
+	//
+	//if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
+	//{
+	//	//_ef->startEffect(WINSIZEX / 2, WINSIZEY / 2);
+	//	IMAGEMANAGER->addFrameImage("smash", "resources/IMG/effect/Boss smash.bmp", 960, 89, 10, 1, true, RGB(255, 0, 255));
+	//	IMAGEMANAGER->frameRender("smash", getMemDC(), WINSIZEX / 2, WINSIZEY / 2);
+	//}
+	//
+	//_ef->update();
+
 	//zOrder();
 }
 
@@ -95,6 +110,8 @@ void zOrder::render()
 	{
 		(*_viRender)->render();
 	}
+	//EFFECTMANAGER->render();
+	//_ef->render();
 }
 
 //void zOrder::ZOrder()

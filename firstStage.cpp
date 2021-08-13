@@ -137,6 +137,7 @@ void firstStage::update()
 	//pixelCollision();
 
 	_zO->update();
+	EFFECTMANAGER->update();
 	//selectionSort();
 }
 
@@ -157,6 +158,7 @@ void firstStage::render()
 	//}
 
 	_zO->render();
+	EFFECTMANAGER->render();
 
 	//_zO->render();
 

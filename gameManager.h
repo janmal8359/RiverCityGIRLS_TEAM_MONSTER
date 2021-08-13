@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include <string>
+#include "progressBar.h"
 
 
 struct UIBar
@@ -42,6 +43,9 @@ private:
 	image* kScript;
 	image* mScript;
 	image* scriptName;
+
+	progressBar* _skip;
+	float _currentGauge, _maxGauge;
 	
 
 	int _playerHP;
