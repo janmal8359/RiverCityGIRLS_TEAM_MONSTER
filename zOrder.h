@@ -12,6 +12,7 @@
 #include "object.h"
 #include "objectManager.h"
 #include "enemyManager.h"
+#include "gameManager.h"
 
 class pixelCollisionClass;
 
@@ -39,7 +40,10 @@ private:
 
 	camera* _camera;
 
+
 	pixelCollisionClass* _pixel;
+
+	gameManager* _gaM;
 
 	//effect* _ef;
 

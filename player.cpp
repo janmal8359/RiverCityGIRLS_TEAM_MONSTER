@@ -9,6 +9,9 @@
 
 #include "objectManager.h"//추가
 
+#include "gameManager.h"
+
+
 player::player()
 {
 }
@@ -34,8 +37,8 @@ HRESULT player::init()
     _shadowImg = IMAGEMANAGER->findImage("SHADOW");
 
     //그림자의 초기 좌표값 및 중점
-    _sX = WINSIZEX / 2;
-    _sY = WINSIZEY - 100;
+    _sX = 415;
+    _sY = 615;
 
     _pX = _sX; // 플레이어의 x는 그림자X값과 같다.
     _pY = _sY - _playerImg->getFrameHeight() / 2;
@@ -58,7 +61,7 @@ HRESULT player::init()
     _DK = false;
     _LK = false;
 
-
+    _hp = 24;
     return S_OK;
 }
 
@@ -78,12 +81,9 @@ void player::update()
 
     _state->update();
     _playerImg = _state->getPlImg();
+    
 
-    //플레이어가 맞았을떄
-    if (_isGetHit)
-    {
-        //_hp-=   
-    }
+
 }
 
 void player::render()
@@ -117,6 +117,13 @@ void player::render()
     TextOut(getMemDC(), 0, 140, str, strlen(str));
     sprintf_s(str, "_SY  : %f", _sY );
     TextOut(getMemDC(), 0, 160, str, strlen(str));
+
+    sprintf_s(str, "_LK  : %d", _LK);
+    TextOut(getMemDC(), 0, 180, str, strlen(str));
+
+
+
+
 }
 
 void player::stateRender(animation* motion)

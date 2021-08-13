@@ -17,18 +17,18 @@ HRESULT playGround::init()
 
 	_streamSwitch = true;
 
-	_imageStorage = new imageStorage;
-	_imageStorage->init();
+	//_imageStorage = new imageStorage;
+	//_imageStorage->init();
 
 	//_sfxStorage = new sfxStorage;
 	//_sfxStorage->init();
 
-	_gameManager = new gameManager;
-	_gameManager->init();
+	//_gameManager = new gameManager;
+	//_gameManager->init();
 
 
 
-	//SCENEMANAGER->addScene("imageStorage", _imageStorage);
+	SCENEMANAGER->addScene("imageStorage", new imageStorage);
 
 	//스테이지(씬 매니저)
 	SCENEMANAGER->addScene("introVid", new introVideo);
@@ -39,7 +39,7 @@ HRESULT playGround::init()
 	//SCENEMANAGER->addScene("bossStage2", new bossStage2);
 	SCENEMANAGER->changeScene("introVid");
 
-	//SOUNDMANAGER->play("")
+
 
 	return S_OK;
 }
@@ -49,7 +49,7 @@ void playGround::release()
 {
 	gameNode::release();
 
-	_gameManager->release();
+	//_gameManager->release();
 }
 
 //연산처리는 여기다가!
@@ -57,7 +57,7 @@ void playGround::update()
 {
 	gameNode::update();
 
-	_gameManager->update();
+	//_gameManager->update();
 
 	//EFFECTMANAGER->update();
 

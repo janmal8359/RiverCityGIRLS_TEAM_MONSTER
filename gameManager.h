@@ -4,6 +4,11 @@
 #include "progressBar.h"
 
 
+
+class pixelCollisionClass;
+
+class player;
+
 struct UIBar
 {
 	image* _image;
@@ -44,11 +49,14 @@ private:
 	image* mScript;
 	image* scriptName;
 
-	//progressBar* _skip;
-	//float _currentGauge, _maxGauge;
+
 	
 
 	int _playerHP;
+
+	player* _player;
+
+	pixelCollisionClass* _pix;
 
 public:
 	gameManager();
@@ -68,5 +76,12 @@ public:
 
 	bool getScriptStart() { return scriptStart; }
 	void setScriptStart(bool start) { scriptStart = start; }
+
+
+
+
+	void setPixelM(pixelCollisionClass* pixel) { _pix = pixel; }
+
+	void setPlayer(player* pl) { _player = pl; }
 };
 

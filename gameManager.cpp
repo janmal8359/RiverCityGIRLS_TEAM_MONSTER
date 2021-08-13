@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "gameManager.h"
+#include "pixelCollisionClass.h"
 #include "player.h"
+
+
 
 gameManager::gameManager()
 {
@@ -21,12 +24,12 @@ HRESULT gameManager::init()
 	_playerHPBar._rc = RectMakeCenter(450, 86, _playerHPBar._image->getWidth(), _playerHPBar._image->getHeight());
 
 	//플레이어 HP
-	_playerHP = 24;
+	_playerHP = _player->getPlayerHp();
 
 	for (int i = 0; i < _playerHP; i++)
 	{
 		_playerHPPoint[i]._image = IMAGEMANAGER->findImage("BATTLE_HP");
-		_playerHPPoint[i]._rc = RectMakeCenter(270+i*16, 53, _playerHPPoint[i]._image->getWidth(), _playerHPPoint[i]._image->getHeight());
+		_playerHPPoint[i]._rc = RectMakeCenter(270 + i * 16, 53, _playerHPPoint[i]._image->getWidth(), _playerHPPoint[i]._image->getHeight());
 	}
 
 	//대화 스크립트
@@ -67,6 +70,7 @@ void gameManager::release()
 
 void gameManager::update()
 {
+	_playerHP = _player->getPlayerHp();
 	/*_skip->setGauge(_currentGauge, _maxGauge);
 	_skip->update();
 
@@ -78,14 +82,14 @@ void gameManager::update()
 	}*/
 
 	//플레이어 HP
-	if (KEYMANAGER->isOnceKeyDown(VK_F3) && _playerHP > 0)
-	{
-		_playerHP -=1;
-	}
-	if (KEYMANAGER->isOnceKeyDown(VK_F4) && _playerHP < 24)
-	{
-		_playerHP +=1;
-	}
+	//if (KEYMANAGER->isOnceKeyDown(VK_F3) && _playerHP > 0)
+	//{
+	//	_playerHP -=1;
+	//}
+	//if (KEYMANAGER->isOnceKeyDown(VK_F4) && _playerHP < 24)
+	//{
+	//	_playerHP +=1;
+	//}
 	for (int i = 0; i < _playerHP; i++) 
 	{
 		_playerHPPoint[i]._rc = RectMakeCenter(270 + i * 16, 53, _playerHPPoint[i]._image->getWidth(), _playerHPPoint[i]._image->getHeight());
@@ -143,6 +147,8 @@ void gameManager::render()
 {
 	_playerHPBar._image->render(getMemDC(), _playerHPBar._rc.left, _playerHPBar._rc.top);
 	_playerProfile._image->render(getMemDC(), _playerProfile._rc.left, _playerProfile._rc.top);
+
+
 	for (int i = 0; i < _playerHP; i++) {
 		_playerHPPoint[i]._image->render(getMemDC(), _playerHPPoint[i]._rc.left, _playerHPPoint[i]._rc.top);
 	}
@@ -180,7 +186,8 @@ void gameManager::render()
 	}
 	if (!mapLocked)
 	{
-		//카메라 움직임,.??
+		//카메라 움직임,.????/ 나도 잘모르겟음 *한별남김
+
 	}
 
 	//_skip->render();

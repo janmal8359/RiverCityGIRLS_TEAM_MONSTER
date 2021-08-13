@@ -43,6 +43,9 @@ class objectManager;//추가
 class enemyManager;
 
 
+class gameManager;
+
+
 class player : public gameNode
 {
 private:
@@ -55,6 +58,8 @@ private:
 	objectManager* _objectManager;//추가
 
 	enemyManager* _enemyManager;
+
+	gameManager* _gM;
 
 	enemy* _enemy;
 
@@ -165,7 +170,7 @@ public:
 
 	//플레이어 체력 
 	int getPlayerHp() { return _hp; }
-	void setPlayerHp(int playerHp) { _hp = playerHp; }
+	void setPlayerHp(int playerHp) { _hp -= playerHp; }
 
 	//플레이어 직사각형 설정
 	RECT getPlayerRc() { return _playerRc; }
@@ -216,6 +221,9 @@ public:
 	void setLK(bool Lk) { _LK = Lk; }
 	void setUK(bool Uk) { _UK = Uk; }
 	void setDK(bool Dk) { _DK = Dk; }
+
+
+	void setGm(gameManager* gm) { _gM = gm; }
 
 
 };
