@@ -69,14 +69,14 @@ void camera::update()
     case stageImg::SECOND_STAGE:
         //_camX = 0;
         //_camY = 0;
-        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage2");
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stagePixel4");
         _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel2");
         break;
     case stageImg::THIRD_STAGE:
         //_camX = 0;
        // _camY = 0;
-        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage3");
-        _pixelImg = IMAGEMANAGER->findImage("STAGE_stage1Pixel3");
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_normal");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_normalPixel");
         break;
     case stageImg::BOSS_STAGE1:
         //_camX = 0;

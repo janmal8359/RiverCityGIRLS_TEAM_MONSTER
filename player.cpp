@@ -103,7 +103,7 @@ void player::render()
 
     sprintf_s(str, "_SX  : %f", _sX);
     TextOut(getMemDC(), 0, 140, str, strlen(str));
-    sprintf_s(str, "_SY  : %f", _sY);
+    sprintf_s(str, "_SY  : %f", _sY );
     TextOut(getMemDC(), 0, 160, str, strlen(str));
 }
 

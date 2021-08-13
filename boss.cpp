@@ -84,8 +84,8 @@ void boss::render()
 	_state->render();
 
 	char str[128];
-	sprintf_s(str, "_sx : %.2f  _sy : %.2f", _sx, _sy);
-	TextOut(getMemDC(), 10, 150, str, strlen(str));
+	/*sprintf_s(str, "_sx : %.2f  _sy : %.2f", _sx, _sy);
+	TextOut(getMemDC(), 10, 150, str, strlen(str));*/
 
 	sprintf_s(str, "jump : %d", (int)_isJump);
 	TextOut(getMemDC(), 10, 300, str, strlen(str));

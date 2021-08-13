@@ -56,7 +56,7 @@ void playGround::update()
 
 	_gameManager->update();
 
-	if (KEYMANAGER->isOnceKeyDown('4'))
+	/*if (KEYMANAGER->isOnceKeyDown('4'))
 	{
 		SCENEMANAGER->changeScene("stage1");
 	}
@@ -75,7 +75,7 @@ void playGround::update()
 	if (KEYMANAGER->isOnceKeyDown('8'))
 	{
 		SCENEMANAGER->changeScene("bossStage2");
-	}
+	}*/
 
 	//스테이지(씬 매니저)
 	SCENEMANAGER->update();

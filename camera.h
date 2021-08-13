@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 
+
 enum class stageImg
 {
 	FIRST_STAGE,
@@ -10,6 +11,7 @@ enum class stageImg
 	BOSS_STAGE2,
 };
 
+class pixelCollisionClass;
 
 class camera : public gameNode
 {
@@ -28,7 +30,7 @@ private:
 	float _camX, _camY;
 	float _camXrc, _camYrc;
 
-
+	pixelCollisionClass* _pixel;
 
 	 
 public:
