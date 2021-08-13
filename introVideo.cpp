@@ -24,7 +24,15 @@ HRESULT introVideo::init()
 
     MCIWndPlay(_vid);
 
-    
+    _gameManager = new gameManager;
+    _gameManager->init();
+
+    _currentGauge = 0;
+    _maxGauge = 206;
+
+    _skip = new progressBar;
+    _skip->init(WINSIZEX - 250, 20, 206, 78);
+    _skip->setGauge(_currentGauge, _maxGauge);
 
 
 
@@ -44,11 +52,31 @@ void introVideo::update()
 
     }
     
-    if (KEYMANAGER->isOnceKeyDown(VK_F5))
+    //if (KEYMANAGER->isOnceKeyDown(VK_F5))
+    //{
+    //    MCIWndDestroy(_vid);
+    //    SCENEMANAGER->changeScene("stage1");
+    //}
+
+    _skip->setGauge(_currentGauge, _maxGauge);
+    _skip->update();
+
+    if (_currentGauge >= _maxGauge)
     {
+        _gameManager->setScriptEnd(true);
+        _gameManager->setScriptStart(false);
+        _currentGauge = 0;
         MCIWndDestroy(_vid);
         SCENEMANAGER->changeScene("stage1");
-    
+    }
+
+    if (KEYMANAGER->isStayKeyDown(VK_RETURN))
+    {
+        _currentGauge += 2;
+    }
+    if (KEYMANAGER->isOnceKeyUp(VK_RETURN))
+    {
+        _currentGauge = 0;
     }
     //if (KEYMANAGER->isOnceKeyUp(VK_RETURN))
     //{
@@ -66,5 +94,6 @@ void introVideo::update()
 
 void introVideo::render()
 {
+    _skip->render();
     //SCENEMANAGER->render();
 }

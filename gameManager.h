@@ -44,8 +44,8 @@ private:
 	image* mScript;
 	image* scriptName;
 
-	progressBar* _skip;
-	float _currentGauge, _maxGauge;
+	//progressBar* _skip;
+	//float _currentGauge, _maxGauge;
 	
 
 	int _playerHP;
@@ -62,5 +62,11 @@ public:
 	void scriptPlay();
 
 	void eventMap();
+
+	bool getScriptEnd() { return scriptEnd; }
+	void setScriptEnd(bool end) { scriptEnd = end; }
+
+	bool getScriptStart() { return scriptStart; }
+	void setScriptStart(bool start) { scriptStart = start; }
 };
 
