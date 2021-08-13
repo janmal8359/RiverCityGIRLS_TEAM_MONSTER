@@ -15,6 +15,10 @@ void run::release()
 void run::update()
 {
 	state::update();
+    if (_player->getPlayerHp() < 1)
+    {
+        _player->setState(new die);
+    }
 
 	_playerImg = IMAGEMANAGER->findImage("PLAYER_run");
 }

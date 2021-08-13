@@ -20,6 +20,7 @@ void enemyManager::release()
 
 void enemyManager::update()
 {
+	//setSchoolGirl();
 	//for (_viGirl = _vGirl.begin(); _viGirl != _vGirl.end(); ++_viGirl)
 	for (int i = 0; i < _vGirl.size(); ++i)
 	{
@@ -46,7 +47,7 @@ void enemyManager::setSchoolGirl()
 		schoolGirl1->init(PointMake(i, i));
 		schoolGirl1->getEnemyState()->setEnemy(schoolGirl1);
 		_vGirl.push_back(schoolGirl1);
-
+	
 	}
 	//enemy* schoolGirl1;
 	//schoolGirl1 = new schoolGirl;

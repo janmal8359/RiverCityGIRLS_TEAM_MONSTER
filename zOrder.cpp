@@ -30,9 +30,8 @@ HRESULT zOrder::init()
 
 	_camera->setStage((int)stageImg::FIRST_STAGE);
 
-	_boss->setPlayerMemoryAddressLink(_player);
-	_boss->setCameraMemoryAddressLink(_camera);
-	_boss->init();
+
+
 
 	//_enemy = new enemy;
 	//_enemy->init();
@@ -40,7 +39,7 @@ HRESULT zOrder::init()
 
 	_enemyManager->init();
 	_enemyManager->setSchoolGirl();
-
+	
 	_player->init();
 	_player->setCamera(_camera);
 	_player->setBossMemoryAddressLink(_boss);
@@ -73,8 +72,9 @@ HRESULT zOrder::init()
 
 	_camera->init();
 
-	_boss->init();
 
+	_boss->init();
+	
 	_enemy->init();
 
 	_player->init();
@@ -82,19 +82,20 @@ HRESULT zOrder::init()
 
 
 
-	//for (_enemyManager->getVIGirl() = _enemyManager->getVGirl().begin(); _enemyManager->getVIGirl() != _enemyManager->getVGirl().end(); ++_enemyManager->getVIGirl())
-//{
-//	_player->setEnemyMemoryAddressLink((*_enemyManager->getVIGirl()));
-//}
-	for (int i = 0; i < _enemyManager->getVGirl().size(); )
-	{
-		_player->setEnemyManagerMemoryAddressLink(_enemyManager);
-		_enemyManager->getVGirl()[i]->setPlayerMemoryLink(_player);
 
-		++i;
-	}
-	//_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
-	//_enemy->setCameraMemoryLink(_camera);				//카메라 연동
+
+		for (int i = 0; i < _enemyManager->getVGirl().size(); )
+		{
+			_player->setEnemyManagerMemoryAddressLink(_enemyManager);
+			_enemyManager->getVGirl()[i]->setPlayerMemoryLink(_player);
+
+			++i;
+		}
+	
+
+
+	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
+	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
 
 	for (int i = 0; i < _objectManager->getVObject().size();)
 	{
@@ -110,7 +111,7 @@ HRESULT zOrder::init()
 	//_vRender.push_back(_enemy);
 
 	_vRender.push_back(_boss);
-	
+
 	
 	for (int i = 0; i < _objectManager->getVObject().size(); ++i)
 	{
@@ -121,10 +122,13 @@ HRESULT zOrder::init()
 	//_ef->init(IMAGEMANAGER->addFrameImage("smash", "resources/IMG/effect/Boss smash.bmp", 960, 89, 10, 1, true, RGB(255, 0, 255)), 96, 89, 1, 0.5f);
 
 
-	for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
-	{
-		_vRender.push_back(_enemyManager->getVGirl()[i]);
-	}
+		for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
+		{
+			_vRender.push_back(_enemyManager->getVGirl()[i]);
+		}
+	
+
+
 	//_vRender.push_back(_enemyManager);
 	//_vRender.push_back(_boss);
 
@@ -147,8 +151,9 @@ void zOrder::update()
 
 	_boss->setPlayerMemoryAddressLink(_player);
 
+	
 	_boss->update();
-
+	
 	_objectManager->update();
 
 	_pixel->setPixelPlayer(_player);
@@ -157,7 +162,9 @@ void zOrder::update()
 	//_enemy->update();
 	//_enemy->getEnemyState()->setEnemy(_enemy);
 
-	_enemyManager->update();
+		_enemyManager->update();
+	
+
 
 	_camera->update();
 
@@ -181,7 +188,7 @@ void zOrder::render()
 {
 
 	_camera->render();
-	_gaM->render();
+	
 
 	if (KEYMANAGER->isToggleKey(VK_F8))
 	{
@@ -195,44 +202,16 @@ void zOrder::render()
 		(*_viRender)->render();
 	}
 	//_ef->render();
-
+	_gaM->render();
 	char str[128];
-
+	
 	sprintf_s(str, "vecterSize : %d", _vRender.size());
 	TextOut(getMemDC(), 1000, 100, str, strlen(str));
 
+	sprintf_s(str, "getstage : %d", _camera->getstage());
+	TextOut(getMemDC(), 1000, 200, str, strlen(str));
 }
 
-//void zOrder::ZOrder()
-//{
-//	//다중적을 담고있는 em에서 가져와서 넣어주는 역할
-//	//vector<enemy*> _vEnemy = _em->getVEnemy();
-//
-//	_mobj.clear();
-//
-//	//플레이어 삽입
-//	_mobj.insert(make_pair(_player->getShadowY(), 0));
-//
-//	mapIdx = _mobj.size();
-//
-//	//적이 추가 되었을때
-//	//for (int i = 0; i < _vEnemy.size(); i++)
-//	//{
-//	//	(*_viRender)->render();
-//	//}
-//
-//	_camera->render();
-//
-//	if (KEYMANAGER->isToggleKey(VK_F8))
-//	{
-//		_pixel->render();
-//	}
-//
-//	for (_viRender = _vRender.begin(); _viRender != _vRender.end(); _viRender++)
-//	{
-//		(*_viRender)->render();
-//	}
-//}
 
 void zOrder::selectionSort()
 {
@@ -269,28 +248,4 @@ void zOrder::swap(gameNode** a, gameNode** b)
 	*a = *b;
 	*b = temp;
 }
-
-//void zOrder::draw()
-//{
-//	for (_miobj = _mobj.begin(); _miobj != _mobj.end(); ++_miobj)
-//	{
-//		if (_miobj->second == 0)
-//		{
-//			_player->render();
-//		}
-//		if (_miobj->second == 1)
-//		{
-//			_enemy->render();
-//		}
-//		if (_miobj->second == 2)
-//		{
-//			_boss->render();
-//		}
-//	}
-//
-//	//gameNode 
-//	gameNode* temp = *a;
-//	*a = *b;
-//	*b = temp;
-//}
 

@@ -4,8 +4,10 @@
 
 HRESULT die::init()
 {
-    _playerImg = IMAGEMANAGER->findImage("PLAYER_die");
-    return S_OK;
+    _playerImg = IMAGEMANAGER->findImage("PLAYER_dead");
+
+	_playerAni = KEYANIMANAGER->findAnimation("PLAYER_dead");
+	return S_OK;
 }
 
 void die::release()
@@ -16,7 +18,7 @@ void die::update()
 {
     state::update();
 
-    _playerImg = IMAGEMANAGER->findImage("PLAYER_die");
+    _playerImg = IMAGEMANAGER->findImage("PLAYER_dead");
 }
 
 void die::render()

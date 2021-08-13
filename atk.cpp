@@ -16,7 +16,10 @@ void atk::release()
 void atk::update()
 {
 	state::update();
-
+	if (_player->getPlayerHp() < 1)
+	{
+		_player->setState(new die);
+	}
 	callBk();
 	if (KEYMANAGER->isOnceKeyDown('Q') && _attackIdx < 2)
 	{

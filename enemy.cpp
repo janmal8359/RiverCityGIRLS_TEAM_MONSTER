@@ -201,19 +201,23 @@ void enemy::render()
 
 	
 	
-	if (!_isVanishImg)
-	{
-		_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
-		_enemyState->render();
-	}
+
+		if (!_isVanishImg)
+		{
+			_enemyShadowImg->render(getMemDC(), _enemyShadowRc.left, _enemyShadowRc.top);
+			_enemyState->render();
+		}
+	
+
 	
 }
 
 void enemy::enemyStateRender(animation* motion)
 {
+	
+		_enemyImg->aniRender(getMemDC(), _enemyRc.left, _enemyRc.top, motion);
 
-	_enemyImg->aniRender(getMemDC(), _enemyRc.left, _enemyRc.top, motion);
-
+	
 }
 
 void enemy::enemyMove()

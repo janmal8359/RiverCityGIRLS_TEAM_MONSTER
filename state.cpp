@@ -24,10 +24,7 @@ void state::update()
 	stateChange();
 	ani();
 
-	if (_player->getPlayerHp() < 1)
-	{
-		_player->setState(new die);
-	}
+
 
 	KEYANIMANAGER->update();
 }

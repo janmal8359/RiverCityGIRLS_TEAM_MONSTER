@@ -15,6 +15,10 @@ void dashAttack::release()
 void dashAttack::update()
 {
     state::update();
+    if (_player->getPlayerHp() < 1)
+    {
+        _player->setState(new die);
+    }
     callBk();
     _playerImg = IMAGEMANAGER->findImage("PLAYER_dashAttack");
 }

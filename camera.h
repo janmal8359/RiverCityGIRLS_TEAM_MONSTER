@@ -50,6 +50,7 @@ public:
 
 
 	 void setStage(int nowStageNum) { _stageImg = (stageImg)nowStageNum; }
+	 stageImg getstage() { return _stageImg; }
 
 	 image* getBgImage() { return _backGroundImg; }
 
@@ -60,6 +61,7 @@ public:
 
 	 void cameraLock(float x, float y);
 
+	 
 	 
 };
 

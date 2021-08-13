@@ -4,6 +4,8 @@
 #include "boss.h"
 #include "schoolGirl.h"
 #include <vector>
+#include "camera.h"
+
 
 
 class enemyManager : public gameNode
@@ -18,8 +20,7 @@ private:
 
 	vGirl _vGirl;
 	viGirl _viGirl;
-
-	
+	camera* _cam;
 
 public:
 	
@@ -39,4 +40,5 @@ public:
 	vGirl getVGirl() { return _vGirl; }
 	viGirl getVIGirl() { return _viGirl; }
 
+	void setCam(camera* cam) { _cam = cam; }
 };
