@@ -50,13 +50,13 @@ void objectManager::render()
 
 void objectManager::setObject()
 {
-	//int num = 0;
+	//int num = 0;  
 	//
 	//for (int i = 0; i < 6; i++)
 	//{
 	//	switch (num)
 	//	{
-	//	case 0://책상
+	//	case 0://책상 - 복구 가능
 	//		
 				for (int j = 0; j < 2; j++)
 				{

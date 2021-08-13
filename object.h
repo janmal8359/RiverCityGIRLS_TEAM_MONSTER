@@ -1,7 +1,9 @@
 #pragma once
 #include "gameNode.h"
 #include "player.h"
-#include "pixelCollisionClass.h"
+//#include "pixelCollisionClass.h"
+
+class pixelCollisionClass;//-삭제 가능
 
 enum OBJECTTYPE
 {
@@ -22,7 +24,7 @@ private:
 	
 	player* _player;
 
-	pixelCollisionClass* _pixel;
+	pixelCollisionClass* _pixel;// - 삭제 가능
 
 	image* _objectImg;
 
@@ -36,8 +38,6 @@ private:
 	float _particleAngle;			//기둥 파편의 각도값
 	float _particleSpeed;			//기둥 파편의 속도값
 	float _particleGravity;			//기둥 파편의 중력값
-
-	bool _isCheck;
 
 public:
 	object();

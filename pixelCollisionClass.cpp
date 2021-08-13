@@ -34,6 +34,8 @@ HRESULT pixelCollisionClass::init(float x, float y, int stageType)
 
 	_stageType = FIRSTSTAGE;
 
+	_isCheck = false;
+
 	return S_OK;
 }
 
@@ -240,6 +242,7 @@ void pixelCollisionClass::Colloision()
 				//아이콘 출현 구간
 				else if ((R == 0 && G == 255 && B == 255) && KEYMANAGER->isOnceKeyDown('J'))	//민트 스테이지2 넘어갈 때
 				{
+					_isCheck = false;
 					//_player->setSpeed(6);
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
@@ -252,8 +255,9 @@ void pixelCollisionClass::Colloision()
 				}
 				else if (R == 100 && G == 0 && B == 100 && KEYMANAGER->isOnceKeyDown('J'))	//스테이지2에서 스테이지1 넘어갈 때
 				{
+					_isCheck = true;
 					//_player->setSpeed(6);
-					// 플레이어 주변에 문 애니메이션 출력
+					// 플레이어 주변에 문 애니메이션 출력 _isCheck->setIsCheck(getIsCheck()) == true
 					//특정 키 입력시 다음 스테이지로 이동
 					_camera->setStage(0);
 					_player->setShadowX(669);
@@ -264,6 +268,7 @@ void pixelCollisionClass::Colloision()
 				}
 				else if (R == 100 && G == 100 && B == 100 && KEYMANAGER->isOnceKeyDown('J'))	//스테이지2에서 보스 스테이지 넘어갈 때
 				{
+					_isCheck = false;
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
 					//특정 키 입력시 다음 스테이지로 이동
@@ -327,6 +332,7 @@ void pixelCollisionClass::Colloision()
 				//아이콘 출현 구간
 				else if (R == 0 && G == 255 && B == 255 && KEYMANAGER->isOnceKeyDown('J'))	//민트 스테이지2 넘어갈 때
 				{
+					_isCheck = false;
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
 					//특정 키 입력시 다음 스테이지로 이동
@@ -339,6 +345,7 @@ void pixelCollisionClass::Colloision()
 				}
 				else if (R == 100 && G == 0 && B == 100 && KEYMANAGER->isOnceKeyDown('J'))	//스테이지2에서 스테이지1 넘어갈 때
 				{
+					_isCheck = true;
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
 					//특정 키 입력시 다음 스테이지로 이동
@@ -351,6 +358,7 @@ void pixelCollisionClass::Colloision()
 				}
 				else if (R == 100 && G == 100 && B == 100 && KEYMANAGER->isOnceKeyDown('J'))	//스테이지2에서 스테이지3 넘어갈 때
 				{
+					_isCheck = false;
 					//_player->setSpeed(6);
 					// 플레이어 주변에 문 애니메이션 출력
 					//특정 키 입력시 다음 스테이지로 이동
