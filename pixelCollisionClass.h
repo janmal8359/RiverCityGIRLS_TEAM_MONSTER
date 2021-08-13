@@ -26,7 +26,7 @@ private:
 
 	player* _player;
 
-	firstStage*		_first;
+	firstStage*		_first; 
 	secondStage*	_second;
 	thirdStage*		_third;
 	bossStage1*		_boss1;

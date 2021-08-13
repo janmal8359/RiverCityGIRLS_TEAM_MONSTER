@@ -57,7 +57,7 @@ public:
 	HRESULT init();					//초기화
 	void release();					//메모리 해제
 	void update();					//연산함수
-	void render();					//그리기 함수
+	virtual void render() override;					//그리기 함수
 
 	void enemyStateRender(animation* motion);				//스테이트 렌더?
 	void enemyMove();										//움직임

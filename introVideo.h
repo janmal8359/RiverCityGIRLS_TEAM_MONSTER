@@ -10,6 +10,9 @@ class introVideo : public gameNode
 {
 private:
 	HWND _vid;
+	int _count;
+	bool _iskeydown;
+
 
 public:
 	introVideo();

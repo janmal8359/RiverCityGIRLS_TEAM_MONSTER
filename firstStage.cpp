@@ -12,14 +12,15 @@ firstStage::~firstStage()
 
 HRESULT firstStage::init()
 {
-	IMAGEMANAGER->findImage("STAGE_stage1");
+	//IMAGEMANAGER->findImage("STAGE_stage1");
 	
 	//_camera = new camera;
 	//_camera->init();
 	//_camera->setStage(SECOND_STAGE);
 	// 
 	//
-	//_player = new player;
+
+
 	//_boss = new boss;
 	//
 	//_player->init();
@@ -97,7 +98,7 @@ void firstStage::release()
 
 void firstStage::update()
 {
-	//_player->update();
+	
 	//
 	//_player->getState()->setPlayer(_player);
 	//
@@ -156,9 +157,9 @@ void firstStage::render()
 	//	_pixel->render();
 	//}
 
-	_zO->render();
-
 	//_zO->render();
+
+	_zO->render();
 
 	//_zO->render();
 	//_object->render();

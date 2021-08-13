@@ -87,6 +87,7 @@ void gameNode::update()
 
 void gameNode::render()
 {
+
 }
 
 float gameNode::getPosY()

@@ -93,7 +93,7 @@ public:
     HRESULT init();			//초기화 함수
     void release();			//메모리 해제 함슈
     void update();			//연산하는 함수
-    void render();			//그리기 함수
+	void render() ;	//그리기 함수
 
 	void stateRender(animation* motion);
 	void move();

@@ -20,6 +20,7 @@ HRESULT player::init()
 
     _state = new idle;
     _state->init();
+    _state->setPlayer(this);
 
     //_sfxStorage = new sfxStorage;
     //_sfxStorage->init();
@@ -82,6 +83,8 @@ void player::update()
 
 void player::render()
 {
+
+
     _shadowImg->render(getMemDC(), _shadowRc.left, _shadowRc.top);
     _state->render();
 
