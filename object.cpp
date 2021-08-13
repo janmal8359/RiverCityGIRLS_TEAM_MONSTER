@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "object.h"
+#include "pixelCollisionClass.h" // - 삭제 가능
 
 object::object()
 {
@@ -33,6 +34,7 @@ HRESULT object::init(float x, float y, int objectType)
 
 	_objectRc = RectMakeCenter(_objectOX, _objectOY, _objectImg->getWidth(), _objectImg->getHeight());
 	
+
 	return S_OK;
 }
 
@@ -50,5 +52,9 @@ void object::update()
 
 void object::render()
 {
-	_objectImg->render(getMemDC(), _objectRc.left, _objectRc.top);
+	//if (KEYMANAGER->isOnceKeyUp('J') && _pixel->setIsCheck(true))
+	//{
+		_objectImg->render(getMemDC(), _objectRc.left, _objectRc.top);
+	//}
+
 }

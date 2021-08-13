@@ -33,8 +33,6 @@ private:
 
 	boss* _boss;
 
-	object* _object;
-
 	objectManager* _objectManager;
 
 	camera* _camera;

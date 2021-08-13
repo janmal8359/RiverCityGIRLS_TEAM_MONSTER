@@ -51,6 +51,7 @@ private:
 	//player πÊ«‚
 	int _dir;
 
+	bool _isCheck;
 public:
 	pixelCollisionClass();
 	~pixelCollisionClass();
@@ -74,4 +75,6 @@ public:
 	void setBOSSSTAGE1MemoryAddressLink(bossStage1* boss1) { _boss1 = boss1; }
 	void setBOSSSTAGE2MemoryAddressLink(bossStage2* boss2) { _boss2 = boss2; }
 	void setCAMERAMemoryAddressLink(camera* camera) { _camera = camera; }
+
+	//void setIsCheck(bool isCheck) { _isCheck = isCheck; }
 };

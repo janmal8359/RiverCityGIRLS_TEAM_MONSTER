@@ -1,6 +1,9 @@
 #pragma once
 #include "gameNode.h"
 #include "player.h"
+//#include "pixelCollisionClass.h"
+
+class pixelCollisionClass;//-삭제 가능
 
 enum OBJECTTYPE
 {
@@ -20,6 +23,8 @@ private:
 	//bool _isShot;						//기둧 파편 발사
 	
 	player* _player;
+
+	pixelCollisionClass* _pixel;// - 삭제 가능
 
 	image* _objectImg;
 
@@ -81,5 +86,7 @@ public:
 	void setObjectImg(image* objectImg) { _objectImg = objectImg; }
 
 	void setPlayerMemoryAddrsLink(player* player) { _player = player; }
+
+	virtual float getPosY() { return _objectMY; }
 };
 

@@ -104,7 +104,7 @@ HRESULT zOrder::init()
 	//_vRender.push_back(_enemy);
 
 	_vRender.push_back(_boss);
-	_vRender.push_back(_objectManager);
+	
 	
 	for (int i = 0; i < _objectManager->getVObject().size(); ++i)
 	{
