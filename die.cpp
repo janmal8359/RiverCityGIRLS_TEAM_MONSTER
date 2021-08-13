@@ -14,14 +14,14 @@ void die::release()
 
 void die::update()
 {
-    die::update();
+    state::update();
 
     _playerImg = IMAGEMANAGER->findImage("PLAYER_die");
 }
 
 void die::render()
 {
-    die::render();
+	state::render();
 }
 
 void die::stateChange()
