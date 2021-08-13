@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "camera.h"
+#include "pixelCollisionClass.h"
 
 HRESULT camera::init()
 {

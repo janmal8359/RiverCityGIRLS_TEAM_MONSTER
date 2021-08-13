@@ -53,8 +53,6 @@ void pixelCollisionClass::update()
 	if (_stageType == THIRDSTAGE) _stage = IMAGEMANAGER->findImage("STAGE_normalPixel");
 	if (_stageType == BOSSSTAGE) _stage = IMAGEMANAGER->findImage("STAGE_bossPixel");
 
-	_dir = _player->getDir();
-
 	Colloision();
 }
 
@@ -66,7 +64,7 @@ void pixelCollisionClass::render()
 
 //	TextOut(getMemDC(), 0, WINSIZEY / 2, str, strlen(str));
 
-	_stage->render(getMemDC(), 0-_camera->getCamX(),0- _camera->getCamY());
+	_stage->render(getMemDC(), 0, 0, _camera->getCamX(), _camera->getCamY(), WINSIZEX, WINSIZEY);
 }
 
 void pixelCollisionClass::Colloision()
@@ -86,7 +84,7 @@ void pixelCollisionClass::Colloision()
 				{
 					if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
 					{
-						_player->setShadowX(_player->getShadowX() + _player->getSpeed() * 1.5);
+						_player->setShadowX(_player->getShadowX() + _player->getSpeed() );
 
 
 						_player->setSpeed(0);
@@ -94,7 +92,7 @@ void pixelCollisionClass::Colloision()
 
 					if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
 					{
-						_player->setShadowX(_player->getShadowX() - _player->getSpeed() * 1.5);
+						_player->setShadowX(_player->getShadowX() - _player->getSpeed());
 
 						_player->setSpeed(0);
 					}
@@ -106,7 +104,7 @@ void pixelCollisionClass::Colloision()
 
 					if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
 					{
-						_player->setShadowX(_player->getShadowX() + _player->getSpeed() * 1.5);
+						_player->setShadowX(_player->getShadowX() + _player->getSpeed());
 						
 
 						_player->setSpeed(0);
@@ -114,7 +112,7 @@ void pixelCollisionClass::Colloision()
 					
 					if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
 					{
-						_player->setShadowX(_player->getShadowX() - _player->getSpeed() * 1.5);
+						_player->setShadowX(_player->getShadowX() - _player->getSpeed());
 
 						_player->setSpeed(0);
 					}
