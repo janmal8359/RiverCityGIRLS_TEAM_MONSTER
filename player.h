@@ -82,7 +82,7 @@ private:
 
 	//개떡같은 카메라 제작중
 
-	
+	stageImg _stage;
 	
 
 

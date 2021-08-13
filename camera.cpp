@@ -13,37 +13,37 @@ HRESULT camera::init()
 
     _cameraRc = RectMakeCenter(_camXrc, _camYrc, 150, 150);
 
-    switch (_stage)
+    switch (_stageImg)
     {
-    case FIRST_STAGE:
+    case stageImg::FIRST_STAGE:
         _camX = 0;
         _camY = 0;
         _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage1");
         _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel1");
         break;
-    case SECOND_STAGE:
+    case stageImg::SECOND_STAGE:
         _camX = 0;
         _camY = 0;
-        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage2");
-        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel2");
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage4");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel4");
         break;
-    case THIRD_STAGE:
+    case stageImg::THIRD_STAGE:
         _camX = 0;
         _camY = 0;
-        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage3");
-        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel3");
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_normal");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_normalPixel");
         break;
-    case BOSS_STAGE1:
+    case stageImg::BOSS_STAGE1:
         _camX = 0;
         _camY = 0;
-        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage1");
-        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel1");
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_bossStage1");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_bossPixel");
         break;
-    case BOSS_STAGE2:
+    case stageImg::BOSS_STAGE2:
         _camX = 0;
         _camY = 0;
-        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage1");
-        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel1");
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_bossStage2");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_bossPixel");
         break;
     default:
         break;
@@ -58,38 +58,37 @@ void camera::release()
 
 void camera::update()
 {
-
     switch (_stageImg)
     {
-    case FIRST_STAGE:
-        _camX = 0;
-        _camY = 0;
+    case stageImg::FIRST_STAGE:
+        //_camX = 0;
+        //_camY = 0;
         _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage1");
         _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel1");
         break;
-    case SECOND_STAGE:
-        _camX = 0;
-        _camY = 0;
-        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage2");
+    case stageImg::SECOND_STAGE:
+        //_camX = 0;
+        //_camY = 0;
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stagePixel4");
         _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel2");
         break;
-    case THIRD_STAGE:
-        _camX = 0;
-        _camY = 0;
-        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage3");
-        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel3");
+    case stageImg::THIRD_STAGE:
+        //_camX = 0;
+       // _camY = 0;
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_normal");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_normalPixel");
         break;
-    case BOSS_STAGE1:
-        _camX = 0;
-        _camY = 0;
-        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage1");
-        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel1");
+    case stageImg::BOSS_STAGE1:
+        //_camX = 0;
+        //_camY = 0;
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_bossStage1");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_bossPixel");
         break;
-    case BOSS_STAGE2:
-        _camX = 0;
-        _camY = 0;
-        _backGroundImg = IMAGEMANAGER->findImage("STAGE_stage1");
-        _pixelImg = IMAGEMANAGER->findImage("STAGE_stagePixel1");
+    case stageImg::BOSS_STAGE2:
+        //_camX = 0;
+        //_camY = 0;
+        _backGroundImg = IMAGEMANAGER->findImage("STAGE_bossStage2");
+        _pixelImg = IMAGEMANAGER->findImage("STAGE_bossPixel");
         break;
     default:
         break;

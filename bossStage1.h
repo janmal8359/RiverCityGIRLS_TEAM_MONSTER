@@ -3,6 +3,7 @@
 #include "camera.h"
 #include "player.h"
 #include "state.h"
+#include "zOrder.h"
 
 class pixelCollisionClass;
 
@@ -10,6 +11,8 @@ class pixelCollisionClass;
 class bossStage1 : public gameNode
 {
 private:
+
+	zOrder* _zO;
 	//오브젝트
 	float _X, _Y;
 

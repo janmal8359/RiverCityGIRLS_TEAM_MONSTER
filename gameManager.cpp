@@ -289,3 +289,4 @@ void gameManager::eventMap()
 	
 	chainLock->frameRender(getMemDC(), WINSIZEX / 2, 0);
 }
+

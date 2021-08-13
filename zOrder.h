@@ -46,10 +46,6 @@ public:
 	void selectionSort();
 	void swap(gameNode** a, gameNode** b);
 
-
-
-
-
 	/*void setPlayer(player* player)	 { _player = player; }
 	void setBoss(boss* boss)		 { _boss = boss; }
 	void setEnemy(enemy* enemy)		 { _enemy = enemy; }

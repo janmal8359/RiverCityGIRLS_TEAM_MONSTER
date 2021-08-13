@@ -22,6 +22,10 @@ HRESULT zOrder::init()
 	_enemy = new enemy;
 	_pixel = new pixelCollisionClass;
 
+	_camera->init();
+	_camera->setStage((int)stageImg::FIRST_STAGE);
+
+
 	_player->setBossMemoryAddressLink(_boss);
 	_player->setEnemyMemoryAddressLink(_enemy);
 	_player->setCamera(_camera);
@@ -48,8 +52,6 @@ HRESULT zOrder::init()
 	_player->init();
 
 	_pixel->init(0, 0, 0);
-
-
 
 
 
@@ -85,6 +87,8 @@ void zOrder::update()
 
 	_enemy->update();
 	_enemy->getEnemyState()->setEnemy(_enemy);
+
+	_camera->update();
 
 	selectionSort();
 

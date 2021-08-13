@@ -57,9 +57,9 @@ void playGround::update()
 
 	_gameManager->update();
 
-	EFFECTMANAGER->update();
+	//EFFECTMANAGER->update();
 
-	if (KEYMANAGER->isOnceKeyDown('4'))
+	/*if (KEYMANAGER->isOnceKeyDown('4'))
 	{
 		SCENEMANAGER->changeScene("stage1");
 	}
@@ -85,6 +85,7 @@ void playGround::update()
 	//	IMAGEMANAGER->addFrameImage("smash", "resources/IMG/effect/Boss smash.bmp", 960, 89, 10, 1, true, RGB(255, 0, 255));
 	//	IMAGEMANAGER->frameRender("smash", getMemDC(), WINSIZEX / 2, WINSIZEY / 2);
 	//}
+	}*/
 
 	//스테이지(씬 매니저)
 	SCENEMANAGER->update();
