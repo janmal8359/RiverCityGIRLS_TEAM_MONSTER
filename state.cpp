@@ -29,6 +29,12 @@ void state::update()
 
 void state::render()
 {
+
+	if (_playerAni == NULL)
+	{
+		
+	}
+
 	_player->stateRender(_playerAni);
 
 	char str[128];

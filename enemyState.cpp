@@ -52,6 +52,8 @@ void enemyState::callBk()
 enemyIdle::enemyIdle()
 {
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_idle");
+
+
 }
 
 enemyIdle::~enemyIdle()
@@ -63,7 +65,8 @@ HRESULT enemyIdle::init()
 	enemyState::init();
 
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_idle");
-	
+	_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_idleL");
+	_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_idleR");
 	return S_OK;
 }
 
@@ -197,6 +200,8 @@ enemyChase::~enemyChase()
 HRESULT enemyChase::init()
 {
 	_enemyImg = IMAGEMANAGER->findImage("SCHOOLGIRL_walk");
+	_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_walkL");
+	_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_walkR");
 	return S_OK;
 }
 
@@ -923,6 +928,8 @@ enemyJump::~enemyJump()
 
 HRESULT enemyJump::init()
 {
+	_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_jumpL");
+	_enemyAni = KEYANIMANAGER->findAnimation("SCHOOLGIRL_jumpR");
 	return S_OK;
 }
 

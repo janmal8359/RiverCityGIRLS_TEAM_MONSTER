@@ -16,38 +16,45 @@ HRESULT zOrder::init()
 	//_vRender.push_back(_player);
 	//_vRender.push_back(_enemy);
 	//_vRender.push_back(_boss);
-
-	_camera = new camera;
-	_camera->init();
-	_camera->setStage(SECOND_STAGE);
-
-	_boss = new boss;
-	_boss->setPlayerMemoryAddressLink(_player);
-	_boss->setCameraMemoryAddressLink(_camera);
-	_boss->init();
-
-	_enemy = new enemy;
-	_enemy->init();
-
 	_player = new player;
-	_player->init();
-	_player->setCamera(_camera);
+	_camera = new camera;
+	_boss = new boss;
+	_enemy = new enemy;
+	_pixel = new pixelCollisionClass;
+
 	_player->setBossMemoryAddressLink(_boss);
 	_player->setEnemyMemoryAddressLink(_enemy);
+	_player->setCamera(_camera);
+
+	_boss->setPlayerMemoryAddressLink(_player);
+	_boss->setCameraMemoryAddressLink(_camera);
 
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
 
-	_pixel = new pixelCollisionClass;
-
-	_pixel->init(0, 0, 0);
 	_pixel->setPixelPlayer(_player);
 	_pixel->setCAMERAMemoryAddressLink(_camera);		//카메라 값 연동
+	
+
+
+	_camera->init();
+
+	_camera->setStage(SECOND_STAGE);
+
+	_boss->init();
+
+	_enemy->init();
+
+	_player->init();
+
+	_pixel->init(0, 0, 0);
+
+
 
 
 
 	_vRender.push_back(_player);
-	_vRender.push_back(_enemy);
+	//_vRender.push_back(_enemy);
 	_vRender.push_back(_boss);
 
 	//_ef = new effect;
@@ -97,7 +104,7 @@ void zOrder::update()
 
 void zOrder::render()
 {
-	//draw();
+	
 	
 	_camera->render();
 
@@ -106,12 +113,18 @@ void zOrder::render()
 		_pixel->render();
 	}
 
-	for (_viRender = _vRender.begin(); _viRender != _vRender.end(); _viRender++)
+	for (_viRender = _vRender.begin(); _viRender != _vRender.end(); ++_viRender)
 	{
 		(*_viRender)->render();
 	}
 	//EFFECTMANAGER->render();
 	//_ef->render();
+
+	char str[128];
+
+	sprintf_s(str, "vecterSize : %d", _vRender.size());
+	TextOut(getMemDC(), 1000, 100, str, strlen(str));
+
 }
 
 //void zOrder::ZOrder()

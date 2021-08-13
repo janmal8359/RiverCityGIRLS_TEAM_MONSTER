@@ -8,6 +8,7 @@
 #include "enemy.h"
 #include "gameManager.h"
 
+#include "introVideo.h"
 #include "bossStage1.h"
 #include "bossStage2.h"
 #include "firstStage.h"
@@ -23,10 +24,7 @@ private:
 
 	gameManager* _gameManager;
 
-	player* _player;
-	enemy* _enemy;
 
-	boss* _boss;
 
 public:
 	playGround();

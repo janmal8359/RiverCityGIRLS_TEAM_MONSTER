@@ -7,6 +7,8 @@ HRESULT idle::init()
 	state::init();
 
 	_playerImg = IMAGEMANAGER->findImage("PLAYER_idle");
+	_playerAni = KEYANIMANAGER->findAnimation("PLAYER_idleL");
+
 	return S_OK;
 }
 

@@ -26,15 +26,16 @@ HRESULT playGround::init()
 
 
 
-	SCENEMANAGER->addScene("imageStorage", _imageStorage);
+	//SCENEMANAGER->addScene("imageStorage", _imageStorage);
 
 	//스테이지(씬 매니저)
+	SCENEMANAGER->addScene("introVid", new introVideo);
 	SCENEMANAGER->addScene("stage1", new firstStage);
-	SCENEMANAGER->addScene("stage2", new secondStage);
-	SCENEMANAGER->addScene("stage3", new thirdStage);
-	SCENEMANAGER->addScene("bossStage1", new bossStage1);
-	SCENEMANAGER->addScene("bossStage2", new bossStage2);
-	SCENEMANAGER->changeScene("stage1");
+	//SCENEMANAGER->addScene("stage2", new secondStage);
+	//SCENEMANAGER->addScene("stage3", new thirdStage);
+	//SCENEMANAGER->addScene("bossStage1", new bossStage1);
+	//SCENEMANAGER->addScene("bossStage2", new bossStage2);
+	SCENEMANAGER->changeScene("introVid");
 
 	//SOUNDMANAGER->play("")
 
@@ -98,7 +99,7 @@ void playGround::render()
 	//스테이지(씬 매니저)
 	SCENEMANAGER->render();
 
-	_gameManager->render();
+	//_gameManager->render();
 
 	//EFFECTMANAGER->render();
 

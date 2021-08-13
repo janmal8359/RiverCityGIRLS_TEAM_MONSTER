@@ -841,13 +841,13 @@ void imageStorage::update()
 
 		SCENEMANAGER->changeScene("stage1");
 	}
-	KEYANIMANAGER->update();
+//	KEYANIMANAGER->update();
 }
 void imageStorage::render()
 {
 	_background->render(getMemDC());
 	_loading->aniRender(getMemDC(), WINSIZEX - 300, WINSIZEY - 300, _load);
-	KEYANIMANAGER->render();
+	//KEYANIMANAGER->render();
 }
 
 void imageStorage::playerImage()
