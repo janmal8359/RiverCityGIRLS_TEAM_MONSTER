@@ -67,6 +67,7 @@ void objectManager::setObject()
 				}
 			}
 			break;
+<<<<<<< HEAD
 		case 1://ÁÂÃø ±âµÕ
 		{
 			for (int j = 0; j < 2; j++)
@@ -122,6 +123,8 @@ void objectManager::setObject()
 			}
 		}
 		break;
+=======
+>>>>>>> parent of 8c5bf9c (2021.08.13.4)
 		}
 
 	}

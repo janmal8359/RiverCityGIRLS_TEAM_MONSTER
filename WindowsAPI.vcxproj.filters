@@ -336,15 +336,6 @@
     <ClInclude Include="objectManager.h">
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
     </ClInclude>
-    <ClInclude Include="LPillar.h">
-      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
-    </ClInclude>
-    <ClInclude Include="RPillar.h">
-      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
-    </ClInclude>
-    <ClInclude Include="particle.h">
-      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameNode.cpp">
@@ -552,15 +543,6 @@
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
     </ClCompile>
     <ClCompile Include="objectManager.cpp">
-      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
-    </ClCompile>
-    <ClCompile Include="LPillar.cpp">
-      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
-    </ClCompile>
-    <ClCompile Include="RPillar.cpp">
-      <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
-    </ClCompile>
-    <ClCompile Include="particle.cpp">
       <Filter>playGround\1-1.STAGE_MANAGER\6.GAME\objectClass</Filter>
     </ClCompile>
   </ItemGroup>
