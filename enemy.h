@@ -79,6 +79,8 @@ public:
 	void enemyMove();										//움직임
 	void enemyHp();											//Hp 함수
 
+	void playerHit();										//플레이어 떄리는 함수
+
 	void enemyAni();										//적 애니메이션
 	
 

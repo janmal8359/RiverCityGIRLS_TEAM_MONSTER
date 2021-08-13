@@ -23,7 +23,7 @@ protected:
 	int _ERunAttackIdx;			//런 공격 콤보가 없어서 쓸모는 없는데 일단 만들어주자 조건을 위해
 	int _ERunAttackCount;		//런 공격시 풀리는 카운트
 
-
+	bool _isHitCheck;			//히트체크
 	int _EHurtcount;			//피격 카운트
 	animation* _enemyAni;
 
@@ -53,6 +53,9 @@ public:
 	int getEhultIdx() { return _EhultIdx; }				//피격카운트
 
 	int getEhurtcount() { return _EHurtcount; }			//피격 시간 카운트
+
+	bool gethitCheck() { return _isHitCheck; }
+	void sethitCheck(bool hitCheck) { _isHitCheck = hitCheck; }
 
 	//접근자 설정자
 	
