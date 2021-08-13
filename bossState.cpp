@@ -21,6 +21,7 @@ void bossState::update()
 	anim();
 	stateChange();
 
+	//EFFECTMANAGER->update();
 }
 
 void bossState::render()
@@ -29,6 +30,8 @@ void bossState::render()
 
 	if (_direction == (int)DIRECTION::LEFT) _boss->stateRender(_bossAnimL);
 	else if (_direction == (int)DIRECTION::RIGHT) _boss->stateRender(_bossAnimR);
+
+	//EFFECTMANAGER->render();
 
 	char str[128];
 
@@ -344,7 +347,11 @@ void attackState::anim()
 	if ((_bossAnimL->getNowPlayIdx() == 9 || _bossAnimR->getNowPlayIdx() == 9) && !_player->getIsGetHit())
 	{
 		hitCheck();
-		EFFECTMANAGER->play("EFFECT_bossSmash", WINSIZEX / 2, WINSIZEY / 2);
+	}
+
+	if ((_bossAnimL->getNowPlayIdx() == 9 || _bossAnimR->getNowPlayIdx() == 9) && _player->getIsGetHit())
+	{
+		EFFECTMANAGER->play("EFFECT_bossSmash", _player->getPlayerX(), _player->getPlayerY());
 	}
 
 	_isStart = true;
@@ -544,6 +551,7 @@ void jumpState::anim()
 			//_bossAnimL->stop();
 			//_bossAnimR->stop();
 			hitCheck();
+			EFFECTMANAGER->play("EFFECT_bossMeteor", _boss->getBossShadowX(), _boss->getBossY() + 60);
 			_isStart = true;
 		}
 	}
@@ -668,6 +676,7 @@ void dashState::stateChange()
 	if (_boss->getDistanceX() < _boss->getBossShadowWidth() && _boss->getDistanceY() < _boss->getBossShadowHeight() / 2 && _boss->getDash())
 	{
 		hitCheck();
+		EFFECTMANAGER->play("EFFECT_dashAttack", _player->getPlayerX(), _player->getPlayerY());
 		_boss->setMove(false);
 		_boss->setDash(false);
 		_boss->setTime(TIMEMANAGER->getWorldTime());

@@ -15,6 +15,8 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
+	_streamSwitch = true;
+
 	_imageStorage = new imageStorage;
 	_imageStorage->init();
 
@@ -94,16 +96,23 @@ void playGround::update()
 //여기다 그려줘라!!!
 void playGround::render()
 {
-	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
-	//==============위에는 제발 건드리지 마라 ============
+	if (_streamSwitch)
+	{
+		SCENEMANAGER->render();
+	}
+	else
+	{
+		PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
+		//==============위에는 제발 건드리지 마라 ============
 
-	//스테이지(씬 매니저)
-	SCENEMANAGER->render();
+		//스테이지(씬 매니저)
+		SCENEMANAGER->render();
 
-	//_gameManager->render();
+		//_gameManager->render();
 
-	//EFFECTMANAGER->render();
+		//EFFECTMANAGER->render();
 
-	//=============== 밑에도 건들지마라 ================
-	_backBuffer->render(getHDC(), 0, 0);
+		//=============== 밑에도 건들지마라 ================
+		_backBuffer->render(getHDC(), 0, 0);
+	}
 }

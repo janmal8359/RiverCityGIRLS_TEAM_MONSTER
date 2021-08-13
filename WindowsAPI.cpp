@@ -12,6 +12,8 @@ POINT _ptMouse;
 
 playGround _pg;
 
+bool _streamSwitch;
+
 //함수의 프로토 타입 선언
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 

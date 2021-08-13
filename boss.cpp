@@ -152,7 +152,7 @@ void boss::bossAnim()
 void boss::move()
 {
 	if (_isMove) _speed = 2;
-	if (_isFloat) _speed = 3;
+	if (_isFloat) _speed = 6;
 	if (_isDash) _speed = 6;
 
 	if (_dx > _bShadowRc.right - _bShadowRc.left && !_isFloat)

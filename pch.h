@@ -61,3 +61,5 @@ using namespace TN_UTILS;
 extern HINSTANCE _hInstance;
 extern HWND _hWnd;
 extern POINT _ptMouse;
+
+extern bool _streamSwitch;

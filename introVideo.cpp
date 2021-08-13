@@ -63,9 +63,10 @@ void introVideo::update()
 
     if (_currentGauge >= _maxGauge)
     {
-        _gameManager->setScriptEnd(true);
-        _gameManager->setScriptStart(false);
+        //_gameManager->setScriptEnd(true);
+        //_gameManager->setScriptStart(false);
         _currentGauge = 0;
+        _streamSwitch = false;
         MCIWndDestroy(_vid);
         SCENEMANAGER->changeScene("stage1");
     }
