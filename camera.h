@@ -53,6 +53,7 @@ public:
 
 	 image* getBgImage() { return _backGroundImg; }
 
+	 image* getPixImage() { return _pixelImg; }
 
 	 RECT getCameraRc() { return _cameraRc; }
 

@@ -34,7 +34,7 @@ void idle::stateChange()
 {
 	if (_player->getIsGetHit())
 	{
-		_playerAni->stop();
+		//_playerAni->stop();
 		_player->setState(new hit);
 	}
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
