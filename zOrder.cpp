@@ -24,7 +24,7 @@ HRESULT zOrder::init()
 	_pixel = new pixelCollisionClass;
 
 	//_camera->init();
-	//_camera->setStage((int)stageImg::FIRST_STAGE);
+	_camera->setStage((int)stageImg::FIRST_STAGE);
 
 	_boss->setPlayerMemoryAddressLink(_player);
 	_boss->setCameraMemoryAddressLink(_camera);
@@ -85,7 +85,7 @@ HRESULT zOrder::init()
 
 	_camera->init();
 
-	_camera->setStage(SECOND_STAGE);
+	//_camera->setStage(SECOND_STAGE);
 
 	_boss->init();
 

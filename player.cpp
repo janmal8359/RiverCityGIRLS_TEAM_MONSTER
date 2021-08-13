@@ -215,7 +215,6 @@ void player::move()
                 {
                     _enemyManager->getVGirl()[i]->setEnemySY(_enemyManager->getVGirl()[i]->getEnemySY() - _speed);
                 }
-                }
             }
             else
             {
@@ -227,6 +226,7 @@ void player::move()
         _pX = _sX;
         _pY = _sY - _playerImg->getFrameHeight() / 2;
     }
+
     else if (_isJump)
     {
         if (_playerRc.bottom <= _sY) //
