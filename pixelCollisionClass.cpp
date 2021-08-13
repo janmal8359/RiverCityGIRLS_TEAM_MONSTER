@@ -46,6 +46,8 @@ void pixelCollisionClass::update()
 	_probeTY = _player->getShadowY() - (_player->getShadowImg()->getHeight() / 2 );
 	_probeBY = _player->getShadowY() + (_player->getShadowImg()->getHeight() / 2 );
 
+	_dir = _player->getDir();
+
 	Colloision();
 }
 
@@ -60,7 +62,7 @@ void pixelCollisionClass::render()
 
 void pixelCollisionClass::Colloision()
 {	
-		for (int i = _probeLX - 1; i < _probeRX + 1; i++)
+		for (int i = _probeLX - 2; i < _probeRX + 2; i++)  // 좌우
 		{
 			COLORREF color = GetPixel(_stage->getMemDC(), i + _camera->getCamX(), _player->getShadowY() + _camera->getCamY());
 
@@ -73,12 +75,36 @@ void pixelCollisionClass::Colloision()
 				//벽
 				if (R == 255 && G == 0 && B == 0)			//레드
 				{
+					//if (PLAYERLEFT == _player->getDir())
+					//{
+					//	_player->setShadowX(_player->getShadowX() + 1);
+					//}
+					//
+					//if (PLAYERRIGHT == _player->getDir())
+					//{
+					//	_player->setShadowX(_player->getShadowX() - 1);
+					//}
 					//_player->setSpeed(6);					//0으로 변경
 				}
 				//책상 바닥
 				else if (R == 0 && G == 255 && B == 0)		//그린 - 0으로 변경
 				{
-					//_player->setSpeed(6);
+
+					if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
+					{
+						_player->setShadowX(_player->getShadowX() + _player->getSpeed() * 1.5);
+						
+
+						_player->setSpeed(0);
+					}
+					
+					if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+					{
+						_player->setShadowX(_player->getShadowX() - _player->getSpeed() * 1.5);
+
+						_player->setSpeed(0);
+					}
+
 				}
 				else if (R == 255 && G == 255 && B == 0)	//노란
 				{
@@ -104,9 +130,9 @@ void pixelCollisionClass::Colloision()
 			}
 		}
 	
-		for (int i = _probeTY - 1; i < _probeBY + 1; i++)
+		for (int i = _probeTY - 2; i < _probeBY + 21; i++)	// 위아래
 		{
-			COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX() + _camera->getCamX(), _player->getShadowY() + _camera->getCamY());
+			COLORREF color = GetPixel(_stage->getMemDC(), _player->getShadowX() + _camera->getCamX(), i + _camera->getCamY());
 
 			int R = GetRValue(color);
 			int G = GetGValue(color);
@@ -117,12 +143,27 @@ void pixelCollisionClass::Colloision()
 				//벽
 				if (R == 255 && G == 0 && B == 0)			//레드
 				{
-					//_player->setSpeed(6);					//0으로 변경
+
+					//_player->setSpeed(6);					
 				}
 				//책상 바닥
 				else if ((R == 0 && G == 255 && B == 0))	//그린 - 0으로 변경
 				{
-					//_player->setSpeed(6);
+
+					if (KEYMANAGER->isOnceKeyUp(VK_UP))
+					{
+						_player->setShadowY(_player->getShadowY() + _player->getSpeed() * 1.5);
+
+
+						_player->setSpeed(0);
+					}
+
+					if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
+					{
+						_player->setShadowY(_player->getShadowY() - _player->getSpeed() * 1.5);
+					}
+
+					_player->setSpeed(0);
 				}
 				else if ((R == 255 && G == 255 && B == 0))	//노란
 				{

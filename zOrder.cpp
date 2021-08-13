@@ -42,6 +42,14 @@ HRESULT zOrder::init()
 	_enemy->setPlayerMemoryLink(_player);				//플레이어 연동
 	_enemy->setCameraMemoryLink(_camera);				//카메라 연동
 
+	for (int i = 0; i < _objectManager->getVObject().size();)
+	{
+		_player->setObjectManagerMemoryAddressLink(_objectManager);
+		_objectManager->getVObject()[i]->setPlayerMemoryAddrsLink(_player);
+
+		++i;
+	}
+
 	_pixel = new pixelCollisionClass;
 
 	_pixel->init(0, 0, 0);
@@ -52,6 +60,11 @@ HRESULT zOrder::init()
 	_vRender.push_back(_enemy);
 	_vRender.push_back(_boss);
 	_vRender.push_back(_objectManager);
+	
+	for (int i = 0; i < _objectManager->getVObject().size(); ++i)
+	{
+		_vRender.push_back(_objectManager->getVObject()[i]);
+	}
 
 	return S_OK;
 }

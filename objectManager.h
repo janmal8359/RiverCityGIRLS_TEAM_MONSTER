@@ -37,7 +37,7 @@ public:
 	vector<object*> getVObject() { return _vObject; }
 	vector<object*>::iterator getViObject() { return _viObject; }
 	 
-	/*void setPlayerMemoryAddressLink(player* player) { _player = player; }
+	//void setPlayerMemoryAddressLink(player* player) { _player = player; }
 
-	void setCameraMemoryAddressLink(camera* camera) { _camera = camera; }*/
+	//void setCameraMemoryAddressLink(camera* camera) { _camera = camera; }
 };

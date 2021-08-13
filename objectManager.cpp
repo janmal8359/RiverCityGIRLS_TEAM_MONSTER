@@ -73,7 +73,7 @@ void objectManager::setObject()
 			{
 				object* object;
 				object = new LPillar;
-				object->init((WINSIZEX / 2) - 200, 300 + j * 300, LPILLAR);
+				object->init((WINSIZEX / 2) - 30, 300 + j * 300, LPILLAR);
 				_vObject.push_back(object);
 			}
 		}
@@ -84,7 +84,7 @@ void objectManager::setObject()
 			{
 				object* object;
 				object = new RPillar;
-				object->init((WINSIZEX / 2) + 200, 300 + j * 300, RPILLAR);
+				object->init((WINSIZEX / 2) + 300, 300 + j * 300, RPILLAR);
 				_vObject.push_back(object);
 			}
 		}
@@ -95,7 +95,7 @@ void objectManager::setObject()
 			{
 				object* object;
 				object = new particle;
-				object->init(0, 0, PARTICLE1);
+				object->init(WINSIZEX / 2, WINSIZEY / 2, PARTICLE1);
 				_vObject.push_back(object);
 			}
 		}
@@ -106,7 +106,7 @@ void objectManager::setObject()
 			{
 				object* object;
 				object = new particle;
-				object->init(0, 0, PARTICLE2);
+				object->init(WINSIZEX / 2, WINSIZEY / 2, PARTICLE2);
 				_vObject.push_back(object);
 			}
 		}
@@ -117,7 +117,7 @@ void objectManager::setObject()
 			{
 				object* object;
 				object = new particle;
-				object->init(0, 0, PARTICLE3);
+				object->init(WINSIZEX / 2, WINSIZEY / 2, PARTICLE3);
 				_vObject.push_back(object);
 			}
 		}
