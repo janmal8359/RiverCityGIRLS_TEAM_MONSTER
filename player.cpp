@@ -96,7 +96,7 @@ void player::render()
 
  
  
-    char str[128];
+   /* char str[128];
     sprintf_s(str, " _isJump : %d", _isJump);
     TextOut(getMemDC(), 0, 200, str, strlen(str));
 
@@ -119,7 +119,7 @@ void player::render()
     TextOut(getMemDC(), 0, 160, str, strlen(str));
 
     sprintf_s(str, "_LK  : %d", _LK);
-    TextOut(getMemDC(), 0, 180, str, strlen(str));
+    TextOut(getMemDC(), 0, 180, str, strlen(str));*/
 
 
 

@@ -35,14 +35,14 @@ void bossState::render()
 
 	char str[128];
 
-	sprintf_s(str, "direction : %d", (int)_direction);
+	/*sprintf_s(str, "direction : %d", (int)_direction);
 	TextOut(getMemDC(), 10, 320, str, strlen(str));
 
 	sprintf_s(str, "frameIdxL : %d", (int)_bossAnimL->getNowPlayIdx());
 	TextOut(getMemDC(), 10, 500, str, strlen(str));
 
 	sprintf_s(str, "frameIdxR : %d", (int)_bossAnimR->getNowPlayIdx());
-	TextOut(getMemDC(), 10, 530, str, strlen(str));
+	TextOut(getMemDC(), 10, 530, str, strlen(str));*/
 }
 
 void bossState::stateChange()

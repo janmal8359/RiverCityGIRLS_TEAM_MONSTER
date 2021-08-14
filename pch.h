@@ -32,7 +32,7 @@ using namespace TN_UTILS;
 // ## 윈도우 설정 디파인문 ## 2021.05.26 ##
 //========================================
 
-#define WINNAME		(LPTSTR)TEXT("Class29")			//윈도우 이름
+#define WINNAME		(LPTSTR)TEXT("RRVER CITY GRIL")			//윈도우 이름
 #define WINSTARTX	20								//윈도우 시작좌표(left)
 #define WINSTARTY	50								//윈도우 시작좌표(top)
 #define WINSIZEX	1280								//윈도우 가로크기

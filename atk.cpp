@@ -86,8 +86,8 @@ void atk::render()
 	state::render();
 
 	char str[128];
-	sprintf_s(str, "attcount:%d", _attackIdx);
-	TextOut(getMemDC(), 20, 20, str, strlen(str));
+	/*sprintf_s(str, "attcount:%d", _attackIdx);
+	TextOut(getMemDC(), 20, 20, str, strlen(str));*/
 }
 
 void atk::stateChange()

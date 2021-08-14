@@ -95,7 +95,7 @@ void boss::render()
 	/*sprintf_s(str, "_sx : %.2f  _sy : %.2f", _sx, _sy);
 	TextOut(getMemDC(), 10, 150, str, strlen(str));*/
 
-	sprintf_s(str, "jump : %d", (int)_isJump);
+	/*sprintf_s(str, "jump : %d", (int)_isJump);
 	TextOut(getMemDC(), 10, 300, str, strlen(str));
 
 	sprintf_s(str, "move : %d", (int)_isMove);
@@ -111,7 +111,7 @@ void boss::render()
 	TextOut(getMemDC(), 10, 430, str, strlen(str));
 
 	sprintf_s(str, "camX : %.2f camY : %.2f", _camera->getCamX(), _camera->getCamY());
-	TextOut(getMemDC(), 10, 700, str, strlen(str));
+	TextOut(getMemDC(), 10, 700, str, strlen(str));*/
 }
 
 void boss::stateRender(animation* anim)

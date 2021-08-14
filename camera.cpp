@@ -112,8 +112,8 @@ void camera::render()
 
     char str[128];
 
-    sprintf_s(str, "camX : %.2f camY : %.2f", _camX, _camY);
-    TextOut(getMemDC(), 10, 680, str, strlen(str));
+   /* sprintf_s(str, "camX : %.2f camY : %.2f", _camX, _camY);
+    TextOut(getMemDC(), 10, 680, str, strlen(str));*/
 }
 
 void camera::cameraLock(float x, float y)

@@ -40,8 +40,8 @@ void state::render()
 	_player->stateRender(_playerAni);
 
 	char str[128];
-	sprintf_s(str, "dir : %d", _dir);
-	TextOut(getMemDC(), 0, 0, str, strlen(str));
+	/*sprintf_s(str, "dir : %d", _dir);
+	TextOut(getMemDC(), 0, 0, str, strlen(str));*/
 }
 
 void state::distance()

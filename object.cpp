@@ -52,9 +52,9 @@ void object::update()
 
 void object::render()
 {
-	//if (KEYMANAGER->isOnceKeyUp('J') || _pixel->setIsCheck(true))
-	//{
-		_objectImg->render(getMemDC(), _objectRc.left, _objectRc.top);
-	//}
+	if (KEYMANAGER->isToggleKey('L'))
+	{
+	_objectImg->render(getMemDC(), _objectRc.left, _objectRc.top);
+	}
 
 }

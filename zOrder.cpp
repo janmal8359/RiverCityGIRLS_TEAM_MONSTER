@@ -33,8 +33,8 @@ HRESULT zOrder::init()
 
 
 
-	//_enemy = new enemy;
-	//_enemy->init();
+	_enemy = new enemy;
+	_enemy->init();
 
 
 	_enemyManager->init();
@@ -110,7 +110,7 @@ HRESULT zOrder::init()
 	_vRender.push_back(_player);
 	//_vRender.push_back(_enemy);
 
-	_vRender.push_back(_boss);
+	//_vRender.push_back(_boss);
 
 	
 	for (int i = 0; i < _objectManager->getVObject().size(); ++i)
@@ -130,7 +130,7 @@ HRESULT zOrder::init()
 
 
 	//_vRender.push_back(_enemyManager);
-	//_vRender.push_back(_boss);
+	_vRender.push_back(_boss);
 
 
 	return S_OK;
@@ -162,7 +162,7 @@ void zOrder::update()
 	//_enemy->update();
 	//_enemy->getEnemyState()->setEnemy(_enemy);
 
-		_enemyManager->update();
+	_enemyManager->update();
 	
 
 
@@ -205,11 +205,11 @@ void zOrder::render()
 	_gaM->render();
 	char str[128];
 	
-	sprintf_s(str, "vecterSize : %d", _vRender.size());
+	/*sprintf_s(str, "vecterSize : %d", _vRender.size());
 	TextOut(getMemDC(), 1000, 100, str, strlen(str));
 
 	sprintf_s(str, "getstage : %d", _camera->getstage());
-	TextOut(getMemDC(), 1000, 200, str, strlen(str));
+	TextOut(getMemDC(), 1000, 200, str, strlen(str));*/
 }
 
 
