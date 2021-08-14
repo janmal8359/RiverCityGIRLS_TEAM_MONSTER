@@ -52,7 +52,7 @@ void object::update()
 
 void object::render()
 {
-	//if (KEYMANAGER->isOnceKeyUp('J') && _pixel->setIsCheck(true))
+	//if (KEYMANAGER->isOnceKeyUp('J') || _pixel->setIsCheck(true))
 	//{
 		_objectImg->render(getMemDC(), _objectRc.left, _objectRc.top);
 	//}

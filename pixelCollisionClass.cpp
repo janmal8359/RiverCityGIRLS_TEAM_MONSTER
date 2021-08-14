@@ -337,7 +337,7 @@ void pixelCollisionClass::Colloision()
 					// 플레이어 주변에 문 애니메이션 출력
 					//특정 키 입력시 다음 스테이지로 이동
 					_camera->setStage(0);
-					_player->setShadowX(669);
+					_player->setShadowX(800);
 					_player->setShadowY(423);
 					_camera->setCamX(1239);
 					_camera->setCamY(110);

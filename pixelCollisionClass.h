@@ -85,7 +85,7 @@ public:
 	void setBOSSSTAGE2MemoryAddressLink(bossStage2* boss2) { _boss2 = boss2; }
 	void setCAMERAMemoryAddressLink(camera* camera) { _camera = camera; }
 
-	//void setIsCheck(bool isCheck) { _isCheck = isCheck; }
+	void setIsCheck(bool isCheck) { _isCheck = isCheck; }
 
 	void setGameManager(gameManager* gm) { _gM = gm; }
 };
