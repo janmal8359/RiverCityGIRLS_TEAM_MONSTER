@@ -122,15 +122,15 @@ HRESULT zOrder::init()
 	//_ef->init(IMAGEMANAGER->addFrameImage("smash", "resources/IMG/effect/Boss smash.bmp", 960, 89, 10, 1, true, RGB(255, 0, 255)), 96, 89, 1, 0.5f);
 
 
-		for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
-		{
-			_vRender.push_back(_enemyManager->getVGirl()[i]);
-		}
+		//for (int i = 0; i < _enemyManager->getVGirl().size(); ++i)
+		//{
+		//	_vRender.push_back(_enemyManager->getVGirl()[i]);
+		//}
 	
 
 
 	//_vRender.push_back(_enemyManager);
-	_vRender.push_back(_boss);
+	//_vRender.push_back(_boss);
 
 
 	return S_OK;
@@ -152,7 +152,7 @@ void zOrder::update()
 	_boss->setPlayerMemoryAddressLink(_player);
 
 	
-	_boss->update();
+	//_boss->update();
 	
 	_objectManager->update();
 
@@ -162,7 +162,7 @@ void zOrder::update()
 	//_enemy->update();
 	//_enemy->getEnemyState()->setEnemy(_enemy);
 
-	_enemyManager->update();
+	//_enemyManager->update();
 	
 
 
