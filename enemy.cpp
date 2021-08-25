@@ -266,8 +266,8 @@ void enemy::enemyMove()
 		if (_enemyDir == (int)ENEMY_RIGHT)
 		{
 			_enemyX = _enemySX;
-			_enemySX -= cosf(getAngle(_player->getShadowX()-125, _player->getShadowY(), _enemySX, _enemySY )) * _enemySpeed;
-			_enemySY -= -sin(getAngle(_player->getShadowX()-125, _player->getShadowY(), _enemySX, _enemySY )) * _enemySpeed;
+			_enemySX += cosf(getAngle(_player->getShadowX()-125, _player->getShadowY(), _enemySX, _enemySY )) * _enemySpeed;
+			_enemySY += -sin(getAngle(_player->getShadowX()-125, _player->getShadowY(), _enemySX, _enemySY )) * _enemySpeed;
 
 		}
 	

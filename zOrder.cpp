@@ -13,9 +13,9 @@ zOrder::~zOrder()
 
 HRESULT zOrder::init()
 {
-	//_vRender.push_back(_player);
-	//_vRender.push_back(_enemy);
-	//_vRender.push_back(_boss);
+	_vRender.push_back(_player);
+	_vRender.push_back(_enemy);
+	_vRender.push_back(_boss);
 
 	_player = new player;
 	_camera = new camera;
@@ -108,9 +108,9 @@ HRESULT zOrder::init()
 
 	//넣어준다.
 	_vRender.push_back(_player);
-	//_vRender.push_back(_enemy);
+	_vRender.push_back(_enemy);
 
-	//_vRender.push_back(_boss);
+	_vRender.push_back(_boss);
 
 	
 	for (int i = 0; i < _objectManager->getVObject().size(); ++i)
@@ -129,8 +129,8 @@ HRESULT zOrder::init()
 	
 
 
-	//_vRender.push_back(_enemyManager);
-	//_vRender.push_back(_boss);
+	_vRender.push_back(_enemyManager);
+	_vRender.push_back(_boss);
 
 
 	return S_OK;
@@ -152,17 +152,17 @@ void zOrder::update()
 	_boss->setPlayerMemoryAddressLink(_player);
 
 	
-	//_boss->update();
+	_boss->update();
 	
 	_objectManager->update();
 
 	_pixel->setPixelPlayer(_player);
 	_pixel->update();
 
-	//_enemy->update();
-	//_enemy->getEnemyState()->setEnemy(_enemy);
+	_enemy->update();
+	_enemy->getEnemyState()->setEnemy(_enemy);
 
-	//_enemyManager->update();
+	_enemyManager->update();
 	
 
 
