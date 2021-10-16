@@ -148,6 +148,9 @@ void gameManager::render()
 	_playerHPBar._image->render(getMemDC(), _playerHPBar._rc.left, _playerHPBar._rc.top);
 	_playerProfile._image->render(getMemDC(), _playerProfile._rc.left, _playerProfile._rc.top);
 
+	char str[128];
+	sprintf_s(str, "%d", _vScript.size());
+	TextOut(getMemDC(), 10, 10, str, strlen(str));
 
 	for (int i = 0; i < _playerHP; i++) {
 		_playerHPPoint[i]._image->render(getMemDC(), _playerHPPoint[i]._rc.left, _playerHPPoint[i]._rc.top);

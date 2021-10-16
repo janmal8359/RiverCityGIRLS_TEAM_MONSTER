@@ -34,20 +34,21 @@ private:
 	image* chainLock;
 	int _count, _index;
 
-	bool scriptStart;
-	bool scriptEnd;
-	RECT scriptRc;
-	image* scriptImage;
-	int _scriptIndex;
-	int _txtIndex;
-	vector<string> _vScript;
-	string _txt;
-	image* scriptSkip;
-	bool _scriptSkip;
+	// 스크립트
+	bool scriptStart;			// 시작
+	bool scriptEnd;				// 끝
+	RECT scriptRc;				// 렉트
+	image* scriptImage;			// 배경이미지
+	int _scriptIndex;			// 스크립트 인덱스
+	int _txtIndex;				// 텍스트 인덱스
+	vector<string> _vScript;	// 스크립트 벡터
+	string _txt;				// 문자열
+	image* scriptSkip;			// 스킵 이미지
+	bool _scriptSkip;			// 스킵 여부
 
-	image* kScript;
-	image* mScript;
-	image* scriptName;
+	image* kScript;				// 쿄코
+	image* mScript;				// 미스즈
+	image* scriptName;			// 스크립트 이름
 
 
 	
